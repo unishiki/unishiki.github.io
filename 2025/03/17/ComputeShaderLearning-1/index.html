@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="../images/mfmf.webp">
+  <title>GPU粒子实现原理与ComputeShader GPU Instance的基础应用 | uni_shiki</title>
+  <meta name="author" content="uni_shiki" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="Compute Shader, Shader, Unity, 计算机图形学" />
+  
+  <meta name="description" content="&amp;nbsp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GPU粒子实现原理与ComputeShader GPU Instance的基础应用">
+<meta property="og:url" content="http://example.com/2025/03/17/ComputeShaderLearning-1/index.html">
+<meta property="og:site_name" content="uni_shiki">
+<meta property="og:description" content="&amp;nbsp;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/mfmf.webp">
+<meta property="article:published_time" content="2025-03-17T02:12:08.000Z">
+<meta property="article:modified_time" content="2025-03-17T04:12:04.855Z">
+<meta property="article:author" content="uni_shiki">
+<meta property="article:tag" content="Unity">
+<meta property="article:tag" content="Compute Shader">
+<meta property="article:tag" content="Shader">
+<meta property="article:tag" content="计算机图形学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/mfmf.webp">
+<meta name="twitter:site" content="@null">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" type="text/css" media="all">
+  
+  
+    <link rel="stylesheet" href="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css">
+  
+  
+    <link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="https://unpkg.com/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/myBg2.png');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                        <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                    
+                                
+                                    
+                                        <li>
+                                            <a><i class="fa fa-link"></i>链接</a>
+                                            <ul class="sub-menu">
+                                                
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://space.bilibili.com/33554119">作者b站</a></li>
+                                                    
+                                                
+                                            </ul>
+                                        </li>
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">uni_shiki</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>uni_shiki</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article>
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center">GPU粒子实现原理与ComputeShader GPU Instance的基础应用</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><i class="fa fa-calendar"></i> 2025-03-17</li>
+                <li><i class="fa fa-user"></i> 作者 uni_shiki</li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~1.78K
+                    
+                    字
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1742184724855"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+                <div class="kratos-post-inner-toc">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Unity%E7%B2%92%E5%AD%90%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.</span> <span class="toc-text">Unity粒子系统</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B2%92%E5%AD%90%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">2.</span> <span class="toc-text">粒子是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E7%BC%96%E7%A8%8B%E8%A7%92%E5%BA%A6%E6%9D%A5%E7%9C%8B"><span class="toc-number">2.0.1.</span> <span class="toc-text">从编程角度来看</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%EF%BC%9A"><span class="toc-number">2.0.2.</span> <span class="toc-text">数据：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%EF%BC%9A"><span class="toc-number">2.0.3.</span> <span class="toc-text">逻辑：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E7%8E%B0%EF%BC%9A"><span class="toc-number">2.0.4.</span> <span class="toc-text">表现：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CPU%E7%B2%92%E5%AD%90%E5%92%8CGPU%E7%B2%92%E5%AD%90%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%9C%89%E5%BE%88%E5%A4%A7%E5%8C%BA%E5%88%AB"><span class="toc-number">3.</span> <span class="toc-text">CPU粒子和GPU粒子的实现有很大区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU%E7%B2%92%E5%AD%90"><span class="toc-number">3.0.1.</span> <span class="toc-text">CPU粒子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GPU%E7%B2%92%E5%AD%90"><span class="toc-number">3.0.2.</span> <span class="toc-text">GPU粒子</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%80%9F%E5%8A%A9ComputeShader%E5%92%8CComputeBuffer%E5%AE%9E%E7%8E%B0GPU%E7%B2%92%E5%AD%90%E7%9A%84%E7%BB%86%E8%8A%82"><span class="toc-number">4.</span> <span class="toc-text">借助ComputeShader和ComputeBuffer实现GPU粒子的细节</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE"><span class="toc-number">4.0.1.</span> <span class="toc-text">数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%BB%E8%BE%91"><span class="toc-number">4.0.2.</span> <span class="toc-text">逻辑</span></a></li></ol></li></ol></li></ol>
+                </div>
+            
+            <hr />
+            <p>&nbsp;</p>
+<span id="more"></span>
+
+<h1 id="Unity粒子系统"><a href="#Unity粒子系统" class="headerlink" title="Unity粒子系统"></a>Unity粒子系统</h1><p><img src="/images/ComputeShader/1_1.png"></p>
+<ul>
+<li>Unity有两套粒子系统<ul>
+<li>CPU粒子的ParticleSystem，能支撑粒子的数量级是几千个</li>
+<li>GPU粒子的Visual Effect Graph(VFX Graph)，能支撑粒子的数量级是几百万个</li>
+</ul>
+</li>
+</ul>
+<h1 id="粒子是什么"><a href="#粒子是什么" class="headerlink" title="粒子是什么"></a>粒子是什么</h1><ul>
+<li>粒子系统是由大量运动颗粒构成的</li>
+</ul>
+<h3 id="从编程角度来看"><a href="#从编程角度来看" class="headerlink" title="从编程角度来看"></a>从编程角度来看</h3><ul>
+<li>分为三部分<ul>
+<li>数据</li>
+<li>逻辑</li>
+<li>表现</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="数据："><a href="#数据：" class="headerlink" title="数据："></a>数据：</h3><ul>
+<li>结构体，必须有一个Vector3的Position属性</li>
+<li>其他属性，可以有Color、Scale</li>
+</ul>
+<p>假设有一个例子系统，由10万个这样的粒子构成<br>那一个Particle结构体的数组，长度为10万，就构成了粒子系统的全部数据</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> Particle</span><br><span class="line">&#123;</span><br><span class="line">	Vector3 Position;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Particle[] particles = <span class="keyword">new</span> Particle[<span class="number">100000</span>];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="逻辑："><a href="#逻辑：" class="headerlink" title="逻辑："></a>逻辑：</h3><ul>
+<li>根据某种规律，每一帧，计算position属性，让这些数据“运动”起来</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Particle</span></span><br><span class="line">&#123;</span><br><span class="line">	update(<span class="built_in">float</span> dt)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">foreach</span> (<span class="keyword">var</span> p <span class="keyword">in</span> _particles)</span><br><span class="line">		&#123;</span><br><span class="line">			p.position = ...</span><br><span class="line">			...</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="表现："><a href="#表现：" class="headerlink" title="表现："></a>表现：</h3><ul>
+<li>如何结合图像API把刚才10万个粒子的数据展示出来，比如把每个例子渲染成点图元、面片等</li>
+</ul>
+<h1 id="CPU粒子和GPU粒子的实现有很大区别"><a href="#CPU粒子和GPU粒子的实现有很大区别" class="headerlink" title="CPU粒子和GPU粒子的实现有很大区别"></a>CPU粒子和GPU粒子的实现有很大区别</h1><h3 id="CPU粒子"><a href="#CPU粒子" class="headerlink" title="CPU粒子"></a>CPU粒子</h3><p><img src="/images/ComputeShader/1_2.png"></p>
+<p>工作流程：</p>
+<ul>
+<li>第一步：在内存里初始化10万个粒子对象</li>
+<li>第二步：每一帧里更新十万个粒子的位置</li>
+<li>第三步：每一帧要把变换的数据提交给GPU，让GPU做渲染</li>
+</ul>
+<p>开销影响：</p>
+<ul>
+<li>由于第二步的计算每一帧都要计算，而CPU无法进行并行计算，所以粒子数量多时，计算开销非常大</li>
+<li>第三步数据计算之后，需要从CPU把计算的结果提交给GPU做显示，这样的显示每一帧都要做，都涉及到跨CPU和GPU的通信</li>
+</ul>
+<h3 id="GPU粒子"><a href="#GPU粒子" class="headerlink" title="GPU粒子"></a>GPU粒子</h3><p><img src="/images/ComputeShader/1_3.png"></p>
+<p>工作流程：</p>
+<ul>
+<li>第一步：虽然也需要声明10w万个粒子的数据，但是会在初始化的时候，一次性的把这些数据从内存拷贝到GPU显存侧的ComputeBuffer里</li>
+<li>第二步：计算每一个粒子下一帧所应该在的位置，计算后的结果依然存储在GPU的显存的ComputeBuffer里面</li>
+<li>第三步：渲染的时候直接从显存的ComputeBuffer里面拿数据，直接渲染</li>
+</ul>
+<p>开销影响：</p>
+<ul>
+<li>第二步由于发生在GPU侧，可以充分利用GPU里面的ComputeShader并行计算能力</li>
+<li>第三步减少了CPU到GPU的数据拷贝</li>
+</ul>
+<h1 id="借助ComputeShader和ComputeBuffer实现GPU粒子的细节"><a href="#借助ComputeShader和ComputeBuffer实现GPU粒子的细节" class="headerlink" title="借助ComputeShader和ComputeBuffer实现GPU粒子的细节"></a>借助ComputeShader和ComputeBuffer实现GPU粒子的细节</h1><ul>
+<li>还是从数据、逻辑、表现三块来看</li>
+</ul>
+<h3 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h3><p><img src="/images/ComputeShader/1_4.png"></p>
+<ul>
+<li>需要一个结构体particle，里面至少要包含一个Position属性</li>
+</ul>
+<p><img src="/images/ComputeShader/1_5.png"></p>
+<ul>
+<li>初始化数据，初始化ComputeBuffer，填充数据</li>
+<li>把结构体数据填充到内存里，并拷贝到ComputeBuffer里</li>
+<li>new ComputeBuffer()<ul>
+<li>第一个参数是要缓存多少个这样的粒子，ComputeBuffer的长度要和粒子的长度一样</li>
+<li>第二个参数是Particle结构体的大小</li>
+</ul>
+</li>
+<li>new完后只是说显存里有这个Buffer了，还要把数据真正拷贝过去</li>
+</ul>
+<p><img src="/images/ComputeShader/1_6.png"></p>
+<ul>
+<li>为了能在ComputeShader计算的时候能使用上刚才ComputeBuffer里的数据，需要新建一个ComputeShader，也写上一个同样的struct</li>
+<li>写一个RWStructure的Buffer，把Particle当做泛型传进来，相当于准备好一个Particle List去容纳CPU传过来的数据</li>
+</ul>
+<p><img src="/images/ComputeShader/1_7.png"></p>
+<ul>
+<li>在C#里准备好了ComputeBuffer、在ComputeShader里准备好了StructureBuffer之后，需要把二者关联起来</li>
+</ul>
+<h3 id="逻辑"><a href="#逻辑" class="headerlink" title="逻辑"></a>逻辑</h3><ul>
+<li>如何每帧更新粒子位置</li>
+</ul>
+<p><img src="/images/ComputeShader/1_8.png"></p>
+<ul>
+<li>在CPU大概会写成这个样子</li>
+</ul>
+<p><img src="/images/ComputeShader/1_9.png"></p>
+<ul>
+<li>变成GPU粒子后，Update函数有比较大的变化</li>
+<li>不会在Update里面做for循环了，只需要给ComputeShader设置deltaTime，然后调用Dispatch，传一个ComputeShader的函数名，这样ComputeShader就会去工作，自动去算每个粒子的位置了</li>
+</ul>
+
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5>本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                    <a class="donate" href="javascript:;"><i class="fa fa-bitcoin"></i> 打赏</a>
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2025/03/17/ComputeShaderLearning-1/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2025/03/17/ComputeShaderLearning-1/";
+            const title         = "「GPU粒子实现原理与ComputeShader GPU Instance的基础应用」";
+            const excerpt       = `&nbsp;`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/Compute-Shader/" rel="tag">Compute Shader</a>, <a class="tag-none-link" href="/tags/Shader/" rel="tag">Shader</a>, <a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>, <a class="tag-none-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" rel="tag">计算机图形学</a>
+                </div>
+                <div class="pull-date">
+                <span>最后编辑：2025-03-17</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 数学可视化(15)——相机的控制与运动" href="/2025/02/21/Mathematical-Visualization-15/">&lt; 上一篇</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+        <div id="disqus_thread" class="post-comments lazy-load"></div>
+
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://example.com/2025/03/17/ComputeShaderLearning-1/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '2025/03/17/ComputeShaderLearning-1/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    var load_comm = () => {
+        if (typeof DISQUS === 'undefined') {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://unishiki.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        } else {
+            DISQUS.reset({
+                reload: true,
+                config: function () {  
+                    this.page.url = 'http://example.com/2025/03/17/ComputeShaderLearning-1/';  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = '2025/03/17/ComputeShaderLearning-1/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                }
+            });
+        }
+    };
+    
+</script>
+<script async id="dsq-count-scr" src="//unishiki.disqus.com/count.js"></script>
+
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/ava1.jpg" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                113
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                3
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                18
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix">
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar"></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Unity%E7%B2%92%E5%AD%90%E7%B3%BB%E7%BB%9F"><span class="toc-text">Unity粒子系统</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B2%92%E5%AD%90%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">粒子是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E7%BC%96%E7%A8%8B%E8%A7%92%E5%BA%A6%E6%9D%A5%E7%9C%8B"><span class="toc-text">从编程角度来看</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%EF%BC%9A"><span class="toc-text">数据：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%EF%BC%9A"><span class="toc-text">逻辑：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E7%8E%B0%EF%BC%9A"><span class="toc-text">表现：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CPU%E7%B2%92%E5%AD%90%E5%92%8CGPU%E7%B2%92%E5%AD%90%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%9C%89%E5%BE%88%E5%A4%A7%E5%8C%BA%E5%88%AB"><span class="toc-text">CPU粒子和GPU粒子的实现有很大区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU%E7%B2%92%E5%AD%90"><span class="toc-text">CPU粒子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GPU%E7%B2%92%E5%AD%90"><span class="toc-text">GPU粒子</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%80%9F%E5%8A%A9ComputeShader%E5%92%8CComputeBuffer%E5%AE%9E%E7%8E%B0GPU%E7%B2%92%E5%AD%90%E7%9A%84%E7%BB%86%E8%8A%82"><span class="toc-text">借助ComputeShader和ComputeBuffer实现GPU粒子的细节</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE"><span class="toc-text">数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%BB%E8%BE%91"><span class="toc-text">逻辑</span></a></li></ol></li></ol></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a><span class="category-list-count">95</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">开发记录</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%99%E7%A8%8B%E6%96%87%E6%A1%A3/">教程文档</a><span class="category-list-count">3</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/C/" style="font-size: 0.6em;">C#</a> <a href="/tags/Compute-Shader/" style="font-size: 0.6em;">Compute Shader</a> <a href="/tags/Dots/" style="font-size: 0.66em;">Dots</a> <a href="/tags/Java/" style="font-size: 0.64em;">Java</a> <a href="/tags/MMD/" style="font-size: 0.6em;">MMD</a> <a href="/tags/Shader/" style="font-size: 0.74em;">Shader</a> <a href="/tags/TwilightMelody-2/" style="font-size: 0.62em;">TwilightMelody_2</a> <a href="/tags/UI/" style="font-size: 0.68em;">UI</a> <a href="/tags/Unity/" style="font-size: 0.8em;">Unity</a> <a href="/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/" style="font-size: 0.6em;">Unity编辑器拓展</a> <a href="/tags/games101/" style="font-size: 0.7em;">games101</a> <a href="/tags/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/" style="font-size: 0.64em;">底层原理</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 0.76em;">性能优化</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%8F%AF%E8%A7%86%E5%8C%96/" style="font-size: 0.72em;">数学可视化</a> <a href="/tags/%E6%96%87%E6%A1%A3/" style="font-size: 0.64em;">文档</a> <a href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 0.66em;">算法与数据结构</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="font-size: 0.78em;">计算机图形学</a> <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" style="font-size: 0.6em;">面试题</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2025/03/17/ComputeShaderLearning-1/"><i class="fa  fa-book"></i> GPU粒子实现原理与ComputeShader GPU Instance的基础应用</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/02/21/Mathematical-Visualization-15/"><i class="fa  fa-book"></i> 数学可视化(15)——相机的控制与运动</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/02/21/Mathematical-Visualization-14/"><i class="fa  fa-book"></i> 数学可视化(14)——屏幕空间环境光遮蔽SSAO</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/02/21/Mathematical-Visualization-13/"><i class="fa  fa-book"></i> 数学可视化(13)——距离场环境光遮蔽SDF AO</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/02/21/Mathematical-Visualization-12/"><i class="fa  fa-book"></i> 数学可视化(12)——距离场阴影SDF Shadow</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:ccc895286662@gmail.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/unishiki"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2025 uni_shiki 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by uni_shiki.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                    <div class="box group-box">
+                        <a href="https://jq.qq.com/?_wv=1027&k=CpdI35JY" target="_blank" rel="nofollow">
+                            <span class="fa fa-users"></span>
+                        </a>
+                    </div>
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="https://unpkg.com/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="https://unpkg.com/meting@2/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3080117718"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="https://unpkg.com/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+    <script defer src="https://unpkg.com/layui-src@2.5.5/dist/layui.all.js"></script>
+
+
+    <script defer src="/js/kr-dark.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
