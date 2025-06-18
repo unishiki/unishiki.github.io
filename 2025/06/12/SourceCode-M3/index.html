@@ -24,7 +24,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/mfmf.webp">
 <meta property="article:published_time" content="2025-06-12T02:22:26.000Z">
-<meta property="article:modified_time" content="2025-06-17T06:02:01.002Z">
+<meta property="article:modified_time" content="2025-06-18T10:01:48.036Z">
 <meta property="article:author" content="uni_shiki">
 <meta property="article:tag" content="源码解读">
 <meta property="article:tag" content="我的世界">
@@ -170,7 +170,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~71.54K
+                        ~73.26K
                     
                     字
                 </li>
@@ -180,7 +180,7 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1750140121002"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1750240908036"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
                 <div class="kratos-post-inner-toc">
@@ -222,10 +222,28 @@
 <li>1.0E8F : 为1后面8个0，即100000000，F代表浮点类型</li>
 <li>func_110143_aJ() : 当前血量</li>
 <li>func_110138_aP() : 血量上限</li>
+<li>mana.getMagicMax() : 魔力上限</li>
 <li>data.attack : 造成的伤害</li>
 <li>data.penetration_base : 穿透</li>
 <li>data.critDamage : 暴击伤害</li>
+<li>data.crit : 暴击率</li>
 <li>data.final_attack : 最终伤害</li>
+<li>data.attack_base : 基础攻击力 <i>百科上译为：物理&#x2F;魔法攻击力</i></li>
+<li>mana.magicReliefTemp : 魔力减免</li>
+<li>data.no_tack_damage : 附加伤害</li>
+<li>player.field_70170_p.field_73012_v.nextInt(10) &#x3D;&#x3D; 0 : 10%概率</li>
+<li>field_70170_p.field_72995_K : 为true时对象是客户端线程上的，反之在服务器线程上<ul>
+<li>参考 : <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/38944672">https://zhuanlan.zhihu.com/p/38944672</a></li>
+</ul>
+</li>
+<li>field_70128_L : 单位是否死亡<ul>
+<li>参考 ： <a target="_blank" rel="noopener" href="https://github.com/KevyPorter/Minecraft-Forge-Utils/blob/master/fields.csv">https://github.com/KevyPorter/Minecraft-Forge-Utils/blob/master/fields.csv</a></li>
+</ul>
+</li>
+<li>func_70606_j : 设置目标单位当前生命值<ul>
+<li>参考ItemToolOp.class</li>
+</ul>
+</li>
 </ul>
 <h3 id="分布解释"><a href="#分布解释" class="headerlink" title="分布解释"></a>分布解释</h3><ul>
 <li>仅解释含event.ammount的部分：</li>
@@ -504,7 +522,7 @@
 </ul>
 </li>
 <li>套装效果详解<ul>
-<li>注：伤害计算的套装效果计算时不包含百科中“受到伤害时”词条，在EventFx.entityHurtsFX()方法中计算受到伤害效果。</li>
+<li>注：伤害计算的套装效果计算时不包含百科中“受到伤害时”、“额外消耗魔力”等词条，在EventFx.entityHurtsFX()方法中计算受到伤害效果。</li>
 <li>若盔甲是ItemToolArmorSpecial，即可升级的盔甲，也即那些毕业套。</li>
 <li>获取套装中最低的等级，若不是全套ItemToolArmorSpecial或套装类别不统一，则返回-1。</li>
 <li>当最低等级大于-1，获取盔甲路线和材质进行应用效果。</li>
@@ -542,7 +560,37 @@
 </ul>
 </li>
 <li>基础与超越路线-审判之眼套装：<ul>
-<li>强化等级 &gt;&#x3D; 5阶：造伤+18%。</li>
+<li>强化等级 &gt;&#x3D; 5阶：基础攻击力+18。</li>
+<li>强化等级 &gt;&#x3D; 10阶：对BOSS单位造伤+10%。</li>
+<li>强化等级 &gt;&#x3D; 15阶：基础攻击力+36。</li>
+<li>强化等级 &gt;&#x3D; 20阶：攻击时10%概率获得16s最大10层每次叠加1层的药水效果“灵魂虹吸”，无触发冷却时间。状态&gt;&#x3D;10层时，触发叠加时对BOSS单位造伤+20%。</li>
+<li>强化等级 &gt;&#x3D; 25阶：攻击生命值低于50%的BOSS单位时，造伤+30%（该BOSS单位在服务器线程上）。</li>
+<li>强化等级 &gt;&#x3D; 30阶：攻击生命值低于50%的BOSS单位时，造伤+20%，爆伤+10%，同时目标获得7秒0级的药水效果“死神印记”，无触发冷却时间。</li>
+<li>强化等级 &gt;&#x3D; 35阶：攻击BOSS单位时，造伤+75%；攻击非BOSS单位时，造伤-50%。</li>
+<li>强化等级 &gt;&#x3D; 40阶：若目标单位有“死神印记”效果，使自身获得7秒0级的药水效果“审判者之眼”，无触发冷却时间。</li>
+<li>强化等级 &gt;&#x3D; 45阶：若目标单位有“死神印记”效果，，使目标获得6s最大10层每次叠加1层的药水效果“审判终曲”，无触发冷却时间。若自身拥有“审判者之眼”状态，且目标拥有“审判终曲”状态，终伤+10%。</li>
+<li>强化等级 &gt;&#x3D; 50阶：若目标单位未死亡、拥有“审判终曲”状态、没有无敌药水状态、血量低于血量上限的1%，玩家(服务端)将该目标当前生命值设置为1点。<i>注：百科上原文为“立即杀死”</i>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>SecretMagic_1(秘法魔力)：</strong><ul>
+<li>套装效果：魔力值高于90%时，造伤+30%、穿透+4。</li>
+<li>深渊路线-禁忌秘术套装：<ul>
+<li>强化等级 &gt;&#x3D; 5阶：造伤+12%，魔力减免+1%。</li>
+<li>强化等级 &gt;&#x3D; 10阶：造伤+20%。</li>
+<li>强化等级 &gt;&#x3D; 15阶：造伤+16%，魔力减免+2%。</li>
+<li>强化等级 &gt;&#x3D; 25阶：造伤+24%，魔力减免+4%。</li>
+<li>强化等级 &gt;&#x3D; 30阶：增加等同于32%魔力上限的附加伤害。</li>
+<li>强化等级 &gt;&#x3D; 35阶：当自身“超能负荷”状态&gt;&#x3D;5层时，终伤+10%，爆伤+15%。</li>
+<li>强化等级 &gt;&#x3D; 40阶：攻击时获得15s最大(玩家魔力上限的30%)层每次叠加(基本伤害 * 0.03F + 1.0F)层的药水效果“魔力护盾”，无触发冷却时间。 </li>
+<li>强化等级 &gt;&#x3D; 45阶：若玩家拥有“魔力护盾”状态，造伤+35%，暴击率+30，爆伤+10%，攻击时增加3%基本伤害的魔力值。</li>
+</ul>
+</li>
+<li>基础与超越路线-符纹魔导套装：<ul>
+<li>强化等级 &gt;&#x3D; 5阶：攻击时增加0.1%基本伤害的魔力值、魔力减免+1%。</li>
+<li>强化等级 &gt;&#x3D; 10阶：攻击时获得45秒(玩家魔力上限的15%)层的药水效果“魔力护盾”，触发冷却时间45秒。</li>
+<li>1</li>
 </ul>
 </li>
 </ul>
@@ -662,7 +710,7 @@
                     <a class="tag-none-link" href="/tags/%E6%88%91%E7%9A%84%E4%B8%96%E7%95%8C/" rel="tag">我的世界</a>, <a class="tag-none-link" href="/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" rel="tag">源码解读</a>
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2025-06-17</span>
+                <span>最后编辑：2025-06-18</span>
                 </div>
             </div>
         </footer>
