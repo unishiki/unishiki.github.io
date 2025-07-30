@@ -24,7 +24,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/mfmf.webp">
 <meta property="article:published_time" content="2025-07-25T09:24:48.000Z">
-<meta property="article:modified_time" content="2025-07-30T02:35:23.539Z">
+<meta property="article:modified_time" content="2025-07-30T02:41:31.263Z">
 <meta property="article:author" content="uni_shiki">
 <meta property="article:tag" content="Unity">
 <meta property="article:tag" content="Compute Shader">
@@ -172,7 +172,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~16.09K
+                        ~16.11K
                     
                     字
                 </li>
@@ -182,7 +182,7 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1753842923539"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1753843291263"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
                 <div class="kratos-post-inner-toc">
@@ -257,7 +257,7 @@
 <p><img src="/images/ComputeShaderMagicLibrary/5.png"></p>
 <h3 id="2-加入随机数、三角函数使物体凌乱并做漂浮运动"><a href="#2-加入随机数、三角函数使物体凌乱并做漂浮运动" class="headerlink" title="2.加入随机数、三角函数使物体凌乱并做漂浮运动"></a>2.加入随机数、三角函数使物体凌乱并做漂浮运动</h3><ul>
 <li>说到运动，自然是要增加一个核函数，并与CPU端Update联动</li>
-<li>物体的随机旋转值使用C#里的Quaternion.EulerRotation()实现，参数为物体自身位置</li>
+<li>物体的随机旋转值使用C#里的Quaternion.EulerRotation()实现，参数为物体自身位置。读者也可以使用其他方法自行实现。</li>
 <li>书本从书架(一个平面)飘出，实际上就是Z轴的偏移，因此只需要计算Z轴的偏移量，而不用把整个三维坐标加入计算，节约性能</li>
 </ul>
 <div class="xControl">
