@@ -4,7 +4,9 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="../images/mfmf.webp">
+  
   <title>Unity Shader入门精要 第八章 | uni_shiki</title>
+  
   <meta name="author" content="uni_shiki" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -31,7 +33,6 @@
 <meta property="article:tag" content="计算机图形学">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/mfmf.webp">
-<meta name="twitter:site" content="@null">
   
   <!-- 站点验证相关 -->
   
@@ -40,41 +41,31 @@
     
   
   <!-- 样式表文件 -->
-  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
   
-    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
-  
-  
-  <link rel="stylesheet" id="fontawe-css" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
-  <link rel="stylesheet" id="nprogress-css" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" type="text/css" media="all">
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
   
   
-    <link rel="stylesheet" href="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css">
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
   
   
-    <link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
   
   
-    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
   
   <!-- 不得不预先加载的一些JS文件 -->
-  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
   
-    <script src="https://unpkg.com/qrcode_js@1.0.0/qrcode.min.js"></script>
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
   
   
   <style>
     
-      .kratos-cover.kratos-cover-2 {
-        background-image: url('/images/banner.webp');
-      }
-    
-    
-      @media(min-width:768px) {
-        body.custom-background {
-          background-image: url('/images/myBg2.png');
-        }
-      }
     
   </style>
   
@@ -92,30 +83,33 @@
                             <ul id="kratos-primary-menu" class="sf-menu">
                                 
                                     
-                                        <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
                                     
-                                
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
                                     
-                                        <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
                                     
-                                
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                        
                                     
-                                        <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
-                                    
-                                
-                                    
-                                        <li>
-                                            <a><i class="fa fa-link"></i>链接</a>
-                                            <ul class="sub-menu">
-                                                
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>链接</a>
+                                                <ul class="sub-menu">
                                                     
-                                                
+                                                        
                                                     
-                                                        <li><a target="_blank" rel="noopener" href="https://space.bilibili.com/33554119">作者b站</a></li>
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://space.bilibili.com/33554119">Bilibili</a></li>
+                                                        
                                                     
-                                                
-                                            </ul>
-                                        </li>
+                                                </ul>
+                                            </li>
+                                        
                                     
                                 
                             </ul>
@@ -157,39 +151,48 @@
 
         
 
-            <article>
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/31/Shader%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-7/">
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center">Unity Shader入门精要 第八章</h1>
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">Unity Shader入门精要 第八章</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><i class="fa fa-calendar"></i> 2022-08-31</li>
-                <li><i class="fa fa-user"></i> 作者 uni_shiki</li>
-                <li>
-                    <i class="fa fa-edit"></i> 
-                    
-                    
-                        404
-                    
-                    字
+                <li><time datetime="2022-08-31T04:16:48.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2022-08-31</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">uni_shiki</span>
                 </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            404
+                        
+                        字
+                    </li>
+                
                 
             </ul>
         </header>
         <div class="kratos-post-content">
+            
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
                 <div class="text"><p>本文最后编辑于 <time datetime="1742178432338"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
-                <div class="kratos-post-inner-toc">
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
                     <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E9%80%8F%E6%98%8E%E6%95%88%E6%9E%9C"><span class="toc-number">1.</span> <span class="toc-text">8.透明效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-0"><span class="toc-number">2.</span> <span class="toc-text">8.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1"><span class="toc-number">3.</span> <span class="toc-text">8.1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-Unity-Shader%E7%9A%84%E6%B8%B2%E6%9F%93%E9%A1%BA%E5%BA%8F"><span class="toc-number">4.</span> <span class="toc-text">8.2 Unity Shader的渲染顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-%E9%80%8F%E6%98%8E%E5%BA%A6%E6%B5%8B%E8%AF%95"><span class="toc-number">5.</span> <span class="toc-text">8.3 透明度测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-4-%E9%80%8F%E6%98%8E%E5%BA%A6%E6%B7%B7%E5%90%88"><span class="toc-number">6.</span> <span class="toc-text">8.4 透明度混合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-5-%E5%BC%80%E5%90%AF%E6%B7%B1%E5%BA%A6%E5%86%99%E5%85%A5%E7%9A%84%E5%8D%8A%E9%80%8F%E6%98%8E%E6%95%88%E6%9E%9C"><span class="toc-number">7.</span> <span class="toc-text">8.5 开启深度写入的半透明效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-6-ShaderLab%E7%9A%84%E6%B7%B7%E5%90%88%E5%91%BD%E4%BB%A4"><span class="toc-number">8.</span> <span class="toc-text">8.6 ShaderLab的混合命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-6-0"><span class="toc-number">9.</span> <span class="toc-text">8.6.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-6-1-%E6%B7%B7%E5%90%88%E7%AD%89%E5%BC%8F%E5%92%8C%E5%8F%82%E6%95%B0"><span class="toc-number">10.</span> <span class="toc-text">8.6.1 混合等式和参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-6-2-%E6%B7%B7%E5%90%88%E6%93%8D%E4%BD%9C"><span class="toc-number">11.</span> <span class="toc-text">8.6.2 混合操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-7-%E5%8F%8C%E9%9D%A2%E6%B8%B2%E6%9F%93%E7%9A%84%E9%80%8F%E6%98%8E%E6%95%88%E6%9E%9C"><span class="toc-number">12.</span> <span class="toc-text">8.7 双面渲染的透明效果</span></a></li></ol>
                 </div>
             
             <hr />
-            <h3 id="8-透明效果"><a href="#8-透明效果" class="headerlink" title="8.透明效果"></a>8.透明效果</h3><span id="more"></span>
+            <div itemprop="articleBody"><h3 id="8-透明效果"><a href="#8-透明效果" class="headerlink" title="8.透明效果"></a>8.透明效果</h3><span id="more"></span>
 <hr>
 <h3 id="8-0"><a href="#8-0" class="headerlink" title="8.0"></a>8.0</h3><ul>
 <li><img src="/images/Learn_Shaders/62.png"></li>
@@ -217,18 +220,16 @@
 <h3 id="8-6-1-混合等式和参数"><a href="#8-6-1-混合等式和参数" class="headerlink" title="8.6.1 混合等式和参数"></a>8.6.1 混合等式和参数</h3><p><img src="/images/Learn_Shaders/80.png"><br><img src="/images/Learn_Shaders/81.png"></p>
 <h3 id="8-6-2-混合操作"><a href="#8-6-2-混合操作" class="headerlink" title="8.6.2 混合操作"></a>8.6.2 混合操作</h3><p><img src="/images/Learn_Shaders/82.png"><br><img src="/images/Learn_Shaders/83.png"><br><img src="/images/Learn_Shaders/84.png"><br><img src="/images/Learn_Shaders/85.png"><br><img src="/images/Learn_Shaders/86.png"><br><img src="/images/Learn_Shaders/87.png"><br><img src="/images/Learn_Shaders/88.png"><br><img src="/images/Learn_Shaders/89.png"><br><img src="/images/Learn_Shaders/90.png"></p>
 <h3 id="8-7-双面渲染的透明效果"><a href="#8-7-双面渲染的透明效果" class="headerlink" title="8.7 双面渲染的透明效果"></a>8.7 双面渲染的透明效果</h3><p><img src="/images/Learn_Shaders/91.png"><br><img src="/images/Learn_Shaders/92.png"></p>
-
+</div>
         </div>
         
             <div class="kratos-copyright text-center clearfix">
-                <h5>本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
             </div>
         
         <footer class="kratos-entry-footer clearfix">
             
                 <div class="post-like-donate text-center clearfix" id="post-like-donate">
-                
-                    <a class="donate" href="javascript:;"><i class="fa fa-bitcoin"></i> 打赏</a>
                 
                 
                     <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
@@ -308,7 +309,7 @@
                     <a class="tag-none-link" href="/tags/Shader/" rel="tag">Shader</a>, <a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>, <a class="tag-none-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" rel="tag">计算机图形学</a>
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2025-03-17</span>
+                    <time datetime="2025-03-17T02:27:12.338Z" itemprop="dateModified">最后编辑：2025-03-17</time>
                 </div>
             </div>
         </footer>
@@ -376,7 +377,7 @@
     <div class="photo-background"></div>
     <div class="photo-wrapper clearfix">
         <div class="photo-wrapper-tip text-center">
-            <img class="about-photo" src="/images/ava1.jpg" />
+            <img class="about-photo" src="/images/ava1.jpg" loading="lazy" decoding="auto" />
         </div>
     </div>
     <div class="textwidget">
@@ -412,12 +413,12 @@
             
                     <div class="sticky-area">
                 
-                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix">
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
     <div class="photo-background"></div>
     <h4 class="widget-title no-after">
         <i class="fa fa-compass"></i>
         文章目录
-        <span class="toc-progress-bar"></span>
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
     </h4>
     <div class="textwidget">
         <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E9%80%8F%E6%98%8E%E6%95%88%E6%9E%9C"><span class="toc-text">8.透明效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-0"><span class="toc-text">8.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1"><span class="toc-text">8.1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-Unity-Shader%E7%9A%84%E6%B8%B2%E6%9F%93%E9%A1%BA%E5%BA%8F"><span class="toc-text">8.2 Unity Shader的渲染顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-%E9%80%8F%E6%98%8E%E5%BA%A6%E6%B5%8B%E8%AF%95"><span class="toc-text">8.3 透明度测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-4-%E9%80%8F%E6%98%8E%E5%BA%A6%E6%B7%B7%E5%90%88"><span class="toc-text">8.4 透明度混合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-5-%E5%BC%80%E5%90%AF%E6%B7%B1%E5%BA%A6%E5%86%99%E5%85%A5%E7%9A%84%E5%8D%8A%E9%80%8F%E6%98%8E%E6%95%88%E6%9E%9C"><span class="toc-text">8.5 开启深度写入的半透明效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-6-ShaderLab%E7%9A%84%E6%B7%B7%E5%90%88%E5%91%BD%E4%BB%A4"><span class="toc-text">8.6 ShaderLab的混合命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-6-0"><span class="toc-text">8.6.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-6-1-%E6%B7%B7%E5%90%88%E7%AD%89%E5%BC%8F%E5%92%8C%E5%8F%82%E6%95%B0"><span class="toc-text">8.6.1 混合等式和参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-6-2-%E6%B7%B7%E5%90%88%E6%93%8D%E4%BD%9C"><span class="toc-text">8.6.2 混合操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-7-%E5%8F%8C%E9%9D%A2%E6%B8%B2%E6%9F%93%E7%9A%84%E9%80%8F%E6%98%8E%E6%95%88%E6%9E%9C"><span class="toc-text">8.7 双面渲染的透明效果</span></a></li></ol>
@@ -719,6 +720,7 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3 footer-list text-center">
                     <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
                         
                         <li><a href="mailto:ccc895286662@gmail.com"><i class="fa fa-envelope"></i></a></li>
                         
@@ -727,6 +729,8 @@
                         
                         
                         <li><a target="_blank" rel="nofollow" href="https://github.com/unishiki"><i class="fa fa-github"></i></a></li>
+                        
+                        <!-- New links -->
                         
                     </ul>
                     <ul class="kratos-copyright">
@@ -765,6 +769,11 @@
                     </div>
                 
                 
+                    <div class="box theme-box" id="snow-switch">
+                        <span class="fa fa-snowflake-o"></span>
+                    </div>
+                
+                
                     <div class="box group-box">
                         <a href="https://jq.qq.com/?_wv=1027&k=CpdI35JY" target="_blank" rel="nofollow">
                             <span class="fa fa-users"></span>
@@ -781,8 +790,8 @@
 </div>
 </div>
 
-        <script defer src="https://unpkg.com/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
-<script defer src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
 <script>
     if (!window.kr) {
         window.kr = {};
@@ -791,14 +800,19 @@
     window.kr.siteRoot = "/";
 </script>
 
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
 
     <script async src="/js/candy.min.js"></script>
 
 
 
-    <script defer src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
     
-    <script defer src="https://unpkg.com/meting@2/dist/Meting.min.js"></script>
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
     <meting-js
         server="netease"
         type="playlist"
@@ -810,16 +824,10 @@
 
 
 
-    <script defer src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
-<script defer src="https://unpkg.com/clipboard@2.0.6/dist/clipboard.min.js"></script>
 <script defer src="/js/kratosr.min.js"></script>
 <script defer src="/js/pjax.min.js"></script>
-
-    <script defer src="https://unpkg.com/layui-src@2.5.5/dist/layui.all.js"></script>
-
-
-    <script defer src="/js/kr-dark.min.js"></script>
 
 
 

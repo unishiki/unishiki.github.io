@@ -4,7 +4,9 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="../images/mfmf.webp">
+  
   <title>Unity编辑器扩展常用方法与特性 | uni_shiki</title>
+  
   <meta name="author" content="uni_shiki" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -30,7 +32,6 @@
 <meta property="article:tag" content="Unity编辑器拓展">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/mfmf.webp">
-<meta name="twitter:site" content="@null">
   
   <!-- 站点验证相关 -->
   
@@ -39,41 +40,31 @@
     
   
   <!-- 样式表文件 -->
-  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
   
-    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
-  
-  
-  <link rel="stylesheet" id="fontawe-css" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
-  <link rel="stylesheet" id="nprogress-css" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" type="text/css" media="all">
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
   
   
-    <link rel="stylesheet" href="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css">
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
   
   
-    <link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
   
   
-    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
   
   <!-- 不得不预先加载的一些JS文件 -->
-  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
   
-    <script src="https://unpkg.com/qrcode_js@1.0.0/qrcode.min.js"></script>
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
   
   
   <style>
     
-      .kratos-cover.kratos-cover-2 {
-        background-image: url('/images/banner.webp');
-      }
-    
-    
-      @media(min-width:768px) {
-        body.custom-background {
-          background-image: url('/images/myBg2.png');
-        }
-      }
     
   </style>
   
@@ -91,30 +82,33 @@
                             <ul id="kratos-primary-menu" class="sf-menu">
                                 
                                     
-                                        <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
                                     
-                                
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
                                     
-                                        <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
                                     
-                                
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                        
                                     
-                                        <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
-                                    
-                                
-                                    
-                                        <li>
-                                            <a><i class="fa fa-link"></i>链接</a>
-                                            <ul class="sub-menu">
-                                                
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>链接</a>
+                                                <ul class="sub-menu">
                                                     
-                                                
+                                                        
                                                     
-                                                        <li><a target="_blank" rel="noopener" href="https://space.bilibili.com/33554119">作者b站</a></li>
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://space.bilibili.com/33554119">Bilibili</a></li>
+                                                        
                                                     
-                                                
-                                            </ul>
-                                        </li>
+                                                </ul>
+                                            </li>
+                                        
                                     
                                 
                             </ul>
@@ -156,40 +150,49 @@
 
         
 
-            <article>
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/06/07/Editor-extend/">
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center">Unity编辑器扩展常用方法与特性</h1>
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">Unity编辑器扩展常用方法与特性</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><i class="fa fa-calendar"></i> 2024-06-07</li>
-                <li><i class="fa fa-user"></i> 作者 uni_shiki</li>
-                <li>
-                    <i class="fa fa-edit"></i> 
-                    
-                    
-                        ~23.21K
-                    
-                    字
+                <li><time datetime="2024-06-07T01:46:48.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2024-06-07</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">uni_shiki</span>
                 </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~23.21K
+                        
+                        字
+                    </li>
+                
                 
             </ul>
         </header>
         <div class="kratos-post-content">
+            
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
                 <div class="text"><p>本文最后编辑于 <time datetime="1742177801377"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
-                <div class="kratos-post-inner-toc">
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
                     <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#nbsp"><span class="toc-number">1.</span> <span class="toc-text"> 
 </span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number"></span> <span class="toc-text">0. 准备工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-MenuItem"><span class="toc-number"></span> <span class="toc-text">1. MenuItem</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E6%B7%BB%E5%8A%A0%E8%8F%9C%E5%8D%95%E6%A0%8F%E6%8C%89%E9%92%AE"><span class="toc-number">0.1.</span> <span class="toc-text">1.1 添加菜单栏按钮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E6%B7%BB%E5%8A%A0%E8%8F%9C%E5%8D%95%E6%A0%8F%E6%8C%89%E9%92%AE%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-number">0.2.</span> <span class="toc-text">1.2 添加菜单栏按钮快捷键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E7%BB%99%E7%89%B9%E5%AE%9A%E7%BB%84%E4%BB%B6%E6%B7%BB%E5%8A%A0%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E6%A0%8F%E6%8C%89%E9%92%AE"><span class="toc-number">0.3.</span> <span class="toc-text">1.3 给特定组件添加右键菜单栏按钮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E6%93%8D%E4%BD%9C%E7%9A%84%E7%BB%84%E4%BB%B6"><span class="toc-number">0.4.</span> <span class="toc-text">1.4 获取当前操作的组件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Selection-objects"><span class="toc-number"></span> <span class="toc-text">2. Selection.objects</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-ContextMenu"><span class="toc-number"></span> <span class="toc-text">3. ContextMenu</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E7%BB%99%E6%9F%90%E7%BB%84%E4%BB%B6%E6%B7%BB%E5%8A%A0%E5%8F%B3%E8%BE%B9%E5%B0%8F%E9%BD%BF%E8%BD%AE%E8%8F%9C%E5%8D%95%E9%80%89%E9%A1%B9"><span class="toc-number">0.1.</span> <span class="toc-text">3.1 给某组件添加右边小齿轮菜单选项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E7%BB%99%E6%9F%90%E5%B1%9E%E6%80%A7%E6%B7%BB%E5%8A%A0%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E9%80%89%E9%A1%B9"><span class="toc-number">0.2.</span> <span class="toc-text">3.2 给某属性添加右键菜单选项</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Gizmos%E8%BE%85%E5%8A%A9%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7"><span class="toc-number"></span> <span class="toc-text">4. Gizmos辅助调试工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E7%BB%98%E5%88%B6"><span class="toc-number">0.1.</span> <span class="toc-text">4.1 绘制</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E7%89%B9%E6%80%A7"><span class="toc-number"></span> <span class="toc-text">5. 特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-System%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E4%B8%8B%E7%9A%84%E7%89%B9%E6%80%A7"><span class="toc-number">0.1.</span> <span class="toc-text">5.1 System命名空间下的特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-UnityEngine%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E4%B8%8B%E7%9A%84%E7%89%B9%E6%80%A7"><span class="toc-number">0.2.</span> <span class="toc-text">5.2 UnityEngine命名空间下的特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-UnityEditor%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E4%B8%8B%E7%9A%84%E7%89%B9%E6%80%A7"><span class="toc-number">0.3.</span> <span class="toc-text">5.3 UnityEditor命名空间下的特性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E8%87%AA%E5%AE%9A%E4%B9%89Inspector%E9%9D%A2%E6%9D%BF"><span class="toc-number"></span> <span class="toc-text">6. 自定义Inspector面板</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-Inspector%E9%9D%A2%E6%9D%BF%E4%B8%8A%E6%95%B0%E7%BB%84%E6%88%96List%E9%9B%86%E5%90%88%E7%9A%84%E6%98%BE%E7%A4%BA%E6%96%B9%E5%BC%8F"><span class="toc-number"></span> <span class="toc-text">7. Inspector面板上数组或List集合的显示方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BC%96%E8%BE%91%E5%99%A8%E7%AA%97%E5%8F%A3"><span class="toc-number"></span> <span class="toc-text">8. 自定义编辑器窗口</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9-%E5%85%B7%E4%BD%93%E5%BA%94%E7%94%A8"><span class="toc-number"></span> <span class="toc-text">9. 具体应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E5%8F%8D%E5%B0%84%E6%9D%A5%E6%8B%B7%E8%B4%9D%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6%E7%9A%84%E5%AD%97%E6%AE%B5"><span class="toc-number">0.1.</span> <span class="toc-text">通过反射来拷贝自定义组件的字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95ScriptableObject%E7%9A%84%E6%98%BE%E7%A4%BA"><span class="toc-number">0.2.</span> <span class="toc-text">编辑器拓展ScriptableObject的显示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%93%E5%B1%95Spine%E6%8F%92%E4%BB%B6%E4%B8%AD%E7%9A%84Timeline%E8%BD%A8%E9%81%93%E5%88%9B%E5%BB%BASkeletonAnimat-Clip%E6%97%B6%E8%87%AA%E5%8A%A8%E5%BC%95%E7%94%A8SkeletonDataAsset"><span class="toc-number">0.3.</span> <span class="toc-text">拓展Spine插件中的Timeline轨道创建SkeletonAnimat Clip时自动引用SkeletonDataAsset</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%93%E5%B1%95Spine%E6%8F%92%E4%BB%B6%E4%B8%ADSkeletonAnimation%E7%BB%84%E4%BB%B6%E7%9A%84AnimationName%E5%B1%9E%E6%80%A7%E7%9A%84popup%E4%B8%8B%E6%8B%89%E6%A1%86%E6%98%BE%E7%A4%BA%E6%96%B9%E5%BC%8F"><span class="toc-number">0.4.</span> <span class="toc-text">拓展Spine插件中SkeletonAnimation组件的AnimationName属性的popup下拉框显示方式</span></a></li></ol></li></ol>
                 </div>
             
             <hr />
-            <h2 id="nbsp"><a href="#nbsp" class="headerlink" title="&nbsp;"></a>&nbsp;<br><span id="more"></span></h2><h1 id="0-准备工作"><a href="#0-准备工作" class="headerlink" title="0. 准备工作"></a>0. 准备工作</h1><p><img src="/images/EditorExtend/01.png"></p>
+            <div itemprop="articleBody"><h2 id="nbsp"><a href="#nbsp" class="headerlink" title="&nbsp;"></a>&nbsp;<br><span id="more"></span></h2><h1 id="0-准备工作"><a href="#0-准备工作" class="headerlink" title="0. 准备工作"></a>0. 准备工作</h1><p><img src="/images/EditorExtend/01.png"></p>
 <ul>
 <li><strong>Editor</strong>文件夹(可以多个)：主要用来存放编辑器下使用的一些脚本和资源，一般用来扩展Unity编辑器使用，不会发布到应用程序中，也不会在运行时运行</li>
 <li><strong>Editor Default Resources</strong>文件夹(根目录唯一)：用来存储编辑器下的一些默认资源，这些资源只能通过EditorGUIUtility.Load函数按需进行加载</li>
@@ -471,18 +474,16 @@ LEFT/RIGHT/DOWN    方向键
 
 <h3 id="拓展Spine插件中的Timeline轨道创建SkeletonAnimat-Clip时自动引用SkeletonDataAsset"><a href="#拓展Spine插件中的Timeline轨道创建SkeletonAnimat-Clip时自动引用SkeletonDataAsset" class="headerlink" title="拓展Spine插件中的Timeline轨道创建SkeletonAnimat Clip时自动引用SkeletonDataAsset"></a>拓展Spine插件中的Timeline轨道创建SkeletonAnimat Clip时自动引用SkeletonDataAsset</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> In SpineAnimationStateTrack.cs</span></span><br><span class="line"><span class="keyword">foreach</span> (<span class="function"><span class="keyword">var</span> clip <span class="keyword">in</span> <span class="title">GetClips</span>())</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">foreach</span> (<span class="keyword">var</span> bind <span class="keyword">in</span> outputs)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ((clip.asset <span class="keyword">as</span> SpineAnimationStateClip).template.skeletonDataAsset == <span class="literal">null</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment"><span class="doctag">///</span> 1.Auto Bind Refrence</span></span><br><span class="line">      (clip.asset <span class="keyword">as</span> SpineAnimationStateClip).template.skeletonDataAsset = GameObject.Find(go.GetComponent&lt;PlayableDirector&gt;().GetGenericBinding(bind.sourceObject).name).GetComponent&lt;SkeletonAnimation&gt;().skeletonDataAsset;</span><br><span class="line"></span><br><span class="line">      <span class="comment"><span class="doctag">///</span> 2.Set Default animationName</span></span><br><span class="line">      <span class="keyword">var</span> _Animations = (clip.asset <span class="keyword">as</span> SpineAnimationStateClip).template.skeletonDataAsset.GetSkeletonData(<span class="literal">true</span>).Animations;</span><br><span class="line">      <span class="comment">// Find &quot;xxx&quot; animation</span></span><br><span class="line">      <span class="keyword">foreach</span> (Animation anim <span class="keyword">in</span> _Animations)</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> (anim.Name.Contains(<span class="string">&quot;xxx&quot;</span>) &amp;&amp; !anim.Name.Contains(<span class="string">&quot;xxxx&quot;</span>))</span><br><span class="line">        &#123;</span><br><span class="line">          (clip.asset <span class="keyword">as</span> SpineAnimationStateClip).template.animationName = anim.Name;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// If no &quot;xxx&quot; and no &quot;xxxxx&quot;, Default...foreach..break;</span></span><br><span class="line"></span><br><span class="line">      <span class="comment"><span class="doctag">///</span> 3.Set loop</span></span><br><span class="line">      (clip.asset <span class="keyword">as</span> SpineAnimationStateClip).template.loop = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="拓展Spine插件中SkeletonAnimation组件的AnimationName属性的popup下拉框显示方式"><a href="#拓展Spine插件中SkeletonAnimation组件的AnimationName属性的popup下拉框显示方式" class="headerlink" title="拓展Spine插件中SkeletonAnimation组件的AnimationName属性的popup下拉框显示方式"></a>拓展Spine插件中SkeletonAnimation组件的AnimationName属性的popup下拉框显示方式</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> in SpineAttributeDrawers.cs  void PopulateMenu(GenericMenu menu, SerializedProperty property, SpineAnimation targetAttribute, SkeletonData data)</span></span><br><span class="line"><span class="keyword">if</span> (name.StartsWith(targetAttribute.startsWith, StringComparison.Ordinal))</span><br><span class="line"><span class="meta">#<span class="keyword">region</span> Add Func</span></span><br><span class="line">        &#123;</span><br><span class="line">          <span class="keyword">if</span> (i &gt; <span class="number">49</span> &amp;&amp; i % <span class="number">50</span> == <span class="number">0</span>)</span><br><span class="line">          &#123;</span><br><span class="line">            menu.AddSeparator(<span class="string">&quot;Page&quot;</span> + (i / <span class="number">50</span> + <span class="number">1</span>).ToString() + <span class="string">&quot;/&quot;</span>);</span><br><span class="line">            menu.AddItem(<span class="keyword">new</span> GUIContent(<span class="string">&quot;Page&quot;</span> + (i / <span class="number">50</span> + <span class="number">1</span>).ToString() + <span class="string">&quot;/&quot;</span> + name), name == property.stringValue, HandleSelect, <span class="keyword">new</span> SpineDrawerValuePair(name, property));</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">else</span> <span class="keyword">if</span> (i &gt; <span class="number">50</span>)</span><br><span class="line">          &#123;</span><br><span class="line">            menu.AddItem(<span class="keyword">new</span> GUIContent(<span class="string">&quot;Page&quot;</span> + (i / <span class="number">50</span> + <span class="number">1</span>).ToString() + <span class="string">&quot;/&quot;</span> + name), name == property.stringValue, HandleSelect, <span class="keyword">new</span> SpineDrawerValuePair(name, property));</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">else</span></span><br><span class="line">          &#123;</span><br><span class="line">            menu.AddItem(<span class="keyword">new</span> GUIContent(name), name == property.stringValue, HandleSelect, <span class="keyword">new</span> SpineDrawerValuePair(name, property));</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endregion</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="拓展Spine插件中SkeletonAnimation组件的AnimationName属性的popup下拉框显示方式"><a href="#拓展Spine插件中SkeletonAnimation组件的AnimationName属性的popup下拉框显示方式" class="headerlink" title="拓展Spine插件中SkeletonAnimation组件的AnimationName属性的popup下拉框显示方式"></a>拓展Spine插件中SkeletonAnimation组件的AnimationName属性的popup下拉框显示方式</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> in SpineAttributeDrawers.cs  void PopulateMenu(GenericMenu menu, SerializedProperty property, SpineAnimation targetAttribute, SkeletonData data)</span></span><br><span class="line"><span class="keyword">if</span> (name.StartsWith(targetAttribute.startsWith, StringComparison.Ordinal))</span><br><span class="line"><span class="meta">#<span class="keyword">region</span> Add Func</span></span><br><span class="line">        &#123;</span><br><span class="line">          <span class="keyword">if</span> (i &gt; <span class="number">49</span> &amp;&amp; i % <span class="number">50</span> == <span class="number">0</span>)</span><br><span class="line">          &#123;</span><br><span class="line">            menu.AddSeparator(<span class="string">&quot;Page&quot;</span> + (i / <span class="number">50</span> + <span class="number">1</span>).ToString() + <span class="string">&quot;/&quot;</span>);</span><br><span class="line">            menu.AddItem(<span class="keyword">new</span> GUIContent(<span class="string">&quot;Page&quot;</span> + (i / <span class="number">50</span> + <span class="number">1</span>).ToString() + <span class="string">&quot;/&quot;</span> + name), name == property.stringValue, HandleSelect, <span class="keyword">new</span> SpineDrawerValuePair(name, property));</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">else</span> <span class="keyword">if</span> (i &gt; <span class="number">50</span>)</span><br><span class="line">          &#123;</span><br><span class="line">            menu.AddItem(<span class="keyword">new</span> GUIContent(<span class="string">&quot;Page&quot;</span> + (i / <span class="number">50</span> + <span class="number">1</span>).ToString() + <span class="string">&quot;/&quot;</span> + name), name == property.stringValue, HandleSelect, <span class="keyword">new</span> SpineDrawerValuePair(name, property));</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">else</span></span><br><span class="line">          &#123;</span><br><span class="line">            menu.AddItem(<span class="keyword">new</span> GUIContent(name), name == property.stringValue, HandleSelect, <span class="keyword">new</span> SpineDrawerValuePair(name, property));</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endregion</span></span></span><br></pre></td></tr></table></figure></div>
         </div>
         
             <div class="kratos-copyright text-center clearfix">
-                <h5>本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
             </div>
         
         <footer class="kratos-entry-footer clearfix">
             
                 <div class="post-like-donate text-center clearfix" id="post-like-donate">
-                
-                    <a class="donate" href="javascript:;"><i class="fa fa-bitcoin"></i> 打赏</a>
                 
                 
                     <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
@@ -562,7 +563,7 @@ LEFT/RIGHT/DOWN    方向键
                     <a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>, <a class="tag-none-link" href="/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/" rel="tag">Unity编辑器拓展</a>
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2025-03-17</span>
+                    <time datetime="2025-03-17T02:16:41.377Z" itemprop="dateModified">最后编辑：2025-03-17</time>
                 </div>
             </div>
         </footer>
@@ -630,7 +631,7 @@ LEFT/RIGHT/DOWN    方向键
     <div class="photo-background"></div>
     <div class="photo-wrapper clearfix">
         <div class="photo-wrapper-tip text-center">
-            <img class="about-photo" src="/images/ava1.jpg" />
+            <img class="about-photo" src="/images/ava1.jpg" loading="lazy" decoding="auto" />
         </div>
     </div>
     <div class="textwidget">
@@ -666,12 +667,12 @@ LEFT/RIGHT/DOWN    方向键
             
                     <div class="sticky-area">
                 
-                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix">
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
     <div class="photo-background"></div>
     <h4 class="widget-title no-after">
         <i class="fa fa-compass"></i>
         文章目录
-        <span class="toc-progress-bar"></span>
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
     </h4>
     <div class="textwidget">
         <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#nbsp"><span class="toc-text"> 
@@ -974,6 +975,7 @@ LEFT/RIGHT/DOWN    方向键
             <div class="row">
                 <div class="col-md-6 col-md-offset-3 footer-list text-center">
                     <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
                         
                         <li><a href="mailto:ccc895286662@gmail.com"><i class="fa fa-envelope"></i></a></li>
                         
@@ -982,6 +984,8 @@ LEFT/RIGHT/DOWN    方向键
                         
                         
                         <li><a target="_blank" rel="nofollow" href="https://github.com/unishiki"><i class="fa fa-github"></i></a></li>
+                        
+                        <!-- New links -->
                         
                     </ul>
                     <ul class="kratos-copyright">
@@ -1020,6 +1024,11 @@ LEFT/RIGHT/DOWN    方向键
                     </div>
                 
                 
+                    <div class="box theme-box" id="snow-switch">
+                        <span class="fa fa-snowflake-o"></span>
+                    </div>
+                
+                
                     <div class="box group-box">
                         <a href="https://jq.qq.com/?_wv=1027&k=CpdI35JY" target="_blank" rel="nofollow">
                             <span class="fa fa-users"></span>
@@ -1036,8 +1045,8 @@ LEFT/RIGHT/DOWN    方向键
 </div>
 </div>
 
-        <script defer src="https://unpkg.com/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
-<script defer src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
 <script>
     if (!window.kr) {
         window.kr = {};
@@ -1046,14 +1055,19 @@ LEFT/RIGHT/DOWN    方向键
     window.kr.siteRoot = "/";
 </script>
 
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
 
     <script async src="/js/candy.min.js"></script>
 
 
 
-    <script defer src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
     
-    <script defer src="https://unpkg.com/meting@2/dist/Meting.min.js"></script>
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
     <meting-js
         server="netease"
         type="playlist"
@@ -1065,16 +1079,10 @@ LEFT/RIGHT/DOWN    方向键
 
 
 
-    <script defer src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
-<script defer src="https://unpkg.com/clipboard@2.0.6/dist/clipboard.min.js"></script>
 <script defer src="/js/kratosr.min.js"></script>
 <script defer src="/js/pjax.min.js"></script>
-
-    <script defer src="https://unpkg.com/layui-src@2.5.5/dist/layui.all.js"></script>
-
-
-    <script defer src="/js/kr-dark.min.js"></script>
 
 
 

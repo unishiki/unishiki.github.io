@@ -4,7 +4,9 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="../images/mfmf.webp">
+  
   <title>Unity Shader入门精要 第十六章 | uni_shiki</title>
+  
   <meta name="author" content="uni_shiki" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -31,7 +33,6 @@
 <meta property="article:tag" content="计算机图形学">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/mfmf.webp">
-<meta name="twitter:site" content="@null">
   
   <!-- 站点验证相关 -->
   
@@ -40,41 +41,31 @@
     
   
   <!-- 样式表文件 -->
-  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
   
-    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
-  
-  
-  <link rel="stylesheet" id="fontawe-css" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
-  <link rel="stylesheet" id="nprogress-css" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" type="text/css" media="all">
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
   
   
-    <link rel="stylesheet" href="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css">
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
   
   
-    <link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
   
   
-    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
   
   <!-- 不得不预先加载的一些JS文件 -->
-  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
   
-    <script src="https://unpkg.com/qrcode_js@1.0.0/qrcode.min.js"></script>
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
   
   
   <style>
     
-      .kratos-cover.kratos-cover-2 {
-        background-image: url('/images/banner.webp');
-      }
-    
-    
-      @media(min-width:768px) {
-        body.custom-background {
-          background-image: url('/images/myBg2.png');
-        }
-      }
     
   </style>
   
@@ -92,30 +83,33 @@
                             <ul id="kratos-primary-menu" class="sf-menu">
                                 
                                     
-                                        <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
                                     
-                                
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
                                     
-                                        <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
                                     
-                                
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                        
                                     
-                                        <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
-                                    
-                                
-                                    
-                                        <li>
-                                            <a><i class="fa fa-link"></i>链接</a>
-                                            <ul class="sub-menu">
-                                                
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>链接</a>
+                                                <ul class="sub-menu">
                                                     
-                                                
+                                                        
                                                     
-                                                        <li><a target="_blank" rel="noopener" href="https://space.bilibili.com/33554119">作者b站</a></li>
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://space.bilibili.com/33554119">Bilibili</a></li>
+                                                        
                                                     
-                                                
-                                            </ul>
-                                        </li>
+                                                </ul>
+                                            </li>
+                                        
                                     
                                 
                             </ul>
@@ -157,39 +151,48 @@
 
         
 
-            <article>
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/05/07/Shader%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-15/">
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center">Unity Shader入门精要 第十六章</h1>
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">Unity Shader入门精要 第十六章</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><i class="fa fa-calendar"></i> 2024-05-07</li>
-                <li><i class="fa fa-user"></i> 作者 uni_shiki</li>
-                <li>
-                    <i class="fa fa-edit"></i> 
-                    
-                    
-                        ~6.05K
-                    
-                    字
+                <li><time datetime="2024-05-07T03:26:21.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2024-05-07</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">uni_shiki</span>
                 </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~6.05K
+                        
+                        字
+                    </li>
+                
                 
             </ul>
         </header>
         <div class="kratos-post-content">
+            
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
                 <div class="text"><p>本文最后编辑于 <time datetime="1742178454816"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
-                <div class="kratos-post-inner-toc">
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
                     <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Unity%E4%B8%AD%E7%9A%84%E6%B8%B2%E6%9F%93%E4%BC%98%E5%8C%96%E6%8A%80%E6%9C%AF"><span class="toc-number">1.</span> <span class="toc-text">Unity中的渲染优化技术</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#16-1-%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">2.</span> <span class="toc-text">16.1 移动平台的特点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#16-2-%E5%BD%B1%E5%93%8D%E6%80%A7%E8%83%BD%E7%9A%84%E5%9B%A0%E7%B4%A0"><span class="toc-number">3.</span> <span class="toc-text">16.2 影响性能的因素</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#16-3-Unity%E4%B8%AD%E7%9A%84%E6%B8%B2%E6%9F%93%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7"><span class="toc-number">4.</span> <span class="toc-text">16.3 Unity中的渲染分析工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#16-4-%E5%87%8F%E5%B0%91draw-call%E6%95%B0%E7%9B%AE"><span class="toc-number">5.</span> <span class="toc-text">16.4 减少draw call数目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#16-4-0"><span class="toc-number">5.0.1.</span> <span class="toc-text">16.4.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-4-1-%E5%8A%A8%E6%80%81%E6%89%B9%E5%A4%84%E7%90%86"><span class="toc-number">5.0.2.</span> <span class="toc-text">16.4.1 动态批处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-4-2-%E9%9D%99%E6%80%81%E6%89%B9%E5%A4%84%E7%90%86"><span class="toc-number">5.0.3.</span> <span class="toc-text">16.4.2 静态批处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-4-3-%E5%85%B1%E4%BA%AB%E6%9D%90%E8%B4%A8"><span class="toc-number">5.0.4.</span> <span class="toc-text">16.4.3 共享材质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-4-4-%E6%89%B9%E5%A4%84%E7%90%86%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">5.0.5.</span> <span class="toc-text">16.4.4 批处理的注意事项</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#16-5-%E5%87%8F%E5%B0%91%E9%9C%80%E8%A6%81%E5%A4%84%E7%90%86%E7%9A%84%E9%A1%B6%E7%82%B9%E6%95%B0%E7%9B%AE"><span class="toc-number">6.</span> <span class="toc-text">16.5 减少需要处理的顶点数目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#16-5-1-%E4%BC%98%E5%8C%96%E5%87%A0%E4%BD%95%E4%BD%93"><span class="toc-number">6.0.1.</span> <span class="toc-text">16.5.1 优化几何体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-5-2-%E6%A8%A1%E5%9E%8B%E7%9A%84LOD%E6%8A%80%E6%9C%AF"><span class="toc-number">6.0.2.</span> <span class="toc-text">16.5.2 模型的LOD技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-5-3-%E9%81%AE%E6%8C%A1%E5%89%94%E9%99%A4%E6%8A%80%E6%9C%AF"><span class="toc-number">6.0.3.</span> <span class="toc-text">16.5.3 遮挡剔除技术</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#16-6-%E5%87%8F%E5%B0%91%E9%9C%80%E8%A6%81%E5%A4%84%E7%90%86%E7%9A%84%E7%89%87%E5%85%83%E6%95%B0%E7%9B%AE"><span class="toc-number">7.</span> <span class="toc-text">16.6 减少需要处理的片元数目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#16-6-0"><span class="toc-number">7.0.1.</span> <span class="toc-text">16.6.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-6-1-%E6%8E%A7%E5%88%B6%E7%BB%98%E5%88%B6%E9%A1%BA%E5%BA%8F"><span class="toc-number">7.0.2.</span> <span class="toc-text">16.6.1 控制绘制顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-6-2-%E6%97%B6%E5%88%BB%E8%AD%A6%E6%83%95%E9%80%8F%E6%98%8E%E7%89%A9%E4%BD%93"><span class="toc-number">7.0.3.</span> <span class="toc-text">16.6.2 时刻警惕透明物体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-6-3-%E5%87%8F%E5%B0%91%E5%AE%9E%E6%97%B6%E5%85%89%E7%85%A7%E5%92%8C%E9%98%B4%E5%BD%B1"><span class="toc-number">7.0.4.</span> <span class="toc-text">16.6.3 减少实时光照和阴影</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#16-7-%E8%8A%82%E7%9C%81%E5%B8%A6%E5%AE%BD"><span class="toc-number">8.</span> <span class="toc-text">16.7 节省带宽</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#16-7-1-%E5%87%8F%E5%B0%91%E7%BA%B9%E7%90%86%E5%A4%A7%E5%B0%8F"><span class="toc-number">8.0.1.</span> <span class="toc-text">16.7.1 减少纹理大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-7-2-%E5%88%A9%E7%94%A8%E5%88%86%E8%BE%A8%E7%8E%87%E7%BC%A9%E6%94%BE"><span class="toc-number">8.0.2.</span> <span class="toc-text">16.7.2 利用分辨率缩放</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#16-8-%E5%87%8F%E5%B0%91%E8%AE%A1%E7%AE%97%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-number">9.</span> <span class="toc-text">16.8 减少计算复杂度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#16-8-1-Shader%E7%9A%84LOD%E6%8A%80%E6%9C%AF"><span class="toc-number">9.0.1.</span> <span class="toc-text">16.8.1 Shader的LOD技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-8-2-%E4%BB%A3%E7%A0%81%E6%96%B9%E9%9D%A2%E7%9A%84%E4%BC%98%E5%8C%96"><span class="toc-number">9.0.2.</span> <span class="toc-text">16.8.2 代码方面的优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-8-3-%E6%A0%B9%E6%8D%AE%E7%A1%AC%E4%BB%B6%E6%9D%A1%E4%BB%B6%E8%BF%9B%E8%A1%8C%E7%BC%A9%E6%94%BE"><span class="toc-number">9.0.3.</span> <span class="toc-text">16.8.3 根据硬件条件进行缩放</span></a></li></ol></li></ol></li></ol>
                 </div>
             
             <hr />
-            <h1 id="Unity中的渲染优化技术"><a href="#Unity中的渲染优化技术" class="headerlink" title="Unity中的渲染优化技术"></a>Unity中的渲染优化技术</h1><span id="more"></span>
+            <div itemprop="articleBody"><h1 id="Unity中的渲染优化技术"><a href="#Unity中的渲染优化技术" class="headerlink" title="Unity中的渲染优化技术"></a>Unity中的渲染优化技术</h1><span id="more"></span>
 <hr>
 <h1 id="16-1-移动平台的特点"><a href="#16-1-移动平台的特点" class="headerlink" title="16.1 移动平台的特点"></a>16.1 移动平台的特点</h1><ul>
 <li>和PC平台相比，移动平台上的GPU架构有很大的不同</li>
@@ -404,18 +407,16 @@
 <li>一个非常简单且实用的方式是使用所谓的放缩(scaling)思想</li>
 <li>我们首先保证游戏最基本的配置可以在所有的平台上运行良好，而对于一些具有更高表现能力的设备，我们可以开启一些更”养眼”的效果，比如使用更高的分辨率，开启屏幕后处理特效，开启粒子效果等</li>
 </ul>
-
+</div>
         </div>
         
             <div class="kratos-copyright text-center clearfix">
-                <h5>本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
             </div>
         
         <footer class="kratos-entry-footer clearfix">
             
                 <div class="post-like-donate text-center clearfix" id="post-like-donate">
-                
-                    <a class="donate" href="javascript:;"><i class="fa fa-bitcoin"></i> 打赏</a>
                 
                 
                     <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
@@ -495,7 +496,7 @@
                     <a class="tag-none-link" href="/tags/Shader/" rel="tag">Shader</a>, <a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>, <a class="tag-none-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" rel="tag">计算机图形学</a>
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2025-03-17</span>
+                    <time datetime="2025-03-17T02:27:34.816Z" itemprop="dateModified">最后编辑：2025-03-17</time>
                 </div>
             </div>
         </footer>
@@ -563,7 +564,7 @@
     <div class="photo-background"></div>
     <div class="photo-wrapper clearfix">
         <div class="photo-wrapper-tip text-center">
-            <img class="about-photo" src="/images/ava1.jpg" />
+            <img class="about-photo" src="/images/ava1.jpg" loading="lazy" decoding="auto" />
         </div>
     </div>
     <div class="textwidget">
@@ -599,12 +600,12 @@
             
                     <div class="sticky-area">
                 
-                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix">
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
     <div class="photo-background"></div>
     <h4 class="widget-title no-after">
         <i class="fa fa-compass"></i>
         文章目录
-        <span class="toc-progress-bar"></span>
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
     </h4>
     <div class="textwidget">
         <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Unity%E4%B8%AD%E7%9A%84%E6%B8%B2%E6%9F%93%E4%BC%98%E5%8C%96%E6%8A%80%E6%9C%AF"><span class="toc-text">Unity中的渲染优化技术</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#16-1-%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-text">16.1 移动平台的特点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#16-2-%E5%BD%B1%E5%93%8D%E6%80%A7%E8%83%BD%E7%9A%84%E5%9B%A0%E7%B4%A0"><span class="toc-text">16.2 影响性能的因素</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#16-3-Unity%E4%B8%AD%E7%9A%84%E6%B8%B2%E6%9F%93%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7"><span class="toc-text">16.3 Unity中的渲染分析工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#16-4-%E5%87%8F%E5%B0%91draw-call%E6%95%B0%E7%9B%AE"><span class="toc-text">16.4 减少draw call数目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#16-4-0"><span class="toc-text">16.4.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-4-1-%E5%8A%A8%E6%80%81%E6%89%B9%E5%A4%84%E7%90%86"><span class="toc-text">16.4.1 动态批处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-4-2-%E9%9D%99%E6%80%81%E6%89%B9%E5%A4%84%E7%90%86"><span class="toc-text">16.4.2 静态批处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-4-3-%E5%85%B1%E4%BA%AB%E6%9D%90%E8%B4%A8"><span class="toc-text">16.4.3 共享材质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-4-4-%E6%89%B9%E5%A4%84%E7%90%86%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">16.4.4 批处理的注意事项</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#16-5-%E5%87%8F%E5%B0%91%E9%9C%80%E8%A6%81%E5%A4%84%E7%90%86%E7%9A%84%E9%A1%B6%E7%82%B9%E6%95%B0%E7%9B%AE"><span class="toc-text">16.5 减少需要处理的顶点数目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#16-5-1-%E4%BC%98%E5%8C%96%E5%87%A0%E4%BD%95%E4%BD%93"><span class="toc-text">16.5.1 优化几何体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-5-2-%E6%A8%A1%E5%9E%8B%E7%9A%84LOD%E6%8A%80%E6%9C%AF"><span class="toc-text">16.5.2 模型的LOD技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-5-3-%E9%81%AE%E6%8C%A1%E5%89%94%E9%99%A4%E6%8A%80%E6%9C%AF"><span class="toc-text">16.5.3 遮挡剔除技术</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#16-6-%E5%87%8F%E5%B0%91%E9%9C%80%E8%A6%81%E5%A4%84%E7%90%86%E7%9A%84%E7%89%87%E5%85%83%E6%95%B0%E7%9B%AE"><span class="toc-text">16.6 减少需要处理的片元数目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#16-6-0"><span class="toc-text">16.6.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-6-1-%E6%8E%A7%E5%88%B6%E7%BB%98%E5%88%B6%E9%A1%BA%E5%BA%8F"><span class="toc-text">16.6.1 控制绘制顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-6-2-%E6%97%B6%E5%88%BB%E8%AD%A6%E6%83%95%E9%80%8F%E6%98%8E%E7%89%A9%E4%BD%93"><span class="toc-text">16.6.2 时刻警惕透明物体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-6-3-%E5%87%8F%E5%B0%91%E5%AE%9E%E6%97%B6%E5%85%89%E7%85%A7%E5%92%8C%E9%98%B4%E5%BD%B1"><span class="toc-text">16.6.3 减少实时光照和阴影</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#16-7-%E8%8A%82%E7%9C%81%E5%B8%A6%E5%AE%BD"><span class="toc-text">16.7 节省带宽</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#16-7-1-%E5%87%8F%E5%B0%91%E7%BA%B9%E7%90%86%E5%A4%A7%E5%B0%8F"><span class="toc-text">16.7.1 减少纹理大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-7-2-%E5%88%A9%E7%94%A8%E5%88%86%E8%BE%A8%E7%8E%87%E7%BC%A9%E6%94%BE"><span class="toc-text">16.7.2 利用分辨率缩放</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#16-8-%E5%87%8F%E5%B0%91%E8%AE%A1%E7%AE%97%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-text">16.8 减少计算复杂度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#16-8-1-Shader%E7%9A%84LOD%E6%8A%80%E6%9C%AF"><span class="toc-text">16.8.1 Shader的LOD技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-8-2-%E4%BB%A3%E7%A0%81%E6%96%B9%E9%9D%A2%E7%9A%84%E4%BC%98%E5%8C%96"><span class="toc-text">16.8.2 代码方面的优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-8-3-%E6%A0%B9%E6%8D%AE%E7%A1%AC%E4%BB%B6%E6%9D%A1%E4%BB%B6%E8%BF%9B%E8%A1%8C%E7%BC%A9%E6%94%BE"><span class="toc-text">16.8.3 根据硬件条件进行缩放</span></a></li></ol></li></ol></li></ol>
@@ -906,6 +907,7 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3 footer-list text-center">
                     <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
                         
                         <li><a href="mailto:ccc895286662@gmail.com"><i class="fa fa-envelope"></i></a></li>
                         
@@ -914,6 +916,8 @@
                         
                         
                         <li><a target="_blank" rel="nofollow" href="https://github.com/unishiki"><i class="fa fa-github"></i></a></li>
+                        
+                        <!-- New links -->
                         
                     </ul>
                     <ul class="kratos-copyright">
@@ -952,6 +956,11 @@
                     </div>
                 
                 
+                    <div class="box theme-box" id="snow-switch">
+                        <span class="fa fa-snowflake-o"></span>
+                    </div>
+                
+                
                     <div class="box group-box">
                         <a href="https://jq.qq.com/?_wv=1027&k=CpdI35JY" target="_blank" rel="nofollow">
                             <span class="fa fa-users"></span>
@@ -968,8 +977,8 @@
 </div>
 </div>
 
-        <script defer src="https://unpkg.com/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
-<script defer src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
 <script>
     if (!window.kr) {
         window.kr = {};
@@ -978,14 +987,19 @@
     window.kr.siteRoot = "/";
 </script>
 
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
 
     <script async src="/js/candy.min.js"></script>
 
 
 
-    <script defer src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
     
-    <script defer src="https://unpkg.com/meting@2/dist/Meting.min.js"></script>
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
     <meting-js
         server="netease"
         type="playlist"
@@ -997,16 +1011,10 @@
 
 
 
-    <script defer src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
-<script defer src="https://unpkg.com/clipboard@2.0.6/dist/clipboard.min.js"></script>
 <script defer src="/js/kratosr.min.js"></script>
 <script defer src="/js/pjax.min.js"></script>
-
-    <script defer src="https://unpkg.com/layui-src@2.5.5/dist/layui.all.js"></script>
-
-
-    <script defer src="/js/kr-dark.min.js"></script>
 
 
 

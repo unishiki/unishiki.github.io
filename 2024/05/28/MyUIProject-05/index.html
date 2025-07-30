@@ -4,7 +4,9 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="../images/mfmf.webp">
+  
   <title>UI动效 05 | uni_shiki</title>
+  
   <meta name="author" content="uni_shiki" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -22,16 +24,15 @@
 <meta property="og:site_name" content="uni_shiki">
 <meta property="og:description" content="按钮UI动效——水波纹涟漪点击效果">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/images/mfmf.webp">
+<meta property="og:image" content="http://example.com/2024/05/28/MyUIProject-05/images/MyUIProject/UI_5.png">
 <meta property="article:published_time" content="2024-05-28T09:28:36.000Z">
-<meta property="article:modified_time" content="2025-03-17T02:20:35.534Z">
+<meta property="article:modified_time" content="2025-07-30T07:42:37.470Z">
 <meta property="article:author" content="uni_shiki">
 <meta property="article:tag" content="Unity">
 <meta property="article:tag" content="Shader">
 <meta property="article:tag" content="UI">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/mfmf.webp">
-<meta name="twitter:site" content="@null">
+<meta name="twitter:image" content="http://example.com/2024/05/28/MyUIProject-05/images/MyUIProject/UI_5.png">
   
   <!-- 站点验证相关 -->
   
@@ -40,41 +41,31 @@
     
   
   <!-- 样式表文件 -->
-  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
   
-    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
-  
-  
-  <link rel="stylesheet" id="fontawe-css" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
-  <link rel="stylesheet" id="nprogress-css" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" type="text/css" media="all">
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
   
   
-    <link rel="stylesheet" href="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css">
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
   
   
-    <link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
   
   
-    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
   
   <!-- 不得不预先加载的一些JS文件 -->
-  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
   
-    <script src="https://unpkg.com/qrcode_js@1.0.0/qrcode.min.js"></script>
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
   
   
   <style>
     
-      .kratos-cover.kratos-cover-2 {
-        background-image: url('/images/banner.webp');
-      }
-    
-    
-      @media(min-width:768px) {
-        body.custom-background {
-          background-image: url('/images/myBg2.png');
-        }
-      }
     
   </style>
   
@@ -92,30 +83,33 @@
                             <ul id="kratos-primary-menu" class="sf-menu">
                                 
                                     
-                                        <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
                                     
-                                
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
                                     
-                                        <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
                                     
-                                
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                        
                                     
-                                        <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
-                                    
-                                
-                                    
-                                        <li>
-                                            <a><i class="fa fa-link"></i>链接</a>
-                                            <ul class="sub-menu">
-                                                
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>链接</a>
+                                                <ul class="sub-menu">
                                                     
-                                                
+                                                        
                                                     
-                                                        <li><a target="_blank" rel="noopener" href="https://space.bilibili.com/33554119">作者b站</a></li>
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://space.bilibili.com/33554119">Bilibili</a></li>
+                                                        
                                                     
-                                                
-                                            </ul>
-                                        </li>
+                                                </ul>
+                                            </li>
+                                        
                                     
                                 
                             </ul>
@@ -157,39 +151,48 @@
 
         
 
-            <article>
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/05/28/MyUIProject-05/">
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center">UI动效 05</h1>
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">UI动效 05</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><i class="fa fa-calendar"></i> 2024-05-28</li>
-                <li><i class="fa fa-user"></i> 作者 uni_shiki</li>
-                <li>
-                    <i class="fa fa-edit"></i> 
-                    
-                    
-                        ~11.32K
-                    
-                    字
+                <li><time datetime="2024-05-28T09:28:36.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2024-05-28</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">uni_shiki</span>
                 </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~11.32K
+                        
+                        字
+                    </li>
+                
                 
             </ul>
         </header>
         <div class="kratos-post-content">
+            
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1742178035534"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1753861357470"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
-                <div class="kratos-post-inner-toc">
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
                     <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8C%89%E9%92%AEUI%E5%8A%A8%E6%95%88%E2%80%94%E2%80%94%E6%B0%B4%E6%B3%A2%E7%BA%B9%E6%B6%9F%E6%BC%AA%E7%82%B9%E5%87%BB%E6%95%88%E6%9E%9C"><span class="toc-number">1.</span> <span class="toc-text">按钮UI动效——水波纹涟漪点击效果</span></a></li></ol>
                 </div>
             
             <hr />
-            <h1 id="按钮UI动效——水波纹涟漪点击效果"><a href="#按钮UI动效——水波纹涟漪点击效果" class="headerlink" title="按钮UI动效——水波纹涟漪点击效果"></a>按钮UI动效——水波纹涟漪点击效果</h1><span id="more"></span>
+            <div itemprop="articleBody"><h1 id="按钮UI动效——水波纹涟漪点击效果"><a href="#按钮UI动效——水波纹涟漪点击效果" class="headerlink" title="按钮UI动效——水波纹涟漪点击效果"></a>按钮UI动效——水波纹涟漪点击效果</h1><span id="more"></span>
 <hr>
 <ul>
 <li>效果图：<br><img src="/images/MyUIProject/UI_5.png"></li>
@@ -202,18 +205,16 @@
 <li>Shader(使用SDF)：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br></pre></td><td class="code"><pre><span class="line">Shader <span class="string">&quot;Unlit/BtnClickWaveSDFShader&quot;</span></span><br><span class="line">&#123;</span><br><span class="line">    Properties</span><br><span class="line">    &#123;</span><br><span class="line">        _MainTex (<span class="string">&quot;Texture&quot;</span>, 2D) = <span class="string">&quot;white&quot;</span> &#123;&#125;</span><br><span class="line">        _ColorLeft (<span class="string">&quot;ColorLeft&quot;</span>, Color) = (0,1,0,1)</span><br><span class="line">        _ColorRight (<span class="string">&quot;ColorRight&quot;</span>, Color) = (0,0,1,1)</span><br><span class="line">        [hideInInspector] _CircleScaleOffset (<span class="string">&quot;CircleScaleOffset&quot;</span>, Float) = 1 // Width / Height</span><br><span class="line">        [hideInInspector] _CirclePosOffset (<span class="string">&quot;CirclePosOffset&quot;</span>, Vector) = (0,0,0,0)</span><br><span class="line">        _Radius (<span class="string">&quot;Radius&quot;</span>, Float) = 1.5</span><br><span class="line">        _RadiusThickness (<span class="string">&quot;RadiusThickness&quot;</span>, Float) = 0.2</span><br><span class="line">        [HDR] _WaveColor (<span class="string">&quot;WaveColor&quot;</span>, Color) = (1,1,1,1)</span><br><span class="line">    &#125;</span><br><span class="line">    SubShader</span><br><span class="line">    &#123;</span><br><span class="line">        Tags &#123; <span class="string">&quot;RenderType&quot;</span>=<span class="string">&quot;Transparent&quot;</span> <span class="string">&quot;Queue&quot;</span>=<span class="string">&quot;Transparent&quot;</span>&#125;</span><br><span class="line">        Blend SrcAlpha OneMinusSrcAlpha</span><br><span class="line"></span><br><span class="line">        Pass</span><br><span class="line">        &#123;</span><br><span class="line">            CGPROGRAM</span><br><span class="line">            <span class="comment">#pragma vertex vert</span></span><br><span class="line">            <span class="comment">#pragma fragment frag</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">#include &quot;UnityCG.cginc&quot;</span></span><br><span class="line"></span><br><span class="line">            struct appdata</span><br><span class="line">            &#123;</span><br><span class="line">                float4 vertex : POSITION;</span><br><span class="line">                float2 uv : TEXCOORD0;</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            struct v2f</span><br><span class="line">            &#123;</span><br><span class="line">                float2 uv : TEXCOORD0;</span><br><span class="line">                float4 vertex : SV_POSITION;</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            sampler2D _MainTex;</span><br><span class="line">            float4 _MainTex_ST;</span><br><span class="line">            float4 _ColorLeft;</span><br><span class="line">            float4 _ColorRight;</span><br><span class="line"></span><br><span class="line">            v2f vert (appdata v)</span><br><span class="line">            &#123;</span><br><span class="line">                v2f o;</span><br><span class="line">                o.vertex = UnityObjectToClipPos(v.vertex);</span><br><span class="line">                o.uv = TRANSFORM_TEX(v.uv, _MainTex);</span><br><span class="line">                <span class="built_in">return</span> o;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            fixed4 frag (v2f i) : SV_Target</span><br><span class="line">            &#123;</span><br><span class="line">                fixed4 shape = tex2D(_MainTex, i.uv);</span><br><span class="line">                fixed4 col = fixed4(lerp(_ColorLeft, _ColorRight, i.uv.x).rgb, shape.a);</span><br><span class="line">                <span class="built_in">return</span> col;</span><br><span class="line">            &#125;</span><br><span class="line">            ENDCG</span><br><span class="line">        &#125;</span><br><span class="line">        Pass</span><br><span class="line">        &#123;</span><br><span class="line">            CGPROGRAM</span><br><span class="line">            <span class="comment">#pragma vertex vert</span></span><br><span class="line">            <span class="comment">#pragma fragment frag</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">#include &quot;UnityCG.cginc&quot;</span></span><br><span class="line"></span><br><span class="line">            struct appdata</span><br><span class="line">            &#123;</span><br><span class="line">                float4 vertex : POSITION;</span><br><span class="line">                float2 uv : TEXCOORD0;</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            struct v2f</span><br><span class="line">            &#123;</span><br><span class="line">                float2 uv : TEXCOORD0;</span><br><span class="line">                float4 vertex : SV_POSITION;</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            sampler2D _MainTex;</span><br><span class="line">            float4 _MainTex_ST;</span><br><span class="line">            <span class="built_in">float</span> _CircleScaleOffset;</span><br><span class="line">            <span class="built_in">float</span> _Radius;</span><br><span class="line">            float4 _CirclePosOffset;</span><br><span class="line">            <span class="built_in">float</span> _RadiusThickness;</span><br><span class="line">            float4 _WaveColor;</span><br><span class="line"></span><br><span class="line">            v2f vert (appdata v)</span><br><span class="line">            &#123;</span><br><span class="line">                v2f o;</span><br><span class="line">                o.vertex = UnityObjectToClipPos(v.vertex);</span><br><span class="line">                o.uv = TRANSFORM_TEX(v.uv, _MainTex);</span><br><span class="line">                <span class="built_in">return</span> o;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">float</span> sdCircle(float2 p, <span class="built_in">float</span> r)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">return</span> length(p) - r;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">float</span> opAnnular(<span class="built_in">float</span> sdf, <span class="built_in">float</span> r)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">return</span> abs(sdf) - r;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            fixed4 frag (v2f i) : SV_Target</span><br><span class="line">            &#123;</span><br><span class="line">                fixed4 shape = tex2D(_MainTex, i.uv);</span><br><span class="line">                // 全象限</span><br><span class="line">                i.uv -= _CirclePosOffset.xy;</span><br><span class="line">                i.uv.y = 1.0 - i.uv.y;</span><br><span class="line">                i.uv = i.uv * 2 - 1;</span><br><span class="line">                // 消除屏幕拉伸影响</span><br><span class="line">                <span class="built_in">float</span> w = _ScreenParams.x;</span><br><span class="line">                <span class="built_in">float</span> h = _ScreenParams.y;</span><br><span class="line">                half co = w/h * _CircleScaleOffset;</span><br><span class="line">                i.uv = float2(i.uv.x * co, i.uv.y);</span><br><span class="line"></span><br><span class="line">                <span class="built_in">float</span> step = 1.0 / w;</span><br><span class="line">                fixed4 circle = smoothstep(step, -step, opAnnular(sdCircle(i.uv, _Radius) , _RadiusThickness));</span><br><span class="line"></span><br><span class="line">                fixed4 col = fixed4(circle.rgb, shape.a);</span><br><span class="line">                col.rgb = col.rgb * _WaveColor.rgb;</span><br><span class="line">                col.a *= col.r;</span><br><span class="line">                col.a = _WaveColor.a * col.a;</span><br><span class="line">                </span><br><span class="line">                <span class="built_in">return</span> col;</span><br><span class="line">            &#125;</span><br><span class="line">            ENDCG</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 <li>C#(两种shader共用)：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">using UnityEngine;</span><br><span class="line">using UnityEngine.UI;</span><br><span class="line">using DG.Tweening;</span><br><span class="line"></span><br><span class="line">public class BtnClickWaveControl : MonoBehaviour</span><br><span class="line">&#123;</span><br><span class="line">    private Material material;</span><br><span class="line">    private Button btn;</span><br><span class="line">    private Sequence sequence;</span><br><span class="line">    [SerializeField] private <span class="built_in">float</span> waveDuration = 2f;</span><br><span class="line">    private Vector2 mouseUVPos;</span><br><span class="line">    // SDF</span><br><span class="line">    [SerializeField] private bool useSDF = <span class="literal">false</span>;</span><br><span class="line">    private Vector4 tmp_color;</span><br><span class="line">    private Vector4 targetColor;</span><br><span class="line">    void <span class="function"><span class="title">Start</span></span>()</span><br><span class="line">    &#123;</span><br><span class="line">        material = GetComponent&lt;Image&gt;().material = new Material(GetComponent&lt;Image&gt;().material);</span><br><span class="line">        btn = GetComponent&lt;Button&gt;();</span><br><span class="line">        RectTransform rect = GetComponent&lt;RectTransform&gt;();</span><br><span class="line"></span><br><span class="line">        material.SetFloat(<span class="string">&quot;_CircleScaleOffset&quot;</span>, rect.sizeDelta.x / rect.sizeDelta.y);</span><br><span class="line">        material.SetFloat(<span class="string">&quot;_Radius&quot;</span>, -material.GetFloat(<span class="string">&quot;_RadiusThickness&quot;</span>));</span><br><span class="line">        <span class="keyword">if</span> (useSDF)</span><br><span class="line">        &#123;</span><br><span class="line">            tmp_color = material.GetColor(<span class="string">&quot;_WaveColor&quot;</span>);</span><br><span class="line">            targetColor = new Vector4(tmp_color.x, tmp_color.y, tmp_color.z, 0);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        btn.onClick.AddListener(() =&gt;</span><br><span class="line">        &#123;</span><br><span class="line">            Vector2 uipos = Vector3.one;</span><br><span class="line">            RectTransformUtility.ScreenPointToLocalPointInRectangle(transform.parent as RectTransform, Input.mousePosition, Camera.main, out uipos);</span><br><span class="line">            mouseUVPos = (uipos - (Vector2)rect.localPosition) / rect.sizeDelta;</span><br><span class="line">            if (!useSDF)</span><br><span class="line">            &#123;</span><br><span class="line">                material.SetVector(&quot;_MouseUVPos&quot;, mouseUVPos);</span><br><span class="line"></span><br><span class="line">                sequence?.Kill();</span><br><span class="line">                sequence = DOTween.Sequence().SetUpdate(true).SetId(transform)</span><br><span class="line">                .AppendCallback(() =&gt;</span><br><span class="line">                &#123;</span><br><span class="line">                    material.SetFloat(&quot;_Radius&quot;, -material.GetFloat(&quot;_RadiusThickness&quot;));</span><br><span class="line">                &#125;)</span><br><span class="line">                .Append(material.DOFloat(10f, <span class="string">&quot;_Radius&quot;</span>, waveDuration));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                material.SetVector(<span class="string">&quot;_CirclePosOffset&quot;</span>, mouseUVPos);</span><br><span class="line">                </span><br><span class="line">                sequence?.Kill();</span><br><span class="line">                sequence = DOTween.Sequence().SetUpdate(<span class="literal">true</span>).SetId(transform)</span><br><span class="line">                .AppendCallback(() =&gt;</span><br><span class="line">                &#123;</span><br><span class="line">                    material.SetFloat(&quot;_Radius&quot;, -material.GetFloat(&quot;_RadiusThickness&quot;));</span><br><span class="line">                    material.SetColor(<span class="string">&quot;_WaveColor&quot;</span>, tmp_color);</span><br><span class="line">                &#125;)</span><br><span class="line">                .Append(material.DOFloat(6f, <span class="string">&quot;_Radius&quot;</span>, waveDuration))</span><br><span class="line">                .Join(material.DOColor(targetColor, <span class="string">&quot;_WaveColor&quot;</span>, waveDuration));</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void <span class="function"><span class="title">OnDestroy</span></span>()</span><br><span class="line">    &#123;</span><br><span class="line">        DOTween.Kill(transform);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ul>
-
+</div>
         </div>
         
             <div class="kratos-copyright text-center clearfix">
-                <h5>本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
             </div>
         
         <footer class="kratos-entry-footer clearfix">
             
                 <div class="post-like-donate text-center clearfix" id="post-like-donate">
-                
-                    <a class="donate" href="javascript:;"><i class="fa fa-bitcoin"></i> 打赏</a>
                 
                 
                     <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
@@ -293,7 +294,7 @@
                     <a class="tag-none-link" href="/tags/Shader/" rel="tag">Shader</a>, <a class="tag-none-link" href="/tags/UI/" rel="tag">UI</a>, <a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2025-03-17</span>
+                    <time datetime="2025-07-30T07:42:37.470Z" itemprop="dateModified">最后编辑：2025-07-30</time>
                 </div>
             </div>
         </footer>
@@ -361,7 +362,7 @@
     <div class="photo-background"></div>
     <div class="photo-wrapper clearfix">
         <div class="photo-wrapper-tip text-center">
-            <img class="about-photo" src="/images/ava1.jpg" />
+            <img class="about-photo" src="/images/ava1.jpg" loading="lazy" decoding="auto" />
         </div>
     </div>
     <div class="textwidget">
@@ -397,12 +398,12 @@
             
                     <div class="sticky-area">
                 
-                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix">
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
     <div class="photo-background"></div>
     <h4 class="widget-title no-after">
         <i class="fa fa-compass"></i>
         文章目录
-        <span class="toc-progress-bar"></span>
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
     </h4>
     <div class="textwidget">
         <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8C%89%E9%92%AEUI%E5%8A%A8%E6%95%88%E2%80%94%E2%80%94%E6%B0%B4%E6%B3%A2%E7%BA%B9%E6%B6%9F%E6%BC%AA%E7%82%B9%E5%87%BB%E6%95%88%E6%9E%9C"><span class="toc-text">按钮UI动效——水波纹涟漪点击效果</span></a></li></ol>
@@ -704,6 +705,7 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3 footer-list text-center">
                     <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
                         
                         <li><a href="mailto:ccc895286662@gmail.com"><i class="fa fa-envelope"></i></a></li>
                         
@@ -712,6 +714,8 @@
                         
                         
                         <li><a target="_blank" rel="nofollow" href="https://github.com/unishiki"><i class="fa fa-github"></i></a></li>
+                        
+                        <!-- New links -->
                         
                     </ul>
                     <ul class="kratos-copyright">
@@ -750,6 +754,11 @@
                     </div>
                 
                 
+                    <div class="box theme-box" id="snow-switch">
+                        <span class="fa fa-snowflake-o"></span>
+                    </div>
+                
+                
                     <div class="box group-box">
                         <a href="https://jq.qq.com/?_wv=1027&k=CpdI35JY" target="_blank" rel="nofollow">
                             <span class="fa fa-users"></span>
@@ -766,8 +775,8 @@
 </div>
 </div>
 
-        <script defer src="https://unpkg.com/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
-<script defer src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
 <script>
     if (!window.kr) {
         window.kr = {};
@@ -776,14 +785,19 @@
     window.kr.siteRoot = "/";
 </script>
 
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
 
     <script async src="/js/candy.min.js"></script>
 
 
 
-    <script defer src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
     
-    <script defer src="https://unpkg.com/meting@2/dist/Meting.min.js"></script>
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
     <meting-js
         server="netease"
         type="playlist"
@@ -795,16 +809,10 @@
 
 
 
-    <script defer src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
-<script defer src="https://unpkg.com/clipboard@2.0.6/dist/clipboard.min.js"></script>
 <script defer src="/js/kratosr.min.js"></script>
 <script defer src="/js/pjax.min.js"></script>
-
-    <script defer src="https://unpkg.com/layui-src@2.5.5/dist/layui.all.js"></script>
-
-
-    <script defer src="/js/kr-dark.min.js"></script>
 
 
 

@@ -4,7 +4,9 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="../images/mfmf.webp">
-  <title>uni_shiki</title>
+  
+  <title>档案馆 | uni_shiki</title>
+  
   <meta name="author" content="uni_shiki" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -16,7 +18,7 @@
     <meta name="keywords" content="" />
   
   <meta property="og:type" content="website">
-<meta property="og:title" content="uni_shiki">
+<meta property="og:title" content="档案馆">
 <meta property="og:url" content="http://example.com/archives/page/9/index.html">
 <meta property="og:site_name" content="uni_shiki">
 <meta property="og:locale" content="en_US">
@@ -24,7 +26,6 @@
 <meta property="article:author" content="uni_shiki">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/mfmf.webp">
-<meta name="twitter:site" content="@null">
   
   <!-- 站点验证相关 -->
   
@@ -33,41 +34,31 @@
     
   
   <!-- 样式表文件 -->
-  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
   
-    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
-  
-  
-  <link rel="stylesheet" id="fontawe-css" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
-  <link rel="stylesheet" id="nprogress-css" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" type="text/css" media="all">
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
   
   
-    <link rel="stylesheet" href="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css">
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
   
   
-    <link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
   
   
-    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
   
   <!-- 不得不预先加载的一些JS文件 -->
-  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
   
-    <script src="https://unpkg.com/qrcode_js@1.0.0/qrcode.min.js"></script>
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
   
   
   <style>
     
-      .kratos-cover.kratos-cover-2 {
-        background-image: url('/images/banner.webp');
-      }
-    
-    
-      @media(min-width:768px) {
-        body.custom-background {
-          background-image: url('/images/myBg2.png');
-        }
-      }
     
   </style>
   
@@ -85,30 +76,33 @@
                             <ul id="kratos-primary-menu" class="sf-menu">
                                 
                                     
-                                        <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
                                     
-                                
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
                                     
-                                        <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
                                     
-                                
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                        
                                     
-                                        <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
-                                    
-                                
-                                    
-                                        <li>
-                                            <a><i class="fa fa-link"></i>链接</a>
-                                            <ul class="sub-menu">
-                                                
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>链接</a>
+                                                <ul class="sub-menu">
                                                     
-                                                
+                                                        
                                                     
-                                                        <li><a target="_blank" rel="noopener" href="https://space.bilibili.com/33554119">作者b站</a></li>
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://space.bilibili.com/33554119">Bilibili</a></li>
+                                                        
                                                     
-                                                
-                                            </ul>
-                                        </li>
+                                                </ul>
+                                            </li>
+                                        
                                     
                                 
                             </ul>
@@ -181,7 +175,7 @@
             <h2 class="title-h2 text-center">文章归档</h2>
             <div id="archives">
               <div class="post-block archive post" style="margin-left: 2em;">
-                <h3 class="archive-page-counter">当前共有 10 篇文章 (゜-゜)つロ 干杯~</h3>
+                <h3 class="archive-page-counter">当前共有 117 篇文章 (゜-゜)つロ 干杯~</h3>
                 <div class="posts-collapse">
                   
                   
@@ -194,19 +188,18 @@
                       </div>
                     
                     
-                      <article class="post" itemscope>
+                      <article class="post" itemscope itemtype="https://schema.org/Article">
                         <header class="post-header">
                           <h3 class="post-title">
                             
-                                <a class="post-title-link" href="/2022/09/27/performanceOptimization-25/" itemprop="url">
-                                  <span itemprop="name">性能优化(30)——Terrain地形优化</span>
+                                <a class="post-title-link" href="/2022/09/27/performanceOptimization-25/" itemprop="mainEntityOfPage">
+                                  <span itemprop="name headline">性能优化(30)——Terrain地形优化</span>
                                 </a>
                             
                           </h3>
                           <div class="post-meta">
-                            <time class="post-time" itemprop="dateCreated"
-                                  datetime="2022-09-27T10:02:45+08:00"
-                                  content="2022-09-27" >
+                            <time class="post-time" itemprop="datePublished"
+                                  datetime="2022-09-27T02:02:45.000Z">
                               09-27
                             </time>
                           </div>
@@ -217,19 +210,18 @@
                     
                     
                     
-                      <article class="post" itemscope>
+                      <article class="post" itemscope itemtype="https://schema.org/Article">
                         <header class="post-header">
                           <h3 class="post-title">
                             
-                                <a class="post-title-link" href="/2022/09/25/performanceOptimization-24/" itemprop="url">
-                                  <span itemprop="name">性能优化(27、28、29)——渲染管线精简与优化</span>
+                                <a class="post-title-link" href="/2022/09/25/performanceOptimization-24/" itemprop="mainEntityOfPage">
+                                  <span itemprop="name headline">性能优化(27、28、29)——渲染管线精简与优化</span>
                                 </a>
                             
                           </h3>
                           <div class="post-meta">
-                            <time class="post-time" itemprop="dateCreated"
-                                  datetime="2022-09-25T14:24:15+08:00"
-                                  content="2022-09-25" >
+                            <time class="post-time" itemprop="datePublished"
+                                  datetime="2022-09-25T06:24:15.000Z">
                               09-25
                             </time>
                           </div>
@@ -240,19 +232,18 @@
                     
                     
                     
-                      <article class="post" itemscope>
+                      <article class="post" itemscope itemtype="https://schema.org/Article">
                         <header class="post-header">
                           <h3 class="post-title">
                             
-                                <a class="post-title-link" href="/2022/09/25/performanceOptimization-23/" itemprop="url">
-                                  <span itemprop="name">性能优化(26)——遮挡剔除与灯光剔除</span>
+                                <a class="post-title-link" href="/2022/09/25/performanceOptimization-23/" itemprop="mainEntityOfPage">
+                                  <span itemprop="name headline">性能优化(26)——遮挡剔除与灯光剔除</span>
                                 </a>
                             
                           </h3>
                           <div class="post-meta">
-                            <time class="post-time" itemprop="dateCreated"
-                                  datetime="2022-09-25T13:55:36+08:00"
-                                  content="2022-09-25" >
+                            <time class="post-time" itemprop="datePublished"
+                                  datetime="2022-09-25T05:55:36.000Z">
                               09-25
                             </time>
                           </div>
@@ -263,19 +254,18 @@
                     
                     
                     
-                      <article class="post" itemscope>
+                      <article class="post" itemscope itemtype="https://schema.org/Article">
                         <header class="post-header">
                           <h3 class="post-title">
                             
-                                <a class="post-title-link" href="/2022/09/22/performanceOptimization-22/" itemprop="url">
-                                  <span itemprop="name">性能优化(25)——中景简化与LOD策略</span>
+                                <a class="post-title-link" href="/2022/09/22/performanceOptimization-22/" itemprop="mainEntityOfPage">
+                                  <span itemprop="name headline">性能优化(25)——中景简化与LOD策略</span>
                                 </a>
                             
                           </h3>
                           <div class="post-meta">
-                            <time class="post-time" itemprop="dateCreated"
-                                  datetime="2022-09-22T14:22:45+08:00"
-                                  content="2022-09-22" >
+                            <time class="post-time" itemprop="datePublished"
+                                  datetime="2022-09-22T06:22:45.000Z">
                               09-22
                             </time>
                           </div>
@@ -286,19 +276,18 @@
                     
                     
                     
-                      <article class="post" itemscope>
+                      <article class="post" itemscope itemtype="https://schema.org/Article">
                         <header class="post-header">
                           <h3 class="post-title">
                             
-                                <a class="post-title-link" href="/2022/09/17/performanceOptimization-21/" itemprop="url">
-                                  <span itemprop="name">性能优化(24)——远景简化</span>
+                                <a class="post-title-link" href="/2022/09/17/performanceOptimization-21/" itemprop="mainEntityOfPage">
+                                  <span itemprop="name headline">性能优化(24)——远景简化</span>
                                 </a>
                             
                           </h3>
                           <div class="post-meta">
-                            <time class="post-time" itemprop="dateCreated"
-                                  datetime="2022-09-17T11:09:09+08:00"
-                                  content="2022-09-17" >
+                            <time class="post-time" itemprop="datePublished"
+                                  datetime="2022-09-17T03:09:09.000Z">
                               09-17
                             </time>
                           </div>
@@ -309,19 +298,18 @@
                     
                     
                     
-                      <article class="post" itemscope>
+                      <article class="post" itemscope itemtype="https://schema.org/Article">
                         <header class="post-header">
                           <h3 class="post-title">
                             
-                                <a class="post-title-link" href="/2022/09/12/performanceOptimization-20/" itemprop="url">
-                                  <span itemprop="name">性能优化(23)——Unity中的Batching(下)</span>
+                                <a class="post-title-link" href="/2022/09/12/performanceOptimization-20/" itemprop="mainEntityOfPage">
+                                  <span itemprop="name headline">性能优化(23)——Unity中的Batching(下)</span>
                                 </a>
                             
                           </h3>
                           <div class="post-meta">
-                            <time class="post-time" itemprop="dateCreated"
-                                  datetime="2022-09-12T16:44:58+08:00"
-                                  content="2022-09-12" >
+                            <time class="post-time" itemprop="datePublished"
+                                  datetime="2022-09-12T08:44:58.000Z">
                               09-12
                             </time>
                           </div>
@@ -332,19 +320,18 @@
                     
                     
                     
-                      <article class="post" itemscope>
+                      <article class="post" itemscope itemtype="https://schema.org/Article">
                         <header class="post-header">
                           <h3 class="post-title">
                             
-                                <a class="post-title-link" href="/2022/09/12/performanceOptimization-19/" itemprop="url">
-                                  <span itemprop="name">性能优化(22)——Unity中的Batching(上)</span>
+                                <a class="post-title-link" href="/2022/09/12/performanceOptimization-19/" itemprop="mainEntityOfPage">
+                                  <span itemprop="name headline">性能优化(22)——Unity中的Batching(上)</span>
                                 </a>
                             
                           </h3>
                           <div class="post-meta">
-                            <time class="post-time" itemprop="dateCreated"
-                                  datetime="2022-09-12T15:13:28+08:00"
-                                  content="2022-09-12" >
+                            <time class="post-time" itemprop="datePublished"
+                                  datetime="2022-09-12T07:13:28.000Z">
                               09-12
                             </time>
                           </div>
@@ -355,19 +342,18 @@
                     
                     
                     
-                      <article class="post" itemscope>
+                      <article class="post" itemscope itemtype="https://schema.org/Article">
                         <header class="post-header">
                           <h3 class="post-title">
                             
-                                <a class="post-title-link" href="/2022/09/12/performanceOptimization-18/" itemprop="url">
-                                  <span itemprop="name">性能优化(21)——Unity中的Simplization</span>
+                                <a class="post-title-link" href="/2022/09/12/performanceOptimization-18/" itemprop="mainEntityOfPage">
+                                  <span itemprop="name headline">性能优化(21)——Unity中的Simplization</span>
                                 </a>
                             
                           </h3>
                           <div class="post-meta">
-                            <time class="post-time" itemprop="dateCreated"
-                                  datetime="2022-09-12T14:30:01+08:00"
-                                  content="2022-09-12" >
+                            <time class="post-time" itemprop="datePublished"
+                                  datetime="2022-09-12T06:30:01.000Z">
                               09-12
                             </time>
                           </div>
@@ -378,19 +364,18 @@
                     
                     
                     
-                      <article class="post" itemscope>
+                      <article class="post" itemscope itemtype="https://schema.org/Article">
                         <header class="post-header">
                           <h3 class="post-title">
                             
-                                <a class="post-title-link" href="/2022/09/09/performanceOptimization-17/" itemprop="url">
-                                  <span itemprop="name">性能优化(20)——渲染提前期优化——Culling、Simplization、Batching</span>
+                                <a class="post-title-link" href="/2022/09/09/performanceOptimization-17/" itemprop="mainEntityOfPage">
+                                  <span itemprop="name headline">性能优化(20)——渲染提前期优化——Culling、Simplization、Batching</span>
                                 </a>
                             
                           </h3>
                           <div class="post-meta">
-                            <time class="post-time" itemprop="dateCreated"
-                                  datetime="2022-09-09T12:56:53+08:00"
-                                  content="2022-09-09" >
+                            <time class="post-time" itemprop="datePublished"
+                                  datetime="2022-09-09T04:56:53.000Z">
                               09-09
                             </time>
                           </div>
@@ -401,19 +386,18 @@
                     
                     
                     
-                      <article class="post" itemscope>
+                      <article class="post" itemscope itemtype="https://schema.org/Article">
                         <header class="post-header">
                           <h3 class="post-title">
                             
-                                <a class="post-title-link" href="/2022/09/08/performanceOptimization-16/" itemprop="url">
-                                  <span itemprop="name">性能优化(19)——Postprocess后处理优化</span>
+                                <a class="post-title-link" href="/2022/09/08/performanceOptimization-16/" itemprop="mainEntityOfPage">
+                                  <span itemprop="name headline">性能优化(19)——Postprocess后处理优化</span>
                                 </a>
                             
                           </h3>
                           <div class="post-meta">
-                            <time class="post-time" itemprop="dateCreated"
-                                  datetime="2022-09-08T21:42:18+08:00"
-                                  content="2022-09-08" >
+                            <time class="post-time" itemprop="datePublished"
+                                  datetime="2022-09-08T13:42:18.000Z">
                               09-08
                             </time>
                           </div>
@@ -453,7 +437,7 @@
     <div class="photo-background"></div>
     <div class="photo-wrapper clearfix">
         <div class="photo-wrapper-tip text-center">
-            <img class="about-photo" src="/images/ava1.jpg" />
+            <img class="about-photo" src="/images/ava1.jpg" loading="lazy" decoding="auto" />
         </div>
     </div>
     <div class="textwidget">
@@ -782,6 +766,7 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3 footer-list text-center">
                     <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
                         
                         <li><a href="mailto:ccc895286662@gmail.com"><i class="fa fa-envelope"></i></a></li>
                         
@@ -790,6 +775,8 @@
                         
                         
                         <li><a target="_blank" rel="nofollow" href="https://github.com/unishiki"><i class="fa fa-github"></i></a></li>
+                        
+                        <!-- New links -->
                         
                     </ul>
                     <ul class="kratos-copyright">
@@ -828,6 +815,11 @@
                     </div>
                 
                 
+                    <div class="box theme-box" id="snow-switch">
+                        <span class="fa fa-snowflake-o"></span>
+                    </div>
+                
+                
                     <div class="box group-box">
                         <a href="https://jq.qq.com/?_wv=1027&k=CpdI35JY" target="_blank" rel="nofollow">
                             <span class="fa fa-users"></span>
@@ -844,8 +836,8 @@
 </div>
 </div>
 
-        <script defer src="https://unpkg.com/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
-<script defer src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
 <script>
     if (!window.kr) {
         window.kr = {};
@@ -854,14 +846,19 @@
     window.kr.siteRoot = "/";
 </script>
 
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
 
     <script async src="/js/candy.min.js"></script>
 
 
 
-    <script defer src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
     
-    <script defer src="https://unpkg.com/meting@2/dist/Meting.min.js"></script>
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
     <meting-js
         server="netease"
         type="playlist"
@@ -873,16 +870,10 @@
 
 
 
-    <script defer src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
-<script defer src="https://unpkg.com/clipboard@2.0.6/dist/clipboard.min.js"></script>
 <script defer src="/js/kratosr.min.js"></script>
 <script defer src="/js/pjax.min.js"></script>
-
-    <script defer src="https://unpkg.com/layui-src@2.5.5/dist/layui.all.js"></script>
-
-
-    <script defer src="/js/kr-dark.min.js"></script>
 
 
 
