@@ -1,0 +1,2301 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="../images/mfmf.webp">
+  
+  <title>game101 L13 To L22 | uni_shiki</title>
+  
+  <meta name="author" content="uni_shiki" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="计算机图形学" />
+  
+  <meta name="description" content="前言 由于内容过多，做笔记太费时间，对于Games101后半段只做简单记录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="game101 L13 To L22">
+<meta property="og:url" content="http://example.com/2024/07/31/game101-L13ToL22/index.html">
+<meta property="og:site_name" content="uni_shiki">
+<meta property="og:description" content="前言 由于内容过多，做笔记太费时间，对于Games101后半段只做简单记录">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/mfmf.webp">
+<meta property="article:published_time" content="2024-07-31T02:09:49.000Z">
+<meta property="article:modified_time" content="2025-08-11T09:26:40.498Z">
+<meta property="article:author" content="uni_shiki">
+<meta property="article:tag" content="计算机图形学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/mfmf.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>链接</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://space.bilibili.com/33554119">Bilibili</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">uni_shiki</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>uni_shiki</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/07/31/game101-L13ToL22/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">game101 L13 To L22</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2024-07-31T02:09:49.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2024-07-31</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">uni_shiki</span>
+                </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~21.18K
+                        
+                        字
+                    </li>
+                
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1754904400498"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lecture-13-Ray-Tracing-1"><span class="toc-number">2.</span> <span class="toc-text">Lecture 13  Ray Tracing 1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA"><span class="toc-number">2.0.1.</span> <span class="toc-text">光线追踪</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-number">2.0.2.</span> <span class="toc-text">基本原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82"><span class="toc-number">2.0.3.</span> <span class="toc-text">技术细节</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lecture-14-Ray-Tracing-2"><span class="toc-number">3.</span> <span class="toc-text">Lecture 14  Ray Tracing 2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AABB%E5%A6%82%E4%BD%95%E5%B8%AE%E5%8A%A9%E5%8A%A0%E9%80%9F%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA"><span class="toc-number">3.0.1.</span> <span class="toc-text">AABB如何帮助加速光线追踪</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%9D%87%E5%8C%80%E7%9A%84%E6%A0%BC%E5%AD%90"><span class="toc-number">3.0.2.</span> <span class="toc-text">1.均匀的格子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%A9%BA%E9%97%B4%E5%88%92%E5%88%86"><span class="toc-number">3.0.3.</span> <span class="toc-text">2.空间划分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Basic-radiometry-%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6"><span class="toc-number">3.0.4.</span> <span class="toc-text">Basic radiometry(辐射度量学)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Radiant-Energy-and-Flux-Power"><span class="toc-number">3.0.5.</span> <span class="toc-text">Radiant Energy and Flux(Power)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Radiant-Intensity-Irradiance-Radiance"><span class="toc-number">3.0.6.</span> <span class="toc-text">Radiant Intensity &amp; Irradiance &amp; Radiance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.0.7.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lecture-15-Ray-Tracing-3"><span class="toc-number">4.</span> <span class="toc-text">Lecture 15  Ray Tracing 3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Irradiance"><span class="toc-number">4.0.1.</span> <span class="toc-text">Irradiance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Radiance"><span class="toc-number">4.0.2.</span> <span class="toc-text">Radiance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Irradiance-vs-Radiance"><span class="toc-number">4.0.3.</span> <span class="toc-text">Irradiance vs. Radiance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bidirectional-Reflectance-Distribution-Function-BRDF-%E5%8F%8C%E5%90%91%E5%8F%8D%E5%B0%84%E5%88%86%E5%B8%83%E5%87%BD%E6%95%B0"><span class="toc-number">4.0.4.</span> <span class="toc-text">Bidirectional Reflectance Distribution Function(BRDF 双向反射分布函数)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E6%96%B9%E7%A8%8B%E5%92%8C%E6%B8%B2%E6%9F%93%E6%96%B9%E7%A8%8B"><span class="toc-number">4.0.5.</span> <span class="toc-text">反射方程和渲染方程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E7%8E%87%E8%AE%BA%E5%9B%9E%E9%A1%BE"><span class="toc-number">4.0.6.</span> <span class="toc-text">概率论回顾</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lecture-16-Ray-Tracing-4"><span class="toc-number">5.</span> <span class="toc-text">Lecture 16  Ray Tracing 4</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Monte-Carlo-Integration-%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E7%A7%AF%E5%88%86"><span class="toc-number">5.0.1.</span> <span class="toc-text">Monte Carlo Integration(蒙特卡洛积分)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Path-Tracing-%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AA"><span class="toc-number">5.0.2.</span> <span class="toc-text">Path Tracing(路径追踪)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lecture-17-Material-and-Appearances"><span class="toc-number">6.</span> <span class="toc-text">Lecture 17  Material and Appearances</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Material"><span class="toc-number">6.0.1.</span> <span class="toc-text">Material</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84"><span class="toc-number">6.0.2.</span> <span class="toc-text">反射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%98%E5%B0%84"><span class="toc-number">6.0.3.</span> <span class="toc-text">折射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Microfacet-Material-%E5%BE%AE%E8%A1%A8%E9%9D%A2%E6%9D%90%E8%B4%A8-%E6%A8%A1%E5%9E%8B"><span class="toc-number">6.0.4.</span> <span class="toc-text">Microfacet Material(微表面材质&#x2F;模型)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Isotropic-Anisotropic-Materials"><span class="toc-number">6.0.5.</span> <span class="toc-text">Isotropic &#x2F; Anisotropic Materials</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BRDF%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">6.0.6.</span> <span class="toc-text">BRDF的性质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E9%87%8FBRDF"><span class="toc-number">6.0.7.</span> <span class="toc-text">测量BRDF</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lecture-18-Advanced-Topics-in-Rendering"><span class="toc-number">7.</span> <span class="toc-text">Lecture 18  Advanced Topics in Rendering</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Advanced-Light-Transport"><span class="toc-number">7.0.1.</span> <span class="toc-text">Advanced Light Transport</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%81%8F-%E6%97%A0%E5%81%8F%E7%9A%84%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA"><span class="toc-number">7.0.2.</span> <span class="toc-text">有偏&#x2F;无偏的光线追踪</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8C%E5%90%91%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AA-BDPT"><span class="toc-number">7.0.3.</span> <span class="toc-text">双向路径追踪(BDPT)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Metropolis-%E4%BA%BA%E5%90%8D-%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD-MLT"><span class="toc-number">7.0.4.</span> <span class="toc-text">Metropolis(人名) 光线传播(MLT)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Photon-Mapping-%E5%85%89%E5%AD%90%E6%98%A0%E5%B0%84"><span class="toc-number">7.0.5.</span> <span class="toc-text">Photon Mapping(光子映射)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vertex-Connection-and-Merging-VCM"><span class="toc-number">7.0.6.</span> <span class="toc-text">Vertex Connection and Merging(VCM)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Instant-Radiosity-IR-%E5%AE%9E%E6%97%B6%E8%BE%90%E5%B0%84%E5%BA%A6"><span class="toc-number">7.0.7.</span> <span class="toc-text">Instant Radiosity (IR 实时辐射度)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E8%A7%82%E5%BB%BA%E6%A8%A1"><span class="toc-number">7.0.8.</span> <span class="toc-text">外观建模</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E8%A1%A8%E9%9D%A2%E6%A8%A1%E5%9E%8B"><span class="toc-number">7.0.9.</span> <span class="toc-text">非表面模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hair-Appearance"><span class="toc-number">7.0.10.</span> <span class="toc-text">Hair Appearance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Granular-Material"><span class="toc-number">7.0.11.</span> <span class="toc-text">Granular Material</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Surface-Models"><span class="toc-number">7.0.12.</span> <span class="toc-text">Surface Models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cloth"><span class="toc-number">7.0.13.</span> <span class="toc-text">Cloth</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Detailed-Appearance"><span class="toc-number">7.0.14.</span> <span class="toc-text">Detailed Appearance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Procedural-Appearance"><span class="toc-number">7.0.15.</span> <span class="toc-text">Procedural Appearance</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lecture-19-Cameras-Lenses-and-Light-Fields"><span class="toc-number">8.</span> <span class="toc-text">Lecture 19  Cameras, Lenses and Light Fields</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Camera"><span class="toc-number">8.0.1.</span> <span class="toc-text">Camera</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Field-of-View-FOV-%E8%A7%86%E5%9C%BA"><span class="toc-number">8.0.2.</span> <span class="toc-text">Field of View (FOV 视场)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exposure"><span class="toc-number">8.0.3.</span> <span class="toc-text">Exposure</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Thin-Lens-Approximation"><span class="toc-number">8.0.4.</span> <span class="toc-text">Thin Lens Approximation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ray-Tracing-Ideal-Thin-Lenses"><span class="toc-number">8.0.5.</span> <span class="toc-text">Ray Tracing Ideal Thin Lenses</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Depth-of-Field"><span class="toc-number">8.0.6.</span> <span class="toc-text">Depth of Field</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lecture-20-Color-and-Perception"><span class="toc-number">9.</span> <span class="toc-text">Lecture 20  Color and Perception</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Light-Field-Lumigraph-%E5%85%89%E5%9C%BA"><span class="toc-number">9.0.1.</span> <span class="toc-text">Light Field &#x2F; Lumigraph (光场)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Physical-Basis-of-Color"><span class="toc-number">9.0.2.</span> <span class="toc-text">Physical Basis of Color</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#What-is-Color%EF%BC%9F"><span class="toc-number">9.0.3.</span> <span class="toc-text">What is Color？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Metamerism-%E5%90%8C%E8%89%B2%E5%BC%82%E8%B0%B1"><span class="toc-number">9.0.4.</span> <span class="toc-text">Metamerism(同色异谱)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Color-Reproduction-Matching"><span class="toc-number">9.0.5.</span> <span class="toc-text">Color Reproduction &#x2F; Matching</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Color-Space"><span class="toc-number">9.0.6.</span> <span class="toc-text">Color Space</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Perceptually-Organized-Color-Space"><span class="toc-number">9.0.7.</span> <span class="toc-text">Perceptually Organized Color Space</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lecture-21-Animation"><span class="toc-number">10.</span> <span class="toc-text">Lecture 21  Animation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E5%8A%A8%E7%94%BB%E7%9A%84%E4%B8%8D%E5%90%8C%E7%90%86%E8%A7%A3"><span class="toc-number">10.0.1.</span> <span class="toc-text">对动画的不同理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Physical-Simulation-%E7%89%A9%E7%90%86%E6%A8%A1%E6%8B%9F-%E4%BB%BF%E7%9C%9F"><span class="toc-number">10.0.2.</span> <span class="toc-text">Physical Simulation (物理模拟&#x2F;仿真)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mass-Spring-System-%E8%B4%A8%E7%82%B9%E5%BC%B9%E7%B0%A7%E7%B3%BB%E7%BB%9F"><span class="toc-number">10.0.3.</span> <span class="toc-text">Mass Spring System (质点弹簧系统)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Particle-System"><span class="toc-number">10.0.4.</span> <span class="toc-text">Particle System</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Forward-Kinematics"><span class="toc-number">10.0.5.</span> <span class="toc-text">Forward Kinematics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Inverse-Kinematics"><span class="toc-number">10.0.6.</span> <span class="toc-text">Inverse Kinematics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rigging"><span class="toc-number">10.0.7.</span> <span class="toc-text">Rigging</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Motion-Capture-%E5%8A%A8%E4%BD%9C%E6%8D%95%E6%8D%89"><span class="toc-number">10.0.8.</span> <span class="toc-text">Motion Capture(动作捕捉)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lecture-22-Animation-Cont"><span class="toc-number">11.</span> <span class="toc-text">Lecture 22  Animation Cont.</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">11.0.1.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Combating-Instability"><span class="toc-number">11.0.2.</span> <span class="toc-text">Combating Instability</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9A%E4%BD%93"><span class="toc-number">11.0.3.</span> <span class="toc-text">刚体</span></a></li></ol></li></ol></li></ol>
+                </div>
+            
+            <hr />
+            <div itemprop="articleBody"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><ul>
+<li>由于内容过多，做笔记太费时间，对于Games101后半段只做简单记录</li>
+</ul>
+<span id="more"></span>
+<hr>
+<p>&nbsp;</p>
+<h1 id="Lecture-13-Ray-Tracing-1"><a href="#Lecture-13-Ray-Tracing-1" class="headerlink" title="Lecture 13  Ray Tracing 1"></a>Lecture 13  Ray Tracing 1</h1><p>&nbsp;</p>
+<h3 id="光线追踪"><a href="#光线追踪" class="headerlink" title="光线追踪"></a><strong>光线追踪</strong></h3><ul>
+<li><p>Why Ray Tracing?</p>
+<ul>
+<li>光栅化最大的问题，就是不能很好地表示全局的效果(软阴影、光线多次反射等)</li>
+</ul>
+<p><img src="/images/games101After/1.png"></p>
+<ul>
+<li>光栅化很快，但质量较低</li>
+<li>光线追踪真实，但是很慢<ul>
+<li>~10K CPU core hours to render <strong>one frame</strong> in production</li>
+</ul>
+</li>
+<li>光栅化：实时渲染，光线追踪：离线渲染</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a><strong>基本原理</strong></h3><ul>
+<li><p>定义光线</p>
+<ul>
+<li>三个想法(假设)：<ul>
+<li>光沿直线传播</li>
+<li>光线和光线间不会发生碰撞</li>
+<li>光线肯定是从光源发出，打到场景中，并在场景中不断发生反射、折射等一系列操作后，进入人的眼睛</li>
+</ul>
+</li>
+<li>光线追踪利用光线的一个性质，<strong>光线的可逆性</strong>(reversal-reciprocity)，可以理解成，人的眼睛可以发出可以感知的光线，打到物体上，最后打到光源上</li>
+</ul>
+</li>
+<li><p>Ray Casting</p>
+<ul>
+<li>光线投射：怎样去生成不同的光线</li>
+</ul>
+<p><img src="/images/games101After/2.png"></p>
+<ul>
+<li>从眼睛(摄像机)开始，做光线的投射</li>
+<li>假设我们向虚拟的世界中看，面前放了一个成像平面，成像平面被划分成不同的像素格子，对每一个格子，可以从摄像机连条直线穿过这个像素，打出一根光线，这根光线一定会打到场景中的某一位置，如果光线和某一物体相交(交点p)，表明摄像机沿着这条光线看到哪</li>
+<li>在把交点(点p)和光源做一个连线，判定这个点是不是对光源也可见，是不是在阴影里，如果不在，则形成一条有效的光路(光源-点p-摄像机)</li>
+</ul>
+<p><img src="/images/games101After/3.png"></p>
+<ul>
+<li>每个像素投射出一根光线，从眼睛开始，和场景相交，求对应交点，找到交点后和光源连线，判定是否可见，然后算着色，最后写回像素中</li>
+</ul>
+</li>
+<li><p>Recursice(Whitted-Style) Ray Tracing</p>
+<p><img src="/images/games101After/4.png"></p>
+<ul>
+<li>Whitted风格光线追踪本质是递归</li>
+<li>考虑光线弹射很多次</li>
+</ul>
+<p><img src="/images/games101After/5.png"></p>
+<ul>
+<li>在任意一个点可以继续传播这条光线，只需要正确地算出反射方向、折射方向</li>
+</ul>
+<p><img src="/images/games101After/6.png"></p>
+<ul>
+<li>着色发生一点点变化，在每一个弹射点都会去计算着色的值</li>
+<li>如果光源可以照亮任何一个弹射的点，就把这些点算出的着色值都加到像素里面去</li>
+</ul>
+<p><img src="/images/games101After/7.png"></p>
+<ul>
+<li>将光线进行分类，eye ray(camera ray)归为primary ray；一次以后的弹射称为secondary ray；往光源连接，判断可见性的称为shadow ray</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="技术细节"><a href="#技术细节" class="headerlink" title="技术细节"></a><strong>技术细节</strong></h3><ul>
+<li><p><strong>如何求交点</strong></p>
+<ul>
+<li>定义光线，数学上就是一条射线，有一个起点(点光源 o)，有一个方向(单位向量 d)</li>
+</ul>
+<p><img src="/images/games101After/8.png"></p>
+<ul>
+<li>光线上任何一个点都可以用公式表达：</li>
+</ul>
+<p><img src="/images/games101After/9.png"><br>&nbsp;</p>
+<ul>
+<li>定义球，隐函数表示：球上任意一点到圆形的距离都等于半径</li>
+</ul>
+<p><img src="/images/games101After/10.png"><br>&nbsp;</p>
+<ul>
+<li>要求光线和球的交点，即这个点又在光线上，又在球上，满足表达式：</li>
+</ul>
+<p><img src="/images/games101After/11.png"></p>
+<ul>
+<li>即表示沿光线传播多久(t)会落在球上</li>
+</ul>
+<p><img src="/images/games101After/12.png"></p>
+<ul>
+<li>将式子展开成二次形式，很容易求得a、b、c的量，同时t得具有物理实际意义，不能为虚数，是正数，根据光线所在射线与球的距离关系，可以解出不同的t<br>&nbsp;</li>
+<li>推广到光线和一般性的隐式表面的求交</li>
+</ul>
+<p><img src="/images/games101After/13.png"></p>
+<ul>
+<li>解出时间t，交点为o + td<br>&nbsp;</li>
+</ul>
+<p><img src="/images/games101After/14.png"></p>
+<ul>
+<li>对于显式表面求交，即光线和三角形求交</li>
+<li>在纸上画任何一个<strong>封闭</strong>的图像，在这个形状内部点一个点，往任意方向做射线，判断光线和物体有多少个交点，会发现，如果点在形状内，得到的交点数一定是奇数；偶数个交点，一定是在物体外。推广到3D一样可行<br>&nbsp;</li>
+<li>怎样做光线和三角形求交</li>
+<li>三角形肯定在一个平面内，将问题分解成：<strong>光线和平面求交</strong>，找到交点后再<strong>判断交点是否在三角形内</strong></li>
+<li>定义平面，一个方向和一个点</li>
+<li>当定义了一个方向(法线 N)后，再定义一个点(p’)就能确定这个平面</li>
+<li>平面上任何一点p满足：</li>
+</ul>
+<p><img src="/images/games101After/15.png"><br>&nbsp;</p>
+<ul>
+<li>求交点：</li>
+</ul>
+<p><img src="/images/games101After/16.png"><br>&nbsp;</p>
+<ul>
+<li>人们在想，有没有一下解出光线和三角形的交点的方法</li>
+</ul>
+<p><img src="/images/games101After/17.png"></p>
+<ul>
+<li>O + tD 是光线上的点，如果这个点在三角形内，则一定可以写成用重心坐标描述的位置，其中(1-b<sub>1</sub>-b<sub>2</sub>)、b<sub>1</sub>、b<sub>2</sub>相加为1</li>
+<li>只需解出t、b<sub>1</sub>、b<sub>2</sub></li>
+<li>解出后看解是否合理<ul>
+<li>沿着光线方向：t为正</li>
+<li>点在三角形内，对于重心坐标表示的三角形，1-b<sub>1</sub>-b<sub>2</sub>、b<sub>1</sub>、b<sub>2</sub>都得是非负的</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>光线和表面求交点，怎么加速</strong></p>
+<ul>
+<li>如果用最原始的方法，光线在场景中弹射多次，每次弹射计算一次新的光线和整个场景求交，速度很慢<br>&nbsp;</li>
+<li>方法一：Bounding Volumes(包围盒)<ul>
+<li>用一个相对简单的形状把物体包围起来，保证物体一定在这个简单形状之内</li>
+<li>如果光线连包围盒都碰不到，那就更不可能碰到包围盒里的物体<br><img src="/images/games101After/18.png"></li>
+<li>将box理解为三个不同的对面形成的交集</li>
+<li>求交点：<br><img src="/images/games101After/19.png"><ul>
+<li>对于x<sub>0</sub>、x<sub>1</sub>两个面，光线在t<sub>min</sub>、t<sub>max</sub>时间会和两个面有交点</li>
+<li>对于y<sub>0</sub>、y<sub>1</sub>两个面，光线在t<sub>min</sub>、t<sub>max</sub>时间会和两个面有交点</li>
+<li>而光线实际在盒子里的时间，是上面两个线段的交集</li>
+<li>在三维情况下，有三个不同的对面</li>
+<li>进入所有的三个对面时认为光线进入包围盒，t<sub>enter</sub> &#x3D; max{t<sub>min</sub>}</li>
+<li>只要光线离开任何一个对面，认为光线离开了包围盒，t<sub>exit</sub> &#x3D; min{t<sub>max</sub>}</li>
+<li>当t<sub>enter</sub> &lt; t<sub>exit</sub>，表示光线在盒子里了一段时间，有交点；反之则没交点</li>
+<li>如果t<sub>exit</sub> &lt; 0 ，说明盒子在光线背后，没有交点</li>
+<li>如果t<sub>exit</sub> &gt;&#x3D; 0 同时t<sub>enter</sub> &lt; 0 ，说明光线起点在盒子内，有交点</li>
+<li>总之，当且仅当t<sub>enter</sub> &lt; t<sub>exit</sub> &amp;&amp; t<sub>exit</sub> &gt;&#x3D; 0 时，有交点</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>&nbsp;</p>
+<h1 id="Lecture-14-Ray-Tracing-2"><a href="#Lecture-14-Ray-Tracing-2" class="headerlink" title="Lecture 14  Ray Tracing 2"></a>Lecture 14  Ray Tracing 2</h1><p>&nbsp;</p>
+<h3 id="AABB如何帮助加速光线追踪"><a href="#AABB如何帮助加速光线追踪" class="headerlink" title="AABB如何帮助加速光线追踪"></a><strong>AABB如何帮助加速光线追踪</strong></h3><h3 id="1-均匀的格子"><a href="#1-均匀的格子" class="headerlink" title="1.均匀的格子"></a>1.均匀的格子</h3><ul>
+<li>先考虑和包围盒求交，再考虑和物体相交</li>
+</ul>
+<p><img src="/images/games101After/20.png"></p>
+<ul>
+<li>在做任何光线追踪前，对场景进行预处理：<ul>
+<li>找到包围盒</li>
+<li>将包围盒分成一堆格子</li>
+<li>判定哪些格子和物体表面相交</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/games101After/21.png"></p>
+<ul>
+<li>做光线追踪<ul>
+<li>假设光线和盒子求交非常快，和实际物体求交非常慢</li>
+<li>当光线经过的格子内有物体，则该格子内，光线和物体有可能有交点，这时再做光线和物体求交点</li>
+<li>通过光线的传播方向，判定接下来需要求交的格子是哪几个。如向右上打的光线，只需判断其上方和右方的格子</li>
+<li>划分的格子不能太密也不能太疏，得有一个平衡<ul>
+<li>#cells &#x3D; C * #objs</li>
+<li>C ≈ 27 in 3D</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-空间划分"><a href="#2-空间划分" class="headerlink" title="2.空间划分"></a>2.空间划分</h3><ul>
+<li>均匀的格子有许多不足之处，如在稀疏的地方不需要那么多格子</li>
+</ul>
+<p><img src="/images/games101After/22.png"></p>
+<ul>
+<li>八叉树<ul>
+<li>一个节点有八个子节点</li>
+<li>通过一定规则来规定停止切分的标准</li>
+<li>人们不喜欢用八叉树：在二维下是四叉树，三维下是八叉树，若维度再高点，就变成2的幂次树，显然并不好</li>
+</ul>
+</li>
+<li>KD-Tree<ul>
+<li>能让空间得到划分，并且和维度没关系</li>
+<li>每一次找到一个格子，总是将它沿着某一个轴进行展开，只切一刀</li>
+<li>每个轴交替切分，基本保证均匀地划分</li>
+</ul>
+</li>
+<li>BSP-Tree<ul>
+<li>每次将空间进行二分，但不是横平竖直的，类似KD树，但计算上跟复杂</li>
+<li>维度高时，计算会越来越复杂</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>KD-Tree</strong></p>
+<ul>
+<li>同样是做光线追踪前的预处理</li>
+</ul>
+<p><img src="/images/games101After/23.png"><br><img src="/images/games101After/24.png"></p>
+<ul>
+<li>如果设计一种数据结构来存储KD-Tree</li>
+<li>对于任何一个节点<ul>
+<li>当前沿着哪个轴划分</li>
+<li>划分在哪</li>
+<li>对于中间节点来说一定有两个子节点</li>
+</ul>
+</li>
+<li>实际的物体(三角形)只存在叶子节点上</li>
+</ul>
+<p><img src="/images/games101After/25.png"></p>
+<ul>
+<li>实际做法：<ul>
+<li>如果光线和某一格子没有交点，什么都不用做</li>
+<li>如果光线和某一格子有交点，就能知道，光线和它的两个子节点可能都有交点，所以都看一下，直到光线打到叶子结点，如果还没有交点，什么都不用动，如果和叶子节点包围盒有交点，则光线和包围盒里所以物体进行求交</li>
+</ul>
+</li>
+<li>但是，如何判定场景中的物体(三角形)和包围盒相交，是个复杂的问题；一个物体可能出现在多个包围盒里，并不直观</li>
+<li>因此，人们渐渐地不使用KD-Tree了</li>
+<li>于是有了另外一种办法，同样可以做划分，不是从空间做起，而且从物体做起，形成的加速结构，就叫做<strong>BVH</strong></li>
+</ul>
+<hr>
+<p><strong>Object Partitions &amp; Bounding Volume Hierarchy (BVH)</strong></p>
+<p><img src="/images/games101After/26.png"></p>
+<ul>
+<li>一开始找一个盒子把全部物体包起来</li>
+</ul>
+<p><img src="/images/games101After/27.png"></p>
+<ul>
+<li>将所有三角形分成两部分，把这两部分的三角形重新求它们的包围盒</li>
+</ul>
+<p><img src="/images/games101After/28.png"></p>
+<ul>
+<li>可以明确的是，一种物体只可能出现在一个格子里，省去了三角形和盒子求交点，避免了KD-Tree的问题</li>
+</ul>
+<p><img src="/images/games101After/29.png"></p>
+<ul>
+<li>实际做法：<ul>
+<li>找到一个包围盒</li>
+<li>递归地把任何一个包围盒拆成两个部分</li>
+<li>把这两部分重新计算包围盒</li>
+<li>正常情况下，当叶子节点有足够少的三角形时，停止划分</li>
+</ul>
+</li>
+<li>如何划分节点有不同的做法：<ul>
+<li>沿着最长的轴：保证划分的空间较均匀</li>
+<li>取中间的物体：两部分的三角形数量差不多，划分成的树较为平衡(深度差不多)</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/games101After/30.png" alt="光线和BVH求交 伪代码"></p>
+<ul>
+<li>如果光线和整个BVH节点都不想交，什么也不发生</li>
+<li>如果相交，是叶子结点，则光线和节点内所有物体求交，返回最近的那个</li>
+<li>如果相交，不是叶子结点，则光线可能和两个节点都有交点，分别求出它们两个的交点，再求最近的一个(递归)</li>
+</ul>
+<h3 id="Basic-radiometry-辐射度量学"><a href="#Basic-radiometry-辐射度量学" class="headerlink" title="Basic radiometry(辐射度量学)"></a><strong>Basic radiometry(辐射度量学)</strong></h3><ul>
+<li>学习辐射度量学的动机<ul>
+<li>Blinn-Phong模型中提到，Light intensity I &#x3D; 10，这个10是什么呢，肯定得有个物理意义</li>
+<li>辐射度量学告诉我们如何去定义光照，定义了一系列方法和单位，可以给光各种各样不同的(空间中的)属性</li>
+<li>认为光还是沿直线传播，不会波动</li>
+</ul>
+</li>
+<li>New terms：Radiant flux， intensity， intensity， irradiance， radiance</li>
+<li>所有这些量都有明确的物理概念</li>
+</ul>
+<h3 id="Radiant-Energy-and-Flux-Power"><a href="#Radiant-Energy-and-Flux-Power" class="headerlink" title="Radiant Energy and Flux(Power)"></a>Radiant Energy and Flux(Power)</h3><p><img src="/images/games101After/31.png"></p>
+<ul>
+<li>Radiant Energy，是一种<strong>能量</strong>，用<strong>焦耳</strong>单位表示</li>
+<li>Radiant Flux，人们通常叫它Power，<strong>单位时间内产生的能量</strong>，类似功率，单位为<strong>瓦特</strong><ul>
+<li>可以理解为光的亮度</li>
+<li>另一种理解：有一个感光的平面，单位时间通过它的光子的数量，就是它的flux<br><img src="/images/games101After/32.png"></li>
+<li>一个灯泡看上去更亮，说明单位时间内辐射出更多的光子</li>
+</ul>
+</li>
+</ul>
+<h3 id="Radiant-Intensity-Irradiance-Radiance"><a href="#Radiant-Intensity-Irradiance-Radiance" class="headerlink" title="Radiant Intensity &amp; Irradiance &amp; Radiance"></a>Radiant Intensity &amp; Irradiance &amp; Radiance</h3><p><img src="/images/games101After/33.png"></p>
+<ul>
+<li>Radiant Intensity：<br><img src="/images/games101After/34.png"><ul>
+<li><p>定义：单位立体角上的Power</p>
+</li>
+<li><p>立体角：<br><img src="/images/games101After/35.png"></p>
+<ul>
+<li>表示空间中的角有多大</li>
+<li>可由二维的弧度表示角有多大来延伸</li>
+</ul>
+</li>
+<li><p><img src="/images/games101After/36.png"></p>
+</li>
+<li><p>单位立体角 &#x3D; 单位面积 &#x2F; r<sup>2</sup><br><img src="/images/games101After/37.png"></p>
+</li>
+<li><p>如果把球的所有方向对应的立体角积分起来，得到的是4π<br><img src="/images/games101After/38.png"></p>
+</li>
+<li><p>在辐射度量学中，用 ω 表示三维空间中的方向，可以用 θ 和 Φ 的方式定义它的位置，通过sinθdθdΦ算出单位立体角(微分立体角)是多少<br><img src="/images/games101After/39.png"></p>
+</li>
+<li><p>回到Intensity的定义，其实就是光源在任何一个方向上的亮度(Flux或Power) &#x2F; 对应单位立体角</p>
+</li>
+<li><p>既然Intensity &#x3D; dΦ &#x2F; dω ，反过来积分，把所有方向上的Intensity积分起来，一定能得到Power</p>
+</li>
+<li><p>如果一个点光源往各个方向均匀地辐射出光，那么任何一个方向上对应的Intensity &#x3D; Power &#x2F; 4π<br><img src="/images/games101After/40.png"></p>
+</li>
+<li><p>实际例子：60瓦指看上去像60W的白炽灯，实际是11W，规格815流明</p>
+</li>
+<li><p>如果认为这个灯向四面八方辐射出的能量是一样的，则可以算任意方向的Intensity是多少</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h3><p><img src="/images/games101After/41.png"></p>
+<ul>
+<li>光源总在不断辐射出能量，这个能量在图形学里很少用这个概念，比如太阳能板，接收光照时间越长，吸收能量越多</li>
+<li>为了分析问题，一般考虑的是单位时间的能量，因此引入Radiant flux(power)，对应灯泡的功率</li>
+<li>intensity就是在单位立体角上的能量</li>
+<li>球体表面积的计算公式为 S &#x3D; 4πr<sup>2</sup></li>
+</ul>
+<p>&nbsp;</p>
+<h1 id="Lecture-15-Ray-Tracing-3"><a href="#Lecture-15-Ray-Tracing-3" class="headerlink" title="Lecture 15  Ray Tracing 3"></a>Lecture 15  Ray Tracing 3</h1><p>&nbsp;</p>
+<h3 id="Irradiance"><a href="#Irradiance" class="headerlink" title="Irradiance"></a>Irradiance</h3><p><img src="/images/games101After/42.png"></p>
+<ul>
+<li>定义：Power per unit area</li>
+</ul>
+<p><img src="/images/games101After/43.png"></p>
+<ul>
+<li>unit area：面必须和光线垂直，如果不是垂直，通过投影变成垂直</li>
+<li>之前说到Blinn-Phong点光源辐射出的能量到达着色点，和着色点本身的吸收，都有能量损失，而到达着色点有个r<sup>2</sup>的衰减，可以用Irradiance正确地解读</li>
+</ul>
+<p><img src="/images/games101After/44.png"><br><img src="/images/games101After/45.png"></p>
+<ul>
+<li>定义点光源power(功率)为Φ，认为往各个方向均等地辐射出能量</li>
+<li>可以看出，变的是Irradiance，而不是Intensity(单位立体角上的能量)</li>
+</ul>
+<h3 id="Radiance"><a href="#Radiance" class="headerlink" title="Radiance"></a>Radiance</h3><ul>
+<li>为了描述光线传播过程中的属性</li>
+</ul>
+<p><img src="/images/games101After/46.png"></p>
+<ul>
+<li>定义：power在单位立体角，并且在单位面积上有多少</li>
+<li>联系：</li>
+</ul>
+<p><img src="/images/games101After/47.png"></p>
+<ul>
+<li>Incident Radiance：</li>
+<li>入射进来的能量</li>
+</ul>
+<p><img src="/images/games101After/48.png"></p>
+<ul>
+<li>Irradiance为dA收到的能量，Irradiance per solid angle是说这个能量要往某一个方向去辐射，能量本身会往各个方向辐射，但这个能量往这个方向去辐射，会辐射出多大的强度来</li>
+<li>反过来理解，从一个方向，打到这个小的面上来，到达这个面的时候，应该会有一些能量，这个能量就是Irradiance。本身如果考虑来自四面八方的能量，可以得到dA总共收到多少能量，但只考虑从某个方向进来的能量被dA收到了多少，这个概念就是Radiance</li>
+<li>所以Irradiance和Radiance的区别在于是否有方向性，考虑从一个方向进来，并且被dA收到的能量为Incident Radiance</li>
+<li>Exiting Radiance：</li>
+<li>一个面发出去的能量</li>
+</ul>
+<p><img src="/images/games101After/49.png"></p>
+<ul>
+<li>这个很小的面会往各个方向发出能量，dA往某一确定的方向(dω立体角)上去有多少的Intensity</li>
+<li>对于Radiance，要考虑成两个部分，一部分是一个很小的面dA，一部分是一个很小的范围(无论是进来还是离开)</li>
+</ul>
+<h3 id="Irradiance-vs-Radiance"><a href="#Irradiance-vs-Radiance" class="headerlink" title="Irradiance vs. Radiance"></a>Irradiance vs. Radiance</h3><p><img src="/images/games101After/50.png"></p>
+<ul>
+<li>Irradiance：dA(在某一小范围)收到的所有能量</li>
+<li>Radiance：还是看某一很小的范围，只考虑从某一方向进来，能让dA收到的能量</li>
+<li>Radiance无非是在Irradiance上加了一个方向性</li>
+<li>dA这么一个小的范围可以写成Irradiance形式(E(x))，某一方向Radiance是L，考虑朝向乘以cosθ，然后考虑立体角dω</li>
+<li>从dω立体角来的所有能量，可以通过这种方式把Irradiance和Radiance联系起来</li>
+<li>整理式子，两边分别积分，p点收到的所有能量，就是从每个方向过来的能量积分起来(积分就是求和)</li>
+</ul>
+<h3 id="Bidirectional-Reflectance-Distribution-Function-BRDF-双向反射分布函数"><a href="#Bidirectional-Reflectance-Distribution-Function-BRDF-双向反射分布函数" class="headerlink" title="Bidirectional Reflectance Distribution Function(BRDF 双向反射分布函数)"></a>Bidirectional Reflectance Distribution Function(BRDF 双向反射分布函数)</h3><ul>
+<li>一个描述 光线打到漫反射物体后向四面八方反射 性质的函数：有多少能量，如果从某个方向进来，它会往不同的方向去，怎么样去分散，不同的反射方向上会分布多少能量</li>
+<li>有两种理解反射的方式：<ul>
+<li>光进来后打到一个物体，改变一下方向，被弹走了</li>
+<li>光线打到了某一物体表面，被吸收了，再从这个物体表面把这部分能量发出去，经过了一个中间过程</li>
+</ul>
+</li>
+<li>如果按后者理解，就可以用Irradiance和Radiance来解释反射</li>
+</ul>
+<p><img src="/images/games101After/51.png"></p>
+<ul>
+<li>从 ω<sub>i</sub> 来的Radiance，会打到dA上，dA吸收了多少，然后再发出去</li>
+<li>相当于入射的Radiance，会在dA处转化成power，这个power优惠辐射到另外一个方向去</li>
+<li>所以通过这个能量，可以把入射和出射联系起来</li>
+<li>考虑微小面积dA，从某一微小立体角 dω<sub>i</sub> ，接收到的Irradiance，会如何被分配到各个不同的立体角上去，这个分配比例，就是对于任何一个出射方向的radiance除以dA这么一小块接收到的Irradiance，就是BRDF的定义</li>
+</ul>
+<p><img src="/images/games101After/52.png"></p>
+<ul>
+<li>对于每一个入射方向，都会有对应入射方向——着色点——出射方向的BRDF，BRDF会告诉我们从某个方向进来的光反射到出射方向有多强，那就把每一个方向的入射光强度(radiance)乘以BRDF乘以cosθ，把每个方向对出射方向的贡献都加起来，就可以得到这个点在所有可能的入射光下，最后反射到出射方向上看过去是什么样的</li>
+</ul>
+<h3 id="反射方程和渲染方程"><a href="#反射方程和渲染方程" class="headerlink" title="反射方程和渲染方程"></a>反射方程和渲染方程</h3><p><img src="/images/games101After/53.png"></p>
+<ul>
+<li>所有的光线传播都可以用这条公式(渲染方程)来总结</li>
+<li>反射方程告诉我们，要从某个点观察某一个着色点，要考虑能够到达着色点的所有光线，这些光线不只是光源能够到达，如果有其他物体在，也会被照亮，也会反射出光</li>
+<li>如果物体自己会发光，只要把自发光加上就可以</li>
+<li>渲染方程跟Blinn-Phong着色模型一样，还是假设所有光线都朝外(明明是光线打进来，这里的ω<sub>i</sub>表示为朝向外的向量)<ul>
+<li>(n·ω<sub>i</sub>)法线点乘入射方向，就是cosθ</li>
+<li>dω<sub>i</sub>指考虑所有可能的入射方向，指从球心向各个方向去</li>
+<li>Ω<sup>+</sup>指半球，因为只考虑半球的话，法线朝上，如果光线从半球下打过来，认为对反射的贡献为0</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/games101After/54.png"></p>
+<ul>
+<li>一个点光源下的反射方程</li>
+</ul>
+<p><img src="/images/games101After/55.png"></p>
+<ul>
+<li>多个点光源，就把每个点光源的贡献加起来</li>
+</ul>
+<p><img src="/images/games101After/56.png"></p>
+<ul>
+<li>如果有面光源，把面光源理解为一堆点光源的集合，以前可以把所有点光源加起来，那么也可以把面光源上任意点光源积分起来，积分这个面光源所占据的立体角，考虑所有覆盖的方向，从这个方向来的Radiance经过BRDF反射过去应该是什么样的Radiance出去</li>
+</ul>
+<p><img src="/images/games101After/57.png"></p>
+<ul>
+<li>如果有其他物体反射来的Radiance，就考虑这些物体反射出去，并且正好回照亮x点的Radiance是多少，相当于把物体当成是光源</li>
+</ul>
+<p><img src="/images/games101After/58.png"></p>
+<ul>
+<li>在数学上有简单的表达方式<ul>
+<li>两个不同的位置，用u、v表示</li>
+<li>l为辐射出去的Radiance</li>
+<li>e(u)为着色点自身发出去的能量</li>
+<li>加上从其他的物体表面，通过BRDF，把从其他物体表面来的Radiance反射到当前着色点位置上，会有多大的能量反射到观察方向上</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/games101After/59.png"></p>
+<ul>
+<li>可以进一步简写，把BRDF连着积分的东西都写成某种操作符</li>
+<li>所有物体辐射出的所有能量 &#x3D; 光源辐射出的能量 + 辐射出的能量被反射后的能量</li>
+<li>目的是为了解渲染方程</li>
+</ul>
+<p><img src="/images/games101After/60.png"><br><img src="/images/games101After/61.png"></p>
+<ul>
+<li>最后可以经过泰勒展开得到不同弹射次数的分解</li>
+</ul>
+<p><img src="/images/games101After/62.png"></p>
+<ul>
+<li>从另一个角度来理解</li>
+<li>光栅化可以把物体投影到屏幕上，已知屏幕上任何一着色点的位置和光源位置可以做着色，着色做的就是直接光照，光源自己可以直接投射到屏幕上来(可见的话)</li>
+<li>光栅化做的就是0次和一次光线弹射的部分，后面的部分比较难做，这就是光线追踪要做的部分，就是间接光照</li>
+</ul>
+<h3 id="概率论回顾"><a href="#概率论回顾" class="headerlink" title="概率论回顾"></a>概率论回顾</h3><p><img src="/images/games101After/63.png"></p>
+<ul>
+<li>随机变量、概率分布</li>
+<li>随机变量会以不同的概率取不同的值</li>
+<li>满足：所有概率都是非负的、所有的概率相加为1</li>
+</ul>
+<p><img src="/images/games101After/64.png"></p>
+<ul>
+<li>期望：不断地去取随机变量，求它们的平均</li>
+</ul>
+<p><img src="/images/games101After/65.png"></p>
+<ul>
+<li>在连续的情况下描述概率和它的分布</li>
+<li>概率密度函数(PDF)：在某一点x取它周围的微点dx，向上连线，与曲线和坐标轴围成的近似梯形区域的面积为该点x对应的概率，这条曲线叫做概率密度函数</li>
+</ul>
+<p><img src="/images/games101After/66.png"></p>
+<ul>
+<li>求期望就是把值乘以概率密度并且积起来</li>
+</ul>
+<p>&nbsp;</p>
+<h1 id="Lecture-16-Ray-Tracing-4"><a href="#Lecture-16-Ray-Tracing-4" class="headerlink" title="Lecture 16  Ray Tracing 4"></a>Lecture 16  Ray Tracing 4</h1><p>&nbsp;</p>
+<h3 id="Monte-Carlo-Integration-蒙特卡洛积分"><a href="#Monte-Carlo-Integration-蒙特卡洛积分" class="headerlink" title="Monte Carlo Integration(蒙特卡洛积分)"></a>Monte Carlo Integration(蒙特卡洛积分)</h3><ul>
+<li>是一个求定积分的方法，最后得到的是一个数(围成的面积)</li>
+</ul>
+<p><img src="/images/games101After/67.png"></p>
+<ul>
+<li>回顾黎曼积分的做法，是把ab之间均匀地拆成多份，每一份取中间位置，找到对应的y，认为每一份都是一个微小的长方形，把整个曲线下方的面积分解成各个不同的小正方形的面积之和</li>
+<li>蒙特卡洛积分，是一种随机采样的方法，在ab间重复采样多次，每次采样到x<sub>i</sub>，找到对应的f(x)，得到对应长方形的面积，采样多次，将得到的面积平均起来</li>
+</ul>
+<p><img src="/images/games101After/68.png"></p>
+<ul>
+<li>已知任何一个采样点的函数值，已知概率密度</li>
+</ul>
+<p><img src="/images/games101After/69.png"></p>
+<ul>
+<li>只需要在积分域上，以一定的PDF进行采样，对每个样本，算f(X)&#x2F;p(X)，最后平均起来</li>
+<li>采样点越多，误差越小</li>
+<li>不用考虑积分域，已经在PDF里体现了</li>
+<li>要求只能用积分域上的点做蒙特卡洛的积分近似(在x上积分只能用x，其他变量不成立)</li>
+</ul>
+<h3 id="Path-Tracing-路径追踪"><a href="#Path-Tracing-路径追踪" class="headerlink" title="Path Tracing(路径追踪)"></a>Path Tracing(路径追踪)</h3><ul>
+<li><p>为了解决Whitted-style ray tracing中非基于物理的、不正确的问题</p>
+</li>
+<li><p>Whitted-style ray tracing的做法：</p>
+<ul>
+<li>不断地弹射光线，在任何一个位置都和光源连一条线</li>
+<li>当光线打到光滑的物体上，会沿着镜面方向反射、折射方向折射；当打到漫反射物体，就不再弹射</li>
+</ul>
+</li>
+<li><p>Whitted-style ray tracing的问题：<br><img src="/images/games101After/70.png" alt="The Utah teapot"></p>
+<ul>
+<li>如果对于Glossy的材质，还沿镜面方向反射，是不对的</li>
+</ul>
+<p><img src="/images/games101After/71.png" alt="The Cornell box"></p>
+<ul>
+<li>打到漫反射物体后就停了</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/games101After/72.png"></p>
+<ul>
+<li>既然Whitted-style ray tracing是错误的，而渲染方程是正确的，那么就要正确地解出渲染方程，要考虑两个问题：<ul>
+<li>它本身是积分，对半球内四面八方来的光线</li>
+<li>本身也是递归的定义，解这个点的渲染方程，同时要解从其他地方来的光线的渲染方程</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/games101After/73.png"><br><img src="/images/games101After/74.png"></p>
+<ul>
+<li>第一个问题用蒙特卡洛积分</li>
+<li>只考虑直接光照</li>
+</ul>
+<p><img src="/images/games101After/75.png"></p>
+<ul>
+<li>对着色点p，出射方向ω<sub>o</sub>，要算四面八方的光源对这个点的直接光照贡献，可以写成这个算法</li>
+<li>从这个着色点，往半球上发出N个不同的方向采样，按照某种PDF</li>
+<li>初始化结果为0</li>
+<li>对任何一个选中的方向，从p点往这个方向连出一条方向</li>
+<li>如果这根光线打到了光源，就把求和式子写出来，自然能知道光源的辐射(Radiance)L_i，BRDF f_r也知道，cos也知道，pdf(wi)是均匀采样的PDF</li>
+</ul>
+<p><img src="/images/games101After/76.png"></p>
+<ul>
+<li>引入间接光照</li>
+<li>从Q点到P点的Radiance，可以看成Q点也是个光源</li>
+<li>可以类比P点是摄像机，从P点去观察Q点，算Q点的直接光照一样</li>
+</ul>
+<p><img src="/images/games101After/77.png"></p>
+<ul>
+<li>把Q点的直接光照的结果，作为Q点过来的光照</li>
+<li>此时仍有几个问题：<ul>
+<li>光线的数量会爆炸 #rays &#x3D; N<sup>#bounces</sup>；递归没有停止条件<br><img src="/images/games101After/78.png"></li>
+<li>只有N &#x3D; 1的情况下，才不会爆炸<br><img src="/images/games101After/79.png"></li>
+<li>修改：随机往一个方向采样</li>
+<li>N &#x3D; 1时，这种方法称做路径追踪；N !&#x3D; 1时，称做分布式光线追踪</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/games101After/80.png"></p>
+<ul>
+<li>当只考虑一条光线时，噪声非常大</li>
+<li>最后要的是像素的Radiance，而穿过这个像素会有很多不同的路径，最后像素是多少，由所有路径求平均，只要有足够的的路径就可以了</li>
+<li>每个像素，发出一系列光线，在任何一个打到的点上，把着色的结果求平均算出来</li>
+</ul>
+<p><img src="/images/games101After/81.png"></p>
+<ul>
+<li>在像素内均匀地取某一位置</li>
+<li>对任一选取的位置，从视点连一条光线到样本的位置，如果这根光线打到场景中某个位置，就算这一点的着色</li>
+</ul>
+<p><img src="/images/games101After/82.png"></p>
+<ul>
+<li>为了解决第二个问题，不能设置递归条件为光线弹射几次，因为总会损失能量，而引入俄罗斯轮盘赌的方法来决定以一定的概率来停止继续往下追踪</li>
+</ul>
+<p><img src="/images/games101After/83.png"></p>
+<ul>
+<li>积分的结果需要算出来等于Lo</li>
+<li>以一定的概率(提前定好)P，往某一方向打一条光线，得到一定的结果后，除以P作为返回值</li>
+<li>以另外的一部分概率 1 - P内，不打光线，得到结果为0</li>
+<li>最后的期望仍然是Lo</li>
+</ul>
+<p><img src="/images/games101After/84.png"></p>
+<ul>
+<li>代码上修改极少</li>
+<li>定义某一概率P_RR，每次选取[0, 1]间的数ksi</li>
+</ul>
+<p><img src="/images/games101After/85.png"><br><img src="/images/games101After/86.png"></p>
+<ul>
+<li>PDF如果均匀地往四面八方采样，可能会有很多光线浪费，于是考虑直接在光源上采样</li>
+</ul>
+<p><img src="/images/games101After/87.png"></p>
+<ul>
+<li>如果想采样光源，将光源理解为二维的框，在这个平面上均匀采样，所用的PDF是 1 &#x2F; A</li>
+<li>而渲染方程不是定义在光源上的，它是定义在立体角上的积分，定义在半球上的</li>
+<li>蒙特卡洛要求在x上积分就要从x上采样，从光源上采样，就得把渲染方程写成对光源上微表面的面积进行积分，只需要知道dω和dA的关系<br><img src="/images/games101After/88.png"></li>
+<li>dω是dA投影到单位球上的立体角，立体角是空间面积除以距离平方</li>
+<li>按照立体角的定义，先把面朝向着色点，再除以距离平方</li>
+<li>重写渲染方程：</li>
+</ul>
+<p><img src="/images/games101After/89.png"><br><img src="/images/games101After/90.png"></p>
+<ul>
+<li>现在，将光线传播拆成两部分：<ul>
+<li>光源直接对着色点的贡献</li>
+<li>所有其他非光源的贡献</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/games101After/91.png"><br><img src="/images/games101After/92.png"></p>
+<ul>
+<li>最后考虑光线传播过程中是否有遮挡</li>
+</ul>
+<hr>
+<p><img src="/images/games101After/93.png"><br><img src="/images/games101After/94.png"><br><img src="/images/games101After/95.png"></p>
+<p>&nbsp;</p>
+<h1 id="Lecture-17-Material-and-Appearances"><a href="#Lecture-17-Material-and-Appearances" class="headerlink" title="Lecture 17  Material and Appearances"></a>Lecture 17  Material and Appearances</h1><p>&nbsp;</p>
+<h3 id="Material"><a href="#Material" class="headerlink" title="Material"></a>Material</h3><ul>
+<li>在渲染方程中，BRDF是决定材质的，材质是BRDF的一个参数</li>
+</ul>
+<h3 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h3><ul>
+<li>漫反射系数定义：</li>
+</ul>
+<p><img src="/images/games101After/96.png"></p>
+<ul>
+<li>首先，材质是漫反射材质</li>
+<li>任何的光线进来，都会被均匀地反射出去</li>
+<li>认为从空间中任何一个进来的光线的Radiance都是一样的</li>
+<li>利用能量守恒，如果这一点不发光，也不吸收光，也就意味着所有的能量进来多少，就反射多少</li>
+<li>观察到入射光是均匀的uniform的，入射和出射的Irradiance相同，则入射光的Radiance和出射光的Radiance也得是一样的</li>
+<li>在渲染方程中，没有自发光项，认为入射光ω<sub>i</sub>从任一方向来，通过漫反射BRDF，会被反射到ω<sub>o</sub>上去</li>
+<li>可以简化一下，因为入射Radiance和BRDF的diffuse是常数，可以拿出去，剩下的是半球上一个对cos函数的积分</li>
+<li>半球上直接对立体角积分得到的是2π，而 L<sub>i</sub> &#x3D; L<sub>o</sub> ，可以得到 BRDF &#x3D; 1 &#x2F; π</li>
+<li>如果BRDF &#x3D; 1 &#x2F; π ，这个时候，就是完全不吸收能量的BRDF</li>
+<li>这时可以定义一个反射率albedo，可以是单通道的一个数，也可以是三个数rgb，也可以是光图，albeddo在[0, 1]之间，可以引入不同颜色的BRDF，这个BRDF的值就是albedo &#x2F; π</li>
+</ul>
+<hr>
+<p><img src="/images/games101After/97.png"><br><img src="/images/games101After/98.png"></p>
+<ul>
+<li>反射公式有两种不同的理解方式：</li>
+</ul>
+<p><img src="/images/games101After/99.png"></p>
+<ul>
+<li>方法一：平行四边形法则，给定入射光和法线算出出射光</li>
+<li>方法二：把这些角度投影到一个局部坐标系上<ul>
+<li>认为任何一个方向和法线的夹角(仰角)，如θ &#x3D; 0为沿着法线方向</li>
+<li>定义一个Φ角，规定在某一个平面上，比如ion，认为Φ &#x3D; 0，如果这个平面绕着n转动，引起的角度Φ</li>
+</ul>
+</li>
+</ul>
+<h3 id="折射"><a href="#折射" class="headerlink" title="折射"></a>折射</h3><p><img src="/images/games101After/100.png"><br><img src="/images/games101After/101.png"></p>
+<ul>
+<li>当入射的介质反射率&gt;出射的介质反射率时，可能出现没有折射的现象，这个现象称为全反射现象</li>
+</ul>
+<p><img src="/images/games101After/102.png"><br><img src="/images/games101After/103.png"><br><img src="/images/games101After/104.png"></p>
+<ul>
+<li>红线是菲涅尔项，告诉我们如果一根光几乎和物体表面完全平行，就会完全被反射；如果是垂直的，更多能量会直接穿过去发生折射，反射的能量非常少</li>
+<li>另外两条表示极化性质，和光线的波动性有关，光线其实是沿着各个不同方向振动的，极化值只沿着S和P方向振动，正常情况下认为S和P方向都有振动，基本是两个方向上的平均，目前也没有什么渲染器在考虑极化的光的情况</li>
+<li>这是反应了对绝缘体的菲涅尔项，对于导体又是另外一种现象</li>
+</ul>
+<p><img src="/images/games101After/105.png"></p>
+<ul>
+<li>对于金属(导体)来说，它的菲涅尔项在任何情况下反射率都挺高的</li>
+</ul>
+<p><img src="/images/games101After/106.png"></p>
+<ul>
+<li>菲涅尔项的计算可以简化，认为某一条曲线从某一地方开始，，0°的时候是某一个值，涨到90°的时候涨到1，拟合出一条曲线。它的基准反射率(在0°时的反射率，垂直入射的反射率)是和它们两个折射率是有关系的</li>
+<li>不管对绝缘体还是导体，都可以近似地表达</li>
+</ul>
+<h3 id="Microfacet-Material-微表面材质-模型"><a href="#Microfacet-Material-微表面材质-模型" class="headerlink" title="Microfacet Material(微表面材质&#x2F;模型)"></a>Microfacet Material(微表面材质&#x2F;模型)</h3><ul>
+<li>真正的基于物理的材质</li>
+</ul>
+<p><img src="/images/games101After/107.png"></p>
+<ul>
+<li>微表面模型：当离得足够远看向一个物体的时候，很多微小的东西看不到，看到的是它们最终形成的，光对表面的作用</li>
+</ul>
+<p><img src="/images/games101After/108.png"></p>
+<ul>
+<li>微表面模型认为：从远处看，看到的是材质&#x2F;外观，从近处看，是几何</li>
+<li>每一个微表面认为是一个微小的镜面，每一个微表面都有自己的朝向(法线)</li>
+</ul>
+<hr>
+<p><img src="/images/games101After/109.png"></p>
+<ul>
+<li>可以研究这些微表面本身法线形成的分布</li>
+<li>可以把表面的粗糙程度用微表面的法线分布来表示，集中就是glossy，分散就是diffuse</li>
+</ul>
+<p><img src="/images/games101After/110.png"></p>
+<ul>
+<li>考虑菲涅尔项F、法线分布D、几何项G<ul>
+<li>D：表示在任何方向上分布的值是多少，只有当法线方向和half vector完全一致的时候，微表面能够把入射方向的光反射到出射方向。微表面被认为是完全的镜子。查询在所有的分布里，有多少微表面的法线方向是沿着half vector方向去的</li>
+<li>G：修正微表面互相遮挡的情况，光线方向或观察方向只要接近Grazing Angle(接近水平)，会发生遮挡</li>
+</ul>
+</li>
+</ul>
+<h3 id="Isotropic-Anisotropic-Materials"><a href="#Isotropic-Anisotropic-Materials" class="headerlink" title="Isotropic &#x2F; Anisotropic Materials"></a>Isotropic &#x2F; Anisotropic Materials</h3><ul>
+<li>各项同性材质&#x2F;各项异性材质</li>
+</ul>
+<p><img src="/images/games101After/111.png" alt="法线/法线分布图"></p>
+<ul>
+<li>各项同性：认为微表面并不存在一定的方向性</li>
+</ul>
+<p><img src="/images/games101After/112.png"></p>
+<ul>
+<li>各项异性：如果在BRDF上不满足在方位角上旋转，得到的还是相同的BRDF，就把它叫做各向异性的材质</li>
+<li>其他各项异性材质例子：</li>
+</ul>
+<p><img src="/images/games101After/113.png"><br><img src="/images/games101After/114.png" alt="尼龙"><br><img src="/images/games101After/115.png" alt="天鹅绒"></p>
+<hr>
+<h3 id="BRDF的性质"><a href="#BRDF的性质" class="headerlink" title="BRDF的性质"></a>BRDF的性质</h3><ul>
+<li>非负性</li>
+<li>线性性<ul>
+<li>可以拆成很多块，最后加起来算结果</li>
+</ul>
+</li>
+<li>可逆性<ul>
+<li>交互入射方向和出射方向得到的结果相同</li>
+</ul>
+</li>
+<li>能量守恒性</li>
+</ul>
+<p><img src="/images/games101After/116.png"></p>
+<ul>
+<li>各向同性的话意味着BRDF的值只和相对的方位角有关，原本四维的BRDF可以变为三维的</li>
+<li>根据可逆性，所有的BRDF，方位角不用考虑正负</li>
+</ul>
+<h3 id="测量BRDF"><a href="#测量BRDF" class="headerlink" title="测量BRDF"></a>测量BRDF</h3><p><img src="/images/games101After/117.png"><br><img src="/images/games101After/118.png"><br><img src="/images/games101After/119.png"><br><img src="/images/games101After/120.png"><br><img src="/images/games101After/121.png"></p>
+<p>&nbsp;</p>
+<h1 id="Lecture-18-Advanced-Topics-in-Rendering"><a href="#Lecture-18-Advanced-Topics-in-Rendering" class="headerlink" title="Lecture 18  Advanced Topics in Rendering"></a>Lecture 18  Advanced Topics in Rendering</h1><p>&nbsp;</p>
+<h3 id="Advanced-Light-Transport"><a href="#Advanced-Light-Transport" class="headerlink" title="Advanced Light Transport"></a><strong>Advanced Light Transport</strong></h3><p>&nbsp;</p>
+<p><img src="/images/games101After/122.png"></p>
+<h3 id="有偏-无偏的光线追踪"><a href="#有偏-无偏的光线追踪" class="headerlink" title="有偏&#x2F;无偏的光线追踪"></a>有偏&#x2F;无偏的光线追踪</h3><ul>
+<li>做光线追踪很多的都是在用蒙特卡洛估计</li>
+<li>无偏的蒙特卡洛：估计出的结果的期望永远都是对的</li>
+<li>有偏的蒙特卡洛：所有其他情况。但如果用的样本足够多，在极限的情况下，期望值会收敛到正确值，这时还是有偏的，也是一致的(consistent)</li>
+</ul>
+<h3 id="双向路径追踪-BDPT"><a href="#双向路径追踪-BDPT" class="headerlink" title="双向路径追踪(BDPT)"></a>双向路径追踪(BDPT)</h3><p><img src="/images/games101After/123.png"></p>
+<ul>
+<li>思想：生成两个不同的半路径(子路径)，把半路径的端点连起来，形成整个路径</li>
+</ul>
+<p><img src="/images/games101After/124.png"></p>
+<ul>
+<li>BDPT在某些情况下，效果会更好</li>
+<li>BDPT实现难度高，运行速度也慢很多</li>
+</ul>
+<h3 id="Metropolis-人名-光线传播-MLT"><a href="#Metropolis-人名-光线传播-MLT" class="headerlink" title="Metropolis(人名) 光线传播(MLT)"></a>Metropolis(人名) 光线传播(MLT)</h3><p><img src="/images/games101After/125.png"></p>
+<ul>
+<li>思想：用统计学上的一个采样工具，Markov Chain(马尔科夫链)</li>
+<li>相当于当前有一个样本，马尔科夫链可以根据当前样本生成一个跟它靠近的下一个样本</li>
+<li>好处：它可以做到，给定足够的时间，马尔科夫链的蒙特卡洛方法(MCMC)可以生成一系列以任意函数的形状为PDF的样本。当采样的PDF和要积分的函数形状一致的时候，得到的效果是最好的，而任何未知的函数用马尔科夫链的办法能让生成的样本分布和被积函数形状一致</li>
+</ul>
+<p><img src="/images/games101After/126.png"></p>
+<ul>
+<li>特别适合做复杂的场景</li>
+</ul>
+<p><img src="/images/games101After/127.png"></p>
+<ul>
+<li>但不能估计什么时候收敛</li>
+<li>所有操作都是局部的，有些像素收敛快，有些慢，使得图像看上去很脏，所以也不能用于做动画，前后两帧收敛不同，会强烈抖动</li>
+</ul>
+<h3 id="Photon-Mapping-光子映射"><a href="#Photon-Mapping-光子映射" class="headerlink" title="Photon Mapping(光子映射)"></a>Photon Mapping(光子映射)</h3><p><img src="/images/games101After/128.png"></p>
+<ul>
+<li>非常适合渲染caustics(国内翻译成”焦散”)，caustics指由于光线的聚焦产生非常强的图案</li>
+<li>光子映射的实现方法有很多</li>
+</ul>
+<p><img src="/images/games101After/129.png"></p>
+<ul>
+<li>其中一种做法有两步</li>
+<li>第一步：从光源出发，打出很多光子，该反射的反射、该折射的折射，直到打到漫反射物体停止(把所有光子记录到Diffuse物体上)</li>
+<li>第二步：从摄像机出发，往各个方向打，会反射和折射，直到打到漫反射物体停止(也停在Diffuse物体上)</li>
+</ul>
+<p><img src="/images/games101After/130.png"></p>
+<ul>
+<li>将两个步骤结合，计算局部的密度估计</li>
+<li>光子越集中的部分越来</li>
+<li>对任何一个着色点，取它周围最近的N个光子，找这N个光子所占的面积，接着算这些光子的密度</li>
+</ul>
+<p><img src="/images/games101After/131.png"></p>
+<ul>
+<li>如果N取太小，噪声会很大；N取太大，画面会模糊</li>
+<li>这就是为什么光子映射是有偏的方法</li>
+<li>密度应该是当前一个点密度是多少，当前点周围取微小面积dA(dN &#x2F; dA)；而光子映射做的是给一定光子数，算它的面积(△N &#x2F; △A)</li>
+<li>对密度的估计是一个不正确的估计，而当有足够多的光子的情况下(极限情况)，△A会接近dA</li>
+<li>但只要不是无限个光子，这种方法一定会有点糊，所以叫做有偏的方法，但是一致的</li>
+</ul>
+<hr>
+<ul>
+<li>在渲染中很好理解有偏和无偏<ul>
+<li>得到的结果有任何一点的模糊，就是有偏</li>
+<li>一致的：虽然是有模糊的，但只要样本足够多，最后会让它收敛到不模糊的结果</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="Vertex-Connection-and-Merging-VCM"><a href="#Vertex-Connection-and-Merging-VCM" class="headerlink" title="Vertex Connection and Merging(VCM)"></a>Vertex Connection and Merging(VCM)</h3><p><img src="/images/games101After/132.png"></p>
+<ul>
+<li>将双向路径追踪和光子映射结合起来</li>
+<li>生成两个sub-path连起来，如果有的path满足两个端点非常接近，就不用连一条path，而是用光子映射结合起来</li>
+</ul>
+<h3 id="Instant-Radiosity-IR-实时辐射度"><a href="#Instant-Radiosity-IR-实时辐射度" class="headerlink" title="Instant Radiosity (IR 实时辐射度)"></a>Instant Radiosity (IR 实时辐射度)</h3><p><img src="/images/games101After/133.png"></p>
+<ul>
+<li>思想：已经被照亮的面都认为是光源，用它们再去照亮别人</li>
+<li>从光源打出很多光线，停在某些地方，认为那些停住的地方形成了新的光源(VPL 虚拟光源)</li>
+<li>当看到某一点时，用所有新的光源去照亮这一点，实际上是考虑光线弹射了两次</li>
+</ul>
+<p><img src="/images/games101After/134.png"></p>
+<ul>
+<li>问题：在窄的接缝处会发光，因为之前把对立体角的采样改成了对面积的采样，面积 x cos &#x2F; 两点间距离，两点间距离足够小时，得到结果非常大</li>
+</ul>
+<p><img src="/images/games101After/88.png"><br><img src="/images/games101After/89.png"></p>
+<p>&nbsp;</p>
+<h3 id="外观建模"><a href="#外观建模" class="headerlink" title="外观建模"></a><strong>外观建模</strong></h3><p>&nbsp;</p>
+<p><img src="/images/games101After/135.png"></p>
+<h3 id="非表面模型"><a href="#非表面模型" class="headerlink" title="非表面模型"></a>非表面模型</h3><ul>
+<li><p>散射介质</p>
+</li>
+<li><p>如云、雾<br><img src="/images/games101After/136.png"><br><img src="/images/games101After/137.png"></p>
+</li>
+<li><p>当光在行进过程中如果穿进了散射介质，会有若干事情方式</p>
+<ul>
+<li>云中间有光源，先不考虑</li>
+<li>云里面有小的冰晶，会把光线随机地打到不同方向去</li>
+<li>光线传播过程中也可能接收到其他光线</li>
+<li>在传播过程中逐渐消失，如乌云</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/games101After/138.png"></p>
+<ul>
+<li>总之，光线在传播过程中，可能被吸收，可能被散射</li>
+<li>而如何散射的，由相位函数(Phase Function)来定义</li>
+</ul>
+<p><img src="/images/games101After/139.png"></p>
+<ul>
+<li>光线能传播多远，取决于介质(如乌云、薄雾)</li>
+<li>光线停下后，考虑光线应该往哪个方向重新走，这就是散射</li>
+<li>相当于光在物体表面做各种各样的弹射，只不过中间任何一个点都有可能发生方向的改变，最终都能找到一条连接光源的path，找到path后和各个弹射点相连，计算整个路径的贡献</li>
+</ul>
+<h3 id="Hair-Appearance"><a href="#Hair-Appearance" class="headerlink" title="Hair Appearance"></a>Hair Appearance</h3><p><img src="/images/games101After/140.png"></p>
+<ul>
+<li>考虑光线和一根线的作用</li>
+<li>有无色的高光和有色的高光，如何形成的呢</li>
+</ul>
+<p><img src="/images/games101After/141.png"></p>
+<ul>
+<li>光线打到圆柱(头发)上，往四面八方散射，对头发来说，会散射出一个圆锥，同时一些光线会被散射到四面八方去</li>
+</ul>
+<p><img src="/images/games101After/142.png"></p>
+<ul>
+<li>这种模型显然不好</li>
+</ul>
+<p><img src="/images/games101After/143.png"></p>
+<ul>
+<li>这种模型考虑光线打到圆柱的时候，肯定有一部分被直接反射掉(R)；也有一部分会穿进去，发生折射(TT)；还有一种是光线进入头发里面，在内壁上发生一次反射又往回走(TRT)</li>
+</ul>
+<p><img src="/images/games101After/144.png"></p>
+<ul>
+<li>描述材质就是要描述如何跟光线作用</li>
+<li>把头发当成玻璃的圆柱，局部是直的，它有两层结构，外层是cuticle(角质层)，内层是cortex(皮质)</li>
+<li>认为头发内部有色素，如果头发是黑的，色素多，吸收多</li>
+<li>考虑三种光线和圆柱的作用：</li>
+</ul>
+<p><img src="/images/games101After/145.png"><br><img src="/images/games101After/146.png"></p>
+<ul>
+<li>综合考虑后，可以得到一个非常好的模型</li>
+</ul>
+<p><img src="/images/games101After/147.png"></p>
+<ul>
+<li>而用人的头发模型不能用来描述动物的毛发</li>
+</ul>
+<p><img src="/images/games101After/148.png"></p>
+<ul>
+<li>从生物结构来看，毛发有三层，而动物毛发的髓质比人的头发髓质要大很多，光线进去更容易发生散射</li>
+<li>而事实上，髓质的影响确实很大，于是提出了双层圆柱模型</li>
+</ul>
+<p><img src="/images/games101After/149.png"><br><img src="/images/games101After/150.png"><br><img src="/images/games101After/151.png"></p>
+<h3 id="Granular-Material"><a href="#Granular-Material" class="headerlink" title="Granular Material"></a>Granular Material</h3><p><img src="/images/games101After/152.png"></p>
+<ul>
+<li>颗粒材质</li>
+<li>一粒一粒的模型，一堆小东西形成的模型</li>
+</ul>
+<h3 id="Surface-Models"><a href="#Surface-Models" class="headerlink" title="Surface Models"></a>Surface Models</h3><ul>
+<li>半透明材质</li>
+</ul>
+<p><img src="/images/games101After/153.png"><br><img src="/images/games101After/154.png"><br><img src="/images/games101After/155.png"></p>
+<ul>
+<li>为了描述光线的这种反射方式，定义为<strong>次表面反射</strong>(Subsurface Scattering)</li>
+</ul>
+<p><img src="/images/games101After/156.png"></p>
+<ul>
+<li>次表面反射可以理解为BRDF的延伸</li>
+</ul>
+<p><img src="/images/games101After/157.png"></p>
+<ul>
+<li>人们发现，半透明介质好像就是光打到物体上，这个物体底下出现一个光源，从底下照亮着色点周围的一片</li>
+<li>为了真实，人们觉得一个光源不够，上方还得有一个光源，用这两个光源去照亮着色点周围的一块，很像次表面散射得出的结果，这个方法叫做Dipole Approximation</li>
+</ul>
+<p><img src="/images/games101After/158.png" alt="BRDF"><br><img src="/images/games101After/159.png" alt="BSSRDF"><br><img src="/images/games101After/160.png"></p>
+<h3 id="Cloth"><a href="#Cloth" class="headerlink" title="Cloth"></a>Cloth</h3><p><img src="/images/games101After/161.png"></p>
+<ul>
+<li>布料是一系列缠绕的纤维构成的</li>
+<li>它的缠绕有不同的层级<ul>
+<li>纤维(fiber)是最原始的概念，一根一根的，如一根羊毛就是一根纤维</li>
+<li>纤维经过第一次缠绕可以缠绕成不同的股(Ply)</li>
+<li>不同的股再经过缠绕会形成线(Yarn)</li>
+<li>再被织成布(包含机器织的布和手工织的毛衣等)</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/games101After/162.png"></p>
+<ul>
+<li>这种材质的渲染肯定和织的形状有关系</li>
+<li>有的布本身真的在一个平面上，可以用BRDF，而像天鹅绒这种不是一个平面，就不能用BRDF来描述</li>
+</ul>
+<p><img src="/images/games101After/163.png"></p>
+<ul>
+<li>一个办法是认为是空间中分布的体积，划分成一个个非常细小的格子，每个格子里面知道纤维的朝向分布、复杂程度等，就可以把这些性质转换成光线的吸收、散射，好像是在渲染云一样</li>
+<li>能得到相对准确的结果，但计算量大</li>
+</ul>
+<p><img src="/images/games101After/164.png"></p>
+<ul>
+<li>把每一根纤维都渲染出来</li>
+<li>同样是计算量大</li>
+</ul>
+<h3 id="Detailed-Appearance"><a href="#Detailed-Appearance" class="headerlink" title="Detailed Appearance"></a>Detailed Appearance</h3><p><img src="/images/games101After/165.png"><br><img src="/images/games101After/166.png"></p>
+<ul>
+<li>渲染出的结果往往非常完美</li>
+<li>而真实世界中的物体会存在各种细节，比如划痕</li>
+</ul>
+<p><img src="/images/games101After/167.png"></p>
+<ul>
+<li>微表面模型提到，最重要的是微表面的法线分布</li>
+</ul>
+<p><img src="/images/games101After/168.png"></p>
+<ul>
+<li>大家描述这种分布，一般用的都是简单的模型，比如正态分布、高斯，用这种方式去描述，得到的自然是看上去没什么细节的结果，因为法线分布并没有体现各种各样的变化和细节</li>
+<li>实际上我们要的是基本符合统计规律，又有自己带的细节的模型</li>
+</ul>
+<p><img src="/images/games101After/169.png"></p>
+<ul>
+<li>细节的渲染十分困难</li>
+</ul>
+<p><img src="/images/games101After/170.png"></p>
+<ul>
+<li>问题就在于我们认为每个微表面是一个镜面，摄像机打出的光线很难打到光源，反之亦然</li>
+</ul>
+<p><img src="/images/games101After/171.png"></p>
+<ul>
+<li>解决办法是考虑一个像素会覆盖很多的微表面，而如果能把这块微表面的分布算出来，替代原来光滑的分布，并且用在微表面模型里</li>
+</ul>
+<p><img src="/images/games101After/172.png"></p>
+<ul>
+<li>如果考虑一个像素覆盖了多大的范围，会得到各种各样的法线分布NDF</li>
+<li>如果一个像素覆盖了很多的微表面，这些微表面的法线分布自然而然的显示出圆形的统计学规律</li>
+<li>如果覆盖的范围小，就会显示出很独特的性质</li>
+</ul>
+<p><img src="/images/games101After/173.png"></p>
+<ul>
+<li>而且不同类型的法线贴图会引起不同的分布</li>
+</ul>
+<p><img src="/images/games101After/174.png"><br><img src="/images/games101After/175.png"></p>
+<hr>
+<p><img src="/images/games101After/176.png"></p>
+<ul>
+<li>在物理上，当物体非常小的时候，小到和波长相当的时候，就不能假设光是沿直线传播了，必须假设这个光是一个波</li>
+</ul>
+<p><img src="/images/games101After/177.png"><br><img src="/images/games101After/178.png"></p>
+<ul>
+<li>在一个小黑屋里，用一个点光源照亮金属，可以发现不是一个颜色</li>
+<li>用白光来照射物体，就应该反射出白的，如果不是白的，就一定有波动光学发生</li>
+</ul>
+<p><img src="/images/games101After/179.png"></p>
+<ul>
+<li>波动光学得出的BRDF跟几何光学得出的BRDF挺像的，但是又有不连续的特点，这是因为光的干涉，使得某些地方强某些地方弱</li>
+</ul>
+<h3 id="Procedural-Appearance"><a href="#Procedural-Appearance" class="headerlink" title="Procedural Appearance"></a>Procedural Appearance</h3><ul>
+<li>程序化生成的材质</li>
+<li>用一定的方式去指导材质的生成，不需要真正的生成它，而是动态地查询它</li>
+</ul>
+<p><img src="/images/games101After/181.png"></p>
+<ul>
+<li>如果定义一张三维的纹理，存储量太大</li>
+<li>不存纹理，定义一个空间中的函数f(x,y,z)，什么时候需要用，就去查，这种函数就叫做噪声函数</li>
+</ul>
+<p>&nbsp;</p>
+<h1 id="Lecture-19-Cameras-Lenses-and-Light-Fields"><a href="#Lecture-19-Cameras-Lenses-and-Light-Fields" class="headerlink" title="Lecture 19  Cameras, Lenses and Light Fields"></a>Lecture 19  Cameras, Lenses and Light Fields</h1><p>&nbsp;</p>
+<p><strong>注：以下所描述的”棱镜”都为Lenses，应该被称做”透镜”</strong></p>
+<p>Imaging &#x3D; Synthesis(合成:光栅化成像、光线追踪成像) + Capture(捕捉:如相机拍照)</p>
+<h3 id="Camera"><a href="#Camera" class="headerlink" title="Camera"></a>Camera</h3><p><img src="/images/games101After/182.png"><br><img src="/images/games101After/183.png" alt="针孔相机与带棱镜的相机"><br><img src="/images/games101After/184.png" alt="快门"></p>
+<ul>
+<li>控制光在1&#x2F;n内进入相机</li>
+</ul>
+<p><img src="/images/games101After/185.png" alt="传感器"></p>
+<ul>
+<li>记录光的Irradiance</li>
+</ul>
+<p><img src="/images/games101After/186.png" alt="传感器"></p>
+<h3 id="Field-of-View-FOV-视场"><a href="#Field-of-View-FOV-视场" class="headerlink" title="Field of View (FOV 视场)"></a>Field of View (FOV 视场)</h3><p><img src="/images/games101After/187.png"></p>
+<ul>
+<li>即能看到多大的范围</li>
+</ul>
+<p><img src="/images/games101After/188.png"></p>
+<ul>
+<li>人们通常定义FOV的时候，认为是以35mm格式的胶片为基础，通过定义焦距的方式来定义FOV</li>
+<li>FOV越窄，可以看到的东西越远</li>
+</ul>
+<p><img src="/images/games101After/189.png"></p>
+<ul>
+<li>如果能改变传感器的大小，小的传感器就对应小一点的视场</li>
+</ul>
+<p><img src="/images/games101After/190.png"></p>
+<ul>
+<li>缩短焦距让小的手机也能达到相同的FOV</li>
+</ul>
+<hr>
+<ul>
+<li>平常一般会固定传感器的大小，只用焦距来衡量</li>
+<li>对于渲染器来说，传感器(Sensor)负责记录最后每个像素收到的Irradiance有多大，胶片(film)决定最后成什么样的图片格式</li>
+<li>对于目前来说，可以把这两个概念混淆着使用</li>
+</ul>
+<h3 id="Exposure"><a href="#Exposure" class="headerlink" title="Exposure"></a>Exposure</h3><ul>
+<li>曝光</li>
+</ul>
+<p><img src="/images/games101After/191.png"><br><img src="/images/games101After/192.png"></p>
+<ul>
+<li>相机能够影响照片亮度的因素<ul>
+<li>f-stop(f数)：调节光圈的大小，仿照人的瞳孔，在暗的环境下瞳孔会放大，单位时间可以接收更多的光，反之相反</li>
+<li>快门速度：快门开放的时间越短，意味着更少的光会进来</li>
+<li>ISO gain：可以理解成后期处理，简单理解为最后接收到多少能量，乘以一个数</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/games101After/193.png" alt="f数与ISO的影响"></p>
+<ul>
+<li>f数越小，光圈越大</li>
+<li>1&#x2F;1000指开放1&#x2F;1000秒，ISO的增长可以认为是简单的线性增长</li>
+<li>ISO能提高亮度，同时也会提高噪声</li>
+</ul>
+<p><img src="/images/games101After/194.png"></p>
+<ul>
+<li>快门时间越久，让光进来的时间越久，在这段时间里如果物体在做运动，则运动的距离越长，得到的运动模糊越严重</li>
+<li>反之，快门时间不变，物体运动的越快，运动模糊越严重</li>
+</ul>
+<p><img src="/images/games101After/197.png"></p>
+<ul>
+<li>为了减少运动模糊，要求拍照不要手抖</li>
+<li>或减少曝光时间，而减少曝光时间必然会减少收到的光线使得画面变暗，此时需要调节ISO，上表为一系列相同曝光度的对应参数</li>
+<li>而大光圈会引起前景深的问题，快门时间会影响运动模糊，这两种情况是需要权衡的</li>
+</ul>
+<p><img src="/images/games101After/195.png"></p>
+<ul>
+<li>运动模糊不一定是坏的，如体现赛车的速度</li>
+</ul>
+<p><img src="/images/games101After/196.png"></p>
+<ul>
+<li>由于快门的打开需要一个过程，在这个过程中拍摄的高速物体，会产生Rolling shutter问题，产生不同位置的图像有可能记录的是不同的时间的结果，造成扭曲的现象</li>
+</ul>
+<p><img src="/images/games101After/198.png"></p>
+<ul>
+<li>高速摄影</li>
+<li>人们不希望有严重的噪声，因此使用大光圈，而不直接提高ISO</li>
+</ul>
+<p><img src="/images/games101After/199.png"></p>
+<ul>
+<li>延时摄影</li>
+<li>用小光圈慢慢拍</li>
+</ul>
+<h3 id="Thin-Lens-Approximation"><a href="#Thin-Lens-Approximation" class="headerlink" title="Thin Lens Approximation"></a>Thin Lens Approximation</h3><p><img src="/images/games101After/200.png"><br><img src="/images/games101After/201.png"></p>
+<ul>
+<li>真正的棱镜非常复杂</li>
+<li>有些棱镜并不是把光聚到一个点上</li>
+</ul>
+<p><img src="/images/games101After/202.png"></p>
+<ul>
+<li>我们研究的是一种理想化的薄的棱镜，棱镜本身厚度忽略不计</li>
+<li>平行光打进来，都会经过一个点，叫做焦点，焦点到棱镜中心的距离叫做焦距</li>
+<li>光路有可逆性，如果光线穿过焦点，被棱镜折射后会变成平行的一束光</li>
+<li>假设这个薄的棱镜，可以任意改变它的焦距。而实际上棱镜生产出来后，是不能改的，这正是相机中使用棱镜组的好处，使用棱镜组就类似一个可以调焦距的棱镜</li>
+</ul>
+<p><img src="/images/games101After/203.png"></p>
+<ul>
+<li>棱镜会满足基本的物理规律，定义物距、相距和焦距</li>
+</ul>
+<p><img src="/images/games101After/204.png"><br><img src="/images/games101After/205.png"></p>
+<ul>
+<li><p>用相似三角形来推导</p>
+</li>
+<li><p>反应了相距、物距、焦距三者的关系</p>
+</li>
+<li><p>通过薄棱镜，可以解释好多问题</p>
+</li>
+<li><p>1.景深<br><img src="/images/games101After/206.png"></p>
+</li>
+<li><p>CoC：一个点成像过来，反应到Sensor上变成了一个圈</p>
+</li>
+<li><p>CoC跟光圈大小成正比</p>
+</li>
+</ul>
+<p><img src="/images/games101After/207.png"><br><img src="/images/games101After/208.png"></p>
+<ul>
+<li>N(f数) &#x3D; f(焦距) &#x2F; A(光圈直径)</li>
+</ul>
+<p><img src="/images/games101After/209.png"><br><img src="/images/games101After/210.png"></p>
+<ul>
+<li>CoC和N有反比关系</li>
+<li>所以拍清楚的照片通常用小光圈</li>
+</ul>
+<h3 id="Ray-Tracing-Ideal-Thin-Lenses"><a href="#Ray-Tracing-Ideal-Thin-Lenses" class="headerlink" title="Ray Tracing Ideal Thin Lenses"></a>Ray Tracing Ideal Thin Lenses</h3><p><img src="/images/games101After/211.png"></p>
+<ul>
+<li>模拟薄棱镜做光线追踪</li>
+</ul>
+<p><img src="/images/games101After/212.png"></p>
+<ul>
+<li>一种设定方案：<ul>
+<li>确定成像平面大小，定义棱镜属性(焦距和光圈大小)</li>
+<li>定义这个棱镜离场景中某个平面有多远(物距z<sub>o</sub>)</li>
+<li>计算相距</li>
+</ul>
+</li>
+<li>渲染：<ul>
+<li>在成像平面上选一点x’</li>
+<li>在透镜上选一点x’’</li>
+<li>将这两点连一条线</li>
+<li>可以得到x’’’</li>
+</ul>
+</li>
+</ul>
+<h3 id="Depth-of-Field"><a href="#Depth-of-Field" class="headerlink" title="Depth of Field"></a>Depth of Field</h3><p><img src="/images/games101After/213.png"></p>
+<ul>
+<li>大光圈得到大的CoC，一个点会得到大的圆，但总归有部分是不模糊的(Focal Plane)</li>
+<li>用大小光圈会影响模糊的范围</li>
+</ul>
+<p><img src="/images/games101After/214.png"></p>
+<ul>
+<li>景深就是指在场景中有一段深度，这段深度经过透镜后会在成像平面的附近形成一段区域，这段区域内认为CoC都是足够小的</li>
+<li>景深就是指成像清晰的一段范围</li>
+</ul>
+<p><img src="/images/games101After/215.png"></p>
+<p>&nbsp;</p>
+<h1 id="Lecture-20-Color-and-Perception"><a href="#Lecture-20-Color-and-Perception" class="headerlink" title="Lecture 20  Color and Perception"></a>Lecture 20  Color and Perception</h1><p>&nbsp;</p>
+<h3 id="Light-Field-Lumigraph-光场"><a href="#Light-Field-Lumigraph-光场" class="headerlink" title="Light Field &#x2F; Lumigraph (光场)"></a>Light Field &#x2F; Lumigraph (光场)</h3><p><img src="/images/games101After/216.png"></p>
+<ul>
+<li>人们看到的是从各个方向进来的光线，而看不见光线从多远进来，从什么地方进来</li>
+<li>可以用<strong>全光函数</strong>(The Plenoptic Function)来描述人可以看到什么东西</li>
+</ul>
+<p><img src="/images/games101After/217.png"><br><img src="/images/games101After/218.png"></p>
+<ul>
+<li>假设人站在场景里位置固定，往四面八方去看，可以用极坐标表示任何一个方向</li>
+</ul>
+<p><img src="/images/games101After/219.png"></p>
+<ul>
+<li>改进函数，引入波长(表示不同颜色)</li>
+<li>再扩展一个时间t</li>
+</ul>
+<p><img src="/images/games101After/220.png"></p>
+<ul>
+<li>再考虑空间中任何一个位置</li>
+<li>最后把这个函数理解为：在任何一个位置、往任何一个方向看，并且在任何时间，看到不同的颜色</li>
+<li>就拿这个七维的函数当做全光函数</li>
+</ul>
+<p><img src="/images/games101After/221.png"></p>
+<ul>
+<li>紫色点并不是离散的，可以放在任意位置，能从任意方向知道过来的光是多少，方向也应该是连续的</li>
+<li>光场是全光函数的一小部分</li>
+</ul>
+<hr>
+<p><strong>光线</strong></p>
+<p><img src="/images/games101After/222.png"></p>
+<ul>
+<li>起点是(V<sub>X</sub>, V<sub>Y</sub>, V<sub>Z</sub>)，方向是θ</li>
+</ul>
+<p><img src="/images/games101After/223.png"></p>
+<ul>
+<li>可以用不同的方式定义光线</li>
+<li>比如取任意两点，假如方向已知</li>
+</ul>
+<p><strong>表面</strong></p>
+<p><img src="/images/games101After/224.png"></p>
+<ul>
+<li>对于定义任何一个物体的表面</li>
+<li>可以把任何一个物体放在一个包围盒里</li>
+<li>看向物体，无非是从任何位置、任何方向</li>
+<li>根据光路的可逆性反过来理解，要想描述这个物体能被看到的所有情况，就要描述这个物体在它的包围盒上，它在任何一个位置往任何一个方向过去的光线，就可以得到从任何一个位置看向这个物体是长什么样的</li>
+</ul>
+<p><strong>光场</strong></p>
+<ul>
+<li>相当于是包围盒上有一个点，观察位置一个点，两点确定一条光线。知道包围盒上的位置，知道方向，就可以去查询记录的函数</li>
+<li>这个函数记录了不同的点(物体表面不同的位置)，往各个不同的方向的发光情况，把这个情况记录下来，就是光场</li>
+<li>总结：光场就是在任何一个位置，往任何一个方向去的光的强度</li>
+</ul>
+<hr>
+<ul>
+<li>光场是全光函数的一小部分，只是二维的位置和二维的方向</li>
+<li>位置：三维物体的表面其实在一个二维空间中，可以理解为纹理映射，用u、v就能表示任何一个位置</li>
+<li>方向：任何一个空间中的位置，都可以用θ、Φ表示</li>
+</ul>
+<p><img src="/images/games101After/225.png"></p>
+<ul>
+<li>光场的一种参数化方式：取两个平行的面(uv、st)，各取一个点连线，考虑所有的可能性</li>
+</ul>
+<p><img src="/images/games101After/226.png"></p>
+<ul>
+<li>从某个角度看向整个世界，拍一张图，把所有这些图组织在一块，这就是整个光场</li>
+</ul>
+<p><img src="/images/games101After/227.png"></p>
+<ul>
+<li>光场的另一种理解方式</li>
+<li>把原本记录在一个像素上的光分别记录在不同位置</li>
+</ul>
+<p><img src="/images/games101After/228.png"></p>
+<ul>
+<li>光场摄像机：支持后期的重新聚焦</li>
+</ul>
+<p><img src="/images/games101After/229.png"></p>
+<ul>
+<li>原理就是把原本的像素换成微透镜，这些微透镜会把来自各个方向的光给分散到不同的方向上去，将感光元件往后挪一点点</li>
+<li>原本记录一个像素，现在记录一块像素</li>
+</ul>
+<p><img src="/images/games101After/230.png"></p>
+<ul>
+<li>为了得到最后的图片，每个像素都选取同一方向的一条光线，记录在一个像素的结果上</li>
+<li>相当于有了这个光场以后，我们可以虚拟地移动摄像机的位置</li>
+</ul>
+<p><img src="/images/games101After/231.png"></p>
+<ul>
+<li>光场相机的问题：<ul>
+<li>分辨率不足：原本一个像素记录一个像素的信息，现在用一百个像素记录一个像素的信息。胶片的分辨率变成空间上的分辨率乘以方向上的分辨率</li>
+<li>高成本：高精度胶片、透镜</li>
+</ul>
+</li>
+</ul>
+<h3 id="Physical-Basis-of-Color"><a href="#Physical-Basis-of-Color" class="headerlink" title="Physical Basis of Color"></a>Physical Basis of Color</h3><p><img src="/images/games101After/233.png"></p>
+<ul>
+<li>牛顿通过实验发现，颜色其实是很多基本颜色混合出来的结果</li>
+</ul>
+<p><img src="/images/games101After/232.png"></p>
+<ul>
+<li>不同的波长对应不同的折射率，而任何一种光一定对应某一种光谱</li>
+<li>光谱就是光线的能量在不同的波长上的分布</li>
+<li>光谱是一个很长的范围，而图形学中关心的是可见光的光谱，分布在大概波长400nm ~ 700nm之间</li>
+</ul>
+<p><img src="/images/games101After/234.png"></p>
+<ul>
+<li>谱功率密度(SPD)：光线在不同的波长的强度是多少</li>
+<li>通过SPD，可以描述光在各个波长上的分布</li>
+</ul>
+<p><img src="/images/games101After/235.png"><br><img src="/images/games101After/236.png"></p>
+<p><img src="/images/games101After/237.png"></p>
+<ul>
+<li>SPD有线性的性质</li>
+</ul>
+<h3 id="What-is-Color？"><a href="#What-is-Color？" class="headerlink" title="What is Color？"></a>What is Color？</h3><ul>
+<li>颜色是人的感知，并不是物理上的一些东西</li>
+</ul>
+<p><img src="/images/games101After/238.png"></p>
+<ul>
+<li>人眼就是一个摄像机</li>
+<li>瞳孔可以调节大小，相当于光圈</li>
+<li>晶状体相当于透镜，晶状体调节焦距，是通过肌肉来拽它</li>
+<li>人眼感知的地方在视网膜上，也是最终光线到达的地方</li>
+</ul>
+<p><img src="/images/games101After/239.png"></p>
+<ul>
+<li>视网膜上有感光细胞</li>
+<li>一种是棒状细胞：感知光的强度，但不感知颜色，用它可以得到灰度的图</li>
+<li>一种是锥形细胞：比棒状细胞少很多，用来感知颜色</li>
+</ul>
+<p><img src="/images/games101After/240.png"></p>
+<ul>
+<li>锥形细胞内部，又分成三种不同的锥形细胞(S、M、L类型的细胞)，对三种类型的波长的响应各不相同</li>
+</ul>
+<p><img src="/images/games101After/241.png"></p>
+<ul>
+<li>但是不同的人眼睛里这三种细胞的分布非常不一样</li>
+<li>再次印证了颜色是人感知的结果</li>
+</ul>
+<p><img src="/images/games101After/242.png"></p>
+<ul>
+<li>把光线的强度和相应的感知曲线的感应强度乘起来，再把每一个不同的波长都考虑进去，就是最终的结果</li>
+</ul>
+<p><img src="/images/games101After/243.png"></p>
+<ul>
+<li>三种不同的感知细胞，会感应出三种颜色结果，这三个数才是真正看到的颜色，而不是光线本身的SPD</li>
+</ul>
+<h3 id="Metamerism-同色异谱"><a href="#Metamerism-同色异谱" class="headerlink" title="Metamerism(同色异谱)"></a>Metamerism(同色异谱)</h3><ul>
+<li>不同的信号积分后得到相同的结果，是有可能发生的现象，称为同色异谱</li>
+</ul>
+<p><img src="/images/games101After/244.png"></p>
+<h3 id="Color-Reproduction-Matching"><a href="#Color-Reproduction-Matching" class="headerlink" title="Color Reproduction &#x2F; Matching"></a>Color Reproduction &#x2F; Matching</h3><p><strong>颜色应该如何混合</strong></p>
+<p><img src="/images/games101After/245.png"></p>
+<ul>
+<li>加色系统</li>
+</ul>
+<p><img src="/images/games101After/246.png"></p>
+<ul>
+<li>允许线性组合基本颜色来匹配任何给定的颜色</li>
+</ul>
+<p><img src="/images/games101After/247.png"><br><img src="/images/games101After/248.png"></p>
+<ul>
+<li>表示用多强的第一、二、三种颜色可以混合出左边的颜色</li>
+<li>对任意的颜色都可以通过类似的方式解决</li>
+</ul>
+<p><img src="/images/games101After/249.png"><br><img src="/images/games101After/250.png"></p>
+<ul>
+<li>但是有一些情况不同，左边的颜色右边怎么混合都出不来</li>
+<li>可以把左边需要混合的颜色往上加一个颜色，相当于对应右边减掉一个颜色，这就是线性的性质</li>
+<li>通过几种颜色混合出一种颜色，系数是负的是没有关系的</li>
+</ul>
+<p><img src="/images/games101After/251.png"></p>
+<ul>
+<li>CIE(一个组织)定义了RGB系统，它要做颜色匹配</li>
+<li>给定任何一个颜色，是单波长的一个颜色激光，光线的SPD就是一个单一的函数</li>
+</ul>
+<p><img src="/images/games101After/252.png"></p>
+<ul>
+<li>混合各种不同的单色光，得到任何一个波长上的给定的光线颜色</li>
+<li>叫做匹配函数(CIE RGB Color Matching Functions)</li>
+</ul>
+<p><img src="/images/games101After/253.png"></p>
+<ul>
+<li>如果给定任何一个实际的SPD分布，需要考虑每一个波长用多上的红色、绿色、蓝色混合才能得到它，自然是一个积分的结果</li>
+</ul>
+<h3 id="Color-Space"><a href="#Color-Space" class="headerlink" title="Color Space"></a>Color Space</h3><p><img src="/images/games101After/254.png"></p>
+<ul>
+<li>标准RGB系统是广泛使用的一个标准系统</li>
+<li>但是它所形成的色域是有限的</li>
+</ul>
+<p><img src="/images/games101After/255.png"></p>
+<ul>
+<li>CIE XYZ系统是在科学上更加广泛应用的一个系统</li>
+<li>同样要定义颜色匹配函数</li>
+<li>它不是实验测出来的，是人造的颜色匹配函数</li>
+<li>绿色的曲线覆盖波长非常均匀，分布是对称的，正常来说用x、y、z三个匹配函数匹配出不同的颜色得到的Y(类似于RGB的G)一定程度上就可以表示亮度</li>
+</ul>
+<p><img src="/images/games101After/256.png"></p>
+<ul>
+<li>把XYZ系统，能够表示的所有的颜色都显示出来</li>
+<li>而XYZ是三维的，不好可视化</li>
+<li>只想显示其中的两维</li>
+<li>对任何的XYZ先做一个归一化，得到三个归一化的值xyz，由于知道xyz相加等于一，所以只需要表示xy就行</li>
+<li>为了显示x和y，它其实表示的颜色还是由XYZ来定的，其实还是三个变量</li>
+<li>既然知道Y表示亮度，可以把亮度固定成某一个数，让X和Z发生变化，这样x和y都是X、Z的函数</li>
+<li>这块区域就叫做<strong>色域</strong>，也就是所有一个颜色空间可以显示的颜色</li>
+</ul>
+<p><img src="/images/games101After/257.png"></p>
+<ul>
+<li>对于一个色域来说，中心呈白色，是由各种颜色混合而来，说白色是最不纯的颜色，而纯的颜色都在边界上</li>
+</ul>
+<p><img src="/images/games101After/258.png"></p>
+<ul>
+<li>不同的颜色空间，表示的颜色范围是不一样的</li>
+</ul>
+<h3 id="Perceptually-Organized-Color-Space"><a href="#Perceptually-Organized-Color-Space" class="headerlink" title="Perceptually Organized Color Space"></a>Perceptually Organized Color Space</h3><p><strong>HSV颜色空间</strong></p>
+<p><img src="/images/games101After/259.png"><br><img src="/images/games101After/260.png"></p>
+<ul>
+<li>允许选择不同的色调(Hue)、饱和度(Saturation)、亮度(Brightness&#x2F;Value)<ul>
+<li>色调：不同类型的颜色</li>
+<li>饱和度：更接近白色(不纯)还是颜色本身的纯色，越饱和越接近单一的颜色</li>
+</ul>
+</li>
+</ul>
+<p><strong>CIE LAB Space</strong></p>
+<p><img src="/images/games101After/261.png"></p>
+<ul>
+<li>也是跟感知有关</li>
+<li>L轴是亮度</li>
+<li>a、b轴相互垂直，a轴表示红和绿，b轴表示蓝和黄</li>
+<li>它认为任何一个轴上表示的颜色，它的极限(两端)都是互补色</li>
+</ul>
+<p><img src="/images/games101After/262.png"></p>
+<ul>
+<li>比如能想到深绿、黄绿、蓝绿，但不会想象一种偏红的绿</li>
+<li>人的大脑对互补色有一个定义，人脑会自动把互补色补上</li>
+</ul>
+<p><img src="/images/games101After/263.png"><br><img src="/images/games101After/264.png"></p>
+<ul>
+<li>颜色本身是感知，有些事情是相对的</li>
+</ul>
+<p><strong>减色系统</strong></p>
+<p><img src="/images/games101After/265.png"></p>
+<ul>
+<li>各种颜色混合后会得到黑色</li>
+<li>为什么需要K？ –考虑印刷成本，因为黑色墨水便宜，彩色墨水贵，需要黑色的时候直接用黑色墨水而不用混合</li>
+</ul>
+<hr>
+<ul>
+<li>XYZ有非常好的理论性质，非常大的色域</li>
+<li>RGB好用，很直观</li>
+<li>HSV比较好调颜色</li>
+</ul>
+<p>&nbsp;</p>
+<h1 id="Lecture-21-Animation"><a href="#Lecture-21-Animation" class="headerlink" title="Lecture 21  Animation"></a>Lecture 21  Animation</h1><p>&nbsp;</p>
+<h3 id="对动画的不同理解"><a href="#对动画的不同理解" class="headerlink" title="对动画的不同理解"></a>对动画的不同理解</h3><p><img src="/images/games101After/266.png"></p>
+<ul>
+<li>让物体”活”起来<ul>
+<li>用于交流的工具，给别人展示各种动起来的东西</li>
+<li>早期的动画人们并不关心画的对不对，是否符合物理，只要看起来差不多对，那就差不多</li>
+</ul>
+</li>
+<li>也可以理解成建模、几何的拓展<ul>
+<li>动画无非是在不同的时间(帧)有不同的几何形状，动画就是为了得到这些不同的形状要怎么去计算</li>
+</ul>
+</li>
+<li>动画的形成是把很多的图按顺序、按一定的速度去播放，就可以了</li>
+<li>不同的应用对动画的要求是不一样的</li>
+</ul>
+<p><img src="/images/games101After/267.png"></p>
+<ul>
+<li>关键帧</li>
+<li>工作量大</li>
+</ul>
+<p><img src="/images/games101After/268.png"></p>
+<ul>
+<li>关键帧动画本质是插值的技术</li>
+</ul>
+<p><img src="/images/games101After/269.png"></p>
+<ul>
+<li>希望有种东西可以控制插值效果，这时虚线&#x2F;样条是非常重要的</li>
+<li>动画和几何是关联的</li>
+</ul>
+<h3 id="Physical-Simulation-物理模拟-仿真"><a href="#Physical-Simulation-物理模拟-仿真" class="headerlink" title="Physical Simulation (物理模拟&#x2F;仿真)"></a>Physical Simulation (物理模拟&#x2F;仿真)</h3><p><img src="/images/games101After/270.png"><br><img src="/images/games101After/271.png"></p>
+<ul>
+<li>物理模拟说的就是推导、实现、利用不同的物理公式，来计算出一个物体应该有什么形状&#x2F;位置上的变化</li>
+</ul>
+<h3 id="Mass-Spring-System-质点弹簧系统"><a href="#Mass-Spring-System-质点弹簧系统" class="headerlink" title="Mass Spring System (质点弹簧系统)"></a>Mass Spring System (质点弹簧系统)</h3><p><img src="/images/games101After/272.png"><br><img src="/images/games101After/273.png"><br><img src="/images/games101After/274.png"></p>
+<ul>
+<li>||b - a||表示方向</li>
+<li>问题：永远弹下去</li>
+<li>解决：加个摩擦力(damping force)</li>
+</ul>
+<p><img src="/images/games101After/275.png"></p>
+<ul>
+<li>在模拟仿真中，用x一点表示一阶导数(速度)，两点表示二阶导数(加速度)</li>
+</ul>
+<p><img src="/images/games101After/276.png"></p>
+<ul>
+<li>会引起所有的运动都停下来</li>
+</ul>
+<p><img src="/images/games101After/277.png"><br><img src="/images/games101After/278.png"></p>
+<h3 id="Particle-System"><a href="#Particle-System" class="headerlink" title="Particle System"></a>Particle System</h3><ul>
+<li>本质上是定义个体与群体之间的关系</li>
+</ul>
+<h3 id="Forward-Kinematics"><a href="#Forward-Kinematics" class="headerlink" title="Forward Kinematics"></a>Forward Kinematics</h3><ul>
+<li>在图形学中通常把运动学区分成正向的和反向的</li>
+</ul>
+<p><img src="/images/games101After/279.png"></p>
+<ul>
+<li>定义一些简单的关节模型，形成一个复杂的模型</li>
+<li>本身又能把整个结构形成加速结构&#x2F;树形结构</li>
+</ul>
+<p><img src="/images/games101After/280.png"><br><img src="/images/games101After/281.png"></p>
+<ul>
+<li>运动学定义的东西都非常物理，而艺术家喜欢直接拿着骨骼到处拽，不用通过调整角度来控制骨骼，引入了逆运动学</li>
+</ul>
+<h3 id="Inverse-Kinematics"><a href="#Inverse-Kinematics" class="headerlink" title="Inverse Kinematics"></a>Inverse Kinematics</h3><p><img src="/images/games101After/282.png"></p>
+<ul>
+<li>计算复杂、解不唯一或无解都有可能发生</li>
+</ul>
+<h3 id="Rigging"><a href="#Rigging" class="headerlink" title="Rigging"></a>Rigging</h3><p><img src="/images/games101After/283.png"></p>
+<ul>
+<li>蒙皮、插值</li>
+</ul>
+<h3 id="Motion-Capture-动作捕捉"><a href="#Motion-Capture-动作捕捉" class="headerlink" title="Motion Capture(动作捕捉)"></a>Motion Capture(动作捕捉)</h3><p><img src="/images/games101After/284.png"><br><img src="/images/games101After/285.png"><br><img src="/images/games101After/286.png"><br><img src="/images/games101After/287.png"><br><img src="/images/games101After/288.png"><br><img src="/images/games101After/289.png"><br><img src="/images/games101After/290.png"></p>
+<p>&nbsp;</p>
+<h1 id="Lecture-22-Animation-Cont"><a href="#Lecture-22-Animation-Cont" class="headerlink" title="Lecture 22  Animation Cont."></a>Lecture 22  Animation Cont.</h1><p>&nbsp;</p>
+<p><img src="/images/games101After/292.png"></p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p><img src="/images/games101After/291.png"><br><img src="/images/games101After/293.png"><br><img src="/images/games101After/294.png"></p>
+<ul>
+<li>显式&#x2F;前向 欧拉</li>
+<li>非常不稳定</li>
+</ul>
+<p><img src="/images/games101After/295.png"></p>
+<ul>
+<li>误差可以通过减小步长缩小</li>
+</ul>
+<p><img src="/images/games101After/296.png"><br><img src="/images/games101After/297.png"></p>
+<h3 id="Combating-Instability"><a href="#Combating-Instability" class="headerlink" title="Combating Instability"></a>Combating Instability</h3><p><img src="/images/games101After/298.png"></p>
+<ul>
+<li>中点法</li>
+</ul>
+<p><img src="/images/games101After/299.png"><br><img src="/images/games101After/300.png"><br><img src="/images/games101After/301.png"></p>
+<ul>
+<li>自适应思路，试着把时间分成两半，如果跑出来结果接近就不往下分，反之往下分</li>
+</ul>
+<p><img src="/images/games101After/302.png"></p>
+<ul>
+<li>隐式欧拉方法</li>
+</ul>
+<p><img src="/images/games101After/303.png"></p>
+<ul>
+<li>Runge-Kutta方法，简称RK4</li>
+<li>龙格库塔方法是一系列方法</li>
+</ul>
+<p><img src="/images/games101After/304.png"></p>
+<ul>
+<li>Position-Based &#x2F; Verlet Integration</li>
+<li>通过调整位置，使得最终能能够满足某些限制</li>
+</ul>
+<p><img src="/images/games101After/305.png"></p>
+<h3 id="刚体"><a href="#刚体" class="headerlink" title="刚体"></a>刚体</h3><p><img src="/images/games101After/306.png"></p>
+<ul>
+<li>位置、朝向、速度、角速度</li>
+</ul>
+<p><img src="/images/games101After/307.png"><br><img src="/images/games101After/308.png"></p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2024/07/31/game101-L13ToL22/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2024/07/31/game101-L13ToL22/";
+            const title         = "「game101 L13 To L22」";
+            const excerpt       = `前言
+由于内容过多，做笔记太费时间，对于Games101后半段只做简单记录`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" rel="tag">计算机图形学</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2025-08-11T09:26:40.498Z" itemprop="dateModified">最后编辑：2025-08-11</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" games202" href="/2024/07/30/games202/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" UI动效 07" href="/2024/08/02/MyUIProject-07/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+        <div id="disqus_thread" class="post-comments lazy-load"></div>
+
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://example.com/2024/07/31/game101-L13ToL22/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '2024/07/31/game101-L13ToL22/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    var load_comm = () => {
+        if (typeof DISQUS === 'undefined') {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://unishiki.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        } else {
+            DISQUS.reset({
+                reload: true,
+                config: function () {  
+                    this.page.url = 'http://example.com/2024/07/31/game101-L13ToL22/';  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = '2024/07/31/game101-L13ToL22/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                }
+            });
+        }
+    };
+    
+</script>
+<script async id="dsq-count-scr" src="//unishiki.disqus.com/count.js"></script>
+
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/ava1.jpg" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                116
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                3
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                16
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lecture-13-Ray-Tracing-1"><span class="toc-text">Lecture 13  Ray Tracing 1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA"><span class="toc-text">光线追踪</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-text">基本原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82"><span class="toc-text">技术细节</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lecture-14-Ray-Tracing-2"><span class="toc-text">Lecture 14  Ray Tracing 2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AABB%E5%A6%82%E4%BD%95%E5%B8%AE%E5%8A%A9%E5%8A%A0%E9%80%9F%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA"><span class="toc-text">AABB如何帮助加速光线追踪</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%9D%87%E5%8C%80%E7%9A%84%E6%A0%BC%E5%AD%90"><span class="toc-text">1.均匀的格子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%A9%BA%E9%97%B4%E5%88%92%E5%88%86"><span class="toc-text">2.空间划分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Basic-radiometry-%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6"><span class="toc-text">Basic radiometry(辐射度量学)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Radiant-Energy-and-Flux-Power"><span class="toc-text">Radiant Energy and Flux(Power)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Radiant-Intensity-Irradiance-Radiance"><span class="toc-text">Radiant Intensity &amp; Irradiance &amp; Radiance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lecture-15-Ray-Tracing-3"><span class="toc-text">Lecture 15  Ray Tracing 3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Irradiance"><span class="toc-text">Irradiance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Radiance"><span class="toc-text">Radiance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Irradiance-vs-Radiance"><span class="toc-text">Irradiance vs. Radiance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bidirectional-Reflectance-Distribution-Function-BRDF-%E5%8F%8C%E5%90%91%E5%8F%8D%E5%B0%84%E5%88%86%E5%B8%83%E5%87%BD%E6%95%B0"><span class="toc-text">Bidirectional Reflectance Distribution Function(BRDF 双向反射分布函数)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E6%96%B9%E7%A8%8B%E5%92%8C%E6%B8%B2%E6%9F%93%E6%96%B9%E7%A8%8B"><span class="toc-text">反射方程和渲染方程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E7%8E%87%E8%AE%BA%E5%9B%9E%E9%A1%BE"><span class="toc-text">概率论回顾</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lecture-16-Ray-Tracing-4"><span class="toc-text">Lecture 16  Ray Tracing 4</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Monte-Carlo-Integration-%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E7%A7%AF%E5%88%86"><span class="toc-text">Monte Carlo Integration(蒙特卡洛积分)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Path-Tracing-%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AA"><span class="toc-text">Path Tracing(路径追踪)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lecture-17-Material-and-Appearances"><span class="toc-text">Lecture 17  Material and Appearances</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Material"><span class="toc-text">Material</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84"><span class="toc-text">反射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%98%E5%B0%84"><span class="toc-text">折射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Microfacet-Material-%E5%BE%AE%E8%A1%A8%E9%9D%A2%E6%9D%90%E8%B4%A8-%E6%A8%A1%E5%9E%8B"><span class="toc-text">Microfacet Material(微表面材质&#x2F;模型)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Isotropic-Anisotropic-Materials"><span class="toc-text">Isotropic &#x2F; Anisotropic Materials</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BRDF%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-text">BRDF的性质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E9%87%8FBRDF"><span class="toc-text">测量BRDF</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lecture-18-Advanced-Topics-in-Rendering"><span class="toc-text">Lecture 18  Advanced Topics in Rendering</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Advanced-Light-Transport"><span class="toc-text">Advanced Light Transport</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%81%8F-%E6%97%A0%E5%81%8F%E7%9A%84%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA"><span class="toc-text">有偏&#x2F;无偏的光线追踪</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8C%E5%90%91%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AA-BDPT"><span class="toc-text">双向路径追踪(BDPT)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Metropolis-%E4%BA%BA%E5%90%8D-%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD-MLT"><span class="toc-text">Metropolis(人名) 光线传播(MLT)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Photon-Mapping-%E5%85%89%E5%AD%90%E6%98%A0%E5%B0%84"><span class="toc-text">Photon Mapping(光子映射)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vertex-Connection-and-Merging-VCM"><span class="toc-text">Vertex Connection and Merging(VCM)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Instant-Radiosity-IR-%E5%AE%9E%E6%97%B6%E8%BE%90%E5%B0%84%E5%BA%A6"><span class="toc-text">Instant Radiosity (IR 实时辐射度)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E8%A7%82%E5%BB%BA%E6%A8%A1"><span class="toc-text">外观建模</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E8%A1%A8%E9%9D%A2%E6%A8%A1%E5%9E%8B"><span class="toc-text">非表面模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hair-Appearance"><span class="toc-text">Hair Appearance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Granular-Material"><span class="toc-text">Granular Material</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Surface-Models"><span class="toc-text">Surface Models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cloth"><span class="toc-text">Cloth</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Detailed-Appearance"><span class="toc-text">Detailed Appearance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Procedural-Appearance"><span class="toc-text">Procedural Appearance</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lecture-19-Cameras-Lenses-and-Light-Fields"><span class="toc-text">Lecture 19  Cameras, Lenses and Light Fields</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Camera"><span class="toc-text">Camera</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Field-of-View-FOV-%E8%A7%86%E5%9C%BA"><span class="toc-text">Field of View (FOV 视场)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exposure"><span class="toc-text">Exposure</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Thin-Lens-Approximation"><span class="toc-text">Thin Lens Approximation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ray-Tracing-Ideal-Thin-Lenses"><span class="toc-text">Ray Tracing Ideal Thin Lenses</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Depth-of-Field"><span class="toc-text">Depth of Field</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lecture-20-Color-and-Perception"><span class="toc-text">Lecture 20  Color and Perception</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Light-Field-Lumigraph-%E5%85%89%E5%9C%BA"><span class="toc-text">Light Field &#x2F; Lumigraph (光场)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Physical-Basis-of-Color"><span class="toc-text">Physical Basis of Color</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#What-is-Color%EF%BC%9F"><span class="toc-text">What is Color？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Metamerism-%E5%90%8C%E8%89%B2%E5%BC%82%E8%B0%B1"><span class="toc-text">Metamerism(同色异谱)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Color-Reproduction-Matching"><span class="toc-text">Color Reproduction &#x2F; Matching</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Color-Space"><span class="toc-text">Color Space</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Perceptually-Organized-Color-Space"><span class="toc-text">Perceptually Organized Color Space</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lecture-21-Animation"><span class="toc-text">Lecture 21  Animation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E5%8A%A8%E7%94%BB%E7%9A%84%E4%B8%8D%E5%90%8C%E7%90%86%E8%A7%A3"><span class="toc-text">对动画的不同理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Physical-Simulation-%E7%89%A9%E7%90%86%E6%A8%A1%E6%8B%9F-%E4%BB%BF%E7%9C%9F"><span class="toc-text">Physical Simulation (物理模拟&#x2F;仿真)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mass-Spring-System-%E8%B4%A8%E7%82%B9%E5%BC%B9%E7%B0%A7%E7%B3%BB%E7%BB%9F"><span class="toc-text">Mass Spring System (质点弹簧系统)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Particle-System"><span class="toc-text">Particle System</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Forward-Kinematics"><span class="toc-text">Forward Kinematics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Inverse-Kinematics"><span class="toc-text">Inverse Kinematics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rigging"><span class="toc-text">Rigging</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Motion-Capture-%E5%8A%A8%E4%BD%9C%E6%8D%95%E6%8D%89"><span class="toc-text">Motion Capture(动作捕捉)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lecture-22-Animation-Cont"><span class="toc-text">Lecture 22  Animation Cont.</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Combating-Instability"><span class="toc-text">Combating Instability</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9A%E4%BD%93"><span class="toc-text">刚体</span></a></li></ol></li></ol></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a><span class="category-list-count">95</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">开发记录</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%99%E7%A8%8B%E6%96%87%E6%A1%A3/">教程文档</a><span class="category-list-count">4</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Compute-Shader/" style="font-size: 0.62em;">Compute Shader</a> <a href="/tags/Dots/" style="font-size: 0.67em;">Dots</a> <a href="/tags/Java/" style="font-size: 0.64em;">Java</a> <a href="/tags/Minecraft/" style="font-size: 0.6em;">Minecraft</a> <a href="/tags/Shader/" style="font-size: 0.76em;">Shader</a> <a href="/tags/TwilightMelody/" style="font-size: 0.64em;">TwilightMelody</a> <a href="/tags/UI/" style="font-size: 0.71em;">UI</a> <a href="/tags/Unity/" style="font-size: 0.8em;">Unity</a> <a href="/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/" style="font-size: 0.6em;">Unity编辑器拓展</a> <a href="/tags/%E5%8A%A8%E6%95%88/" style="font-size: 0.69em;">动效</a> <a href="/tags/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/" style="font-size: 0.65em;">底层原理</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 0.75em;">性能优化</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%8F%AF%E8%A7%86%E5%8C%96/" style="font-size: 0.73em;">数学可视化</a> <a href="/tags/%E6%96%87%E6%A1%A3/" style="font-size: 0.65em;">文档</a> <a href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 0.67em;">算法与数据结构</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="font-size: 0.78em;">计算机图形学</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2025/07/25/ComputeShader-MagicLibrary/"><i class="fa  fa-book"></i> 浅尝ComputeShader-魔法图书馆</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/06/23/MyUIProject-09/"><i class="fa  fa-book"></i> UI动效 09</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/06/12/SourceCode-M3/"><i class="fa  fa-book"></i> 源码-魔法金属伤害计算</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/05/19/TwilightMelody-2-2025-05-01/"><i class="fa  fa-book"></i> TwilightMelody-2-2025-05-01</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/03/17/ComputeShaderLearning-1/"><i class="fa  fa-book"></i> GPU粒子实现原理与ComputeShader GPU Instance的基础应用</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
+                        
+                        <li><a href="mailto:ccc895286662@gmail.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/unishiki"><i class="fa fa-github"></i></a></li>
+                        
+                        <!-- New links -->
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2025 uni_shiki 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by uni_shiki.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="snow-switch">
+                        <span class="fa fa-snowflake-o"></span>
+                    </div>
+                
+                
+                    <div class="box group-box">
+                        <a href="https://jq.qq.com/?_wv=1027&k=CpdI35JY" target="_blank" rel="nofollow">
+                            <span class="fa fa-users"></span>
+                        </a>
+                    </div>
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3080117718"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>

@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="../images/mfmf.webp">
+  
+  <title>DOTS(2) DOTS中的ECS架构与概念术语 | uni_shiki</title>
+  
+  <meta name="author" content="uni_shiki" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="Dots, Unity" />
+  
+  <meta name="description" content="&amp;nbsp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DOTS(2) DOTS中的ECS架构与概念术语">
+<meta property="og:url" content="http://example.com/2023/06/17/dots-02/index.html">
+<meta property="og:site_name" content="uni_shiki">
+<meta property="og:description" content="&amp;nbsp;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/mfmf.webp">
+<meta property="article:published_time" content="2023-06-17T04:03:23.000Z">
+<meta property="article:modified_time" content="2025-03-17T02:16:12.393Z">
+<meta property="article:author" content="uni_shiki">
+<meta property="article:tag" content="Unity">
+<meta property="article:tag" content="Dots">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/mfmf.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>链接</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://space.bilibili.com/33554119">Bilibili</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">uni_shiki</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>uni_shiki</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/06/17/dots-02/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">DOTS(2) DOTS中的ECS架构与概念术语</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2023-06-17T04:03:23.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-06-17</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">uni_shiki</span>
+                </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~2.34K
+                        
+                        字
+                    </li>
+                
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1742177772393"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Entity-Component-System"><span class="toc-number">1.</span> <span class="toc-text">Entity-Component-System</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BD%93%E7%BB%84%E4%BB%B6%E7%B3%BB%E7%BB%9F-ECS-%E6%9E%B6%E6%9E%84"><span class="toc-number">1.0.1.</span> <span class="toc-text">实体组件系统(ECS)架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E6%9E%B6%E6%9E%84%E6%BC%94%E5%8F%98"><span class="toc-number">1.0.2.</span> <span class="toc-text">游戏引擎架构演变</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOTS1-0%E4%B8%AD%E7%9A%84ECS"><span class="toc-number">1.0.3.</span> <span class="toc-text">DOTS1.0中的ECS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOTS%E4%B8%8B%E5%85%B3%E4%BA%8EECS%E7%9A%84%E4%B8%93%E6%9C%89%E5%90%8D%E8%AF%8D%E5%92%8C%E6%A6%82%E5%BF%B5"><span class="toc-number">1.0.4.</span> <span class="toc-text">DOTS下关于ECS的专有名词和概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Entities-and-Components%E6%9C%AF%E8%AF%AD"><span class="toc-number">1.0.5.</span> <span class="toc-text">Entities and Components术语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#System%E6%9C%AF%E8%AF%AD"><span class="toc-number">1.0.6.</span> <span class="toc-text">System术语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOTS%E4%B8%8B%E7%9A%84ECS"><span class="toc-number">1.0.7.</span> <span class="toc-text">DOTS下的ECS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E5%85%85"><span class="toc-number">1.0.8.</span> <span class="toc-text">补充</span></a></li></ol></li></ol></li></ol>
+                </div>
+            
+            <hr />
+            <div itemprop="articleBody"><p>&nbsp;</p>
+<span id="more"></span>
+
+<h1 id="Entity-Component-System"><a href="#Entity-Component-System" class="headerlink" title="Entity-Component-System"></a>Entity-Component-System</h1><h3 id="实体组件系统-ECS-架构"><a href="#实体组件系统-ECS-架构" class="headerlink" title="实体组件系统(ECS)架构"></a>实体组件系统(ECS)架构</h3><ul>
+<li>遵循组合优于继承的原则</li>
+<li>面向数据设计</li>
+<li>弱耦合</li>
+<li>常被应用在游戏开发上</li>
+</ul>
+<h3 id="游戏引擎架构演变"><a href="#游戏引擎架构演变" class="headerlink" title="游戏引擎架构演变"></a>游戏引擎架构演变</h3><ul>
+<li>在ECS架构出现之前，早期的游戏引擎或游戏的架构，多以多层对象继承的方式来组织，都是按空间节点为较基础的对象，一层一层抽象继承下来的<br><img src="/images/DOTS/dots_006.png"></li>
+<li>后来随着发展，游戏引擎逐渐演变成以Actor Component这种以轻继承，以对象组合代替多层继承的方式来组织</li>
+<li>其中Actor是个Component的容器，而负责具体逻辑更新部分则由具体的Component负责</li>
+<li>对象几乎没有多态，做到了对象间的解耦</li>
+<li>如Reality Engine、UE3以后的版本以及Unity几乎都是这种架构<br><img src="/images/DOTS/dots_007.png"></li>
+<li>我们要明确ECS架构的本质，组合的是数据数组，而非对象数组。其中Entity本身虽然叫做实体，但并非对象，也不是一个容器，而是一个对象索引的id，是一个标识符，其中并不包含任何数据与逻辑；而Component才是个容器，但它不是一个对象容器，而仅是一个数据容器，其中不包含任何逻辑。</li>
+<li>Entity与Component的关系，往往是Entity充当数据的标识符或Key<br>来使用，而ECS中的S(System)才是真正负责对数据进行操作的部分</li>
+<li>换句话说，System才是对具有特定组件的特定实体执行的操作<br><img src="/images/DOTS/dots_008.png"></li>
+</ul>
+<h3 id="DOTS1-0中的ECS"><a href="#DOTS1-0中的ECS" class="headerlink" title="DOTS1.0中的ECS"></a>DOTS1.0中的ECS</h3><ul>
+<li>ECS架构一直在演变</li>
+<li>应用场景不同，各家实现和工作流有差异</li>
+<li>DOTS1.0中的ECS与老版本变化较大，不要看老资料</li>
+<li>DOTS1.0中，为了让大家从面向对象设计向面向数据设计编写代码时，过度更平滑些，引入了不少特性与专有名词，让大家在编写代码时能找到一些面向对象的感觉。因此我们在学习DOTS时，不要先入为主去质疑DOTS下的ECS为什么如此设计，要以DOTS下的ECS工作流方式去学习。另外DOTS中的ECS只是DOTS中的一部分，并不是你了解ECS架构，甚至自己动手实践过ECS就一定能学好</li>
+<li>开发心态去接受</li>
+</ul>
+<h3 id="DOTS下关于ECS的专有名词和概念"><a href="#DOTS下关于ECS的专有名词和概念" class="headerlink" title="DOTS下关于ECS的专有名词和概念"></a>DOTS下关于ECS的专有名词和概念</h3><ul>
+<li><p><strong>Archetypes原型</strong>和<strong>Archetypes Chunk</strong>的概念</p>
+<ul>
+<li>Archetypes依然不是个对象，它依然是一个标识符，它标识的是所有具有相同Component组合的实体类型</li>
+<li><img src="/images/DOTS/dots_009.png"></li>
+<li>举个例子，这里由Position、Rotation、Renderer、Rigid Body四个Component组件组合成的Entity A与Entity B共享一种原型，而由Position、Rotation、Renderer三个组件组合成的Entity C则属于另外一种原型</li>
+<li>这里可以将Archetype原型理解成不同的Entity在内存上的Layout布局</li>
+<li><img src="/images/DOTS/dots_010.png"></li>
+<li>如图所示，26个Entity被分为8种原型，而每个Archetype原型所标记的内存会被分成固定大小连续的非托管内存块，被称为Archetype Chunk，这里简称Chunk</li>
+<li><img src="/images/DOTS/dots_011.png"></li>
+<li>Chunk中会包含共享同一原型的实体组件数组，默认设置下每个Chunk大小为16KB，如果实体组件填充不满的情况下，也要有留白</li>
+<li>Chunk存在的目的，是为了方便做数据并行计算，方便做缓存的prefetch在数据对齐的同时又可以匹配缓存的catch line，另外在Query查询时，无论是使用主线程查询、工作线程并行查询、还是按Chunk查询时，都可以利用其在Component的数组纵向维度上分块对齐的方式来做slice切片</li>
+</ul>
+</li>
+<li><p><strong>World</strong>与<strong>EntityManager</strong>的概念</p>
+<ul>
+<li>World是一系列Entity的组合，每一个Entity在一个World中是唯一的，统一受到world中的EntityManager结构的管理</li>
+<li>EntityManager负责创建、销毁、修改世界中的实体</li>
+</ul>
+</li>
+<li><p><strong>Structural Change</strong>的概念</p>
+<ul>
+<li>所有导致需要重新组织内存块或内存块内容的操作都称为Structural Change</li>
+<li>这里包括两个重点，一个是改变结构，一个是改变内容，这两种改变都只能在主线程中做，而不能在工作线程中做，是Resource Intensity资源密集类型的操作，效率很差</li>
+<li><img src="/images/DOTS/dots_012.png" alt="Structural Change"></li>
+<li>应该能想到，添加或删除一个Entity对应的组件，导致所属原型发生变化，就属于Structural Change的概念</li>
+<li>另外，创建和销毁Entity实体、设置Share Component值也会被视为Structural Change，要尽量避免</li>
+<li><img src="/images/DOTS/dots_013.png"></li>
+<li>而当我们明确我们一定不会有Structural Change的操作时，我们可以在编辑时做Bake的操作，虽然会降低运行时的逻辑灵活性，但会提高运行时效率</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><img src="/images/DOTS/dots_014.png"></p>
+<ul>
+<li>这张图可能会造成误解</li>
+<li>不同原型内的相同组件，在内存上并不是像上图这样是连续的，这只是为了展示在Query查询时，会通过slice切片方式来阻止查询，让你感觉上是连续的，但并不会造成内存上的移动<br><img src="/images/DOTS/dots_015.png"></li>
+</ul>
+<h3 id="Entities-and-Components术语"><a href="#Entities-and-Components术语" class="headerlink" title="Entities and Components术语"></a>Entities and Components术语</h3><p><img src="/images/DOTS/dots_016.png"><br><img src="/images/DOTS/dots_017.png"><br><img src="/images/DOTS/dots_018.png"><br><img src="/images/DOTS/dots_019.png"></p>
+<h3 id="System术语"><a href="#System术语" class="headerlink" title="System术语"></a>System术语</h3><p><img src="/images/DOTS/dots_020.png"></p>
+<h3 id="DOTS下的ECS"><a href="#DOTS下的ECS" class="headerlink" title="DOTS下的ECS"></a>DOTS下的ECS</h3><ul>
+<li>Entity : Entity不是一个容器，它只是一个标识符，它用来指示某个对象的存在。系统可以用它来操作，可以通过组件来分配某些属性</li>
+<li>Component : 组件是一个数据容器，没有任何逻辑，一组特定的参数关联在一起并定义属性</li>
+<li>System : 系统是负责对数据进行操作的部分。换句话说，系统是对具有特定属性(组件)的特定实体执行的操作</li>
+</ul>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><ul>
+<li>类比例子并不是为了说明缓存分级的原因</li>
+<li>而是用组织排队去理解面向数据设计，可以更形象的理解ECS、Jobs与Burst在DOTS中分别扮演哪些角色，做了哪些事</li>
+<li>缓存分层的原因本质是物理距离决定的</li>
+</ul>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2023/06/17/dots-02/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2023/06/17/dots-02/";
+            const title         = "「DOTS(2) DOTS中的ECS架构与概念术语」";
+            const excerpt       = `&nbsp;`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/Dots/" rel="tag">Dots</a>, <a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2025-03-17T02:16:12.393Z" itemprop="dateModified">最后编辑：2025-03-17</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" DOTS(1) 面向数据设计DOD" href="/2023/06/16/dots-01/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" Unity底层是如何处理C#的" href="/2023/06/18/Unity-Underlying-Principle/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+        <div id="disqus_thread" class="post-comments lazy-load"></div>
+
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://example.com/2023/06/17/dots-02/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '2023/06/17/dots-02/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    var load_comm = () => {
+        if (typeof DISQUS === 'undefined') {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://unishiki.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        } else {
+            DISQUS.reset({
+                reload: true,
+                config: function () {  
+                    this.page.url = 'http://example.com/2023/06/17/dots-02/';  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = '2023/06/17/dots-02/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                }
+            });
+        }
+    };
+    
+</script>
+<script async id="dsq-count-scr" src="//unishiki.disqus.com/count.js"></script>
+
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/ava1.jpg" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                116
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                3
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                16
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Entity-Component-System"><span class="toc-text">Entity-Component-System</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BD%93%E7%BB%84%E4%BB%B6%E7%B3%BB%E7%BB%9F-ECS-%E6%9E%B6%E6%9E%84"><span class="toc-text">实体组件系统(ECS)架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E6%9E%B6%E6%9E%84%E6%BC%94%E5%8F%98"><span class="toc-text">游戏引擎架构演变</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOTS1-0%E4%B8%AD%E7%9A%84ECS"><span class="toc-text">DOTS1.0中的ECS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOTS%E4%B8%8B%E5%85%B3%E4%BA%8EECS%E7%9A%84%E4%B8%93%E6%9C%89%E5%90%8D%E8%AF%8D%E5%92%8C%E6%A6%82%E5%BF%B5"><span class="toc-text">DOTS下关于ECS的专有名词和概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Entities-and-Components%E6%9C%AF%E8%AF%AD"><span class="toc-text">Entities and Components术语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#System%E6%9C%AF%E8%AF%AD"><span class="toc-text">System术语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOTS%E4%B8%8B%E7%9A%84ECS"><span class="toc-text">DOTS下的ECS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E5%85%85"><span class="toc-text">补充</span></a></li></ol></li></ol></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a><span class="category-list-count">95</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">开发记录</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%99%E7%A8%8B%E6%96%87%E6%A1%A3/">教程文档</a><span class="category-list-count">4</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Compute-Shader/" style="font-size: 0.62em;">Compute Shader</a> <a href="/tags/Dots/" style="font-size: 0.67em;">Dots</a> <a href="/tags/Java/" style="font-size: 0.64em;">Java</a> <a href="/tags/Minecraft/" style="font-size: 0.6em;">Minecraft</a> <a href="/tags/Shader/" style="font-size: 0.76em;">Shader</a> <a href="/tags/TwilightMelody/" style="font-size: 0.64em;">TwilightMelody</a> <a href="/tags/UI/" style="font-size: 0.71em;">UI</a> <a href="/tags/Unity/" style="font-size: 0.8em;">Unity</a> <a href="/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/" style="font-size: 0.6em;">Unity编辑器拓展</a> <a href="/tags/%E5%8A%A8%E6%95%88/" style="font-size: 0.69em;">动效</a> <a href="/tags/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/" style="font-size: 0.65em;">底层原理</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 0.75em;">性能优化</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%8F%AF%E8%A7%86%E5%8C%96/" style="font-size: 0.73em;">数学可视化</a> <a href="/tags/%E6%96%87%E6%A1%A3/" style="font-size: 0.65em;">文档</a> <a href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 0.67em;">算法与数据结构</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="font-size: 0.78em;">计算机图形学</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2025/07/25/ComputeShader-MagicLibrary/"><i class="fa  fa-book"></i> 浅尝ComputeShader-魔法图书馆</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/06/23/MyUIProject-09/"><i class="fa  fa-book"></i> UI动效 09</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/06/12/SourceCode-M3/"><i class="fa  fa-book"></i> 源码-魔法金属伤害计算</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/05/19/TwilightMelody-2-2025-05-01/"><i class="fa  fa-book"></i> TwilightMelody-2-2025-05-01</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/03/17/ComputeShaderLearning-1/"><i class="fa  fa-book"></i> GPU粒子实现原理与ComputeShader GPU Instance的基础应用</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
+                        
+                        <li><a href="mailto:ccc895286662@gmail.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/unishiki"><i class="fa fa-github"></i></a></li>
+                        
+                        <!-- New links -->
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2025 uni_shiki 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by uni_shiki.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="snow-switch">
+                        <span class="fa fa-snowflake-o"></span>
+                    </div>
+                
+                
+                    <div class="box group-box">
+                        <a href="https://jq.qq.com/?_wv=1027&k=CpdI35JY" target="_blank" rel="nofollow">
+                            <span class="fa fa-users"></span>
+                        </a>
+                    </div>
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3080117718"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>

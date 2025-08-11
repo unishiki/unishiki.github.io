@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="../images/mfmf.webp">
+  
+  <title>UI动效 08 | uni_shiki</title>
+  
+  <meta name="author" content="uni_shiki" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="Shader, UI, Unity, 动效" />
+  
+  <meta name="description" content="按钮UI动效——昼夜切换">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UI动效 08">
+<meta property="og:url" content="http://example.com/2024/12/31/MyUIProject-08/index.html">
+<meta property="og:site_name" content="uni_shiki">
+<meta property="og:description" content="按钮UI动效——昼夜切换">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2024/12/31/MyUIProject-08/images/MyUIProject/UI_8_7.png">
+<meta property="article:published_time" content="2024-12-31T06:51:37.000Z">
+<meta property="article:modified_time" content="2025-08-11T09:31:30.063Z">
+<meta property="article:author" content="uni_shiki">
+<meta property="article:tag" content="Unity">
+<meta property="article:tag" content="Shader">
+<meta property="article:tag" content="UI">
+<meta property="article:tag" content="动效">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2024/12/31/MyUIProject-08/images/MyUIProject/UI_8_7.png">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>链接</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://space.bilibili.com/33554119">Bilibili</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">uni_shiki</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>uni_shiki</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/12/31/MyUIProject-08/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">UI动效 08</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2024-12-31T06:51:37.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2024-12-31</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">uni_shiki</span>
+                </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~44.87K
+                        
+                        字
+                    </li>
+                
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1754904690063"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8C%89%E9%92%AEUI%E5%8A%A8%E6%95%88%E2%80%94%E2%80%94%E6%98%BC%E5%A4%9C%E5%88%87%E6%8D%A2"><span class="toc-number">1.</span> <span class="toc-text">按钮UI动效——昼夜切换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-number">1.0.1.</span> <span class="toc-text">实现思路</span></a></li></ol></li></ol></li></ol>
+                </div>
+            
+            <hr />
+            <div itemprop="articleBody"><h1 id="按钮UI动效——昼夜切换"><a href="#按钮UI动效——昼夜切换" class="headerlink" title="按钮UI动效——昼夜切换"></a>按钮UI动效——昼夜切换</h1><span id="more"></span>
+
+<ul>
+<li>效果参考：<br>  <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1N44y1c7um">https://www.bilibili.com/video/BV1N44y1c7um</a></li>
+<li>SDF参考：<br>  <a target="_blank" rel="noopener" href="https://iquilezles.org/articles/distfunctions2d/">https://iquilezles.org/articles/distfunctions2d/</a></li>
+<li>按钮Mask贴图：<br><img src="/images/MyUIProject/UI_5_2.png"></li>
+</ul>
+<hr>
+<h3 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h3><ul>
+<li>绘制按钮外形</li>
+</ul>
+<p>思路：采样Mask贴图，最后输出颜色时乘上Mask的a通道即可。</p>
+<div class="xControl">
+    <div class="xHeading"><div class="xIcon"><i class="fa fa-plus"></i></div><span>代码(若展不开请等待加载完成)</span></div>
+    <div class="xContent"><div class="inner">
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fixed4 frag (v2f i) : SV_Target</span><br><span class="line">&#123;</span><br><span class="line">    fixed4 col = fixed4(1,1,1,1);</span><br><span class="line">    fixed4 shape = tex2D(_MainTex, i.uv);</span><br><span class="line"></span><br><span class="line">    col.a *= shape.a;</span><br><span class="line">    <span class="built_in">return</span> col;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+ 
+    </div></div>
+    </div>
+
+<hr>
+<ul>
+<li>绘制Handle及高光、内阴影</li>
+</ul>
+<p><img src="/images/MyUIProject/UI_8_1.png"></p>
+<p>思路：利用Circle()函数画主体的圆，再画两个圆进行计算高光和阴影。同时开放SunPos参数控制Handle的左右移动范围。</p>
+<div class="xControl">
+    <div class="xHeading"><div class="xIcon"><i class="fa fa-plus"></i></div><span>代码</span></div>
+    <div class="xContent"><div class="inner">
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">float</span> Circle(fixed2 uv,fixed2 center,<span class="built_in">float</span> size,<span class="built_in">float</span> blur)</span><br><span class="line">&#123;</span><br><span class="line">    uv = uv - center;</span><br><span class="line">    uv /= size;</span><br><span class="line">    <span class="built_in">float</span> len = length(uv);</span><br><span class="line">    <span class="built_in">return</span> smoothstep(1.,1.-blur,len);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+ 
+    </div></div>
+    </div>
+
+<hr>
+<ul>
+<li>背景制作</li>
+</ul>
+<p><img src="/images/MyUIProject/UI_8_2.png"></p>
+<p>思路：这时考虑到背景元素，先做三个变色的圆环，写在Handle前面</p>
+<div class="xControl">
+    <div class="xHeading"><div class="xIcon"><i class="fa fa-plus"></i></div><span>代码</span></div>
+    <div class="xContent"><div class="inner">
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br></pre></td><td class="code"><pre><span class="line">Shader <span class="string">&quot;Unlit/DayNightButton&quot;</span></span><br><span class="line">&#123;</span><br><span class="line">    Properties</span><br><span class="line">    &#123;</span><br><span class="line">        [hideInInspector]_MainTex (<span class="string">&quot;Texture&quot;</span>, 2D) = <span class="string">&quot;white&quot;</span> &#123;&#125;</span><br><span class="line">        _UVScale (<span class="string">&quot;UVScale&quot;</span>, Float) = 2</span><br><span class="line">        _SunPos (<span class="string">&quot;SunPos&quot;</span>, Range(-1.6, 1.6)) = -1.6</span><br><span class="line">        _SunSize (<span class="string">&quot;SunSize&quot;</span>, Float) = 0.75</span><br><span class="line">        _SunBlur (<span class="string">&quot;SunBlur&quot;</span>, Float) = 0.05</span><br><span class="line">        _SunColor (<span class="string">&quot;SunColor&quot;</span>, Color) = (1, 0.7568627, 0.1058823, 1)</span><br><span class="line"></span><br><span class="line">        _SunShadowLightPos1 (<span class="string">&quot;ShadowLightPos1&quot;</span>, Vector) = (-0.03, 0.04, 0, 0)</span><br><span class="line">        _SunShadowLightSize1 (<span class="string">&quot;ShadowLightSize1&quot;</span>, Float) = 0.78</span><br><span class="line">        _SunShadowLightPos2 (<span class="string">&quot;ShadowLightPos2&quot;</span>, Vector) = (-0.04, -0.05, 0, 0)</span><br><span class="line">        _SunShadowLightSize2 (<span class="string">&quot;ShadowLightSize2&quot;</span>, Float) = 0.81</span><br><span class="line">        _HighLightColor (<span class="string">&quot;HighLightColor&quot;</span>, Color) = (1,1,0,1) // <span class="comment">#F1DE35</span></span><br><span class="line">        _ShadowColor (<span class="string">&quot;ShadowColor&quot;</span>, Color) = (0,1,1,1) // <span class="comment">#3B4B4B</span></span><br><span class="line">        _HighLightBlur (<span class="string">&quot;HighLightBlur&quot;</span>, Float) = 0.14</span><br><span class="line">        _ShadowBlur (<span class="string">&quot;ShadowBlur&quot;</span>, Float) = 0.24</span><br><span class="line"></span><br><span class="line">        _Circle3Range (<span class="string">&quot;Circle3Range&quot;</span>, Vector) = (1.5, 2.4, 3.3, 0)</span><br><span class="line">    &#125;</span><br><span class="line">    SubShader</span><br><span class="line">    &#123;</span><br><span class="line">        Tags &#123; <span class="string">&quot;RenderType&quot;</span>=<span class="string">&quot;Transparent&quot;</span> <span class="string">&quot;Queue&quot;</span>=<span class="string">&quot;Transparent&quot;</span>&#125;</span><br><span class="line">        Blend SrcAlpha OneMinusSrcAlpha</span><br><span class="line"></span><br><span class="line">        Pass</span><br><span class="line">        &#123;</span><br><span class="line">            CGPROGRAM</span><br><span class="line">            <span class="comment">#pragma vertex vert</span></span><br><span class="line">            <span class="comment">#pragma fragment frag</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">#include &quot;UnityCG.cginc&quot;</span></span><br><span class="line"></span><br><span class="line">            struct appdata</span><br><span class="line">            &#123;</span><br><span class="line">                float4 vertex : POSITION;</span><br><span class="line">                float2 uv : TEXCOORD0;</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            struct v2f</span><br><span class="line">            &#123;</span><br><span class="line">                float2 uv : TEXCOORD0;</span><br><span class="line">                float4 vertex : SV_POSITION;</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            sampler2D _MainTex;</span><br><span class="line">            float4 _MainTex_ST;</span><br><span class="line">            <span class="built_in">float</span> _UVScale;</span><br><span class="line">            fixed _SunPos;</span><br><span class="line">            fixed4 _BGColor;</span><br><span class="line">            <span class="built_in">float</span> _ScaleOffset;</span><br><span class="line">            <span class="built_in">float</span> _SunSize;</span><br><span class="line">            <span class="built_in">float</span> _SunBlur;</span><br><span class="line">            fixed4 _SunColor;</span><br><span class="line"></span><br><span class="line">            float4 _SunShadowLightPos1;</span><br><span class="line">            float4 _SunShadowLightPos2;</span><br><span class="line">            <span class="built_in">float</span> _SunShadowLightSize1;</span><br><span class="line">            <span class="built_in">float</span> _SunShadowLightSize2;</span><br><span class="line">            <span class="built_in">float</span> _HighLightBlur;</span><br><span class="line">            <span class="built_in">float</span> _ShadowBlur;</span><br><span class="line">            fixed4 _HighLightColor;</span><br><span class="line">            fixed4 _ShadowColor;</span><br><span class="line"></span><br><span class="line">            fixed4 _Circle3Range;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">float</span> Circle(fixed2 uv,fixed2 center,<span class="built_in">float</span> size,<span class="built_in">float</span> blur)</span><br><span class="line">            &#123;</span><br><span class="line">                uv = uv - center;</span><br><span class="line">                uv /= size;</span><br><span class="line">                <span class="built_in">float</span> len = length(uv);</span><br><span class="line">                <span class="built_in">return</span> smoothstep(1.,1.-blur,len);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            v2f vert (appdata v)</span><br><span class="line">            &#123;</span><br><span class="line">                v2f o;</span><br><span class="line">                o.vertex = UnityObjectToClipPos(v.vertex);</span><br><span class="line">                o.uv = TRANSFORM_TEX(v.uv, _MainTex);</span><br><span class="line">                <span class="built_in">return</span> o;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            fixed4 frag (v2f i) : SV_Target</span><br><span class="line">            &#123;</span><br><span class="line">                fixed4 col = fixed4(1,1,1,1);</span><br><span class="line">                fixed4 shape = tex2D(_MainTex, i.uv);</span><br><span class="line"></span><br><span class="line">                // UV [0, 1] -&gt; [-1, 1]</span><br><span class="line">                i.uv -= 0.5;</span><br><span class="line">                i.uv *= _UVScale;</span><br><span class="line">                // Apply Image(Rect) scale</span><br><span class="line">                _ScaleOffset = 535.0 / 210.0;</span><br><span class="line">                i.uv = float2(i.uv.x * _ScaleOffset, i.uv.y);</span><br><span class="line"></span><br><span class="line">                /// BackGround Obj</span><br><span class="line">                // 3 Circle</span><br><span class="line">                fixed2 sunpos = fixed2(_SunPos, 0);</span><br><span class="line">                <span class="built_in">float</span> dis = abs(distance(i.uv, sunpos));</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (dis &lt; _Circle3Range.x)</span><br><span class="line">                &#123;</span><br><span class="line">                    _BGColor = fixed4(126.0/255.0, 172.0/255.0, 216.0/255.0, 1);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (dis &lt; _Circle3Range.y)</span><br><span class="line">                &#123;</span><br><span class="line">                    _BGColor = fixed4(94.0/255.0, 150.0/255.0, 205.0/255.0, 1);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (dis &lt; _Circle3Range.z)</span><br><span class="line">                &#123;</span><br><span class="line">                    _BGColor = fixed4(74.0/255.0, 137.0/255.0, 198.0/255.0, 1);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    _BGColor = fixed4(67.0/255.0, 131.0/255.0, 196.0/255.0, 1);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                // Handle</span><br><span class="line">                fixed sun = Circle(i.uv,sunpos,_SunSize,_SunBlur);</span><br><span class="line">                col = lerp(_BGColor, _SunColor, sun); // 先处理背景,再加上Handle</span><br><span class="line"></span><br><span class="line">                // HighLight and  Shadow</span><br><span class="line">                fixed2 sunpos1 = fixed2(_SunPos + _SunShadowLightPos1.x, _SunShadowLightPos1.y);</span><br><span class="line">                fixed2 sunpos2 = fixed2(_SunPos + _SunShadowLightPos2.x, _SunShadowLightPos2.y);</span><br><span class="line">                fixed sunShadowLight1 = Circle(i.uv,sunpos1,_SunShadowLightSize1,_HighLightBlur);</span><br><span class="line">                fixed sunShadowLight2 = Circle(i.uv,sunpos2,_SunShadowLightSize2,_ShadowBlur);</span><br><span class="line">                col = lerp(col, _HighLightColor, saturate(sunShadowLight1 - sunShadowLight2));</span><br><span class="line">                col = lerp(col, _ShadowColor, saturate(-1 * (sunShadowLight1 - sunShadowLight2)));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                // Shape</span><br><span class="line">                col.a *= shape.a;</span><br><span class="line">                <span class="built_in">return</span> col;</span><br><span class="line">            &#125;</span><br><span class="line">            ENDCG</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+ 
+    </div></div>
+    </div>
+
+<hr>
+<ul>
+<li>加入云层背景</li>
+</ul>
+<p><img src="/images/MyUIProject/UI_8_3.png"></p>
+<p>思路：通过画圆的叠加制作，注意要使用saturate函数防止画出的云不超过1，否则在叠加的时候会显示错误；先画背景层较淡的云再画上一层云防止遮盖。</p>
+<div class="xControl">
+    <div class="xHeading"><div class="xIcon"><i class="fa fa-plus"></i></div><span>代码</span></div>
+    <div class="xContent"><div class="inner">
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br></pre></td><td class="code"><pre><span class="line">Shader <span class="string">&quot;Unlit/DayNightButton&quot;</span></span><br><span class="line">&#123;</span><br><span class="line">    Properties</span><br><span class="line">    &#123;</span><br><span class="line">        [hideInInspector]_MainTex (<span class="string">&quot;Texture&quot;</span>, 2D) = <span class="string">&quot;white&quot;</span> &#123;&#125;</span><br><span class="line">        _UVScale (<span class="string">&quot;UVScale&quot;</span>, Float) = 2</span><br><span class="line">        _SunPos (<span class="string">&quot;SunPos&quot;</span>, Range(-1.6, 1.6)) = -1.6</span><br><span class="line">        _SunSize (<span class="string">&quot;SunSize&quot;</span>, Float) = 0.75</span><br><span class="line">        _SunBlur (<span class="string">&quot;SunBlur&quot;</span>, Float) = 0.05</span><br><span class="line">        _SunColor (<span class="string">&quot;SunColor&quot;</span>, Color) = (1, 0.7568627, 0.1058823, 1) // <span class="comment">#FAAB0F</span></span><br><span class="line"></span><br><span class="line">        _SunShadowLightPos1 (<span class="string">&quot;ShadowLightPos1&quot;</span>, Vector) = (-0.03, 0.04, 0, 0)</span><br><span class="line">        _SunShadowLightSize1 (<span class="string">&quot;ShadowLightSize1&quot;</span>, Float) = 0.78</span><br><span class="line">        _SunShadowLightPos2 (<span class="string">&quot;ShadowLightPos2&quot;</span>, Vector) = (-0.04, -0.05, 0, 0)</span><br><span class="line">        _SunShadowLightSize2 (<span class="string">&quot;ShadowLightSize2&quot;</span>, Float) = 0.81</span><br><span class="line">        _HighLightColor (<span class="string">&quot;HighLightColor&quot;</span>, Color) = (1,1,0,1) // <span class="comment">#F1DE35</span></span><br><span class="line">        _ShadowColor (<span class="string">&quot;ShadowColor&quot;</span>, Color) = (0,1,1,1) // <span class="comment">#3B4B4B</span></span><br><span class="line">        _HighLightBlur (<span class="string">&quot;HighLightBlur&quot;</span>, Float) = 0.14</span><br><span class="line">        _ShadowBlur (<span class="string">&quot;ShadowBlur&quot;</span>, Float) = 0.24</span><br><span class="line"></span><br><span class="line">        _Circle3Range (<span class="string">&quot;Circle3Range&quot;</span>, Vector) = (1.5, 2.4, 3.3, 0)</span><br><span class="line">        _Circle1ColorDay (<span class="string">&quot;Circle1ColorDay&quot;</span>, Color) = (0.4941176, 0.6745098, 0.8470588, 1)</span><br><span class="line">        _Circle2ColorDay (<span class="string">&quot;Circle2ColorDay&quot;</span>, Color) = (0.36862745, 0.58823529, 0.80392157, 1)</span><br><span class="line">        _Circle3ColorDay (<span class="string">&quot;Circle3ColorDay&quot;</span>, Color) = (0.29019608, 0.5372549, 0.77647059, 1)</span><br><span class="line">        _Circle4ColorDay (<span class="string">&quot;Circle4ColorDay&quot;</span>, Color) = (0.2627451, 0.51372549, 0.76862745, 1)</span><br><span class="line"></span><br><span class="line">        _CloudPos (<span class="string">&quot;CloudPos&quot;</span>, Vector) = (0,0,0,0)</span><br><span class="line">        _CloudSize (<span class="string">&quot;CloudSize&quot;</span>, Float) = 5</span><br><span class="line">    &#125;</span><br><span class="line">    SubShader</span><br><span class="line">    &#123;</span><br><span class="line">        Tags &#123; <span class="string">&quot;RenderType&quot;</span>=<span class="string">&quot;Transparent&quot;</span> <span class="string">&quot;Queue&quot;</span>=<span class="string">&quot;Transparent&quot;</span>&#125;</span><br><span class="line">        Blend SrcAlpha OneMinusSrcAlpha</span><br><span class="line"></span><br><span class="line">        Pass</span><br><span class="line">        &#123;</span><br><span class="line">            CGPROGRAM</span><br><span class="line">            <span class="comment">#pragma vertex vert</span></span><br><span class="line">            <span class="comment">#pragma fragment frag</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">#include &quot;UnityCG.cginc&quot;</span></span><br><span class="line"></span><br><span class="line">            struct appdata</span><br><span class="line">            &#123;</span><br><span class="line">                float4 vertex : POSITION;</span><br><span class="line">                float2 uv : TEXCOORD0;</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            struct v2f</span><br><span class="line">            &#123;</span><br><span class="line">                float2 uv : TEXCOORD0;</span><br><span class="line">                float4 vertex : SV_POSITION;</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            sampler2D _MainTex;</span><br><span class="line">            float4 _MainTex_ST;</span><br><span class="line">            <span class="built_in">float</span> _UVScale;</span><br><span class="line">            fixed _SunPos;</span><br><span class="line">            fixed4 _BGColor;</span><br><span class="line">            <span class="built_in">float</span> _ScaleOffset;</span><br><span class="line">            <span class="built_in">float</span> _SunSize;</span><br><span class="line">            <span class="built_in">float</span> _SunBlur;</span><br><span class="line">            fixed4 _SunColor;</span><br><span class="line"></span><br><span class="line">            float4 _SunShadowLightPos1;</span><br><span class="line">            float4 _SunShadowLightPos2;</span><br><span class="line">            <span class="built_in">float</span> _SunShadowLightSize1;</span><br><span class="line">            <span class="built_in">float</span> _SunShadowLightSize2;</span><br><span class="line">            <span class="built_in">float</span> _HighLightBlur;</span><br><span class="line">            <span class="built_in">float</span> _ShadowBlur;</span><br><span class="line">            fixed4 _HighLightColor;</span><br><span class="line">            fixed4 _ShadowColor;</span><br><span class="line"></span><br><span class="line">            fixed4 _Circle3Range;</span><br><span class="line">            fixed4 _Circle1ColorDay;</span><br><span class="line">            fixed4 _Circle2ColorDay;</span><br><span class="line">            fixed4 _Circle3ColorDay;</span><br><span class="line">            fixed4 _Circle4ColorDay;</span><br><span class="line"></span><br><span class="line">            fixed4 _CloudPos;</span><br><span class="line">            fixed _CloudSize;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">float</span> Circle(fixed2 uv,fixed2 center,<span class="built_in">float</span> size,<span class="built_in">float</span> blur)</span><br><span class="line">            &#123;</span><br><span class="line">                uv = uv - center;</span><br><span class="line">                uv /= size;</span><br><span class="line">                <span class="built_in">float</span> len = length(uv);</span><br><span class="line">                <span class="built_in">return</span> smoothstep(1.,1.-blur,len);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">float</span> DrawCloud(fixed2 uv,fixed2 center,<span class="built_in">float</span> size)</span><br><span class="line">            &#123;</span><br><span class="line">                uv = uv - center;</span><br><span class="line">                uv /= size;</span><br><span class="line">                <span class="built_in">float</span> col = Circle(uv,fixed2(-.04,0.02),0.18,0.05);</span><br><span class="line">                col += Circle(uv,fixed2(-0.22,-0.05),0.2,0.05); // L1</span><br><span class="line">                col += Circle(uv,fixed2(-0.42,-0.07),0.18,0.05); // L2</span><br><span class="line">                col += Circle(uv,fixed2(0.12,0),0.18,0.05); // R1</span><br><span class="line">                col += Circle(uv,fixed2(0.27,0.1),0.16,0.05); // R2</span><br><span class="line">                col += Circle(uv,fixed2(0.37,0.23),0.16,0.05); // R3</span><br><span class="line">                <span class="built_in">return</span> saturate(col);</span><br><span class="line">                //col = col * smoothstep(-0.1,-0.1+0.01,uv.y); // <span class="built_in">cut</span> off</span><br><span class="line">            &#125;</span><br><span class="line">            v2f vert (appdata v)</span><br><span class="line">            &#123;</span><br><span class="line">                v2f o;</span><br><span class="line">                o.vertex = UnityObjectToClipPos(v.vertex);</span><br><span class="line">                o.uv = TRANSFORM_TEX(v.uv, _MainTex);</span><br><span class="line">                <span class="built_in">return</span> o;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            fixed4 frag (v2f i) : SV_Target</span><br><span class="line">            &#123;</span><br><span class="line">                fixed4 col = fixed4(1,1,1,1);</span><br><span class="line">                fixed4 shape = tex2D(_MainTex, i.uv);</span><br><span class="line"></span><br><span class="line">                // UV [0, 1] -&gt; [-1, 1]</span><br><span class="line">                i.uv -= 0.5;</span><br><span class="line">                i.uv *= _UVScale;</span><br><span class="line">                // Apply Image(Rect) scale</span><br><span class="line">                _ScaleOffset = 535.0 / 210.0;</span><br><span class="line">                i.uv = float2(i.uv.x * _ScaleOffset, i.uv.y);</span><br><span class="line"></span><br><span class="line">                /// BackGround Obj</span><br><span class="line">                // 3 Circle</span><br><span class="line">                fixed2 sunpos = fixed2(_SunPos, 0);</span><br><span class="line">                <span class="built_in">float</span> dis = abs(distance(i.uv, sunpos));</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (dis &lt; _Circle3Range.x)</span><br><span class="line">                &#123;</span><br><span class="line">                    _BGColor = _Circle1ColorDay;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (dis &lt; _Circle3Range.y)</span><br><span class="line">                &#123;</span><br><span class="line">                    _BGColor = _Circle2ColorDay;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (dis &lt; _Circle3Range.z)</span><br><span class="line">                &#123;</span><br><span class="line">                    _BGColor = _Circle3ColorDay;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    _BGColor = _Circle4ColorDay;</span><br><span class="line">                &#125;</span><br><span class="line">                // Clouds</span><br><span class="line">                col = lerp(_BGColor, fixed4(0.635294,0.7568627,0.87843137,1), DrawCloud(i.uv, fixed2(_CloudPos.x - 0.04 , _CloudPos.y + 0.42), _CloudSize));</span><br><span class="line">                col = lerp(col, fixed4(1,1,1,1), DrawCloud(i.uv, _CloudPos.xy, _CloudSize));</span><br><span class="line">                //</span><br><span class="line"></span><br><span class="line">                /// Handle</span><br><span class="line">                fixed sun = Circle(i.uv,sunpos,_SunSize,_SunBlur);</span><br><span class="line">                col = lerp(col, _SunColor, sun);</span><br><span class="line">                // HighLight and  Shadow</span><br><span class="line">                fixed2 sunpos1 = fixed2(_SunPos + _SunShadowLightPos1.x, _SunShadowLightPos1.y);</span><br><span class="line">                fixed2 sunpos2 = fixed2(_SunPos + _SunShadowLightPos2.x, _SunShadowLightPos2.y);</span><br><span class="line">                fixed sunShadowLight1 = Circle(i.uv,sunpos1,_SunShadowLightSize1,_HighLightBlur);</span><br><span class="line">                fixed sunShadowLight2 = Circle(i.uv,sunpos2,_SunShadowLightSize2,_ShadowBlur);</span><br><span class="line">                col = lerp(col, _HighLightColor, saturate(sunShadowLight1 - sunShadowLight2));</span><br><span class="line">                col = lerp(col, _ShadowColor, saturate(-1 * (sunShadowLight1 - sunShadowLight2)));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                // Shape</span><br><span class="line">                col.a *= shape.a;</span><br><span class="line">                <span class="built_in">return</span> col;</span><br><span class="line">            &#125;</span><br><span class="line">            ENDCG</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+ 
+    </div></div>
+    </div>
+
+<hr>
+<ul>
+<li>制作背景昼夜颜色插值效果</li>
+</ul>
+<p><img src="/images/MyUIProject/UI_8_4.png"></p>
+<p>思路：定义昼夜背景色，使用Handle的x轴位置Remap到[0, 1]做插值。</p>
+<div class="xControl">
+    <div class="xHeading"><div class="xIcon"><i class="fa fa-plus"></i></div><span>代码</span></div>
+    <div class="xContent"><div class="inner">
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">// ...</span><br><span class="line"></span><br><span class="line">_Circle1ColorDay (<span class="string">&quot;Circle1ColorDay&quot;</span>, Color) = (0.4941176, 0.6745098, 0.8470588, 1)</span><br><span class="line">_Circle2ColorDay (<span class="string">&quot;Circle2ColorDay&quot;</span>, Color) = (0.36862745, 0.58823529, 0.80392157, 1)</span><br><span class="line">_Circle3ColorDay (<span class="string">&quot;Circle3ColorDay&quot;</span>, Color) = (0.29019608, 0.5372549, 0.77647059, 1)</span><br><span class="line">_Circle4ColorDay (<span class="string">&quot;Circle4ColorDay&quot;</span>, Color) = (0.2627451, 0.51372549, 0.76862745, 1)</span><br><span class="line"></span><br><span class="line">_Circle1ColorNight (<span class="string">&quot;Circle1ColorNight&quot;</span>, Color) = (0.4, 0.4196078, 0.4862745, 1)</span><br><span class="line">_Circle2ColorNight (<span class="string">&quot;Circle2ColorNight&quot;</span>, Color) = (0.2352941, 0.27058824, 0.3529412, 1)</span><br><span class="line">_Circle3ColorNight (<span class="string">&quot;Circle3ColorNight&quot;</span>, Color) = (0.1529412, 0.1882353, 0.2705882, 1)</span><br><span class="line">_Circle4ColorNight (<span class="string">&quot;Circle4ColorNight&quot;</span>, Color) = (0.1098039, 0.14509804, 0.2470588, 1)</span><br><span class="line"></span><br><span class="line">// ...</span><br><span class="line"></span><br><span class="line"><span class="built_in">float</span> Remap(<span class="built_in">float</span> value, fixed2 InMinMax, fixed2 OutMinMax)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">return</span> OutMinMax.x + (value - InMinMax.x) * (OutMinMax.y - OutMinMax.x) / (InMinMax.y - InMinMax.x);</span><br><span class="line">&#125;</span><br><span class="line">// ...</span><br><span class="line"></span><br><span class="line">// fragment:</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (dis &lt; _Circle3Range.x)</span><br><span class="line">&#123;</span><br><span class="line">    _BGColor = lerp(_Circle1ColorDay, _Circle1ColorNight, Remap(_SunPos, fixed2(-1.6, 1.6), fixed2(0, 1)));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (dis &lt; _Circle3Range.y)</span><br><span class="line">&#123;</span><br><span class="line">    _BGColor = lerp(_Circle2ColorDay, _Circle2ColorNight, Remap(_SunPos, fixed2(-1.6, 1.6), fixed2(0, 1)));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (dis &lt; _Circle3Range.z)</span><br><span class="line">&#123;</span><br><span class="line">    _BGColor = lerp(_Circle3ColorDay, _Circle3ColorNight, Remap(_SunPos, fixed2(-1.6, 1.6), fixed2(0, 1)));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    _BGColor = lerp(_Circle4ColorDay, _Circle4ColorNight, Remap(_SunPos, fixed2(-1.6, 1.6), fixed2(0, 1)));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
+    </div></div>
+    </div>
+
+<p>Handle主体颜色同理。</p>
+<hr>
+<ul>
+<li>制作云随Handle移动的下移插值效果</li>
+</ul>
+<p>思路：使用Handle的X轴位置Remap到[0, 1]做云Y轴位置的[0, -2]插值。</p>
+<div class="xControl">
+    <div class="xHeading"><div class="xIcon"><i class="fa fa-plus"></i></div><span>代码</span></div>
+    <div class="xContent"><div class="inner">
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// Clouds</span><br><span class="line">col = lerp(_BGColor, fixed4(0.635294,0.7568627,0.87843137,1), DrawCloud(i.uv, fixed2(_CloudPos.x - 0.04 , _CloudPos.y + 0.42 + Remap(_SunPos, fixed2(-1.6, 1.6), fixed2(0, -2))), _CloudSize));</span><br><span class="line">col = lerp(col, fixed4(1,1,1,1), DrawCloud(i.uv, fixed2(_CloudPos.x, _CloudPos.y + Remap(_SunPos, fixed2(-1.6, 1.6), fixed2(0, -2))), _CloudSize));</span><br></pre></td></tr></table></figure>
+ 
+    </div></div>
+    </div>
+
+<hr>
+<ul>
+<li>绘制”月球坑”与显隐控制</li>
+</ul>
+<p>思路：继续使用Circle函数在Handle后面继续绘制，有黑色描边则需要绘制两次，显隐则使用Handle的X轴位置Remap到[0, 1]做颜色插值，为了不在移动Handle的一开始就出现月球坑，使用clamp函数进行一些偏移。</p>
+<div class="xControl">
+    <div class="xHeading"><div class="xIcon"><i class="fa fa-plus"></i></div><span>代码</span></div>
+    <div class="xContent"><div class="inner">
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">//...</span><br><span class="line">_HoleCenterX (<span class="string">&quot;HoleCenterX&quot;</span>, Vector) = (0.31, -0.11, -0.31, 0)</span><br><span class="line">_HoleCenterY (<span class="string">&quot;HoleCenterY&quot;</span>, Vector) = (0.06, -0.35, 0.24, 0)</span><br><span class="line">_HoleSize (<span class="string">&quot;HoleSize&quot;</span>, Vector) = (0.24, 0.16, 0.15, 0)</span><br><span class="line">_HoleShadowSize (<span class="string">&quot;HoleShadowSize&quot;</span>, Float) = 0.02</span><br><span class="line">_HoleShadowBlur (<span class="string">&quot;HoleShadowBlur&quot;</span>, Float) = 0.1</span><br><span class="line">_HoleShadowColor (<span class="string">&quot;HoleShadowColor&quot;</span>, Color) = (0.4 ,0.4, 0.4,1)</span><br><span class="line"></span><br><span class="line">//...</span><br><span class="line">fixed4 _HoleCenterX;</span><br><span class="line">fixed4 _HoleCenterY;</span><br><span class="line">fixed4 _HoleSize;</span><br><span class="line">fixed _HoleShadowBlur;</span><br><span class="line"><span class="built_in">float</span> _HoleShadowSize;</span><br><span class="line">fixed4 _HoleShadowColor;</span><br><span class="line">//...</span><br><span class="line"></span><br><span class="line">/// Handle</span><br><span class="line">fixed sun = Circle(i.uv,sunpos,_SunSize,_SunBlur);</span><br><span class="line">col = lerp(col, lerp(_SunColor, _MoonColor, Remap(_SunPos, fixed2(-1.6, 1.6), fixed2(0, 1))), sun);</span><br><span class="line">// 3 Hole <span class="keyword">in</span> Handle</span><br><span class="line">fixed hole1 =  Circle(i.uv,sunpos - fixed2(_HoleCenterX.x, _HoleCenterY.x),_HoleSize.x,0.05);</span><br><span class="line">fixed hole1S =  Circle(i.uv,sunpos - fixed2(_HoleCenterX.x, _HoleCenterY.x),_HoleSize.x + _HoleShadowSize, _HoleShadowBlur);</span><br><span class="line">fixed hole2 =  Circle(i.uv,sunpos - fixed2(_HoleCenterX.y, _HoleCenterY.y),_HoleSize.y,0.05);</span><br><span class="line">fixed hole2S =  Circle(i.uv,sunpos - fixed2(_HoleCenterX.y, _HoleCenterY.y),_HoleSize.y + _HoleShadowSize, _HoleShadowBlur);</span><br><span class="line">fixed hole3 =  Circle(i.uv,sunpos - fixed2(_HoleCenterX.z, _HoleCenterY.z),_HoleSize.z,0.05);</span><br><span class="line">fixed hole3S =  Circle(i.uv,sunpos - fixed2(_HoleCenterX.z, _HoleCenterY.z),_HoleSize.z + _HoleShadowSize, _HoleShadowBlur);</span><br><span class="line">col = lerp(col, _HoleShadowColor, clamp(Remap(_SunPos, fixed2(-1.6, 1.6), fixed2(-0.5, saturate(hole1S + hole2S + hole3S))), 0, 1)); // clamp与-0.5 为调整开始出现月球坑的时间</span><br><span class="line">col = lerp(col, fixed4(0.5882353,0.6352941,0.7137255,1), clamp(Remap(_SunPos, fixed2(-1.6, 1.6), fixed2(-0.5, saturate(hole1 + hole2 + hole3))), 0, 1));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+ 
+    </div></div>
+    </div>
+
+<hr>
+<ul>
+<li>绘制”星星”与显隐控制</li>
+</ul>
+<p>思路：使用SDF绘制单个星星，再加入位置、缩放、闪烁进度、边缘凹陷度等变量，并分别存入四维变量中，即一个四维变量控制4个星星。</p>
+<p><img src="/images/MyUIProject/UI_8_5_1.png" alt="绘制星星使用的SDF"><br><img src="/images/MyUIProject/UI_8_5.png" alt="SDF参数测试过程"><br><img src="/images/MyUIProject/UI_8_6.png"></p>
+<div class="xControl">
+    <div class="xHeading"><div class="xIcon"><i class="fa fa-plus"></i></div><span>代码</span></div>
+    <div class="xContent"><div class="inner">
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">//...</span><br><span class="line">fixed4 _StarColor;</span><br><span class="line">float4 _StarsSize;</span><br><span class="line">float4 _StarsBlink;</span><br><span class="line">float4 _StarsStrenth;</span><br><span class="line">fixed4 _StarsPosX;</span><br><span class="line">fixed4 _StarsPosY;</span><br><span class="line">fixed4 _StarsLen;</span><br><span class="line">fixed4 _StarsRound;</span><br><span class="line">float4 _StarsSizeG2;</span><br><span class="line">float4 _StarsBlinkG2;</span><br><span class="line">float4 _StarsStrenthG2;</span><br><span class="line">fixed4 _StarsPosXG2;</span><br><span class="line">fixed4 _StarsPosYG2;</span><br><span class="line">fixed4 _StarsLenG2;</span><br><span class="line">fixed4 _StarsRoundG2;</span><br><span class="line"></span><br><span class="line">//...</span><br><span class="line"><span class="built_in">float</span> dot2(fixed2 v)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">return</span> dot(v.x, v.y);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">float</span> dot2Offset(fixed2 v, fixed2 offset)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">return</span> dot(v.x - offset.x, v.y - offset.y);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">float</span> sdRoundedCross(fixed2 p, fixed h, fixed2 center,<span class="built_in">float</span> size)</span><br><span class="line">&#123;</span><br><span class="line">    p = p - center;</span><br><span class="line">    p /= size;</span><br><span class="line">    <span class="built_in">float</span> k = 0.5 * (h + 1.0 / h);</span><br><span class="line">    p = abs(p);</span><br><span class="line">    <span class="built_in">return</span> (p.x &lt; 1.0 &amp;&amp; p.y &lt; p.x * (k - h) + h) ?  k - sqrt(dot2(p - fixed2(1, k))) : 1; // sqrt(min(dot2(p - fixed2(0, h)), dot2(p - fixed2(1, 0))))</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">float</span> Remap(<span class="built_in">float</span> value, fixed2 InMinMax, fixed2 OutMinMax)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">return</span> OutMinMax.x + (value - InMinMax.x) * (OutMinMax.y - OutMinMax.x) / (InMinMax.y - InMinMax.x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//...</span><br><span class="line">// Stars</span><br><span class="line"><span class="built_in">float</span> clampSunPos = clamp(_SunPos.x, -0.4, 1.6); // _SunPos.x对星星的显隐影响从这里开始生效,-0.4时全部星星未出现，作为初始状态</span><br><span class="line">// 1-4</span><br><span class="line"><span class="built_in">float</span> star1 = sdRoundedCross(i.uv, _StarsLen.x, fixed2(_StarsPosX.x, _StarsPosY.x), _StarsSize.x) - _StarsRound.x;</span><br><span class="line">star1 = pow(star1, _StarsBlink.x * abs(sin(1.2 * clampSunPos)));</span><br><span class="line">//col = lerp(col, _StarColor, Remap(clamp(1.0 - smoothstep(0.0,0.1,abs(star1)) - (_StarsStrenth.x * sign(i.uv.x) * sign(i.uv.y) * dot2(i.uv)), 0.6, 1), fixed2(0.6, 1), fixed2(0, 1)));//uv偏移前</span><br><span class="line">col = lerp(col, _StarColor, Remap(clamp(1.0 - smoothstep(0.0,0.1,abs(star1)) - (_StarsStrenth.x  * sign(i.uv.x - _StarsPosX.x) * sign(i.uv.y - _StarsPosY.x) * dot2Offset(i.uv, fixed2(_StarsPosX.x, _StarsPosY.x))), 0.6, 1), fixed2(0.6, 1), fixed2(0, 1)));</span><br><span class="line"></span><br><span class="line"><span class="built_in">float</span> star2 = sdRoundedCross(i.uv, _StarsLen.y, fixed2(_StarsPosX.y, _StarsPosY.y), _StarsSize.y) - _StarsRound.y;</span><br><span class="line">star2 = pow(star2, _StarsBlink.y * abs(cos(clampSunPos + 140)));</span><br><span class="line">col = lerp(col, _StarColor, Remap(clamp(1.0 - smoothstep(0.0,0.1,abs(star2)) - (_StarsStrenth.y  * sign(i.uv.x - _StarsPosX.y) * sign(i.uv.y - _StarsPosY.y) * dot2Offset(i.uv, fixed2(_StarsPosX.y, _StarsPosY.y))), 0.6, 1), fixed2(0.6, 1), fixed2(0, 1)));</span><br><span class="line"></span><br><span class="line"><span class="built_in">float</span> star3 = sdRoundedCross(i.uv, _StarsLen.z, fixed2(_StarsPosX.z, _StarsPosY.z), _StarsSize.z) - _StarsRound.z;</span><br><span class="line">star3 = pow(star3, _StarsBlink.z * abs(sin(1.1 * clampSunPos+ 60)));</span><br><span class="line">col = lerp(col, _StarColor, Remap(clamp(1.0 - smoothstep(0.0,0.1,abs(star3)) - (_StarsStrenth.z  * sign(i.uv.x - _StarsPosX.z) * sign(i.uv.y - _StarsPosY.z) * dot2Offset(i.uv, fixed2(_StarsPosX.z, _StarsPosY.z))), 0.6, 1), fixed2(0.6, 1), fixed2(0, 1)));</span><br><span class="line"></span><br><span class="line"><span class="built_in">float</span> star4 = sdRoundedCross(i.uv, _StarsLen.w, fixed2(_StarsPosX.w, _StarsPosY.w), _StarsSize.w) - _StarsRound.w;</span><br><span class="line">star4 = pow(star4, _StarsBlink.w * abs(cos(clampSunPos + 140)));</span><br><span class="line">col = lerp(col, _StarColor, Remap(clamp(1.0 - smoothstep(0.0,0.1,abs(star4)) - (_StarsStrenth.w  * sign(i.uv.x - _StarsPosX.w) * sign(i.uv.y - _StarsPosY.w) * dot2Offset(i.uv, fixed2(_StarsPosX.w, _StarsPosY.w))), 0.6, 1), fixed2(0.6, 1), fixed2(0, 1)));</span><br><span class="line">// 5-8</span><br><span class="line"><span class="built_in">float</span> star5 = sdRoundedCross(i.uv, _StarsLenG2.x, fixed2(_StarsPosXG2.x, _StarsPosYG2.x), _StarsSizeG2.x) - _StarsRoundG2.x;</span><br><span class="line">star5 = pow(star5, _StarsBlinkG2.x * abs(sin(clampSunPos + 60)));</span><br><span class="line">col = lerp(col, _StarColor, Remap(clamp(1.0 - smoothstep(0.0,0.1,abs(star5)) - (_StarsStrenthG2.x  * sign(i.uv.x - _StarsPosXG2.x) * sign(i.uv.y - _StarsPosYG2.x) * dot2Offset(i.uv, fixed2(_StarsPosXG2.x, _StarsPosYG2.x))), 0.6, 1), fixed2(0.6, 1), fixed2(0, 1)));</span><br><span class="line"></span><br><span class="line"><span class="built_in">float</span> star6 = sdRoundedCross(i.uv, _StarsLenG2.y, fixed2(_StarsPosXG2.y, _StarsPosYG2.y), _StarsSizeG2.y) - _StarsRoundG2.y;</span><br><span class="line">star6 = pow(star6, _StarsBlinkG2.y * abs(sin(clampSunPos + 13)));</span><br><span class="line">col = lerp(col, _StarColor, Remap(clamp(1.0 - smoothstep(0.0,0.1,abs(star6)) - (_StarsStrenthG2.y  * sign(i.uv.x - _StarsPosXG2.y) * sign(i.uv.y - _StarsPosYG2.y) * dot2Offset(i.uv, fixed2(_StarsPosXG2.y, _StarsPosYG2.y))), 0.6, 1), fixed2(0.6, 1), fixed2(0, 1)));</span><br><span class="line"></span><br><span class="line"><span class="built_in">float</span> star7 = sdRoundedCross(i.uv, _StarsLenG2.z, fixed2(_StarsPosXG2.z, _StarsPosYG2.z), _StarsSizeG2.z) - _StarsRoundG2.z;</span><br><span class="line">star7 = pow(star7, _StarsBlinkG2.z * abs(sin(1.2 * clampSunPos)));</span><br><span class="line">col = lerp(col, _StarColor, Remap(clamp(1.0 - smoothstep(0.0,0.1,abs(star7)) - (_StarsStrenthG2.z  * sign(i.uv.x - _StarsPosXG2.z) * sign(i.uv.y - _StarsPosYG2.z) * dot2Offset(i.uv, fixed2(_StarsPosXG2.z, _StarsPosYG2.z))), 0.6, 1), fixed2(0.6, 1), fixed2(0, 1)));</span><br><span class="line"></span><br><span class="line"><span class="built_in">float</span> star8 = sdRoundedCross(i.uv, _StarsLenG2.w, fixed2(_StarsPosXG2.w, _StarsPosYG2.w), _StarsSizeG2.w) - _StarsRoundG2.w;</span><br><span class="line">star8 = pow(star8, _StarsBlinkG2.w * abs(sin(clampSunPos + 110)));</span><br><span class="line">col = lerp(col, _StarColor, Remap(clamp(1.0 - smoothstep(0.0,0.1,abs(star8)) - (_StarsStrenthG2.w  * sign(i.uv.x - _StarsPosXG2.w) * sign(i.uv.y - _StarsPosYG2.w) * dot2Offset(i.uv, fixed2(_StarsPosXG2.w, _StarsPosYG2.w))), 0.6, 1), fixed2(0.6, 1), fixed2(0, 1)));</span><br></pre></td></tr></table></figure>
+ 
+    </div></div>
+    </div>
+
+<hr>
+<ul>
+<li>绘制内阴影</li>
+</ul>
+<p>思路：使用圆角矩形SDF直接做效果，通过位置、大小微调来实现偏左上角的阴影。</p>
+<p><img src="/images/MyUIProject/UI_8_10.png" alt="无内阴影"><br><img src="/images/MyUIProject/UI_8_7.png" alt="有内阴影"></p>
+<div class="xControl">
+    <div class="xHeading"><div class="xIcon"><i class="fa fa-plus"></i></div><span>代码</span></div>
+    <div class="xContent"><div class="inner">
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//...</span><br><span class="line">_ShadowSize (<span class="string">&quot;ShadowSize&quot;</span>, Vector) = (3.5, 1.4, 0.64, 0.9)</span><br><span class="line">_ShadowRadius (<span class="string">&quot;ShadowRadius&quot;</span>, Float) = 1.32</span><br><span class="line">_ShadowPos (<span class="string">&quot;ShadowPos&quot;</span>, Vector) = (-0.62, 0.04, 0, 0)</span><br><span class="line">_ShadowColorOut (<span class="string">&quot;ShadowColorOut&quot;</span>, Color) = (0 , 0, 0, 1)</span><br><span class="line"></span><br><span class="line">//...</span><br><span class="line">fixed4 _ShadowSize;</span><br><span class="line">fixed4 _ShadowPos;</span><br><span class="line">fixed _ShadowRadius;</span><br><span class="line">fixed4 _ShadowColorOut;</span><br><span class="line"></span><br><span class="line">//...</span><br><span class="line">/// Shadow</span><br><span class="line"><span class="built_in">float</span> ra = min(_ShadowRadius,min(_ShadowSize.x,_ShadowSize.y));</span><br><span class="line"><span class="built_in">float</span> sdrb = sdRoundBox(i.uv + _ShadowPos.xy, _ShadowSize.xy, ra);</span><br><span class="line">col = lerp(col, _ShadowColorOut, 1.0 - smoothstep(0.0, _ShadowSize.z, abs(sdrb)));</span><br></pre></td></tr></table></figure>
+ 
+    </div></div>
+    </div>
+
+<hr>
+<p>其他：</p>
+<ul>
+<li>目前效果差不多了，星星的上下移动插值就不做了，原理和云层的位移一样。</li>
+<li>另外遮罩图形也可以用SDF做，可以做到完全不用材质，因为项目里已经有贴图了所以直接用了。</li>
+</ul>
+<hr>
+<p>完整代码与Inspector参数：</p>
+<div class="xControl">
+    <div class="xHeading"><div class="xIcon"><i class="fa fa-plus"></i></div><span>代码</span></div>
+    <div class="xContent"><div class="inner">
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br></pre></td><td class="code"><pre><span class="line">Shader <span class="string">&quot;Unlit/DayNightButton&quot;</span></span><br><span class="line">&#123;</span><br><span class="line">    Properties</span><br><span class="line">    &#123;</span><br><span class="line">        [hideInInspector]_MainTex (<span class="string">&quot;Texture&quot;</span>, 2D) = <span class="string">&quot;white&quot;</span> &#123;&#125;</span><br><span class="line">        _UVScale (<span class="string">&quot;UVScale&quot;</span>, Float) = 2</span><br><span class="line">        _SunPos (<span class="string">&quot;SunPos&quot;</span>, Range(-1.6, 1.6)) = -1.6</span><br><span class="line">        _SunSize (<span class="string">&quot;SunSize&quot;</span>, Float) = 0.75</span><br><span class="line">        _SunBlur (<span class="string">&quot;SunBlur&quot;</span>, Float) = 0.05</span><br><span class="line">        _SunColor (<span class="string">&quot;SunColor&quot;</span>, Color) = (1, 0.7568627, 0.1058823, 1) // <span class="comment">#FAAB0F</span></span><br><span class="line">        _MoonColor (<span class="string">&quot;MoonColor&quot;</span>, Color) = (0.76862745, 0.79215686, 0.8431373, 1) // <span class="comment">#C4CAD7</span></span><br><span class="line"></span><br><span class="line">        _SunShadowLightPos1 (<span class="string">&quot;ShadowLightPos1&quot;</span>, Vector) = (-0.03, 0.04, 0, 0)</span><br><span class="line">        _SunShadowLightSize1 (<span class="string">&quot;ShadowLightSize1&quot;</span>, Float) = 0.78</span><br><span class="line">        _SunShadowLightPos2 (<span class="string">&quot;ShadowLightPos2&quot;</span>, Vector) = (-0.04, -0.05, 0, 0)</span><br><span class="line">        _SunShadowLightSize2 (<span class="string">&quot;ShadowLightSize2&quot;</span>, Float) = 0.81</span><br><span class="line">        _HighLightColor (<span class="string">&quot;HighLightColor&quot;</span>, Color) = (0.945098, 0.8705882,0.2078431,1) // <span class="comment">#F1DE35</span></span><br><span class="line">        _HighLightNightColor (<span class="string">&quot;HighLightNightColor&quot;</span>, Color) = (0.945098, 0.8705882,0.2078431,1) // <span class="comment">#F1DE35</span></span><br><span class="line">        _ShadowColor (<span class="string">&quot;ShadowColor&quot;</span>, Color) = (0,1,1,1) // <span class="comment">#3B4B4B</span></span><br><span class="line">        _HighLightBlur (<span class="string">&quot;HighLightBlur&quot;</span>, Float) = 0.14</span><br><span class="line">        _ShadowBlur (<span class="string">&quot;ShadowBlur&quot;</span>, Float) = 0.24</span><br><span class="line"></span><br><span class="line">        _Circle3Range (<span class="string">&quot;Circle3Range&quot;</span>, Vector) = (1.5, 2.4, 3.3, 0)</span><br><span class="line">        _Circle1ColorDay (<span class="string">&quot;Circle1ColorDay&quot;</span>, Color) = (0.4941176, 0.6745098, 0.8470588, 1)</span><br><span class="line">        _Circle2ColorDay (<span class="string">&quot;Circle2ColorDay&quot;</span>, Color) = (0.36862745, 0.58823529, 0.80392157, 1)</span><br><span class="line">        _Circle3ColorDay (<span class="string">&quot;Circle3ColorDay&quot;</span>, Color) = (0.29019608, 0.5372549, 0.77647059, 1)</span><br><span class="line">        _Circle4ColorDay (<span class="string">&quot;Circle4ColorDay&quot;</span>, Color) = (0.2627451, 0.51372549, 0.76862745, 1)</span><br><span class="line"></span><br><span class="line">        _Circle1ColorNight (<span class="string">&quot;Circle1ColorNight&quot;</span>, Color) = (0.4, 0.4196078, 0.4862745, 1)</span><br><span class="line">        _Circle2ColorNight (<span class="string">&quot;Circle2ColorNight&quot;</span>, Color) = (0.2352941, 0.27058824, 0.3529412, 1)</span><br><span class="line">        _Circle3ColorNight (<span class="string">&quot;Circle3ColorNight&quot;</span>, Color) = (0.1529412, 0.1882353, 0.2705882, 1)</span><br><span class="line">        _Circle4ColorNight (<span class="string">&quot;Circle4ColorNight&quot;</span>, Color) = (0.1098039, 0.14509804, 0.2470588, 1)</span><br><span class="line"></span><br><span class="line">        _CloudPos (<span class="string">&quot;CloudPos&quot;</span>, Vector) = (0,0,0,0)</span><br><span class="line">        _CloudSize (<span class="string">&quot;CloudSize&quot;</span>, Float) = 5</span><br><span class="line"></span><br><span class="line">        _HoleCenterX (<span class="string">&quot;HoleCenterX&quot;</span>, Vector) = (0.31, -0.11, -0.31, 0)</span><br><span class="line">        _HoleCenterY (<span class="string">&quot;HoleCenterY&quot;</span>, Vector) = (0.06, -0.35, 0.24, 0)</span><br><span class="line">        _HoleSize (<span class="string">&quot;HoleSize&quot;</span>, Vector) = (0.24, 0.16, 0.15, 0)</span><br><span class="line">        _HoleShadowSize (<span class="string">&quot;HoleShadowSize&quot;</span>, Float) = 0.02</span><br><span class="line">        _HoleShadowBlur (<span class="string">&quot;HoleShadowBlur&quot;</span>, Float) = 0.1</span><br><span class="line">        _HoleShadowColor (<span class="string">&quot;HoleShadowColor&quot;</span>, Color) = (0.4 ,0.4, 0.4,1)</span><br><span class="line"></span><br><span class="line">        _StarColor (<span class="string">&quot;StarColor&quot;</span>, Color) = (1, 1, 1, 1)</span><br><span class="line">        _StarsSize (<span class="string">&quot;StarsSize_4&quot;</span>, Vector) = (2.4, 2, 3.4, 1.5)</span><br><span class="line">        _StarsBlink (<span class="string">&quot;StarsBlink_4&quot;</span>, Vector) = (1, 1, 1, 1)</span><br><span class="line">        _StarsStrenth (<span class="string">&quot;StasrStrenth_4&quot;</span>, Vector) = (50, 50, 50, 160)</span><br><span class="line">        _StarsPosX (<span class="string">&quot;StarsPosX_4&quot;</span>, Vector) = (-1.8, -1.6, -1.1, -1)</span><br><span class="line">        _StarsPosY (<span class="string">&quot;StarsPosY_4&quot;</span>, Vector) = (0.3, -0.4, -1.1, -1)</span><br><span class="line">        [hideInInspector] _StarsLen (<span class="string">&quot;StarsLen_4&quot;</span>, Vector) = (1, 1, 1, 1)</span><br><span class="line">        [hideInInspector] _StarsRound (<span class="string">&quot;StarsRound_8&quot;</span>, Vector) = (0, 0, 0, 0)</span><br><span class="line">         _StarsSizeG2 (<span class="string">&quot;StarsSize_8&quot;</span>, Vector) = (2.2, 1.6, 2.4, 3)</span><br><span class="line">        _StarsBlinkG2 (<span class="string">&quot;StarsBlink_8&quot;</span>, Vector) = (1, 1, 1, 1)</span><br><span class="line">        _StarsStrenthG2 (<span class="string">&quot;StasrStrenth_8&quot;</span>, Vector) = (100, 100, 80, 45)</span><br><span class="line">        _StarsPosXG2 (<span class="string">&quot;StarsPosX_8&quot;</span>, Vector) = (-0.65, -0.1, 0.06, 0.4)</span><br><span class="line">        _StarsPosYG2 (<span class="string">&quot;StarsPosY_8&quot;</span>, Vector) = (-0.09, -0.36, -0.48, 0.12)</span><br><span class="line">        [hideInInspector] _StarsLenG2 (<span class="string">&quot;StarsLen_8&quot;</span>, Vector) = (1, 1, 1, 1)</span><br><span class="line">        [hideInInspector] _StarsRoundG2 (<span class="string">&quot;StarsRound_8&quot;</span>, Vector) = (0, 0, 0, 0)</span><br><span class="line"></span><br><span class="line">        _ShadowSize (<span class="string">&quot;ShadowSize&quot;</span>, Vector) = (3.5, 1.4, 0.64, 0.9)</span><br><span class="line">        _ShadowRadius (<span class="string">&quot;ShadowRadius&quot;</span>, Float) = 1.32</span><br><span class="line">        _ShadowPos (<span class="string">&quot;ShadowPos&quot;</span>, Vector) = (-0.62, 0.04, 0, 0)</span><br><span class="line">        _ShadowColorOut (<span class="string">&quot;ShadowColorOut&quot;</span>, Color) = (0 , 0, 0, 1)</span><br><span class="line">    &#125;</span><br><span class="line">    SubShader</span><br><span class="line">    &#123;</span><br><span class="line">        Tags &#123; <span class="string">&quot;RenderType&quot;</span>=<span class="string">&quot;Transparent&quot;</span> <span class="string">&quot;Queue&quot;</span>=<span class="string">&quot;Transparent&quot;</span>&#125;</span><br><span class="line">        Blend SrcAlpha OneMinusSrcAlpha</span><br><span class="line"></span><br><span class="line">        Pass</span><br><span class="line">        &#123;</span><br><span class="line">            CGPROGRAM</span><br><span class="line">            <span class="comment">#pragma vertex vert</span></span><br><span class="line">            <span class="comment">#pragma fragment frag</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">#include &quot;UnityCG.cginc&quot;</span></span><br><span class="line"></span><br><span class="line">            struct appdata</span><br><span class="line">            &#123;</span><br><span class="line">                float4 vertex : POSITION;</span><br><span class="line">                float2 uv : TEXCOORD0;</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            struct v2f</span><br><span class="line">            &#123;</span><br><span class="line">                float2 uv : TEXCOORD0;</span><br><span class="line">                float4 vertex : SV_POSITION;</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            sampler2D _MainTex;</span><br><span class="line">            float4 _MainTex_ST;</span><br><span class="line">            <span class="built_in">float</span> _UVScale;</span><br><span class="line">            fixed _SunPos;</span><br><span class="line">            fixed4 _BGColor;</span><br><span class="line">            <span class="built_in">float</span> _ScaleOffset;</span><br><span class="line">            <span class="built_in">float</span> _SunSize;</span><br><span class="line">            <span class="built_in">float</span> _SunBlur;</span><br><span class="line">            fixed4 _SunColor;</span><br><span class="line">            fixed4 _MoonColor;</span><br><span class="line"></span><br><span class="line">            float4 _SunShadowLightPos1;</span><br><span class="line">            float4 _SunShadowLightPos2;</span><br><span class="line">            <span class="built_in">float</span> _SunShadowLightSize1;</span><br><span class="line">            <span class="built_in">float</span> _SunShadowLightSize2;</span><br><span class="line">            <span class="built_in">float</span> _HighLightBlur;</span><br><span class="line">            <span class="built_in">float</span> _ShadowBlur;</span><br><span class="line">            fixed4 _HighLightColor;</span><br><span class="line">            fixed4 _HighLightNightColor;</span><br><span class="line">            fixed4 _ShadowColor;</span><br><span class="line"></span><br><span class="line">            fixed4 _Circle3Range;</span><br><span class="line">            fixed4 _Circle1ColorDay;</span><br><span class="line">            fixed4 _Circle2ColorDay;</span><br><span class="line">            fixed4 _Circle3ColorDay;</span><br><span class="line">            fixed4 _Circle4ColorDay;</span><br><span class="line">            fixed4 _Circle1ColorNight;</span><br><span class="line">            fixed4 _Circle2ColorNight;</span><br><span class="line">            fixed4 _Circle3ColorNight;</span><br><span class="line">            fixed4 _Circle4ColorNight;</span><br><span class="line"></span><br><span class="line">            fixed4 _CloudPos;</span><br><span class="line">            fixed _CloudSize;</span><br><span class="line"></span><br><span class="line">            fixed4 _HoleCenterX;</span><br><span class="line">            fixed4 _HoleCenterY;</span><br><span class="line">            fixed4 _HoleSize;</span><br><span class="line">            fixed _HoleShadowBlur;</span><br><span class="line">            <span class="built_in">float</span> _HoleShadowSize;</span><br><span class="line">            fixed4 _HoleShadowColor;</span><br><span class="line"></span><br><span class="line">            fixed4 _StarColor;</span><br><span class="line">            float4 _StarsSize;</span><br><span class="line">            float4 _StarsBlink;</span><br><span class="line">            float4 _StarsStrenth;</span><br><span class="line">            fixed4 _StarsPosX;</span><br><span class="line">            fixed4 _StarsPosY;</span><br><span class="line">            fixed4 _StarsLen;</span><br><span class="line">            fixed4 _StarsRound;</span><br><span class="line">            float4 _StarsSizeG2;</span><br><span class="line">            float4 _StarsBlinkG2;</span><br><span class="line">            float4 _StarsStrenthG2;</span><br><span class="line">            fixed4 _StarsPosXG2;</span><br><span class="line">            fixed4 _StarsPosYG2;</span><br><span class="line">            fixed4 _StarsLenG2;</span><br><span class="line">            fixed4 _StarsRoundG2;</span><br><span class="line"></span><br><span class="line">            fixed4 _ShadowSize;</span><br><span class="line">            fixed4 _ShadowPos;</span><br><span class="line">            fixed _ShadowRadius;</span><br><span class="line">            fixed4 _ShadowColorOut;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">float</span> Circle(fixed2 uv,fixed2 center,<span class="built_in">float</span> size,<span class="built_in">float</span> blur)</span><br><span class="line">            &#123;</span><br><span class="line">                uv = uv - center;</span><br><span class="line">                uv /= size;</span><br><span class="line">                <span class="built_in">float</span> len = length(uv);</span><br><span class="line">                <span class="built_in">return</span> smoothstep(1.,1.-blur,len);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">float</span> DrawCloud(fixed2 uv,fixed2 center,<span class="built_in">float</span> size)</span><br><span class="line">            &#123;</span><br><span class="line">                uv = uv - center;</span><br><span class="line">                uv /= size;</span><br><span class="line">                <span class="built_in">float</span> col = Circle(uv,fixed2(-.04,0.02),0.18,0.05);</span><br><span class="line">                col += Circle(uv,fixed2(-0.22,-0.05),0.2,0.05); // L1</span><br><span class="line">                col += Circle(uv,fixed2(-0.42,-0.07),0.18,0.05); // L2</span><br><span class="line">                col += Circle(uv,fixed2(0.12,0),0.18,0.05); // R1</span><br><span class="line">                col += Circle(uv,fixed2(0.27,0.1),0.16,0.05); // R2</span><br><span class="line">                col += Circle(uv,fixed2(0.37,0.23),0.16,0.05); // R3</span><br><span class="line">                <span class="built_in">return</span> saturate(col);</span><br><span class="line">                //col = col * smoothstep(-0.1,-0.1+0.01,uv.y); // <span class="built_in">cut</span> off</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">float</span> dot2(fixed2 v)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">return</span> dot(v.x, v.y);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">float</span> dot2Offset(fixed2 v, fixed2 offset)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">return</span> dot(v.x - offset.x, v.y - offset.y);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">float</span> sdRoundedCross(fixed2 p, fixed h, fixed2 center,<span class="built_in">float</span> size)</span><br><span class="line">            &#123;</span><br><span class="line">                p = p - center;</span><br><span class="line">                p /= size;</span><br><span class="line">                <span class="built_in">float</span> k = 0.5 * (h + 1.0 / h);</span><br><span class="line">                p = abs(p);</span><br><span class="line">                <span class="built_in">return</span> (p.x &lt; 1.0 &amp;&amp; p.y &lt; p.x * (k - h) + h) ?  k - sqrt(dot2(p - fixed2(1, k))) : 1; // sqrt(min(dot2(p - fixed2(0, h)), dot2(p - fixed2(1, 0))))</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">float</span> sdRoundBox(fixed2 p, fixed2 b, fixed4 r) </span><br><span class="line">            &#123;</span><br><span class="line">                r.xy = (p.x &gt; 0.0) ? r.xy : r.zw;</span><br><span class="line">                r.x  = (p.y &gt; 0.0) ? r.x  : r.y;</span><br><span class="line">                fixed2 q = abs(p) - b + r.x;</span><br><span class="line">                <span class="built_in">return</span> min(max(q.x, q.y), 0.0) + length(max(q, 0.0)) - r.x;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">float</span> Remap(<span class="built_in">float</span> value, fixed2 InMinMax, fixed2 OutMinMax)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">return</span> OutMinMax.x + (value - InMinMax.x) * (OutMinMax.y - OutMinMax.x) / (InMinMax.y - InMinMax.x);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            v2f vert (appdata v)</span><br><span class="line">            &#123;</span><br><span class="line">                v2f o;</span><br><span class="line">                o.vertex = UnityObjectToClipPos(v.vertex);</span><br><span class="line">                o.uv = TRANSFORM_TEX(v.uv, _MainTex);</span><br><span class="line">                <span class="built_in">return</span> o;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            fixed4 frag (v2f i) : SV_Target</span><br><span class="line">            &#123;</span><br><span class="line">                fixed4 col = fixed4(1,1,1,1);</span><br><span class="line">                fixed4 shape = tex2D(_MainTex, i.uv);</span><br><span class="line"></span><br><span class="line">                // UV [0, 1] -&gt; [-1, 1]</span><br><span class="line">                i.uv -= 0.5;</span><br><span class="line">                i.uv *= _UVScale;</span><br><span class="line">                // Apply Image(Rect) scale</span><br><span class="line">                _ScaleOffset = 535.0 / 210.0;</span><br><span class="line">                i.uv = float2(i.uv.x * _ScaleOffset, i.uv.y);</span><br><span class="line"></span><br><span class="line">                /// BackGround Obj</span><br><span class="line">                // 3 Circle</span><br><span class="line">                fixed2 sunpos = fixed2(_SunPos, 0);</span><br><span class="line">                <span class="built_in">float</span> dis = abs(distance(i.uv, sunpos));</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (dis &lt; _Circle3Range.x)</span><br><span class="line">                &#123;</span><br><span class="line">                    _BGColor = lerp(_Circle1ColorDay, _Circle1ColorNight, Remap(_SunPos, fixed2(-1.6, 1.6), fixed2(0, 1)));</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (dis &lt; _Circle3Range.y)</span><br><span class="line">                &#123;</span><br><span class="line">                    _BGColor = lerp(_Circle2ColorDay, _Circle2ColorNight, Remap(_SunPos, fixed2(-1.6, 1.6), fixed2(0, 1)));</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (dis &lt; _Circle3Range.z)</span><br><span class="line">                &#123;</span><br><span class="line">                    _BGColor = lerp(_Circle3ColorDay, _Circle3ColorNight, Remap(_SunPos, fixed2(-1.6, 1.6), fixed2(0, 1)));</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    _BGColor = lerp(_Circle4ColorDay, _Circle4ColorNight, Remap(_SunPos, fixed2(-1.6, 1.6), fixed2(0, 1)));</span><br><span class="line">                &#125;</span><br><span class="line">                // Clouds</span><br><span class="line">                col = lerp(_BGColor, fixed4(0.635294,0.7568627,0.87843137,1), DrawCloud(i.uv, fixed2(_CloudPos.x - 0.04 , _CloudPos.y + 0.42 + Remap(_SunPos, fixed2(-1.6, 1.6), fixed2(0, -2))), _CloudSize));</span><br><span class="line">                col = lerp(col, fixed4(1,1,1,1), DrawCloud(i.uv, fixed2(_CloudPos.x, _CloudPos.y + Remap(_SunPos, fixed2(-1.6, 1.6), fixed2(0, -2))), _CloudSize));</span><br><span class="line">                // Stars</span><br><span class="line">                <span class="built_in">float</span> clampSunPos = clamp(_SunPos.x, -0.4, 1.6); // _SunPos.x对星星的显隐影响从这里开始生效,-0.4时全部星星未出现，作为初始状态</span><br><span class="line">                // 1-4</span><br><span class="line">                <span class="built_in">float</span> star1 = sdRoundedCross(i.uv, _StarsLen.x, fixed2(_StarsPosX.x, _StarsPosY.x), _StarsSize.x) - _StarsRound.x;</span><br><span class="line">                star1 = pow(star1, _StarsBlink.x * abs(sin(1.2 * clampSunPos)));</span><br><span class="line">                //col = lerp(col, _StarColor, Remap(clamp(1.0 - smoothstep(0.0,0.1,abs(star1)) - (_StarsStrenth.x * sign(i.uv.x) * sign(i.uv.y) * dot2(i.uv)), 0.6, 1), fixed2(0.6, 1), fixed2(0, 1)));//uv偏移前</span><br><span class="line">                col = lerp(col, _StarColor, Remap(clamp(1.0 - smoothstep(0.0,0.1,abs(star1)) - (_StarsStrenth.x  * sign(i.uv.x - _StarsPosX.x) * sign(i.uv.y - _StarsPosY.x) * dot2Offset(i.uv, fixed2(_StarsPosX.x, _StarsPosY.x))), 0.6, 1), fixed2(0.6, 1), fixed2(0, 1)));</span><br><span class="line"></span><br><span class="line">                <span class="built_in">float</span> star2 = sdRoundedCross(i.uv, _StarsLen.y, fixed2(_StarsPosX.y, _StarsPosY.y), _StarsSize.y) - _StarsRound.y;</span><br><span class="line">                star2 = pow(star2, _StarsBlink.y * abs(cos(clampSunPos + 140)));</span><br><span class="line">                col = lerp(col, _StarColor, Remap(clamp(1.0 - smoothstep(0.0,0.1,abs(star2)) - (_StarsStrenth.y  * sign(i.uv.x - _StarsPosX.y) * sign(i.uv.y - _StarsPosY.y) * dot2Offset(i.uv, fixed2(_StarsPosX.y, _StarsPosY.y))), 0.6, 1), fixed2(0.6, 1), fixed2(0, 1)));</span><br><span class="line"></span><br><span class="line">                <span class="built_in">float</span> star3 = sdRoundedCross(i.uv, _StarsLen.z, fixed2(_StarsPosX.z, _StarsPosY.z), _StarsSize.z) - _StarsRound.z;</span><br><span class="line">                star3 = pow(star3, _StarsBlink.z * abs(sin(1.1 * clampSunPos+ 60)));</span><br><span class="line">                col = lerp(col, _StarColor, Remap(clamp(1.0 - smoothstep(0.0,0.1,abs(star3)) - (_StarsStrenth.z  * sign(i.uv.x - _StarsPosX.z) * sign(i.uv.y - _StarsPosY.z) * dot2Offset(i.uv, fixed2(_StarsPosX.z, _StarsPosY.z))), 0.6, 1), fixed2(0.6, 1), fixed2(0, 1)));</span><br><span class="line"></span><br><span class="line">                <span class="built_in">float</span> star4 = sdRoundedCross(i.uv, _StarsLen.w, fixed2(_StarsPosX.w, _StarsPosY.w), _StarsSize.w) - _StarsRound.w;</span><br><span class="line">                star4 = pow(star4, _StarsBlink.w * abs(cos(clampSunPos + 140)));</span><br><span class="line">                col = lerp(col, _StarColor, Remap(clamp(1.0 - smoothstep(0.0,0.1,abs(star4)) - (_StarsStrenth.w  * sign(i.uv.x - _StarsPosX.w) * sign(i.uv.y - _StarsPosY.w) * dot2Offset(i.uv, fixed2(_StarsPosX.w, _StarsPosY.w))), 0.6, 1), fixed2(0.6, 1), fixed2(0, 1)));</span><br><span class="line">                // 5-8</span><br><span class="line">                <span class="built_in">float</span> star5 = sdRoundedCross(i.uv, _StarsLenG2.x, fixed2(_StarsPosXG2.x, _StarsPosYG2.x), _StarsSizeG2.x) - _StarsRoundG2.x;</span><br><span class="line">                star5 = pow(star5, _StarsBlinkG2.x * abs(sin(clampSunPos + 60)));</span><br><span class="line">                col = lerp(col, _StarColor, Remap(clamp(1.0 - smoothstep(0.0,0.1,abs(star5)) - (_StarsStrenthG2.x  * sign(i.uv.x - _StarsPosXG2.x) * sign(i.uv.y - _StarsPosYG2.x) * dot2Offset(i.uv, fixed2(_StarsPosXG2.x, _StarsPosYG2.x))), 0.6, 1), fixed2(0.6, 1), fixed2(0, 1)));</span><br><span class="line"></span><br><span class="line">                <span class="built_in">float</span> star6 = sdRoundedCross(i.uv, _StarsLenG2.y, fixed2(_StarsPosXG2.y, _StarsPosYG2.y), _StarsSizeG2.y) - _StarsRoundG2.y;</span><br><span class="line">                star6 = pow(star6, _StarsBlinkG2.y * abs(sin(clampSunPos + 13)));</span><br><span class="line">                col = lerp(col, _StarColor, Remap(clamp(1.0 - smoothstep(0.0,0.1,abs(star6)) - (_StarsStrenthG2.y  * sign(i.uv.x - _StarsPosXG2.y) * sign(i.uv.y - _StarsPosYG2.y) * dot2Offset(i.uv, fixed2(_StarsPosXG2.y, _StarsPosYG2.y))), 0.6, 1), fixed2(0.6, 1), fixed2(0, 1)));</span><br><span class="line"></span><br><span class="line">                <span class="built_in">float</span> star7 = sdRoundedCross(i.uv, _StarsLenG2.z, fixed2(_StarsPosXG2.z, _StarsPosYG2.z), _StarsSizeG2.z) - _StarsRoundG2.z;</span><br><span class="line">                star7 = pow(star7, _StarsBlinkG2.z * abs(sin(1.2 * clampSunPos)));</span><br><span class="line">                col = lerp(col, _StarColor, Remap(clamp(1.0 - smoothstep(0.0,0.1,abs(star7)) - (_StarsStrenthG2.z  * sign(i.uv.x - _StarsPosXG2.z) * sign(i.uv.y - _StarsPosYG2.z) * dot2Offset(i.uv, fixed2(_StarsPosXG2.z, _StarsPosYG2.z))), 0.6, 1), fixed2(0.6, 1), fixed2(0, 1)));</span><br><span class="line"></span><br><span class="line">                <span class="built_in">float</span> star8 = sdRoundedCross(i.uv, _StarsLenG2.w, fixed2(_StarsPosXG2.w, _StarsPosYG2.w), _StarsSizeG2.w) - _StarsRoundG2.w;</span><br><span class="line">                star8 = pow(star8, _StarsBlinkG2.w * abs(sin(clampSunPos + 110)));</span><br><span class="line">                col = lerp(col, _StarColor, Remap(clamp(1.0 - smoothstep(0.0,0.1,abs(star8)) - (_StarsStrenthG2.w  * sign(i.uv.x - _StarsPosXG2.w) * sign(i.uv.y - _StarsPosYG2.w) * dot2Offset(i.uv, fixed2(_StarsPosXG2.w, _StarsPosYG2.w))), 0.6, 1), fixed2(0.6, 1), fixed2(0, 1)));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                /// Handle</span><br><span class="line">                fixed sun = Circle(i.uv,sunpos,_SunSize,_SunBlur);</span><br><span class="line">                col = lerp(col, lerp(_SunColor, _MoonColor, Remap(_SunPos, fixed2(-1.6, 1.6), fixed2(0, 1))), sun);</span><br><span class="line">                // 3 Hole <span class="keyword">in</span> Handle</span><br><span class="line">                fixed hole1 =  Circle(i.uv,sunpos - fixed2(_HoleCenterX.x, _HoleCenterY.x),_HoleSize.x,0.05);</span><br><span class="line">                fixed hole1S =  Circle(i.uv,sunpos - fixed2(_HoleCenterX.x, _HoleCenterY.x),_HoleSize.x + _HoleShadowSize, _HoleShadowBlur);</span><br><span class="line">                fixed hole2 =  Circle(i.uv,sunpos - fixed2(_HoleCenterX.y, _HoleCenterY.y),_HoleSize.y,0.05);</span><br><span class="line">                fixed hole2S =  Circle(i.uv,sunpos - fixed2(_HoleCenterX.y, _HoleCenterY.y),_HoleSize.y + _HoleShadowSize, _HoleShadowBlur);</span><br><span class="line">                fixed hole3 =  Circle(i.uv,sunpos - fixed2(_HoleCenterX.z, _HoleCenterY.z),_HoleSize.z,0.05);</span><br><span class="line">                fixed hole3S =  Circle(i.uv,sunpos - fixed2(_HoleCenterX.z, _HoleCenterY.z),_HoleSize.z + _HoleShadowSize, _HoleShadowBlur);</span><br><span class="line">                col = lerp(col, _HoleShadowColor, clamp(Remap(_SunPos, fixed2(-1.6, 1.6), fixed2(-0.5, saturate(hole1S + hole2S + hole3S))), 0, 1)); // clamp与-0.5 为调整开始出现月球坑的时间</span><br><span class="line">                col = lerp(col, fixed4(0.5882353,0.6352941,0.7137255,1), clamp(Remap(_SunPos, fixed2(-1.6, 1.6), fixed2(-0.5, saturate(hole1 + hole2 + hole3))), 0, 1));</span><br><span class="line"></span><br><span class="line">                // HighLight and  Shadow</span><br><span class="line">                fixed2 sunpos1 = fixed2(_SunPos + _SunShadowLightPos1.x, _SunShadowLightPos1.y);</span><br><span class="line">                fixed2 sunpos2 = fixed2(_SunPos + _SunShadowLightPos2.x, _SunShadowLightPos2.y);</span><br><span class="line">                fixed sunShadowLight1 = Circle(i.uv,sunpos1,_SunShadowLightSize1,_HighLightBlur);</span><br><span class="line">                fixed sunShadowLight2 = Circle(i.uv,sunpos2,_SunShadowLightSize2,_ShadowBlur);</span><br><span class="line">                col = lerp(col, lerp(_HighLightColor, _HighLightNightColor, Remap(_SunPos, fixed2(-1.6, 1.6), fixed2(0, 1))), saturate(sunShadowLight1 - sunShadowLight2));</span><br><span class="line">                col = lerp(col, _ShadowColor, saturate(-1 * (sunShadowLight1 - sunShadowLight2)));</span><br><span class="line"></span><br><span class="line">                /// Shadow</span><br><span class="line">                <span class="built_in">float</span> ra = min(_ShadowRadius,min(_ShadowSize.x,_ShadowSize.y));</span><br><span class="line">                <span class="built_in">float</span> sdrb = sdRoundBox(i.uv + _ShadowPos.xy, _ShadowSize.xy, ra);</span><br><span class="line">                col = lerp(col, _ShadowColorOut, 1.0 - smoothstep(0.0, _ShadowSize.z, abs(sdrb)));</span><br><span class="line"></span><br><span class="line">                // Shape</span><br><span class="line">                col.a *= shape.a;</span><br><span class="line">                <span class="built_in">return</span> col;</span><br><span class="line">            &#125;</span><br><span class="line">            ENDCG</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure> 
+    </div></div>
+    </div>
+
+<div class="xControl">
+    <div class="xHeading"><div class="xIcon"><i class="fa fa-plus"></i></div><span>C#代码</span></div>
+    <div class="xContent"><div class="inner">
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line">using UnityEngine;</span><br><span class="line">using UnityEngine.UI;</span><br><span class="line">using DG.Tweening;</span><br><span class="line"></span><br><span class="line">/// &lt;summary&gt;</span><br><span class="line">/// 使用DoTween插件制作的缓动效果，搭配EventTrigger组件使用</span><br><span class="line">/// &lt;/summary&gt;</span><br><span class="line">public class NewMat : MonoBehaviour</span><br><span class="line">&#123;</span><br><span class="line">    private const <span class="built_in">float</span> BEGIN_POS = -1.6f;</span><br><span class="line">    private const <span class="built_in">float</span> END_POS = 1.6f;</span><br><span class="line">    private const <span class="built_in">float</span> L_POS = -1.3f;</span><br><span class="line">    private const <span class="built_in">float</span> R_POS = 1.3f;</span><br><span class="line">    private Material _mat;</span><br><span class="line">    private Tween tween_enter;</span><br><span class="line">    private Tween tween_exit;</span><br><span class="line">    private Tween tween_down;</span><br><span class="line">    private bool inBtn;</span><br><span class="line">    private bool inAnim;</span><br><span class="line">    void <span class="function"><span class="title">Start</span></span>()</span><br><span class="line">    &#123;</span><br><span class="line">        _mat = Instantiate(GetComponent&lt;Image&gt;().material);</span><br><span class="line">        GetComponent&lt;Image&gt;().material = _mat;</span><br><span class="line">        _mat = GetComponent&lt;Image&gt;().material;</span><br><span class="line">        _mat.SetFloat(<span class="string">&quot;_SunPos&quot;</span>, BEGIN_POS);</span><br><span class="line">        inBtn = <span class="literal">false</span>;</span><br><span class="line">        inAnim = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="function"><span class="title">OnMouseEnter</span></span>()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!inBtn)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (inAnim) <span class="built_in">return</span>;</span><br><span class="line"></span><br><span class="line">            inBtn = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">            tween_enter?.Kill();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (_mat.GetFloat(<span class="string">&quot;_SunPos&quot;</span>) &lt; 0)</span><br><span class="line">            &#123;</span><br><span class="line">                tween_enter = DOTween.To((value) =&gt;</span><br><span class="line">                &#123;</span><br><span class="line">                    _mat.SetFloat(&quot;_SunPos&quot;, value);</span><br><span class="line">                &#125;, _mat.GetFloat(&quot;_SunPos&quot;), L_POS, <span class="number">0.3</span>f);</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                tween_enter = DOTween.To((value) =&gt;</span><br><span class="line">                &#123;</span><br><span class="line">                    _mat.SetFloat(&quot;_SunPos&quot;, value);</span><br><span class="line">                &#125;, _mat.GetFloat(&quot;_SunPos&quot;), R_POS, <span class="number">0.3</span>f);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    public void OnMouseExit()</span><br><span class="line">    &#123;</span><br><span class="line">        if (inBtn)</span><br><span class="line">        &#123;</span><br><span class="line">            if (inAnim) return;</span><br><span class="line"></span><br><span class="line">            inBtn = false;</span><br><span class="line"></span><br><span class="line">            tween_exit?.Kill();</span><br><span class="line"></span><br><span class="line">            if (_mat.GetFloat(&quot;_SunPos&quot;) &lt; <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                tween_exit = DOTween.To((value) =&gt;</span><br><span class="line">                &#123;</span><br><span class="line">                    _mat.SetFloat(&quot;_SunPos&quot;, value);</span><br><span class="line">                &#125;, _mat.GetFloat(&quot;_SunPos&quot;), BEGIN_POS, <span class="number">0.3</span>f);</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                tween_exit = DOTween.To((value) =&gt;</span><br><span class="line">                &#123;</span><br><span class="line">                    _mat.SetFloat(&quot;_SunPos&quot;, value);</span><br><span class="line">                &#125;, _mat.GetFloat(&quot;_SunPos&quot;), END_POS, <span class="number">0.3</span>f);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public void OnMouseDown()</span><br><span class="line">    &#123;</span><br><span class="line">        if (inAnim) return;</span><br><span class="line">        inAnim = true;</span><br><span class="line">        tween_down?.Kill();</span><br><span class="line"></span><br><span class="line">        if (_mat.GetFloat(&quot;_SunPos&quot;) &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            tween_down = DOTween.To((value) =&gt;</span><br><span class="line">            &#123;</span><br><span class="line">                _mat.SetFloat(&quot;_SunPos&quot;, value);</span><br><span class="line">            &#125;, _mat.GetFloat(&quot;_SunPos&quot;), END_POS, <span class="number">1</span>f).OnComplete(()=&gt; &#123; inAnim = false; inBtn = false; &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            tween_down = DOTween.To((value) =&gt;</span><br><span class="line">            &#123;</span><br><span class="line">                _mat.SetFloat(&quot;_SunPos&quot;, value);</span><br><span class="line">            &#125;, _mat.GetFloat(&quot;_SunPos&quot;), BEGIN_POS, <span class="number">1</span>f).OnComplete(() =&gt; &#123; inAnim = false; inBtn = false; &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure> 
+    </div></div>
+    </div>
+
+<div class="xControl">
+    <div class="xHeading"><div class="xIcon"><i class="fa fa-plus"></i></div><span>参数</span></div>
+    <div class="xContent"><div class="inner">
+        <p><img src="/images/MyUIProject/UI_8_8.png"><br><img src="/images/MyUIProject/UI_8_9.png"></p>
+ 
+    </div></div>
+    </div>
+
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2024/12/31/MyUIProject-08/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2024/12/31/MyUIProject-08/";
+            const title         = "「UI动效 08」";
+            const excerpt       = `按钮UI动效——昼夜切换`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/Shader/" rel="tag">Shader</a>, <a class="tag-none-link" href="/tags/UI/" rel="tag">UI</a>, <a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>, <a class="tag-none-link" href="/tags/%E5%8A%A8%E6%95%88/" rel="tag">动效</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2025-08-11T09:31:30.063Z" itemprop="dateModified">最后编辑：2025-08-11</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" TwilightMelody_2_2024_12_01" href="/2024/11/08/TwilightMelody-2-2024-12-01/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" 数学可视化(12)——距离场阴影SDF Shadow" href="/2025/02/21/Mathematical-Visualization-12/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+        <div id="disqus_thread" class="post-comments lazy-load"></div>
+
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://example.com/2024/12/31/MyUIProject-08/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '2024/12/31/MyUIProject-08/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    var load_comm = () => {
+        if (typeof DISQUS === 'undefined') {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://unishiki.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        } else {
+            DISQUS.reset({
+                reload: true,
+                config: function () {  
+                    this.page.url = 'http://example.com/2024/12/31/MyUIProject-08/';  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = '2024/12/31/MyUIProject-08/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                }
+            });
+        }
+    };
+    
+</script>
+<script async id="dsq-count-scr" src="//unishiki.disqus.com/count.js"></script>
+
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/ava1.jpg" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                116
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                3
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                16
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8C%89%E9%92%AEUI%E5%8A%A8%E6%95%88%E2%80%94%E2%80%94%E6%98%BC%E5%A4%9C%E5%88%87%E6%8D%A2"><span class="toc-text">按钮UI动效——昼夜切换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-text">实现思路</span></a></li></ol></li></ol></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a><span class="category-list-count">95</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">开发记录</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%99%E7%A8%8B%E6%96%87%E6%A1%A3/">教程文档</a><span class="category-list-count">4</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Compute-Shader/" style="font-size: 0.62em;">Compute Shader</a> <a href="/tags/Dots/" style="font-size: 0.67em;">Dots</a> <a href="/tags/Java/" style="font-size: 0.64em;">Java</a> <a href="/tags/Minecraft/" style="font-size: 0.6em;">Minecraft</a> <a href="/tags/Shader/" style="font-size: 0.76em;">Shader</a> <a href="/tags/TwilightMelody/" style="font-size: 0.64em;">TwilightMelody</a> <a href="/tags/UI/" style="font-size: 0.71em;">UI</a> <a href="/tags/Unity/" style="font-size: 0.8em;">Unity</a> <a href="/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/" style="font-size: 0.6em;">Unity编辑器拓展</a> <a href="/tags/%E5%8A%A8%E6%95%88/" style="font-size: 0.69em;">动效</a> <a href="/tags/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/" style="font-size: 0.65em;">底层原理</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 0.75em;">性能优化</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%8F%AF%E8%A7%86%E5%8C%96/" style="font-size: 0.73em;">数学可视化</a> <a href="/tags/%E6%96%87%E6%A1%A3/" style="font-size: 0.65em;">文档</a> <a href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 0.67em;">算法与数据结构</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="font-size: 0.78em;">计算机图形学</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2025/07/25/ComputeShader-MagicLibrary/"><i class="fa  fa-book"></i> 浅尝ComputeShader-魔法图书馆</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/06/23/MyUIProject-09/"><i class="fa  fa-book"></i> UI动效 09</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/06/12/SourceCode-M3/"><i class="fa  fa-book"></i> 源码-魔法金属伤害计算</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/05/19/TwilightMelody-2-2025-05-01/"><i class="fa  fa-book"></i> TwilightMelody-2-2025-05-01</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/03/17/ComputeShaderLearning-1/"><i class="fa  fa-book"></i> GPU粒子实现原理与ComputeShader GPU Instance的基础应用</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
+                        
+                        <li><a href="mailto:ccc895286662@gmail.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/unishiki"><i class="fa fa-github"></i></a></li>
+                        
+                        <!-- New links -->
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2025 uni_shiki 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by uni_shiki.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="snow-switch">
+                        <span class="fa fa-snowflake-o"></span>
+                    </div>
+                
+                
+                    <div class="box group-box">
+                        <a href="https://jq.qq.com/?_wv=1027&k=CpdI35JY" target="_blank" rel="nofollow">
+                            <span class="fa fa-users"></span>
+                        </a>
+                    </div>
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3080117718"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>

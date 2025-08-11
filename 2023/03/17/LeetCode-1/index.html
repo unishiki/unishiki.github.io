@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="../images/mfmf.webp">
+  
+  <title>算法与数据结构_1_选择排序、冒泡排序、异或运算、插入排序、二分法 | uni_shiki</title>
+  
+  <meta name="author" content="uni_shiki" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="算法与数据结构" />
+  
+  <meta name="description" content="&amp;nbsp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法与数据结构_1_选择排序、冒泡排序、异或运算、插入排序、二分法">
+<meta property="og:url" content="http://example.com/2023/03/17/LeetCode-1/index.html">
+<meta property="og:site_name" content="uni_shiki">
+<meta property="og:description" content="&amp;nbsp;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/mfmf.webp">
+<meta property="article:published_time" content="2023-03-17T08:17:32.000Z">
+<meta property="article:modified_time" content="2024-03-26T01:12:44.990Z">
+<meta property="article:author" content="uni_shiki">
+<meta property="article:tag" content="算法与数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/mfmf.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>链接</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://space.bilibili.com/33554119">Bilibili</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">uni_shiki</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>uni_shiki</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/17/LeetCode-1/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">算法与数据结构_1_选择排序、冒泡排序、异或运算、插入排序、二分法</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2023-03-17T08:17:32.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-03-17</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">uni_shiki</span>
+                </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~3.61K
+                        
+                        字
+                    </li>
+                
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1711415564990"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><p>&nbsp;</p>
+<span id="more"></span>
+
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public static void selectionSort(int[] arr)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (arr == null || arr.length &lt; 2)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (int i = 0; i &lt; arr.length - 1; i++) // i ~ N-1</span><br><span class="line">	&#123;</span><br><span class="line">		int minIndex = i;</span><br><span class="line">		<span class="keyword">for</span> (int j = i + 1; j &lt; arr.length; j++) // i ~ N-1 上找最小值的下标</span><br><span class="line">		&#123;</span><br><span class="line">			minIndex = arr[j] &lt; arr[minIndex] ? j : minIndex;</span><br><span class="line">		&#125;</span><br><span class="line">		swap(arr, i, minIndex); // 每轮找出最小的放前面</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void swap(int[] arr, int i; int j)</span><br><span class="line">&#123;</span><br><span class="line">	int tmp = arr[i];</span><br><span class="line">	arr[i] = arr[j];</span><br><span class="line">	arr[j] = tmp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public static void bubbleSort(int[] arr)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (arr == null || arr.length &lt; 2)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (int e = arr.length - 1; e &gt; 0; e--) // 0 ~ e</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (int i = 0; i &lt; e; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (arr[i] &gt; arr[i + 1])</span><br><span class="line">				&#123;</span><br><span class="line">					swap(arr, i, i + 1); // 每轮把最大的放到最后</span><br><span class="line">				&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void swap(int[] arr, int i, int j)</span><br><span class="line">&#123;</span><br><span class="line">	arr[i] = arr[i] ^ arr[j];</span><br><span class="line">	arr[j] = arr[i] ^ arr[j];</span><br><span class="line">	arr[i] = arr[i] ^ arr[j];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="异或运算"><a href="#异或运算" class="headerlink" title="异或运算(^)"></a>异或运算(^)</h3><ul>
+<li>相同为0，不同为1</li>
+<li>还可以理解成：无进位相加<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">a^b = 1</span><br><span class="line">0^1 = 1</span><br><span class="line">1^0 = 1</span><br><span class="line">0^0 = 0</span><br><span class="line">1^1 = 0</span><br><span class="line"></span><br><span class="line">a: 10110</span><br><span class="line">b: 00111</span><br><span class="line">a^b:</span><br><span class="line">   10001</span><br></pre></td></tr></table></figure>
+性质：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1.</span><br><span class="line">0^N = N : 0跟任何数N异或，都是N</span><br><span class="line">N^N = 0 : 任何数跟自己异或，都得0</span><br><span class="line"></span><br><span class="line">2.</span><br><span class="line">满足交换律、结合律</span><br><span class="line">a^b = b^a</span><br><span class="line">(a^b)^c = a^(b^c)</span><br><span class="line"></span><br><span class="line">3.同一批数异或运算，谁先谁后的顺序不影响结果</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public static void swap(int[] arr, int i, int j)</span><br><span class="line">&#123;</span><br><span class="line">	arr[i] = arr[i] ^ arr[j];</span><br><span class="line">	arr[j] = arr[i] ^ arr[j];</span><br><span class="line">	arr[i] = arr[i] ^ arr[j];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">解释：</span><br><span class="line">交换两个数的值：</span><br><span class="line">int a = 17;</span><br><span class="line">int b = 23;</span><br><span class="line"></span><br><span class="line">a = a^b;</span><br><span class="line">b = a^b;</span><br><span class="line">a = a^b;</span><br><span class="line"></span><br><span class="line">假设</span><br><span class="line">int a = 甲;</span><br><span class="line">int b = 乙;</span><br><span class="line"></span><br><span class="line">a = a^b; // a = 甲^乙 , b = 乙</span><br><span class="line">b = a^b; // a = 甲^乙 , b = 甲^乙^乙 = 甲^0 = 甲</span><br><span class="line">a = a^b; // a = 甲^乙^甲 = 0^乙 = 乙, b = 甲</span><br><span class="line"></span><br><span class="line">前提：a和b在内存里是两块独立的区域，a的值可以等于b的值，但它们指向的内存需是两块东西</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>面试题：</p>
+<ul>
+<li>在一个整形数组int[] arr中，<br>1）已知只有一种数出现了奇数次，其他的所有数都出现了偶数次<br>怎么找到出现了奇数次的数<br>2）已知有两种数出现了奇数次，其他的所有数都出现了偶数次<br>怎么找到这两种数<br>要求：时间复杂度O(N),额外空间复杂度O(1)</li>
+</ul>
+<p>key:</p>
+<p>1) </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int eor = 0;</span><br><span class="line">将数组各个数与eor异或</span><br><span class="line">假设数组[a,b,c]</span><br><span class="line">eor = eor ^ a;</span><br><span class="line">eor = eor ^ b;</span><br><span class="line">eor = eor ^ c;</span><br><span class="line">最后eor就等于出现了奇数次的这个数</span><br></pre></td></tr></table></figure>
+<p>2）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">int eor = 0;</span><br><span class="line">同样将数组各个数与eor异或</span><br><span class="line">假设[    ]数组中只有a和b出现了奇数次，其他都出现了偶数次</span><br><span class="line">先让eor从头异或到尾</span><br><span class="line">结束时 eor = a^b ,</span><br><span class="line">eor != 0</span><br><span class="line">eor 的某一位是 1</span><br><span class="line">假设它的第八位是 1</span><br><span class="line">说明a的第八位和b的第八位不同</span><br><span class="line"></span><br><span class="line">这时可以把整个数组分为两类</span><br><span class="line">一类是第八位为 1</span><br><span class="line">一类是第八位为 0</span><br><span class="line">a和b只会分别在一类中</span><br><span class="line"></span><br><span class="line">再找一个变量eor2</span><br><span class="line">eor2只去异或第八位是 1 的数</span><br><span class="line">eor2就得到了a或b</span><br><span class="line">eor2 再与eor异或，得到另一个数</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">代码实现：</span><br><span class="line">int eor = 0;</span><br><span class="line"><span class="keyword">for</span> (int curNum : arr)</span><br><span class="line">&#123;</span><br><span class="line">	eor ^= curNum;</span><br><span class="line">&#125;</span><br><span class="line">// eor = a ^ b</span><br><span class="line">// eor != 0</span><br><span class="line">// eor必然有一个位置上是1</span><br><span class="line">int rightOne = eor &amp; (~eor + 1); // 提取出最右的1</span><br><span class="line"></span><br><span class="line">// eor              : 1010111100</span><br><span class="line">// ~eor             : 0101000011 取反</span><br><span class="line">// ~eor + 1         : 0101000100 取反+1</span><br><span class="line">// eor &amp; (~eor + 1) : 0000000100 与运算，提取出最右侧的1</span><br><span class="line">// **这是一个常规操作**</span><br><span class="line"></span><br><span class="line">int onlyOne = 0; // eor2</span><br><span class="line"><span class="keyword">for</span> (int cur : arr)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> ((cur &amp; rightOne) == <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		onlyOne ^= cur;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">System.out.printf(onlyOne + &quot; &quot; + (eor ^ onlyOne));</span><br></pre></td></tr></table></figure>
+
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><ul>
+<li>时间复杂度O(N^2),额外空间复杂度O(1)</li>
+<li>插入排序在某些数据状况下并不是严格的O(N^2)，会优于选择&#x2F;冒泡排序</li>
+<li>时间复杂度<br>  O是按算法最差情况下的时间复杂度，<br>  θ是平均状况下的时间复杂度，<br>  Ω是最好情况下的时间复杂度，<br>后两个指标实际用处不大，可以不记，只用记O</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public static void insertionSort(int[] arr)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (arr == null || arr.length &lt; 2)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	// 0~0 有序的</span><br><span class="line">	// 0~i 想有序</span><br><span class="line">	<span class="keyword">for</span> (int i = 1; i &lt; arr.length; i++) // 0~i 做到有序</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (int j = i - 1; j &gt;= 0 &amp;&amp; arr[j] &gt; arr[j + 1]; j--)</span><br><span class="line">		&#123;</span><br><span class="line">			swap(arr, j, j+1); // 每轮将 j~j+1 按升序排列</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void swap(int[] arr, int i, int j)</span><br><span class="line">&#123;</span><br><span class="line">	arr[i] = arr[i] ^ arr[j];</span><br><span class="line">	arr[j] = arr[i] ^ arr[j];</span><br><span class="line">	arr[i] = arr[i] ^ arr[j];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="二分法"><a href="#二分法" class="headerlink" title="二分法"></a>二分法</h3><ol>
+<li>在一个有序数组中，找某个数是否存在</li>
+</ol>
+<ul>
+<li>遍历找一个数的方法，时间复杂度O(N)</li>
+<li>二分法找，先找数组最中间的数，因为有序，所以可以砍掉一半，继续二分，时间复杂度O(log2^N)，默认都写成log(N)</li>
+<li>8个 4个 2个 1个 log2^8 &#x3D; 砍3次</li>
+</ul>
+<ol start="2">
+<li>在一个有序数组中，找&gt;&#x3D;某个数最左侧的位置</li>
+</ol>
+<ul>
+<li>做记号，二分到结束为止</li>
+</ul>
+<ol start="3">
+<li>局部最小值问题</li>
+</ol>
+<ul>
+<li>数组无序，相邻数一定不相等</li>
+</ul>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2023/03/17/LeetCode-1/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2023/03/17/LeetCode-1/";
+            const title         = "「算法与数据结构_1_选择排序、冒泡排序、异或运算、插入排序、二分法」";
+            const excerpt       = `&nbsp;`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">算法与数据结构</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2024-03-26T01:12:44.990Z" itemprop="dateModified">最后编辑：2024-03-26</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" Java笔记(3) —— 原码、反码、补码，位运算符" href="/2022/12/14/JavaStudy-3/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" 算法与数据结构_2_递归、master公式、归并排序、荷兰国旗问题、快排" href="/2023/03/18/LeetCode-2/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+        <div id="disqus_thread" class="post-comments lazy-load"></div>
+
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://example.com/2023/03/17/LeetCode-1/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '2023/03/17/LeetCode-1/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    var load_comm = () => {
+        if (typeof DISQUS === 'undefined') {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://unishiki.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        } else {
+            DISQUS.reset({
+                reload: true,
+                config: function () {  
+                    this.page.url = 'http://example.com/2023/03/17/LeetCode-1/';  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = '2023/03/17/LeetCode-1/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                }
+            });
+        }
+    };
+    
+</script>
+<script async id="dsq-count-scr" src="//unishiki.disqus.com/count.js"></script>
+
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/ava1.jpg" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                116
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                3
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                16
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a><span class="category-list-count">95</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">开发记录</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%99%E7%A8%8B%E6%96%87%E6%A1%A3/">教程文档</a><span class="category-list-count">4</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Compute-Shader/" style="font-size: 0.62em;">Compute Shader</a> <a href="/tags/Dots/" style="font-size: 0.67em;">Dots</a> <a href="/tags/Java/" style="font-size: 0.64em;">Java</a> <a href="/tags/Minecraft/" style="font-size: 0.6em;">Minecraft</a> <a href="/tags/Shader/" style="font-size: 0.76em;">Shader</a> <a href="/tags/TwilightMelody/" style="font-size: 0.64em;">TwilightMelody</a> <a href="/tags/UI/" style="font-size: 0.71em;">UI</a> <a href="/tags/Unity/" style="font-size: 0.8em;">Unity</a> <a href="/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/" style="font-size: 0.6em;">Unity编辑器拓展</a> <a href="/tags/%E5%8A%A8%E6%95%88/" style="font-size: 0.69em;">动效</a> <a href="/tags/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/" style="font-size: 0.65em;">底层原理</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 0.75em;">性能优化</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%8F%AF%E8%A7%86%E5%8C%96/" style="font-size: 0.73em;">数学可视化</a> <a href="/tags/%E6%96%87%E6%A1%A3/" style="font-size: 0.65em;">文档</a> <a href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 0.67em;">算法与数据结构</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="font-size: 0.78em;">计算机图形学</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2025/07/25/ComputeShader-MagicLibrary/"><i class="fa  fa-book"></i> 浅尝ComputeShader-魔法图书馆</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/06/23/MyUIProject-09/"><i class="fa  fa-book"></i> UI动效 09</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/06/12/SourceCode-M3/"><i class="fa  fa-book"></i> 源码-魔法金属伤害计算</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/05/19/TwilightMelody-2-2025-05-01/"><i class="fa  fa-book"></i> TwilightMelody-2-2025-05-01</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/03/17/ComputeShaderLearning-1/"><i class="fa  fa-book"></i> GPU粒子实现原理与ComputeShader GPU Instance的基础应用</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
+                        
+                        <li><a href="mailto:ccc895286662@gmail.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/unishiki"><i class="fa fa-github"></i></a></li>
+                        
+                        <!-- New links -->
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2025 uni_shiki 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by uni_shiki.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="snow-switch">
+                        <span class="fa fa-snowflake-o"></span>
+                    </div>
+                
+                
+                    <div class="box group-box">
+                        <a href="https://jq.qq.com/?_wv=1027&k=CpdI35JY" target="_blank" rel="nofollow">
+                            <span class="fa fa-users"></span>
+                        </a>
+                    </div>
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3080117718"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>

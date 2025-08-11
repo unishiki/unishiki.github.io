@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="../images/mfmf.webp">
+  
+  <title>算法与数据结构_4_稳定性、排序算法总结、综合排序、哈希表、有序表 | uni_shiki</title>
+  
+  <meta name="author" content="uni_shiki" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="算法与数据结构" />
+  
+  <meta name="description" content="&amp;nbsp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法与数据结构_4_稳定性、排序算法总结、综合排序、哈希表、有序表">
+<meta property="og:url" content="http://example.com/2023/03/20/LeetCode-4/index.html">
+<meta property="og:site_name" content="uni_shiki">
+<meta property="og:description" content="&amp;nbsp;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/mfmf.webp">
+<meta property="article:published_time" content="2023-03-20T11:57:48.000Z">
+<meta property="article:modified_time" content="2024-03-26T01:12:44.990Z">
+<meta property="article:author" content="uni_shiki">
+<meta property="article:tag" content="算法与数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/mfmf.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>链接</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://space.bilibili.com/33554119">Bilibili</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">uni_shiki</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>uni_shiki</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/20/LeetCode-4/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">算法与数据结构_4_稳定性、排序算法总结、综合排序、哈希表、有序表</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2023-03-20T11:57:48.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-03-20</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">uni_shiki</span>
+                </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~11.17K
+                        
+                        字
+                    </li>
+                
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1711415564990"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%B3%E5%AE%9A%E6%80%A7"><span class="toc-number">1.</span> <span class="toc-text">稳定性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93"><span class="toc-number">2.</span> <span class="toc-text">排序算法总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%BC%E5%90%88%E6%8E%92%E5%BA%8F"><span class="toc-number">3.</span> <span class="toc-text">综合排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8%E3%80%81%E6%9C%89%E5%BA%8F%E8%A1%A8"><span class="toc-number">4.</span> <span class="toc-text">哈希表、有序表</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="toc-number">4.0.1.</span> <span class="toc-text">哈希表</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9C%89%E5%BA%8F%E8%A1%A8"><span class="toc-number">4.0.2.</span> <span class="toc-text">有序表</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8"><span class="toc-number">5.</span> <span class="toc-text">链表</span></a></li></ol>
+                </div>
+            
+            <hr />
+            <div itemprop="articleBody"><p>&nbsp;</p>
+<span id="more"></span>
+
+<h3 id="稳定性"><a href="#稳定性" class="headerlink" title="稳定性"></a>稳定性</h3><ul>
+<li>值排完序后相同的值，次序不变</li>
+</ul>
+<h3 id="排序算法总结"><a href="#排序算法总结" class="headerlink" title="排序算法总结"></a>排序算法总结</h3><pre><code>           时间复杂度    空间复杂度    稳定性 
+ 选择排序    O(N^2)        O(1)         x   
+ 冒泡排序    O(N^2)        O(1)         √   
+ 插入排序    O(N^2)        O(1)         √   
+ 归并排序  O(N * logN)     O(N)         √   
+ 随机快排  O(N * logN)    O(logN)       x   
+ 堆排序    O(N * logN)     O(1)         x  
+</code></pre>
+<p>总结：</p>
+<ul>
+<li>一般来讲，选择快排，因为参数项较优</li>
+<li>空间实在不够时用堆排</li>
+<li>需要稳定性时用归并</li>
+</ul>
+<hr>
+<ul>
+<li>基于比较的排序，目前找不到时间复杂度在O(N * logN)以下的</li>
+<li>基于比较的排序，在时间复杂度O(N * logN)时，目前找不到空间复杂度做到O(N)以下且稳定</li>
+</ul>
+<hr>
+<p>常见的坑：</p>
+<ul>
+<li>归并排序的额外空间复杂度可以变成O(1)，非常难不需要掌握，搜“归并排序 内部缓存法”，那时稳定性会丧失，那为什么不用堆排呢</li>
+<li>“原地归并排序”的帖子都是垃圾，它让额外空间复杂度变成O(1)，但时间复杂度变成O(N^2)，那为什么不用插入呢</li>
+<li>快排可以做到稳定性，非常难不需要掌握，搜“01 stable sort”，做到的同时会让额外空间复杂度变成O(N)，那为什么不用归并呢</li>
+<li>所有的改进都不重要</li>
+<li>有一道题目，一个整形数组，请你做到奇数放到左边，偶数放到右边，还要求奇数之间的相对次序不变，偶数之间的相对次序不变，要求额外空间复杂度O(1),还做到时间复杂度O(N)。这是面试官在搞你。因为分奇偶相当于快排的partition，做不到稳定性。</li>
+</ul>
+<h3 id="综合排序"><a href="#综合排序" class="headerlink" title="综合排序"></a>综合排序</h3><ul>
+<li>根据样本量 和 各自的排序算法的优势 选择不同的排序方式</li>
+</ul>
+<hr>
+<p>工程上对排序的改进</p>
+<ul>
+<li>充分利用O(N * logN)和O(N^2)排序各自的优势。如&lt;60用插入，&gt;&#x3D;60用归并</li>
+<li>稳定性的考虑。如基础类型用快排，自定义类型用归并</li>
+</ul>
+<h3 id="哈希表、有序表"><a href="#哈希表、有序表" class="headerlink" title="哈希表、有序表"></a>哈希表、有序表</h3><h5 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h5><ul>
+<li>在C++中叫 : UnOrderedMap &#x2F; UnSortedMap 、 UnOrderedSet &#x2F; UnSortedSet</li>
+<li>在Java中叫 : HashSet &#x2F; HashMap</li>
+<li>Map、Set<ul>
+<li>Map : Key -&gt; Value </li>
+<li>Set : Value</li>
+<li>唯一的区别是 有无伴随数据</li>
+</ul>
+</li>
+</ul>
+<p>Java示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">HashSet&lt;Integer&gt; hashSet1 = new HashSet&lt;&gt;();</span><br><span class="line">hashSet1.add(3); // add 添加</span><br><span class="line">System.out.printf(hashSet1.contains(3)); // contains 是否包含</span><br><span class="line">hashSet1.remove(3); // remove 删除</span><br><span class="line">System.out.printf(hashSet1.contains(3));</span><br><span class="line"></span><br><span class="line">HashMap&lt;Integer, String&gt; mapTest = new HashMap&lt;&gt;();</span><br><span class="line">mapTest.put(1, <span class="string">&quot;jia&quot;</span>); // 添加</span><br><span class="line">mapTest.put(1, <span class="string">&quot;yi&quot;</span>); // 覆盖</span><br><span class="line">mapTest.put(2, <span class="string">&quot;2&quot;</span>); // 添加</span><br><span class="line"></span><br><span class="line">System.out.printf(mapTest.containsKey(1));</span><br><span class="line">System.out.printf(mapTest.get(1));</span><br><span class="line"></span><br><span class="line">mapTest.remove(2);</span><br><span class="line">System.out.printf(mapTest.get(2)); // null</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>哈希表在使用(增删改查)时，时间复杂度都认为是<strong>常数级别</strong>(比较大的常数)O(1)，且跟数据量无关</li>
+<li>哈希表在使用层面上可以理解为一种集合结构</li>
+<li>放入哈希表的东西，是基础类型(Java中包括String)，按值传递，一律拷贝一份放表里；<br>不是基础类型，按引用传递，内存占用是这个东西内存地址大小，一律8字节</li>
+</ul>
+<h5 id="有序表"><a href="#有序表" class="headerlink" title="有序表"></a>有序表</h5><ul>
+<li>在C++中叫 : OrderedMap &#x2F; SortedMap 、 OrderedSet &#x2F; SortedSet</li>
+<li>在Java中叫 : TreeSet &#x2F; TreeMap</li>
+</ul>
+<p>Java示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">TreeMap&lt;Integer, String&gt; treeMap1 = new TreeMap&lt;&gt;();</span><br><span class="line">treeMap1.put(7, <span class="string">&quot;我是7&quot;</span>);</span><br><span class="line">treeMap1.put(2, <span class="string">&quot;我是2&quot;</span>);</span><br><span class="line">treeMap1.put(9, <span class="string">&quot;我是9&quot;</span>);</span><br><span class="line"></span><br><span class="line">System.out.printf(treeMap1.containsKey(7));</span><br><span class="line">System.out.printf(treeMap1.get(7));</span><br><span class="line">System.out.printf(treeMap1.firstKey() + <span class="string">&quot;我最小&quot;</span>);</span><br><span class="line">System.out.printf(treeMap1.lastKey() + <span class="string">&quot;我最大&quot;</span>);</span><br><span class="line">System.out.printf(treeMap1.floorKey(8) + <span class="string">&quot;在表中&lt;=8，且离8最近&quot;</span>);</span><br><span class="line">System.out.printf(treeMap1.ceilingKey(8) + <span class="string">&quot;在表中&gt;=8，且离8最近&quot;</span>);</span><br><span class="line">treeMap1.remove(7);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>有序表把key按照顺序组织起来</li>
+<li>性能上比哈希表差一点，所有操作都是O(logN)级别的</li>
+<li>红黑树、AVL树、size-balance-tree和跳表等都属于有序表结构，只是底层具体实现不同</li>
+<li>放入有序表的东西，如果是基础类型，内部按值传递，内存占用就是这个东西的大小<br>如果不是基础类型，必须提供比较器，内部按引用传递，内存占用是内存地址大小</li>
+</ul>
+<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><ul>
+<li>单链表、双链表结构</li>
+</ul>
+<hr>
+<p>题目 : 给定一个单链表的头节点head，请判断该链表是否为回文结构。<br>例子 : 1-&gt;2-&gt;1，返回true; 1-&gt;2-&gt;2-&gt;1，返回true; 1-&gt;2-&gt;3，返回false。<br>要求 : 如果链表长度为N，时间复杂度达到O(N)，额外空间复杂度达到O(1)。</p>
+<p>方法一 :</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// 准备一个栈，所有东西压到栈里去，从头遍历,每一次比较<span class="built_in">head</span>和栈里弹出的，有一次不同就返回<span class="literal">false</span>，每一步都一样返回<span class="literal">true</span></span><br><span class="line">public static boolean isPalindrome1(Node <span class="built_in">head</span>)</span><br><span class="line">&#123;</span><br><span class="line">	Stack&lt;Node&gt; stack = new Stack&lt;Node&gt;();</span><br><span class="line">	Node cur = <span class="built_in">head</span>;</span><br><span class="line">	<span class="keyword">while</span> (cur != null)</span><br><span class="line">	&#123;</span><br><span class="line">		stack.push(cur);</span><br><span class="line">		cur = cur.next;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">head</span> != null)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (head.value != stack.pop().value)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">head</span> = head.next;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>方法二(快慢指针) :</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">public static boolean isPalindrome2(Node <span class="built_in">head</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">head</span> == null || head.next == null)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	Node n1 = <span class="built_in">head</span>;</span><br><span class="line">	Node n2 = <span class="built_in">head</span>;</span><br><span class="line">	<span class="keyword">while</span> (n2.next != null &amp;&amp; n2.next.next != null) // 找中点</span><br><span class="line">	&#123;</span><br><span class="line">		n1 = n1.next; // 慢指针一次走一步，最终走到中点</span><br><span class="line">		n2 = n2.next.next; // 快指针一次走两步，最终走到结束</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 从n1开始做逆序</span><br><span class="line">	// 1-&gt;2-&gt;3-&gt;3-&gt;2-&gt;1</span><br><span class="line">	// 1-&gt;2-&gt;3  3&lt;-2&lt;-1</span><br><span class="line">	//       ↓</span><br><span class="line">	//      null</span><br><span class="line">	// 1-&gt;2-&gt;3-&gt;4-&gt;3-&gt;2-&gt;1</span><br><span class="line">	// 1-&gt;2-&gt;3-&gt;4  3&lt;-2&lt;-1  (慢指针n1最初指向3)</span><br><span class="line">	//          ↓</span><br><span class="line">	//         null</span><br><span class="line">	n2 = n1.next; // n2 -&gt; right part first node</span><br><span class="line">	n1.next = null; // mid.next -&gt; null</span><br><span class="line">	Node n3 = null;</span><br><span class="line">	<span class="keyword">while</span> (n2 != null)</span><br><span class="line">	&#123;</span><br><span class="line">		n3 = n2.next; // save next node</span><br><span class="line">		n2.next = n1; // next of right node convert</span><br><span class="line">		n1 = n2; // n1 move</span><br><span class="line">		n2 = n3; // n2 move</span><br><span class="line">	&#125;</span><br><span class="line">	n3 = n1; // n3 -&gt; save last node 从后往前走</span><br><span class="line">	n2 = <span class="built_in">head</span>; // n2 -&gt; left first node 从前往后走</span><br><span class="line">	boolean res = <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">while</span> (n1 != null &amp;&amp; n2 != null)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (n1.value != n2.value)</span><br><span class="line">		&#123;</span><br><span class="line">			res = <span class="literal">false</span>;</span><br><span class="line">			<span class="built_in">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		n1 = n1.next; // left to mid</span><br><span class="line">		n2 = n2.next; // right to mid</span><br><span class="line">	&#125;</span><br><span class="line">	n1 = n3.next;</span><br><span class="line">	n3.next = null;</span><br><span class="line">	<span class="keyword">while</span> (n1 != null) // recover list</span><br><span class="line">	&#123;</span><br><span class="line">		n2 = n1.next;</span><br><span class="line">		n1.next = n3;</span><br><span class="line">		n3 = n1;</span><br><span class="line">		n1 = n2;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>将单向链表按某值划分成左边小、中间相等、右边大的形式</p>
+<p>题目 : 给定一个单链表的头节点head，节点的值类型是整形，再给定一个整数pivot。实现一个调整链表的函数，将链表调整成左部分都是值小于pivot的节点，中间部分都是值等于pivot的节点，右部分都是值大于pivot的节点。</p>
+<p>进阶要求 : 再实现原问题功能的基础上增加如下要求</p>
+<ol>
+<li>调整后三部分里所有节点之间的相对顺序和调整前一样</li>
+<li>时间复杂度达到O(N)，额外空间复杂度达到O(1)</li>
+</ol>
+<p>笔试做法 :</p>
+<p>申请一个Node类型数组，把每一个值放进去，在这个数组上patition(没稳定性)</p>
+<p>面试做法 :</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">// 不用额外的数据结构，用有限的几个变量搞定</span><br><span class="line">// 6个变量，&lt;部分的头、尾 =部分的头、尾 &gt;部分的头、尾 初始值为null</span><br><span class="line">// 遍历，发现第一个，头和尾都指向这个数，再发现一个，尾改成这个</span><br><span class="line">// 最后3部分串起来，注意空指针，注意边界</span><br><span class="line"></span><br><span class="line">public static Node listPartition2(Node <span class="built_in">head</span>, int pivot)</span><br><span class="line">&#123;</span><br><span class="line">	Node sH = null; // small <span class="built_in">head</span></span><br><span class="line">	Node sT = null; // small <span class="built_in">tail</span></span><br><span class="line">	Node eH = null; // equal <span class="built_in">head</span></span><br><span class="line">	Node eT = null; // equal <span class="built_in">tail</span></span><br><span class="line">	Node bH = null; // big <span class="built_in">head</span></span><br><span class="line">	Node bT = null; // big <span class="built_in">tail</span></span><br><span class="line">	Node next = null; // save next node</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">head</span> != null)</span><br><span class="line">	&#123;</span><br><span class="line">		next = head.next;</span><br><span class="line">		head.next = null;</span><br><span class="line">		<span class="keyword">if</span> (head.value &lt; pivot)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (sH == null)</span><br><span class="line">			&#123;</span><br><span class="line">				sH = <span class="built_in">head</span>;</span><br><span class="line">				sT = <span class="built_in">head</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				sT.next = <span class="built_in">head</span>;</span><br><span class="line">				sT = <span class="built_in">head</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (head.value == pivot)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (eH == null)</span><br><span class="line">			&#123;</span><br><span class="line">				eH = <span class="built_in">head</span>;</span><br><span class="line">				eT = <span class="built_in">head</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				eT.next = <span class="built_in">head</span>;</span><br><span class="line">				eT = <span class="built_in">head</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (bH == null)</span><br><span class="line">			&#123;</span><br><span class="line">				bH = <span class="built_in">head</span>;</span><br><span class="line">				bT = <span class="built_in">head</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				bT.next = <span class="built_in">head</span>;</span><br><span class="line">				bT = <span class="built_in">head</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">head</span> = next;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (sT != null) // 如果有小于区域</span><br><span class="line">	&#123;</span><br><span class="line">		sT.next = eH;</span><br><span class="line">		eT = eT == null ? sT : eT; // 谁去连大于区域的头谁就变成eT</span><br><span class="line">	&#125;</span><br><span class="line">	// 上面的<span class="keyword">if</span> 不管跑了没有，et</span><br><span class="line">	<span class="keyword">if</span> (eT != null) // 如果小于区域和等于区域不是都没有</span><br><span class="line">	&#123;</span><br><span class="line">		eT.next = bH;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">return</span> sH != null ? sH : (eH != null ? eH : bH);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>复制含有随机指针节点的链表</p>
+<p>题目 : 一种特殊的单链表节点类描述如下<br>class Node<br>{<br>    int value;<br>    Node next;<br>    Node rand;<br>    Node(int val)<br>    {<br>        value &#x3D; val;<br>    }<br>}<br>rand指针是单链表节点结构中新增的指针，rand可能指向链表中的任意一个节点，也可能指向null。给定一个由Node节点类型组成的无环单链表的头节点head，请实现一个函数完成这个链表的复制，并返回复制的新链表的头节点。</p>
+<p>要求 : 时间复杂度O(N)，额外空间复杂度O(1)。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">// 如果用额外空间，用哈希表</span><br><span class="line">// key(老节点) value(新节点)</span><br><span class="line">// 第二部设置新节点的next、rand指针，通过map</span><br><span class="line"></span><br><span class="line">public static Node copyListWithRand1(Node <span class="built_in">head</span>)</span><br><span class="line">&#123;</span><br><span class="line">	HashMap&lt;Node, Node&gt; map = new HashMap&lt;Node, Node&gt;();</span><br><span class="line">	Node cur = <span class="built_in">head</span>;</span><br><span class="line">	<span class="keyword">while</span> (cur != null)</span><br><span class="line">	&#123;</span><br><span class="line">		map.put(cur, new Node(cur.value));</span><br><span class="line">		cur = cur.next;</span><br><span class="line">	&#125;</span><br><span class="line">	cur = <span class="built_in">head</span>;</span><br><span class="line">	<span class="keyword">while</span> (cur != null)</span><br><span class="line">	&#123;</span><br><span class="line">		// cur老</span><br><span class="line">		// map.get(cur) 新</span><br><span class="line">		map.get(cur).next = map.get(cur.next);</span><br><span class="line">		map.get(cur).rand = map.get(cur.rand);</span><br><span class="line">		cur = cur.next;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">return</span> map.get(<span class="built_in">head</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">// 不用哈希表</span><br><span class="line">// 把克隆节点就放在老链表中该老节点的下一个，</span><br><span class="line">// 克隆节点去串上老链表的这个节点</span><br><span class="line">// 如1-&gt;1’-&gt;2-&gt;2’-&gt;null</span><br><span class="line">// 这时设置新节点的next、rand指针都为老节点的next + 1、rand + 1位置</span><br><span class="line">// 最后在next位置上把新链表分离开来</span><br><span class="line"></span><br><span class="line">public static Node copyListWithRand2(Node <span class="built_in">head</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">head</span> == null)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">return</span> null;</span><br><span class="line">	&#125;</span><br><span class="line">	Node cur = <span class="built_in">head</span>;</span><br><span class="line">	Node next = null; // tmp node</span><br><span class="line">	// copy node and <span class="built_in">link</span> to every node</span><br><span class="line">	// 1 -&gt; 2</span><br><span class="line">	// 1 -&gt; 1’ -&gt; 2</span><br><span class="line">	<span class="keyword">while</span> (cur != null)</span><br><span class="line">	&#123;</span><br><span class="line">		next = cur.next;</span><br><span class="line">		cur.next = new Node(cur.value);</span><br><span class="line">		cur.next.next = next;</span><br><span class="line">		cur = next;</span><br><span class="line">	&#125;</span><br><span class="line">	cur = <span class="built_in">head</span>;</span><br><span class="line">	Node curCopy = null;</span><br><span class="line">	// <span class="built_in">set</span> copy node rand</span><br><span class="line">	<span class="keyword">while</span> (cur != null)</span><br><span class="line">	&#123;</span><br><span class="line">		next = cur.next.next;</span><br><span class="line">		curCopy = cur.next;</span><br><span class="line">		curCopy.rand = cur.rand != null ? cur.rand.next : null;</span><br><span class="line">		cur = next;</span><br><span class="line">	&#125;</span><br><span class="line">	Node res = head.next;</span><br><span class="line">	cur = <span class="built_in">head</span>;</span><br><span class="line">	// <span class="built_in">split</span></span><br><span class="line">	<span class="keyword">while</span> (cur != null)</span><br><span class="line">	&#123;</span><br><span class="line">		next = cur.next.next;</span><br><span class="line">		curCopy = cur.next;</span><br><span class="line">		cue.next = next;</span><br><span class="line">		curCopy.next = next != null ? next.next : null;</span><br><span class="line">		cur = next;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>题目 :<br>给定两个可能有环也可能无环的单链表，头节点head1和head2.请实现一个函数，如果两个链表相交，请返回相交的 第一个节点；如果不相交，返回null。<br>要求 :<br>如果两个链表长度之和为N，时间复杂度请达到O(N)，额外空间复杂度请达到O(1)。</p>
+<p>法一 哈希表:<br>使用一个哈希表(Set)，每往下走一个节点，查询一遍该节点是否已存在哈希表中，直到next走到null或相同为止</p>
+<p>法二 快慢指针:<br>如果快慢指针能相遇，则有环，这时让快指针回到head，两指针一起一步一步走，会在环的第一个节点相遇</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br></pre></td><td class="code"><pre><span class="line">// 找到链表第一个入环节点，如果无环，返回null</span><br><span class="line">public static Node getLoopNode(Node <span class="built_in">head</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">head</span> == null || head.next == null || head.next.next == null)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">return</span> null;</span><br><span class="line">	&#125;</span><br><span class="line">	Node n1 = head.next; // 慢指针</span><br><span class="line">	Node n2 = head.next.next; // 快指针</span><br><span class="line">	<span class="keyword">while</span> (n1 != n2)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (n2.next == null || n2.next.next == null)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">return</span> null;</span><br><span class="line">		&#125;</span><br><span class="line">		n2 = n2.next.next;</span><br><span class="line">		n1 = n1.next;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	n2 = <span class="built_in">head</span>; // walk again</span><br><span class="line">	<span class="keyword">while</span> (n1 != n2)</span><br><span class="line">	&#123;</span><br><span class="line">		n1 = n1.next;</span><br><span class="line">		n2 = n2.next;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">return</span> n1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 情况1 : loop1 == null , loop2 == null</span><br><span class="line">// 两个无环单链表，如果相交，从相交的时刻走到最后一定相同</span><br><span class="line">// 链表1 : head1 ...len1(假设长度为100)... end1</span><br><span class="line">// 链表2 : head2 ...len2(假设长度为80)... end2</span><br><span class="line">// 先判断end1和end2是否相同，如果相同，则有相交</span><br><span class="line">// 长链表先走差值步(假设为100-80=20)，再两链表一起走，一定会共同迈到交叉节点</span><br><span class="line"></span><br><span class="line">public static Node noLoop(Node head1, Node head2)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (head1 == null || head2 == null)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">return</span> null;</span><br><span class="line">	&#125;</span><br><span class="line">	Node cur1 = head1;</span><br><span class="line">	Node cur2 = head2;</span><br><span class="line">	int n = 0;</span><br><span class="line">	<span class="keyword">while</span> (cur1.next != null)</span><br><span class="line">	&#123;</span><br><span class="line">		n++;</span><br><span class="line">		cur1 = cur1.next;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (cur2.next != null)</span><br><span class="line">	&#123;</span><br><span class="line">		n--;</span><br><span class="line">		cur2 = cur2.next;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (cur1 != cur2)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">return</span> null;</span><br><span class="line">	&#125;</span><br><span class="line">	// n : 链表1长度-链表2长度</span><br><span class="line">	cur1 = n &gt; 0 ? head1 : head2; // 谁长，谁的头变成cur1</span><br><span class="line">	cur2 = cur1 == head1 ? head2 : head1; // 谁短，谁的头变成cur2</span><br><span class="line">	n = Math.abs(n);</span><br><span class="line">	<span class="keyword">while</span> (n != 0)</span><br><span class="line">	&#123;</span><br><span class="line">		n--;</span><br><span class="line">		cur1 = cur1.next;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (cur1 != cur2)</span><br><span class="line">	&#123;</span><br><span class="line">		cur1 = cur1.next;</span><br><span class="line">		cur2 = cur2.next;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">return</span> cur1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 情况2 : loop1、loop2有一个为null，即一个有环一个无环</span><br><span class="line">// 情况3 : 两个链表都有环</span><br><span class="line">// 情况3分为3种情况</span><br><span class="line">// 1) 两个链表不相交</span><br><span class="line">// 2) 两个链表相交，且入环节点相同</span><br><span class="line">// 3) 两个链表相交，且入环节点不同</span><br><span class="line"></span><br><span class="line">public static Node bothLoop(Node head1, Node loop1, Node head2, Node loop2)</span><br><span class="line">&#123;</span><br><span class="line">	Node cur1 = null;</span><br><span class="line">	Node cur2 = null;</span><br><span class="line">	<span class="keyword">if</span> (loop1 == loop2) // 情况2</span><br><span class="line">	&#123;</span><br><span class="line">		cur1 = head1;</span><br><span class="line">		cur2 = head2;</span><br><span class="line">		int n = 0;</span><br><span class="line">		<span class="keyword">while</span> (cur1 != loop1)</span><br><span class="line">		&#123;</span><br><span class="line">			n++;</span><br><span class="line">			cur1 = cur1.next;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span> (cur2 != loop2)</span><br><span class="line">		&#123;</span><br><span class="line">			n--;</span><br><span class="line">			cur2 = cur2.next;</span><br><span class="line">		&#125;</span><br><span class="line">		cur1 = n &gt; 0 ? head1 : head2;</span><br><span class="line">		cur2 = cur1 == head1 ? head2 : head1;</span><br><span class="line">		n = Math.abs(n);</span><br><span class="line">		<span class="keyword">while</span> (n != 0)</span><br><span class="line">		&#123;</span><br><span class="line">			n--;</span><br><span class="line">			cur1 = cur1.next;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span> (cur1 != cur2)</span><br><span class="line">		&#123;</span><br><span class="line">			cur1 = cur1.next;</span><br><span class="line">			cur2 = cur2.next;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">return</span> cur1;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		cur1 = loop1.next;</span><br><span class="line">		<span class="keyword">while</span> (cur1 != loop1)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (cur1 == loop2)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">return</span> loop1;</span><br><span class="line">			&#125;</span><br><span class="line">			cur1 = cur1.next;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">return</span> null;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static Node getIntersectNode(Node head1, Node head2)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (head1 == null || head2 == null)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">return</span> null;</span><br><span class="line">	&#125;</span><br><span class="line">	Node loop1 = getLoopNode(head1);</span><br><span class="line">	Node loop2 = getLoopNode(head2);</span><br><span class="line">	<span class="keyword">if</span> (loop1 == null &amp;&amp; loop2 == null)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">return</span> noLoop(head1, head2);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (loop1 != null &amp;&amp; loop2 != null)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">return</span> bothLoop(head1, loop1, head2, loop2);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">return</span> null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2023/03/20/LeetCode-4/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2023/03/20/LeetCode-4/";
+            const title         = "「算法与数据结构_4_稳定性、排序算法总结、综合排序、哈希表、有序表」";
+            const excerpt       = `&nbsp;`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">算法与数据结构</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2024-03-26T01:12:44.990Z" itemprop="dateModified">最后编辑：2024-03-26</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 算法与数据结构_3_快排、堆、比较器" href="/2023/03/19/LeetCode-3/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" 算法与数据结构_5_二叉树" href="/2023/03/22/LeetCode-5/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+        <div id="disqus_thread" class="post-comments lazy-load"></div>
+
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://example.com/2023/03/20/LeetCode-4/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '2023/03/20/LeetCode-4/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    var load_comm = () => {
+        if (typeof DISQUS === 'undefined') {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://unishiki.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        } else {
+            DISQUS.reset({
+                reload: true,
+                config: function () {  
+                    this.page.url = 'http://example.com/2023/03/20/LeetCode-4/';  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = '2023/03/20/LeetCode-4/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                }
+            });
+        }
+    };
+    
+</script>
+<script async id="dsq-count-scr" src="//unishiki.disqus.com/count.js"></script>
+
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/ava1.jpg" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                116
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                3
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                16
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%B3%E5%AE%9A%E6%80%A7"><span class="toc-text">稳定性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93"><span class="toc-text">排序算法总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%BC%E5%90%88%E6%8E%92%E5%BA%8F"><span class="toc-text">综合排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8%E3%80%81%E6%9C%89%E5%BA%8F%E8%A1%A8"><span class="toc-text">哈希表、有序表</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="toc-text">哈希表</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9C%89%E5%BA%8F%E8%A1%A8"><span class="toc-text">有序表</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8"><span class="toc-text">链表</span></a></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a><span class="category-list-count">95</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">开发记录</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%99%E7%A8%8B%E6%96%87%E6%A1%A3/">教程文档</a><span class="category-list-count">4</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Compute-Shader/" style="font-size: 0.62em;">Compute Shader</a> <a href="/tags/Dots/" style="font-size: 0.67em;">Dots</a> <a href="/tags/Java/" style="font-size: 0.64em;">Java</a> <a href="/tags/Minecraft/" style="font-size: 0.6em;">Minecraft</a> <a href="/tags/Shader/" style="font-size: 0.76em;">Shader</a> <a href="/tags/TwilightMelody/" style="font-size: 0.64em;">TwilightMelody</a> <a href="/tags/UI/" style="font-size: 0.71em;">UI</a> <a href="/tags/Unity/" style="font-size: 0.8em;">Unity</a> <a href="/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/" style="font-size: 0.6em;">Unity编辑器拓展</a> <a href="/tags/%E5%8A%A8%E6%95%88/" style="font-size: 0.69em;">动效</a> <a href="/tags/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/" style="font-size: 0.65em;">底层原理</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 0.75em;">性能优化</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%8F%AF%E8%A7%86%E5%8C%96/" style="font-size: 0.73em;">数学可视化</a> <a href="/tags/%E6%96%87%E6%A1%A3/" style="font-size: 0.65em;">文档</a> <a href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 0.67em;">算法与数据结构</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="font-size: 0.78em;">计算机图形学</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2025/07/25/ComputeShader-MagicLibrary/"><i class="fa  fa-book"></i> 浅尝ComputeShader-魔法图书馆</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/06/23/MyUIProject-09/"><i class="fa  fa-book"></i> UI动效 09</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/06/12/SourceCode-M3/"><i class="fa  fa-book"></i> 源码-魔法金属伤害计算</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/05/19/TwilightMelody-2-2025-05-01/"><i class="fa  fa-book"></i> TwilightMelody-2-2025-05-01</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/03/17/ComputeShaderLearning-1/"><i class="fa  fa-book"></i> GPU粒子实现原理与ComputeShader GPU Instance的基础应用</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
+                        
+                        <li><a href="mailto:ccc895286662@gmail.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/unishiki"><i class="fa fa-github"></i></a></li>
+                        
+                        <!-- New links -->
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2025 uni_shiki 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by uni_shiki.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="snow-switch">
+                        <span class="fa fa-snowflake-o"></span>
+                    </div>
+                
+                
+                    <div class="box group-box">
+                        <a href="https://jq.qq.com/?_wv=1027&k=CpdI35JY" target="_blank" rel="nofollow">
+                            <span class="fa fa-users"></span>
+                        </a>
+                    </div>
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3080117718"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>

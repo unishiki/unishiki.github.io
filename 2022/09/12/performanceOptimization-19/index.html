@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="../images/mfmf.webp">
+  
+  <title>性能优化(22)——Unity中的Batching(上) | uni_shiki</title>
+  
+  <meta name="author" content="uni_shiki" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="Unity, 性能优化" />
+  
+  <meta name="description" content="Unity中的合批">
+<meta property="og:type" content="article">
+<meta property="og:title" content="性能优化(22)——Unity中的Batching(上)">
+<meta property="og:url" content="http://example.com/2022/09/12/performanceOptimization-19/index.html">
+<meta property="og:site_name" content="uni_shiki">
+<meta property="og:description" content="Unity中的合批">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/mfmf.webp">
+<meta property="article:published_time" content="2022-09-12T07:13:28.000Z">
+<meta property="article:modified_time" content="2025-03-17T02:21:37.114Z">
+<meta property="article:author" content="uni_shiki">
+<meta property="article:tag" content="Unity">
+<meta property="article:tag" content="性能优化">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/mfmf.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>链接</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://space.bilibili.com/33554119">Bilibili</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">uni_shiki</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>uni_shiki</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/12/performanceOptimization-19/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">性能优化(22)——Unity中的Batching(上)</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2022-09-12T07:13:28.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2022-09-12</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">uni_shiki</span>
+                </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~3.78K
+                        
+                        字
+                    </li>
+                
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1742178097114"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Unity%E4%B8%AD%E7%9A%84%E5%90%88%E6%89%B9"><span class="toc-number">1.</span> <span class="toc-text">Unity中的合批</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%93%AA%E4%BA%9B%E5%86%85%E5%AE%B9%E9%9C%80%E8%A6%81Batchaing"><span class="toc-number">2.</span> <span class="toc-text">哪些内容需要Batchaing</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E7%9A%84Batching"><span class="toc-number">3.</span> <span class="toc-text">资源的Batching</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Draw-Call-Batching"><span class="toc-number">4.</span> <span class="toc-text">Draw Call Batching</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GPU-Instancing"><span class="toc-number">5.</span> <span class="toc-text">GPU Instancing</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Set-Pass-Call-Batching"><span class="toc-number">6.</span> <span class="toc-text">Set Pass Call Batching</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Batching%E4%BC%98%E5%8C%96%E9%A1%BA%E5%BA%8F%E5%8F%8A%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-number">7.</span> <span class="toc-text">Batching优化顺序及优先级</span></a></li></ol>
+                </div>
+            
+            <hr />
+            <div itemprop="articleBody"><h1 id="Unity中的合批"><a href="#Unity中的合批" class="headerlink" title="Unity中的合批"></a>Unity中的合批</h1><span id="more"></span>
+<ul>
+<li>类比将桃子装卸发货的过程。其本质就是按需求组织数据从CPU发给GPU的过程，这些数据包括网格、纹理、Shader变量、材质属性等等。那么这些数据怎么组织、以什么结构组织、以什么频率发送、每次发送多少就是我们Batching要研究的问题了</li>
+</ul>
+<h1 id="哪些内容需要Batchaing"><a href="#哪些内容需要Batchaing" class="headerlink" title="哪些内容需要Batchaing"></a>哪些内容需要Batchaing</h1><ul>
+<li>广义上讲：</li>
+<li>资源Batching(Mesh、Texture、Shader参数、材质属性)：这些资源的合批是做后续某些Batching优化的前提</li>
+<li>Draw call Batching(Static Batching、Dynamic Batching)：主要是为了降低GPU的DP操作，能更少地调用绘制命令接口，Unity在这里为我们提供了Static Batching与Dynamic Batching功能</li>
+<li>GPU Instancing(直接渲染、间接渲染、程序化间接渲染)：这也是一种绘制优化的手段，用于绘制多个副本网格对象。Unity提供了直接渲染、间接渲染、程序化间接渲染的三种方法接口</li>
+<li>Set Pass call Batching(SRP Batching)：之前Draw call Batching是为了减少渲染操作调用次数，而Set Pass call Batching是为了减少渲染状态切换的次数。Unity下为我们提供了减少Set Pass call次数的SRP Batching的功能</li>
+</ul>
+<h1 id="资源的Batching"><a href="#资源的Batching" class="headerlink" title="资源的Batching"></a>资源的Batching</h1><ul>
+<li>Mesh：<ul>
+<li>我们可以将临近且不移动的网格对象通过Mesh.CombineMesh合并到一起，合并后用一次网格的渲染调用代替每个网格的渲染调用。但这种方案也有一定的弊端，一旦合并的网格对象较大时，可能造成摄像机剔除不掉的问题以及OverDraw的问题，另外在内存上也会增加一定的开销。CombineMesh主要是针对于<strong>静态</strong>网格对象</li>
+<li>如果是动态SkinMesh对象，往往由于美术为了材质表现效果，会通过Material id标记多维子材质，这样导入后会形成多个Submesh，每个不同材质的Submesh会增加一次DrawCall，我们在做平台移植或低端设备兼容时，可以合并多个材质与贴图，并通过通道图方式标记模型不同部位的材质变化</li>
+</ul>
+</li>
+<li>Texture：<ul>
+<li>Unity默认提供了Sprite Atlas贴图，开发者也可以自己通过dcc合并同一模型上多张贴图到一张贴图上以达到纹理合并的方式</li>
+<li>另外还可以通过TextureArray纹理数组方式向GPU同时传递多张设置相同的贴图资源</li>
+</ul>
+</li>
+<li>关于模型、贴图、材质这些资源的Batching，除了Unity官方提供的接口外，资源商店中也有很多资源可以使用</li>
+<li>Shader变量与材质属性<ul>
+<li>在Build In管线下，Unity是通过Material Property Block完成合批的</li>
+<li>而在SRP管线下则是通过Const buffer来实现的，并且通过定义不同的Const buffer，来控制提交到GPU上的频率，比如PerFrame、PerDraw、PerMaterial等Const buffer标签</li>
+</ul>
+</li>
+</ul>
+<h1 id="Draw-Call-Batching"><a href="#Draw-Call-Batching" class="headerlink" title="Draw Call Batching"></a>Draw Call Batching</h1><ul>
+<li>主要讲Static Batching与Dynamic Batching</li>
+</ul>
+<hr>
+<ul>
+<li>与手动CombineMesh合并静态网格不同，Static Batching是引擎在构建时，自动将临近可合并的静态网格对象合并到一起，并将合并后的网格转换到世界空间下，并用它们的顶点信息构建一个共享的顶点缓冲与索引缓冲区，然后对可见网格进行简单的绘制调用。</li>
+<li>值得注意的是：无论是CombineMesh还是Static Batching都不是在运行时合批的，如果你需要在运行时合批，可以通过Unity提供的StaticBatchingUtility.Combine的方法进行运行时合批，这对于一些运行时动态生成网格的对象特别有效，如需要动态关卡生成的Roguelike游戏。运行时合批时，你就不需要勾选BuildSetting中的Static Batching了</li>
+<li>此外Static Batching功能依旧会有额外的内存开销，所有合批的网格对象都会在内存中保留一份额外的拷贝，是一个典型的空间换时间的优化方案</li>
+</ul>
+<hr>
+<ul>
+<li>Dynamic Batching是对移动的游戏对象进行绘制批处理的手段，以减少绘制调用。Unity在运行时动态网格与动态生成几何体上的动态合批处理方式不同，Unity会将可动态合批的对象构建到一块大的顶点缓冲区中，并根据合批后的数据设置渲染器材质状态，然后将缓冲区绑定到GPU上，对于每个MeshRender是通过缓冲区偏移量来更新提交绘制内容的。做个类比，可以把静态网格对象理解成硬桃子，动态网格对象或动态生成几何体理解成软桃子，硬桃子量大、储存期长，你可以用火车起运，运输目的地可以较远，用途也更广一些；而软桃子为了避免腐烂，只可以做短距离小范围运输，甚至要就地加工，用途上会有更多限制。Dynamic Batching主要是为了一些低端、旧设备性能优化考虑的，在现代消费级硬件上，Dynamic Batching在CPU上的调用开销可能会更大，因此是否开启动态合批选项还需要在目标设备上测试使用，并不是无脑开启的</li>
+<li>总之，无论是Static Batching还是Dynamic Batching，在使用上都有一些使用限制，稍不注意就会造成无法合批的现象</li>
+</ul>
+<h1 id="GPU-Instancing"><a href="#GPU-Instancing" class="headerlink" title="GPU Instancing"></a>GPU Instancing</h1><ul>
+<li>GPU实例化也是一种Batching，用于渲染网格的多个副本。它是将基础网格对象传递给GPU后充分利用Instancing Buffer的方法，传递多个网格实例位置、朝向、颜色等其他属性构成的Instancing Buffer到GPU，避免了反复传递多个基础网格对象在世界空间下变换后的各种顶点数据和其他额外数据，所有的实例都会引用同一个基础网格对象，非常适合创建植被、石头等场景中大量重复的网格对象</li>
+<li>GPU Instancing在Unity Build In管线与SRP管线下都支持，只不过在SRP管线中无法与SRP Batcher兼容，二者只能选择一个开启</li>
+<li>需要开启GPU Instancing时，我们需要保障对应网格对象的材质中Enable GPU Instancing选项的开启<br><img src="/images/performanceOptimization/87.png"></li>
+<li>如果是自定义Shader，我们还需要定义Instancing Buffer的结构</li>
+<li>值得注意的是，如果基础网格对象顶点数较少时，由于无法充分利用GPU资源，可能会导致性能不够理想，因此，对于顶点数较少的网格，我们需要反复测试，一般情况下不建议使用GPU Instancing</li>
+<li>Unity可以在脚本中通过直接（DrawMeshInstanced）、间接（DrawMeshInstancedIndirect）、间接程序化（DrawMeshInstancedProcedural）三个接口自定义绘制Instancing</li>
+<li>其中第一个接口DrawMeshInstanced使用简单，但有实例化数量的限制；第二、三个更灵活一些，但实现相对复杂，可以在Unity文档中学习使用</li>
+</ul>
+<h1 id="Set-Pass-Call-Batching"><a href="#Set-Pass-Call-Batching" class="headerlink" title="Set Pass Call Batching"></a>Set Pass Call Batching</h1><ul>
+<li>只有一类：SRP Batcher。顾名思义其仅能在SRP管线下开启</li>
+<li>它可以显著减少Unity为使用相同着色器材质，准备和调度绘制的CPU时间开销</li>
+<li>类比桃子运输装卸场景就是，使用什么交通工具、多少频率发一次货性价比最高</li>
+<li>其核心是需要图形API支持的Const Buffer。这个Const Buffer中放什么、每个元素大小、Const Buffer总体大小以及什么时机以什么频率将Const Buffer中的内容提交给GPU，都是会影响最终性能的</li>
+<li>好在Unity已经为我们定义好了一些Const Buffer类型，如<ul>
+<li>UnityPerCamera</li>
+<li>UnityPerFrame</li>
+<li>UnityPerPass</li>
+<li>UnityPerDraw</li>
+<li>UnityPerDrawRare</li>
+<li><strong>UnityPerMaterial</strong></li>
+</ul>
+</li>
+<li>上面几类SRP已经定义好的Const Buffer包含了引擎内置的一些Shader变量与属性，同时也指定了提交到GPU上的频率</li>
+<li>而需要开发者定义的只有UnityPerMaterial这类的Const Buffer，这类Const Buffer只有在其定义属性发生变化时才会被提交到GPU上</li>
+<li>我们需要将自定义的着色器变量与材质属性添加到这类的Const Buffer中，不能有在Const Buffer之外定义的其他属性或Uniform变量，确保SRP Batcher字段是compatible的，这一点非常重要<br><img src="/images/performanceOptimization/88.png"></li>
+<li>在SRP管线下强烈建议开启SRP Batcher功能，如果不使用此功能，个人觉得完全没必要升级到URP或HDRP管线</li>
+<li>在URP管线中，自带的某些Const Buffer在定义上可以做一些精度上的优化，以提高Shader的指令效率</li>
+</ul>
+<h1 id="Batching优化顺序及优先级"><a href="#Batching优化顺序及优先级" class="headerlink" title="Batching优化顺序及优先级"></a>Batching优化顺序及优先级</h1><ul>
+<li>资源Batching &gt; SRP Batching &#x3D; Static Batching &gt; GPU Instancing &gt; Dynamic Batching</li>
+</ul>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2022/09/12/performanceOptimization-19/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2022/09/12/performanceOptimization-19/";
+            const title         = "「性能优化(22)——Unity中的Batching(上)」";
+            const excerpt       = `Unity中的合批`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>, <a class="tag-none-link" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2025-03-17T02:21:37.114Z" itemprop="dateModified">最后编辑：2025-03-17</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 性能优化(21)——Unity中的Simplization" href="/2022/09/12/performanceOptimization-18/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" 性能优化(23)——Unity中的Batching(下)" href="/2022/09/12/performanceOptimization-20/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+        <div id="disqus_thread" class="post-comments lazy-load"></div>
+
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://example.com/2022/09/12/performanceOptimization-19/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '2022/09/12/performanceOptimization-19/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    var load_comm = () => {
+        if (typeof DISQUS === 'undefined') {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://unishiki.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        } else {
+            DISQUS.reset({
+                reload: true,
+                config: function () {  
+                    this.page.url = 'http://example.com/2022/09/12/performanceOptimization-19/';  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = '2022/09/12/performanceOptimization-19/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                }
+            });
+        }
+    };
+    
+</script>
+<script async id="dsq-count-scr" src="//unishiki.disqus.com/count.js"></script>
+
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/ava1.jpg" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                116
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                3
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                16
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Unity%E4%B8%AD%E7%9A%84%E5%90%88%E6%89%B9"><span class="toc-text">Unity中的合批</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%93%AA%E4%BA%9B%E5%86%85%E5%AE%B9%E9%9C%80%E8%A6%81Batchaing"><span class="toc-text">哪些内容需要Batchaing</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E7%9A%84Batching"><span class="toc-text">资源的Batching</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Draw-Call-Batching"><span class="toc-text">Draw Call Batching</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GPU-Instancing"><span class="toc-text">GPU Instancing</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Set-Pass-Call-Batching"><span class="toc-text">Set Pass Call Batching</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Batching%E4%BC%98%E5%8C%96%E9%A1%BA%E5%BA%8F%E5%8F%8A%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-text">Batching优化顺序及优先级</span></a></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a><span class="category-list-count">95</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">开发记录</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%99%E7%A8%8B%E6%96%87%E6%A1%A3/">教程文档</a><span class="category-list-count">4</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Compute-Shader/" style="font-size: 0.62em;">Compute Shader</a> <a href="/tags/Dots/" style="font-size: 0.67em;">Dots</a> <a href="/tags/Java/" style="font-size: 0.64em;">Java</a> <a href="/tags/Minecraft/" style="font-size: 0.6em;">Minecraft</a> <a href="/tags/Shader/" style="font-size: 0.76em;">Shader</a> <a href="/tags/TwilightMelody/" style="font-size: 0.64em;">TwilightMelody</a> <a href="/tags/UI/" style="font-size: 0.71em;">UI</a> <a href="/tags/Unity/" style="font-size: 0.8em;">Unity</a> <a href="/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/" style="font-size: 0.6em;">Unity编辑器拓展</a> <a href="/tags/%E5%8A%A8%E6%95%88/" style="font-size: 0.69em;">动效</a> <a href="/tags/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/" style="font-size: 0.65em;">底层原理</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 0.75em;">性能优化</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%8F%AF%E8%A7%86%E5%8C%96/" style="font-size: 0.73em;">数学可视化</a> <a href="/tags/%E6%96%87%E6%A1%A3/" style="font-size: 0.65em;">文档</a> <a href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 0.67em;">算法与数据结构</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="font-size: 0.78em;">计算机图形学</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2025/07/25/ComputeShader-MagicLibrary/"><i class="fa  fa-book"></i> 浅尝ComputeShader-魔法图书馆</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/06/23/MyUIProject-09/"><i class="fa  fa-book"></i> UI动效 09</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/06/12/SourceCode-M3/"><i class="fa  fa-book"></i> 源码-魔法金属伤害计算</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/05/19/TwilightMelody-2-2025-05-01/"><i class="fa  fa-book"></i> TwilightMelody-2-2025-05-01</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/03/17/ComputeShaderLearning-1/"><i class="fa  fa-book"></i> GPU粒子实现原理与ComputeShader GPU Instance的基础应用</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
+                        
+                        <li><a href="mailto:ccc895286662@gmail.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/unishiki"><i class="fa fa-github"></i></a></li>
+                        
+                        <!-- New links -->
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2025 uni_shiki 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by uni_shiki.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="snow-switch">
+                        <span class="fa fa-snowflake-o"></span>
+                    </div>
+                
+                
+                    <div class="box group-box">
+                        <a href="https://jq.qq.com/?_wv=1027&k=CpdI35JY" target="_blank" rel="nofollow">
+                            <span class="fa fa-users"></span>
+                        </a>
+                    </div>
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3080117718"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>

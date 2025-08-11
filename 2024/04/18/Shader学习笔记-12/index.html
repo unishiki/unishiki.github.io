@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="../images/mfmf.webp">
+  
+  <title>Unity Shader入门精要 第十三章 | uni_shiki</title>
+  
+  <meta name="author" content="uni_shiki" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="Shader, Unity, 计算机图形学" />
+  
+  <meta name="description" content="使用深度和法线纹理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity Shader入门精要 第十三章">
+<meta property="og:url" content="http://example.com/2024/04/18/Shader%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12/index.html">
+<meta property="og:site_name" content="uni_shiki">
+<meta property="og:description" content="使用深度和法线纹理">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/mfmf.webp">
+<meta property="article:published_time" content="2024-04-18T03:03:00.000Z">
+<meta property="article:modified_time" content="2025-03-17T02:27:25.533Z">
+<meta property="article:author" content="uni_shiki">
+<meta property="article:tag" content="Unity">
+<meta property="article:tag" content="Shader">
+<meta property="article:tag" content="计算机图形学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/mfmf.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>链接</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://space.bilibili.com/33554119">Bilibili</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">uni_shiki</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>uni_shiki</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/18/Shader%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">Unity Shader入门精要 第十三章</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2024-04-18T03:03:00.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2024-04-18</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">uni_shiki</span>
+                </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~6.09K
+                        
+                        字
+                    </li>
+                
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1742178445533"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%B7%B1%E5%BA%A6%E5%92%8C%E6%B3%95%E7%BA%BF%E7%BA%B9%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">使用深度和法线纹理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13-1-%E8%8E%B7%E5%8F%96%E6%B7%B1%E5%BA%A6%E5%92%8C%E6%B3%95%E7%BA%BF%E7%BA%B9%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">13.1 获取深度和法线纹理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#13-1-1-%E8%83%8C%E5%90%8E%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">2.0.1.</span> <span class="toc-text">13.1.1 背后的原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-1-2-%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96"><span class="toc-number">2.0.2.</span> <span class="toc-text">13.1.2 如何获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-1-3-%E6%9F%A5%E7%9C%8B%E6%B7%B1%E5%BA%A6%E5%92%8C%E6%B3%95%E7%BA%BF%E7%BA%B9%E7%90%86"><span class="toc-number">2.0.3.</span> <span class="toc-text">13.1.3 查看深度和法线纹理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13-2-%E5%86%8D%E8%B0%88%E8%BF%90%E5%8A%A8%E6%A8%A1%E7%B3%8A"><span class="toc-number">3.</span> <span class="toc-text">13.2 再谈运动模糊</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13-3-%E5%85%A8%E5%B1%80%E9%9B%BE%E6%95%88"><span class="toc-number">4.</span> <span class="toc-text">13.3 全局雾效</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#13-3-0"><span class="toc-number">4.0.1.</span> <span class="toc-text">13.3.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-3-1-%E5%85%A8%E5%B1%80%E9%9B%BE%E6%95%88"><span class="toc-number">4.0.2.</span> <span class="toc-text">13.3.1 全局雾效</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-3-2-%E9%9B%BE%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="toc-number">4.0.3.</span> <span class="toc-text">13.3.2 雾的计算</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13-4-%E5%86%8D%E6%8E%A2%E8%BE%B9%E7%BC%98%E6%A3%80%E6%B5%8B"><span class="toc-number">5.</span> <span class="toc-text">13.4 再探边缘检测</span></a></li></ol>
+                </div>
+            
+            <hr />
+            <div itemprop="articleBody"><h1 id="使用深度和法线纹理"><a href="#使用深度和法线纹理" class="headerlink" title="使用深度和法线纹理"></a>使用深度和法线纹理</h1><span id="more"></span>
+<hr>
+<h1 id="13-1-获取深度和法线纹理"><a href="#13-1-获取深度和法线纹理" class="headerlink" title="13.1 获取深度和法线纹理"></a>13.1 获取深度和法线纹理</h1><h3 id="13-1-1-背后的原理"><a href="#13-1-1-背后的原理" class="headerlink" title="13.1.1 背后的原理"></a>13.1.1 背后的原理</h3><ul>
+<li>深度纹理实际上是一种渲染的纹理，只不过它里面存储的像素值不是颜色值，而是一个高精度的深度值，由于被存储在一张纹理上，深度纹理的深度范围就都是[0,1]，而且是非线性分布的</li>
+<li>这些深度值来自于顶点变换后得到的归一化的设备坐标(Normalized Device Coordinates, NDC)</li>
+<li>一个模型要想最终被绘制在屏幕上，需要把它的顶点从模型空间变换到齐次裁剪坐标系下，这是通过在顶点着色器中乘以MVP变换矩阵得到的</li>
+<li>在变换的最后一步，我们需要使用一个投影矩阵来变换顶点，当我们使用的是透视投影类型的摄像机时，这个投影矩阵就是非线性的</li>
+<li>在得到了归一化的设备坐标也就是NDC之后，深度纹理中的像素值就可以很方便的计算得到，这些深度值就对应NDC中顶点坐标的z分量的值，由于NDC中z分量的范围在[-1,1]，为了让这些值能够存储在一张图像中，就需要使用 <strong>d &#x3D; 0.5z + 0.5</strong> 这样一个公式对其做一个映射，d对应了深度纹理中的像素值，z对应了NDC坐标的z分量值</li>
+</ul>
+<h3 id="13-1-2-如何获取"><a href="#13-1-2-如何获取" class="headerlink" title="13.1.2 如何获取"></a>13.1.2 如何获取</h3><ul>
+<li>在Unity中，深度纹理可以直接来自于真正的深度缓存，也可以是由一个单独的Pass渲染得到，这取决于我们使用的渲染路径和硬件</li>
+<li>当使用延迟渲染路径，深度纹理也可以很方便的获取，因为延迟渲染会把这些信息渲染到GBuffer中，而当无法直接获取深度缓存时，深度和法线纹理是通过一个单独的Pass渲染得到的</li>
+<li>具体而言，Unity会使用着色器替换技术，选择那些渲染类型为Opaque的物体，判断它们的渲染队列是否小于等于2500，如果满足条件就把它渲染到深度和法线纹理中</li>
+<li>因此，需要让物体出现在深度和法线纹理中，我们必须在Shader中设置正确的RenderType标签</li>
+<li>在Unity中，我们可以选择让一个摄像机生成一张深度纹理，或是一张深度加法线的纹理。选择前者只需要一张单独的深度纹理时，Unity会直接获取深度缓存，或是着色器替换技术选取需要的不透明物体，并使用它投射阴影时使用的Pass，也就是LightMode设置为ShadowCaster的Pass，来得到深度纹理，如果Shader中不包含这样一个Pass，那么这个物体就不会出现在深度纹理中，当然它也不能向其他物体投射阴影</li>
+<li>深度纹理的精度通常是24或16位的</li>
+<li>如果选择生成一张深度加法线纹理，Unity会创建一张和屏幕分辨率相同，精度为32位的纹理，也就是每个通道为8位，其中观察空间下的法线信息会被编码进纹理的R和G通道，而深度信息则会被编码进B和A通道</li>
+<li>法线信息的获取在延时队列中是可以非常容易得到的，Unity只需要合并深度和法线缓存即可，而在前向渲染中的默认情况下是不会创建法线缓存的，因此Unity底层使用了一个单独的Pass，把整个场景再次渲染一遍来完成，这个Pass包含在底层的一个内置Shader中</li>
+</ul>
+<hr>
+<ul>
+<li>Unity中获取：<br><img src="/images/Learn_Shaders/172.png"></li>
+<li>只需要设置摄像机的DepthTextureMode就可以了，一旦设置好摄像机模式，就可以在Shader中通过声明的sampler2D _CameraDepthTexture变量来访问它<br><img src="/images/Learn_Shaders/173.png"></li>
+<li>要想获取深度加法线纹理，只需与上DepthNormals<br><img src="/images/Learn_Shaders/174.png"></li>
+<li>Shader中获取后，使用SAMPLE_DEPTH_TEXTURE来采样</li>
+<li>使用这样的获取方式有个好处就是，可以处理由于平台差异造成的问题</li>
+<li>其中i.uv_depth是float类型的变量，它对应了当前像素的纹理坐标，是一个宏</li>
+</ul>
+<hr>
+<ul>
+<li>当通过纹理采样得到深度之后，深度值往往是非线性的，这种非线性是来自于透视空间使用的裁剪矩阵，然而在我们计算过程中通常需要线性的深度值，也就是说，需要把投影后的深度值变换到线性空间下，比如视角空间下的深度值<br><img src="/images/Learn_Shaders/175.png"></li>
+<li>这个过程比较复杂，不过可以直接使用Unity提供的两个辅助函数为我们进行上述的计算</li>
+</ul>
+<h3 id="13-1-3-查看深度和法线纹理"><a href="#13-1-3-查看深度和法线纹理" class="headerlink" title="13.1.3 查看深度和法线纹理"></a>13.1.3 查看深度和法线纹理</h3><ul>
+<li>使用帧调试器查看到的深度纹理是非线性空间的深度值，而深度加法线纹理都是由Unity编码后的结果</li>
+<li>帧调试器(Frame Debug)、 深度纹理(UpdateDepthTexture)、 深度加法线纹理(UpdateDepthNormalsTexture) </li>
+<li>看到的画面可能是几乎全黑或全白的，这时可以把摄像机的裁剪平面距离调小，使视椎体范围刚好覆盖场景所在区域</li>
+<li>有时，显示出线性空间下的深度信息或解码后的法线方向会更加有用，此时，我们可以自行在片元着色器中输出转换或解码后的深度和法线值</li>
+</ul>
+<h1 id="13-2-再谈运动模糊"><a href="#13-2-再谈运动模糊" class="headerlink" title="13.2 再谈运动模糊"></a>13.2 再谈运动模糊</h1><ul>
+<li>在12.6中学习了如何通过混合多张屏幕图像来模拟运动模糊的效果</li>
+<li>但是，另一种应用更加广泛的技术则是使用速度映射图</li>
+<li>速度映射图中存储了每个像素的速度，然后使用这个速度来决定模糊的方向和大小</li>
+<li>速度缓冲的生成有多种方法<ul>
+<li>一种方法是把场景中所有物体的速度渲染到一张纹理中。这种方法的缺点在于需要修改场景中所有物体的Shader代码，使其添加计算速度的代码并输出到一个渲染纹理中</li>
+<li>另一种方法是利用深度纹理在片元着色器中，为每个像素其在世界空间下的位置，这是通过使用当前的视角乘以投影矩阵的逆矩阵，对NDC下的顶点坐标进行变换得到的，当得到世界空间下的顶点坐标后，就可以使用前一帧的视角乘以投影矩阵对其进行变换以得到该位置在前一帧中的NDC坐标，然后就可以计算前一帧和当前帧的位置差，并生成该像素的速度</li>
+<li>这种方法的优点就是可以在一个屏幕后处理步骤中完成整个效果，但缺点就是需要在片元着色器中进行两次矩阵乘法的操作，对性能有影响</li>
+</ul>
+</li>
+<li>脚本：<br><img src="/images/Learn_Shaders/176.png"><br><img src="/images/Learn_Shaders/177.png"></li>
+<li>Shader：<br><img src="/images/Learn_Shaders/178.png"><br><img src="/images/Learn_Shaders/179.png"></li>
+<li>首先利用深度纹理和当前帧的视角乘以投影矩阵逆矩阵来求得该像素在世界空间下的坐标</li>
+<li>这个过程一开始先使用内置的宏SAMPLE_DEPTH_TEXTURE对深度纹理进行采样得到深度值d，d是NDC下的坐标映射而来的，因此想要构建像素的NDC坐标H的话就需要把这个深度值重新映射回NDC，只需要使用原映射的函数就可以了，也就是 d * 2 - 1 ，这里NDC的xy分量可以由像素的纹理坐标映射而来。当得到NDC下的坐标H后，就可以使用当前帧的投影矩阵对其进行一个变换，并把它的结果除以它的w分量，能得到世界空间下的坐标表示worldPos，一旦得到它之后，就可以使用前一帧的视角，再乘以投影矩阵对它进行变换，以得到前一帧在NDC下的坐标previousPos，同样除以w分量，最后得到位置差，也就是该像素的速度velocity，得到后，就可以使用该速度值对它的邻域像素进行采样，相加后取平均值以得到模糊的效果<br><img src="/images/Learn_Shaders/180.png"></li>
+<li>之后定义了运动模糊所使用的Pass</li>
+</ul>
+<h1 id="13-3-全局雾效"><a href="#13-3-全局雾效" class="headerlink" title="13.3 全局雾效"></a>13.3 全局雾效</h1><h3 id="13-3-0"><a href="#13-3-0" class="headerlink" title="13.3.0"></a>13.3.0</h3><ul>
+<li>Unity内置的雾效可以产生基于距离的线性或指数雾效</li>
+<li>如果想要在自己编写的顶点&#x2F;片元着色器中实现这些雾效，需要在Shader中添加#pragma multi_compile_fog指令，同时还需要使用相关的内置宏，例如UNITY_FOG_COORDS、UNITY_TRANSFER_FOG和UNITY_APPLY_FOG等</li>
+<li>这种方法的缺点在于，我们不仅需要为场景中所有物体添加相关的渲染代码，而且能够实现的效果也非常有限</li>
+<li>当需要对雾效进行一些个性化操作时，例如使用基于高度的雾效等，仅仅使用Unity内置的雾效就变得不再可行</li>
+</ul>
+<h3 id="13-3-1-全局雾效"><a href="#13-3-1-全局雾效" class="headerlink" title="13.3.1 全局雾效"></a>13.3.1 全局雾效</h3><ul>
+<li>所以本节中将学习基于屏幕后处理的全局雾效，使用这种方法我们不需要更改场景中渲染物体所使用的Shader代码，而仅仅依靠一次屏幕后处理的步骤就可以了，这种方法的自由度很高，而且可以方便地模拟出各种雾效，比如均匀的雾效、基于距离的线性或者指数雾效、基于高度的雾效等等</li>
+<li>基于屏幕后处理的全局雾效的关键是，我们要根据深度纹理来重建每个像素在世界空间下的位置</li>
+<li>尽管在前面模拟运动模糊时就已经实现了这个要求，即构建出当前像素的NDC坐标，再通过当前摄像机的视角乘以投影矩阵逆矩阵，得到世界空间下的像素坐标，但是这样的实现需要在片元着色器上进行矩阵乘法的操作，这通常会影响游戏的性能</li>
+<li>在本节中，会学习一个快速从深度纹理中重建世界坐标的方法</li>
+</ul>
+<hr>
+<ul>
+<li>这种方法首先会对图像空间下的视椎体射线(这个射线是从摄像机出发，指向图像上某点的射线)进行一个插值，这条射线就存储该像素在世界空间下到摄像机的方向信息，然后把该射线和信息化后的视角框架的深度值相乘，再加上摄像机的世界位置，就可以得到该像素在世界空间的位置</li>
+<li>当我们得到世界坐标后，就可以轻松地使用各个公式来模拟全局雾效了<br><img src="/images/Learn_Shaders/181.png"></li>
+<li>重建世界坐标的过程就是这行代码，只需要知道摄像机在世界空间的位置以及世界空间下该像素相对于摄像机的偏移量，把它们相减就可以得到该像素的世界坐标</li>
+<li>其中_WorldSpaceCameraPos是摄像机在世界空间下的位置，这可以由Unity内置变量直接返回得到</li>
+<li>而 linearDepth 乘以 interpolatedRay 则可以计算出该像素相当于摄像机的偏移量，linearDepth是由深度纹理得到的线性值，在这里是通过LinearEyeDepth来把深度纹理的采样结果转换到视角空间下的深度值，使用它可以很方便地将之前提到的非线性的结果给映射为线性的结果<br><img src="/images/Learn_Shaders/182.png"></li>
+<li>interpolatedRay是前面计算得到的，它的来源是我们对近裁剪平面四个角的某个特定向量的插值，这四个量包含了它们到摄像机的方向和距离信息，我们可以利用摄像机的近裁剪平面距离、fov横坐标比来计算得到<br><img src="/images/Learn_Shaders/183.png"></li>
+<li>_FrustumCornersRay的计算是在C#中定义的</li>
+<li>在一开始先计算得到两个分量toRight和toTop，它的起点位于裁剪平面的中心，分别指向摄像机的正右方和正上方的分量</li>
+<li>得到这两个辅助向量后，就可以计算四个角相对于摄像机的方向</li>
+<li>由于它们并非是点到摄像机的欧氏距离，而是在z方向上的距离，因此对其做一个归一化，然后乘上缩放因子</li>
+</ul>
+<h3 id="13-3-2-雾的计算"><a href="#13-3-2-雾的计算" class="headerlink" title="13.3.2 雾的计算"></a>13.3.2 雾的计算</h3><ul>
+<li>雾效系数f有很多计算方法，在Unity内置的雾效实现中，支持三种雾效的计算方式——线性(Linear)、指数(Exponential)以及指数的平方(Exponential Squared)</li>
+<li>雾效系数f作为混合原始颜色和雾的颜色的混合系数<br><img src="/images/Learn_Shaders/184.png"></li>
+<li>这里使用的是最简单的雾效计算方式，也就是线性的雾效的计算方式，它也是基于高度的雾效</li>
+<li>当给定一点在世界空间下的高度y之后，就可以对其计算</li>
+<li>脚本：<br><img src="/images/Learn_Shaders/185.png"></li>
+<li>fogDensity用于控制雾的浓度、fogStart控制雾效的起始高度、fogEnd控制雾效的终止高度<br><img src="/images/Learn_Shaders/186.png"><br><img src="/images/Learn_Shaders/187.png"></li>
+<li>Shader：<br><img src="/images/Learn_Shaders/188.png"><br><img src="/images/Learn_Shaders/189.png"></li>
+<li>在v2f的结构体中除了定义顶点位置、屏幕图像、深度纹理的坐标，还定义了interpolatedRay这个变量来存储插值后的像素向量</li>
+<li>顶点着色器中，对深度纹理的采样坐标进行了平台差异化的处理，同时决定了该点对应了四个角中的哪个角，采用的方法是判断它的纹理坐标，在Unity中纹理的(0,0)点对应了左下角，(1,1)点对应了右上角，据此来判断该顶点对应的索引，对应关系和脚本中对变量的赋值是完全一样的</li>
+<li>实际上不同平台的纹理坐标不一定是满足上面条件的，就比如DirectX中左上角对应(0,0)点，但大多数情况下Unity会把这些平台下的屏幕图像进行翻转，因此仍然可以使用这个条件。但如果在类似DirectX的平台上开启抗锯齿，Unity就不会进行这个翻转，为了此时还可以得到相应顶点位置的索引值，也对这个索引值做了平台差异化的处理</li>
+<li>尽管这里使用了很多判断语句，但由于屏幕后处理所用的模型是一个四边形的网格，只包含了四个顶点，所以它也不会对性能造成很大的影响<br><img src="/images/Learn_Shaders/190.png"></li>
+<li>接下来首先重建该像素在世界空间下的位置</li>
+<li>首先对深度纹理进行采样，再使用LinearEyeDepth得到视角空间下的线性深度值，之后与interpolatedRay相乘，再和世界空间下的摄像机位置相加就得到了世界空间下的位置</li>
+<li>得到世界坐标后，模拟雾效就非常容易，在本例中实现基于高度的雾效模拟，用计算公式得到fogDensity，再和定义的参数_FogDensity相乘，再截取到0~1范围内，就可以作为雾效系数</li>
+<li>使用这个雾效系数和原始颜色进行混合并返回</li>
+</ul>
+<hr>
+<ul>
+<li>也可以使用其他公式来定义其他种类的雾效</li>
+<li>需要注意的是，这里的实现是基于摄像机的投影类型是透视投影的前提下</li>
+<li>如果需要在正交投影的情况下去重建世界坐标，需要使用不同的公式</li>
+</ul>
+<h1 id="13-4-再探边缘检测"><a href="#13-4-再探边缘检测" class="headerlink" title="13.4 再探边缘检测"></a>13.4 再探边缘检测</h1><p><img src="/images/Learn_Shaders/191.png"></p>
+<ul>
+<li>之前的做法是直接对颜色信息进行边缘检测的，可以看到，物体的纹理和阴影等位置也被描上了黑边</li>
+<li>本节将学习如何在深度和法线纹理上进行边缘检测</li>
+<li>使用Roberts算子来进行边缘检测<br><img src="/images/Learn_Shaders/192.png"><br><img src="/images/Learn_Shaders/193.png"></li>
+<li>定义了调整边缘线强度、描边颜色、背景颜色的参数，同时添加了控制采样距离，以及对深度和法线进行具体检测时的灵敏度参数等</li>
+<li>sampleDistance用于控制对深度加法线纹理采样时，使用的采样距离，从视觉上来看，值越大，描的边越宽</li>
+<li>sensitivityDepth和sensitivityNormals将会影响当邻域的深度值或法线值相差多少时，会被认为存在一条边界，如果把灵敏值调得很大，那么可能即使是深度或法线上很小的变化，也会形成一条线</li>
+<li>在OnRenderImage()上添加一个[ImageEffectOpaque]，在默认情况下，OnRenderImage()函数在所有不透明和透明的Pass执行完毕后被调用，以便对场景中所有游戏对象产生影响，但有时我们希望在不透明Pass执行完毕后立即调用该函数，而不对透明物体产生影响，此时就可以添加这个特性</li>
+<li>本例中只希望对不透明物体进行描边，不希望对透明物体也描边，所以添加了这个特性</li>
+<li>Shader：<br><img src="/images/Learn_Shaders/194.png"></li>
+<li>其中_Sensitivity的xy分量对应了法线和深度检测的灵敏度，zw分量并没有什么用途</li>
+<li>为了获取摄像机的深度加法线纹理，定义了_CameraDepthNormalsTexture</li>
+<li>同时由于需要对邻域像素进行纹理采样，也声明了存储纹理大小的变量_MainTex_TexelSize<br><img src="/images/Learn_Shaders/195.png"></li>
+<li>使用四个纹理坐标对深度加法线进行了采样，之后调用CheckSame()函数分别计算对角线上两个纹理值的差异</li>
+<li>CheckSame()的返回值为0或1，返回0表明这两个点之间存在一条边界，反之返回1</li>
+<li>在CheckSame()函数中，首先对参数进行处理，得到两个采样点的法线和深度值，这里并没有解码得到真正的法线值，而是直接使用了xy分量，这是因为只需要比较两个深度之间的差异，而不需要真正的法线值。然后把两个采样点的对应值相减并取绝对值，再乘以灵敏度的参数，并把差异值的每个分量相加，和阈值进行比较，如果和小于0.1，返回1，说明差异不明显，不存在一条边界，否则返回0，说明差异比较明显</li>
+<li>最后把法线和深度的结果相乘，作为组合之后的结果</li>
+<li>有了边缘信息，就可以利用该值进行颜色混合，和之前做边缘检测是一致的<br><img src="/images/Learn_Shaders/196.png"></li>
+</ul>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2024/04/18/Shader%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2024/04/18/Shader%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12/";
+            const title         = "「Unity Shader入门精要 第十三章」";
+            const excerpt       = `使用深度和法线纹理`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/Shader/" rel="tag">Shader</a>, <a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>, <a class="tag-none-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" rel="tag">计算机图形学</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2025-03-17T02:27:25.533Z" itemprop="dateModified">最后编辑：2025-03-17</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" Unity Shader入门精要 第十二章" href="/2024/04/07/Shader学习笔记-11/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" Unity Shader入门精要 第十四章" href="/2024/04/29/Shader学习笔记-13/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+        <div id="disqus_thread" class="post-comments lazy-load"></div>
+
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://example.com/2024/04/18/Shader%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '2024/04/18/Shader学习笔记-12/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    var load_comm = () => {
+        if (typeof DISQUS === 'undefined') {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://unishiki.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        } else {
+            DISQUS.reset({
+                reload: true,
+                config: function () {  
+                    this.page.url = 'http://example.com/2024/04/18/Shader%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12/';  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = '2024/04/18/Shader学习笔记-12/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                }
+            });
+        }
+    };
+    
+</script>
+<script async id="dsq-count-scr" src="//unishiki.disqus.com/count.js"></script>
+
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/ava1.jpg" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                116
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                3
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                16
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%B7%B1%E5%BA%A6%E5%92%8C%E6%B3%95%E7%BA%BF%E7%BA%B9%E7%90%86"><span class="toc-text">使用深度和法线纹理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13-1-%E8%8E%B7%E5%8F%96%E6%B7%B1%E5%BA%A6%E5%92%8C%E6%B3%95%E7%BA%BF%E7%BA%B9%E7%90%86"><span class="toc-text">13.1 获取深度和法线纹理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#13-1-1-%E8%83%8C%E5%90%8E%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-text">13.1.1 背后的原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-1-2-%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96"><span class="toc-text">13.1.2 如何获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-1-3-%E6%9F%A5%E7%9C%8B%E6%B7%B1%E5%BA%A6%E5%92%8C%E6%B3%95%E7%BA%BF%E7%BA%B9%E7%90%86"><span class="toc-text">13.1.3 查看深度和法线纹理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13-2-%E5%86%8D%E8%B0%88%E8%BF%90%E5%8A%A8%E6%A8%A1%E7%B3%8A"><span class="toc-text">13.2 再谈运动模糊</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13-3-%E5%85%A8%E5%B1%80%E9%9B%BE%E6%95%88"><span class="toc-text">13.3 全局雾效</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#13-3-0"><span class="toc-text">13.3.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-3-1-%E5%85%A8%E5%B1%80%E9%9B%BE%E6%95%88"><span class="toc-text">13.3.1 全局雾效</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-3-2-%E9%9B%BE%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="toc-text">13.3.2 雾的计算</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13-4-%E5%86%8D%E6%8E%A2%E8%BE%B9%E7%BC%98%E6%A3%80%E6%B5%8B"><span class="toc-text">13.4 再探边缘检测</span></a></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a><span class="category-list-count">95</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">开发记录</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%99%E7%A8%8B%E6%96%87%E6%A1%A3/">教程文档</a><span class="category-list-count">4</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Compute-Shader/" style="font-size: 0.62em;">Compute Shader</a> <a href="/tags/Dots/" style="font-size: 0.67em;">Dots</a> <a href="/tags/Java/" style="font-size: 0.64em;">Java</a> <a href="/tags/Minecraft/" style="font-size: 0.6em;">Minecraft</a> <a href="/tags/Shader/" style="font-size: 0.76em;">Shader</a> <a href="/tags/TwilightMelody/" style="font-size: 0.64em;">TwilightMelody</a> <a href="/tags/UI/" style="font-size: 0.71em;">UI</a> <a href="/tags/Unity/" style="font-size: 0.8em;">Unity</a> <a href="/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/" style="font-size: 0.6em;">Unity编辑器拓展</a> <a href="/tags/%E5%8A%A8%E6%95%88/" style="font-size: 0.69em;">动效</a> <a href="/tags/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/" style="font-size: 0.65em;">底层原理</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 0.75em;">性能优化</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%8F%AF%E8%A7%86%E5%8C%96/" style="font-size: 0.73em;">数学可视化</a> <a href="/tags/%E6%96%87%E6%A1%A3/" style="font-size: 0.65em;">文档</a> <a href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 0.67em;">算法与数据结构</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="font-size: 0.78em;">计算机图形学</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2025/07/25/ComputeShader-MagicLibrary/"><i class="fa  fa-book"></i> 浅尝ComputeShader-魔法图书馆</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/06/23/MyUIProject-09/"><i class="fa  fa-book"></i> UI动效 09</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/06/12/SourceCode-M3/"><i class="fa  fa-book"></i> 源码-魔法金属伤害计算</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/05/19/TwilightMelody-2-2025-05-01/"><i class="fa  fa-book"></i> TwilightMelody-2-2025-05-01</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/03/17/ComputeShaderLearning-1/"><i class="fa  fa-book"></i> GPU粒子实现原理与ComputeShader GPU Instance的基础应用</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
+                        
+                        <li><a href="mailto:ccc895286662@gmail.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/unishiki"><i class="fa fa-github"></i></a></li>
+                        
+                        <!-- New links -->
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2025 uni_shiki 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by uni_shiki.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="snow-switch">
+                        <span class="fa fa-snowflake-o"></span>
+                    </div>
+                
+                
+                    <div class="box group-box">
+                        <a href="https://jq.qq.com/?_wv=1027&k=CpdI35JY" target="_blank" rel="nofollow">
+                            <span class="fa fa-users"></span>
+                        </a>
+                    </div>
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3080117718"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>

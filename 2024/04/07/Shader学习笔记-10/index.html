@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="../images/mfmf.webp">
+  
+  <title>Unity Shader入门精要 第十一章 | uni_shiki</title>
+  
+  <meta name="author" content="uni_shiki" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="Shader, Unity, 计算机图形学" />
+  
+  <meta name="description" content="让画面动起来">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity Shader入门精要 第十一章">
+<meta property="og:url" content="http://example.com/2024/04/07/Shader%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-10/index.html">
+<meta property="og:site_name" content="uni_shiki">
+<meta property="og:description" content="让画面动起来">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/mfmf.webp">
+<meta property="article:published_time" content="2024-04-07T05:49:52.000Z">
+<meta property="article:modified_time" content="2025-03-17T02:27:20.746Z">
+<meta property="article:author" content="uni_shiki">
+<meta property="article:tag" content="Unity">
+<meta property="article:tag" content="Shader">
+<meta property="article:tag" content="计算机图形学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/mfmf.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>链接</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://space.bilibili.com/33554119">Bilibili</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">uni_shiki</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>uni_shiki</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/07/Shader%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-10/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">Unity Shader入门精要 第十一章</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2024-04-07T05:49:52.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2024-04-07</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">uni_shiki</span>
+                </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~2.24K
+                        
+                        字
+                    </li>
+                
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1742178440746"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%A9%E7%94%BB%E9%9D%A2%E5%8A%A8%E8%B5%B7%E6%9D%A5"><span class="toc-number">1.</span> <span class="toc-text">让画面动起来</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#11-1-Unity-Shader%E4%B8%AD%E7%9A%84%E5%86%85%E7%BD%AE%E6%97%B6%E9%97%B4%E5%8F%98%E9%87%8F"><span class="toc-number">2.</span> <span class="toc-text">11.1 Unity Shader中的内置时间变量</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#11-2-%E7%BA%B9%E7%90%86%E5%8A%A8%E7%94%BB"><span class="toc-number">3.</span> <span class="toc-text">11.2 纹理动画</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11-2-1-%E5%BA%8F%E5%88%97%E5%B8%A7%E5%8A%A8%E7%94%BB"><span class="toc-number">3.0.1.</span> <span class="toc-text">11.2.1 序列帧动画</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-2-2-%E6%BB%9A%E5%8A%A8%E7%9A%84%E8%83%8C%E6%99%AF"><span class="toc-number">3.0.2.</span> <span class="toc-text">11.2.2 滚动的背景</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#11-3-%E9%A1%B6%E7%82%B9%E5%8A%A8%E7%94%BB"><span class="toc-number">4.</span> <span class="toc-text">11.3 顶点动画</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11-3-1-%E6%B5%81%E5%8A%A8%E7%9A%84%E6%B2%B3%E6%B5%81"><span class="toc-number">4.0.1.</span> <span class="toc-text">11.3.1 流动的河流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-3-2-%E5%B9%BF%E5%91%8A%E7%89%8C"><span class="toc-number">4.0.2.</span> <span class="toc-text">11.3.2 广告牌</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-3-3-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">4.0.3.</span> <span class="toc-text">11.3.3 注意事项</span></a></li></ol></li></ol></li></ol>
+                </div>
+            
+            <hr />
+            <div itemprop="articleBody"><h1 id="让画面动起来"><a href="#让画面动起来" class="headerlink" title="让画面动起来"></a>让画面动起来</h1><span id="more"></span>
+<hr>
+<h1 id="11-1-Unity-Shader中的内置时间变量"><a href="#11-1-Unity-Shader中的内置时间变量" class="headerlink" title="11.1 Unity Shader中的内置时间变量"></a>11.1 Unity Shader中的内置时间变量</h1><ul>
+<li>名称  类型  描述</li>
+<li>_Time  float4  4个分量(t&#x2F;20, t, 2t, 3t)，t是自该场景加载开始所经过的时间</li>
+<li>_SinTime  float4  4个分量(t&#x2F;8, t&#x2F;4, t&#x2F;2, t)，t是时间的正弦值</li>
+<li>_CosTime  float4  4个分量(t&#x2F;8, t&#x2F;4, t&#x2F;2, t)，t是时间的余弦值</li>
+<li>unity_DeltaTime  float4  4个分量(dt, 1&#x2F;dt, smoothDt, 1&#x2F;smoothDt)，dt是时间增量</li>
+</ul>
+<h1 id="11-2-纹理动画"><a href="#11-2-纹理动画" class="headerlink" title="11.2 纹理动画"></a>11.2 纹理动画</h1><h3 id="11-2-1-序列帧动画"><a href="#11-2-1-序列帧动画" class="headerlink" title="11.2.1 序列帧动画"></a>11.2.1 序列帧动画</h3><ul>
+<li>序列帧动画的原理非常简单，它像放电影―样,依次播放一系列关键帧图像，当播放速度达到一定数值时，看起来就是一个连续的动画</li>
+<li>它的优点在于灵活性很强，我们不需要进行任何物理计算就可以得到非常细腻的动画效果</li>
+<li>而它的缺点也很明显，由于序列帧中每张关键帧图像都不一样，因此,要制作一张出色的序列帧纹理所需要的美术工程量也比较大<br><img src="/images/Learn_Shaders/132.png"><br><img src="/images/Learn_Shaders/133.png"><br><img src="/images/Learn_Shaders/134.png"></li>
+</ul>
+<h3 id="11-2-2-滚动的背景"><a href="#11-2-2-滚动的背景" class="headerlink" title="11.2.2 滚动的背景"></a>11.2.2 滚动的背景</h3><ul>
+<li>很多2D游戏都使用了不断滚动的背景来模拟游戏角色在场景中的穿梭，这些背景往往包含了多个层(layers)来模拟一种视差效果。<br><img src="/images/Learn_Shaders/135.png"></li>
+<li>_MainTex、_DetailTex 第一层较远和第二层较近的背景纹理</li>
+<li>_ScrollX、_Scroll2X 各自的水平滚动速度</li>
+<li>_Multiplier 纹理的整体亮度<br><img src="/images/Learn_Shaders/136.png"><br><img src="/images/Learn_Shaders/137.png"></li>
+</ul>
+<h1 id="11-3-顶点动画"><a href="#11-3-顶点动画" class="headerlink" title="11.3 顶点动画"></a>11.3 顶点动画</h1><h3 id="11-3-1-流动的河流"><a href="#11-3-1-流动的河流" class="headerlink" title="11.3.1 流动的河流"></a>11.3.1 流动的河流</h3><ul>
+<li>河流的模拟是顶点动画最常见的应用之一，它的原理通常就是使用正弦函数等来模拟水流的波动效果<br><img src="/images/Learn_Shaders/138.png"></li>
+<li>变量分别是，河流纹理、整体颜色、水流波动的幅度、波动的频率、波长的倒数、河流纹理的移动速度</li>
+<li>一些SubShader在使用Unity的批处理功能时会出现问题，这是可以通过DisableBatching标签直接指明是否对该SubShader使用批处理。这些需要特殊处理的Shader通常是包含了模型空间的顶点动画Shader，这是因为批处理会合并所有相关的模型，而这些模型各自的模型空间就会丢失<br><img src="/images/Learn_Shaders/139.png"></li>
+<li>定义一个偏移量offset，只控制它的x分量，相当于x &#x3D; sin(xt+y)·A</li>
+</ul>
+<h3 id="11-3-2-广告牌"><a href="#11-3-2-广告牌" class="headerlink" title="11.3.2 广告牌"></a>11.3.2 广告牌</h3><ul>
+<li>另一种常见的顶点动画就是广告牌技术(Billboarding)。广告牌技术会根据视角方向来旋转一个被纹理着色的多边形(通常就是简单的四边形，这个多边形就是广告牌)，使得多边形看起来好像总是面对着摄像机。广告牌技术被用于很多应用,比如渲染烟雾、云朵、闪光效果等<br><img src="/images/Learn_Shaders/140.png"></li>
+<li>_VerticalBillboarding用于调整是固定法线的还是固定指向上的方向，也就是约束垂直方向的一个程度<br><img src="/images/Learn_Shaders/141.png"></li>
+<li>首先选择模型空间下的一个原点作为广告牌的一个锚点</li>
+<li>利用内置变量获取模型空间下的视角位置</li>
+<li>计算目标法线，根据_VerticalBillboarding来控制垂直方向上的约束度</li>
+<li>接下来得到粗略的向上方向，为了防止法线方向和向上方向平行，对法线方向的y分量进行判断以得到合适的向上方向</li>
+<li>根据法线方向和粗略的向上方向得到向右的方向</li>
+<li>根据原始位置相对于锚点的偏移量以及三个正交矢量，可以得到新的顶点位置</li>
+<li>需要说明的是，这里必须使用四边形Quad而不能使用Plane，这是因为代码是建立在一个竖直摆放的多边形的基础上的。也就是说，这个多边形的顶点结构需要满足在模型空间下是竖直排列的，这样才能使用v.vertex来计算得到正确的相对于中心的偏移位置</li>
+</ul>
+<h3 id="11-3-3-注意事项"><a href="#11-3-3-注意事项" class="headerlink" title="11.3.3 注意事项"></a>11.3.3 注意事项</h3><ul>
+<li><p>首先，如11.3.2节看到的那样，如果我们在模型空间下进行了一些顶点动画，那么批处理往往就会破坏这种动画效果</p>
+<ul>
+<li>这时，我们可以通过SubShader 的DisableBatching标签来强制取消对该Unity Shader的批处理。然而，取消批处理会带来一定的性能下降,增加了Draw Call，因此我们应该尽量避免使用模型空间下的一些绝对位置和方向来进行计算</li>
+<li>在广告牌的例子中，为了避免显式使用模型空间的中心来作为锚点,我们可以利用顶点颜色来存储每个顶点到锚点的距离值，这种做法在商业游戏中很常见</li>
+</ul>
+</li>
+<li><p>其次，如果我们想要对包含了顶点动画的物体添加阴影，那么如果仍然像9.4节中那样使用内置的Diffuse等包含的阴影Pass来渲染,就得不到正确的阴影效果(这里指的是无法向其他物体正确地投射阴影)</p>
+<ul>
+<li>这是因为,Unity的阴影绘制需要调用一个ShadowCaster Pass,而如果直接使用这些内置的ShadowCaster Pass，这个Pass中并没有进行相关的顶点动画，因此 Unity会仍然按照原来的顶点位置来计算阴影，这并不是我们希望看到的</li>
+<li>这时，我们就需要提供一个自定义的ShadowCaster Pass，在这个Pass 中，我们将进行同样的顶点变换过程。需要注意的是，在前面的实现中，如果涉及半透明物体我们都把Fallback设置成了Transparent&#x2F; VertexLit,而Transparent&#x2F;VertexLit没有定义ShadowCaster Pass,因此也就不会产生阴影（详见9.4.5节)。</li>
+</ul>
+</li>
+<li><p>实现阴影效果:</p>
+<ul>
+<li>删除所有透明效果的标签，打开深度写入，关闭混合，增加自己的ShadowCast Pass<br><img src="/images/Learn_Shaders/142.png"></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2024/04/07/Shader%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-10/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2024/04/07/Shader%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-10/";
+            const title         = "「Unity Shader入门精要 第十一章」";
+            const excerpt       = `让画面动起来`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/Shader/" rel="tag">Shader</a>, <a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>, <a class="tag-none-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" rel="tag">计算机图形学</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2025-03-17T02:27:20.746Z" itemprop="dateModified">最后编辑：2025-03-17</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" Unity Shader入门精要 第十章" href="/2024/03/26/Shader学习笔记-9/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" Unity Shader入门精要 第十二章" href="/2024/04/07/Shader学习笔记-11/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+        <div id="disqus_thread" class="post-comments lazy-load"></div>
+
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://example.com/2024/04/07/Shader%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-10/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '2024/04/07/Shader学习笔记-10/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    var load_comm = () => {
+        if (typeof DISQUS === 'undefined') {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://unishiki.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        } else {
+            DISQUS.reset({
+                reload: true,
+                config: function () {  
+                    this.page.url = 'http://example.com/2024/04/07/Shader%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-10/';  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = '2024/04/07/Shader学习笔记-10/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                }
+            });
+        }
+    };
+    
+</script>
+<script async id="dsq-count-scr" src="//unishiki.disqus.com/count.js"></script>
+
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/ava1.jpg" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                116
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                3
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                16
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%A9%E7%94%BB%E9%9D%A2%E5%8A%A8%E8%B5%B7%E6%9D%A5"><span class="toc-text">让画面动起来</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#11-1-Unity-Shader%E4%B8%AD%E7%9A%84%E5%86%85%E7%BD%AE%E6%97%B6%E9%97%B4%E5%8F%98%E9%87%8F"><span class="toc-text">11.1 Unity Shader中的内置时间变量</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#11-2-%E7%BA%B9%E7%90%86%E5%8A%A8%E7%94%BB"><span class="toc-text">11.2 纹理动画</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11-2-1-%E5%BA%8F%E5%88%97%E5%B8%A7%E5%8A%A8%E7%94%BB"><span class="toc-text">11.2.1 序列帧动画</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-2-2-%E6%BB%9A%E5%8A%A8%E7%9A%84%E8%83%8C%E6%99%AF"><span class="toc-text">11.2.2 滚动的背景</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#11-3-%E9%A1%B6%E7%82%B9%E5%8A%A8%E7%94%BB"><span class="toc-text">11.3 顶点动画</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11-3-1-%E6%B5%81%E5%8A%A8%E7%9A%84%E6%B2%B3%E6%B5%81"><span class="toc-text">11.3.1 流动的河流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-3-2-%E5%B9%BF%E5%91%8A%E7%89%8C"><span class="toc-text">11.3.2 广告牌</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-3-3-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">11.3.3 注意事项</span></a></li></ol></li></ol></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a><span class="category-list-count">95</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">开发记录</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%99%E7%A8%8B%E6%96%87%E6%A1%A3/">教程文档</a><span class="category-list-count">4</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Compute-Shader/" style="font-size: 0.62em;">Compute Shader</a> <a href="/tags/Dots/" style="font-size: 0.67em;">Dots</a> <a href="/tags/Java/" style="font-size: 0.64em;">Java</a> <a href="/tags/Minecraft/" style="font-size: 0.6em;">Minecraft</a> <a href="/tags/Shader/" style="font-size: 0.76em;">Shader</a> <a href="/tags/TwilightMelody/" style="font-size: 0.64em;">TwilightMelody</a> <a href="/tags/UI/" style="font-size: 0.71em;">UI</a> <a href="/tags/Unity/" style="font-size: 0.8em;">Unity</a> <a href="/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/" style="font-size: 0.6em;">Unity编辑器拓展</a> <a href="/tags/%E5%8A%A8%E6%95%88/" style="font-size: 0.69em;">动效</a> <a href="/tags/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/" style="font-size: 0.65em;">底层原理</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 0.75em;">性能优化</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%8F%AF%E8%A7%86%E5%8C%96/" style="font-size: 0.73em;">数学可视化</a> <a href="/tags/%E6%96%87%E6%A1%A3/" style="font-size: 0.65em;">文档</a> <a href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 0.67em;">算法与数据结构</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="font-size: 0.78em;">计算机图形学</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2025/07/25/ComputeShader-MagicLibrary/"><i class="fa  fa-book"></i> 浅尝ComputeShader-魔法图书馆</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/06/23/MyUIProject-09/"><i class="fa  fa-book"></i> UI动效 09</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/06/12/SourceCode-M3/"><i class="fa  fa-book"></i> 源码-魔法金属伤害计算</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/05/19/TwilightMelody-2-2025-05-01/"><i class="fa  fa-book"></i> TwilightMelody-2-2025-05-01</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/03/17/ComputeShaderLearning-1/"><i class="fa  fa-book"></i> GPU粒子实现原理与ComputeShader GPU Instance的基础应用</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
+                        
+                        <li><a href="mailto:ccc895286662@gmail.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/unishiki"><i class="fa fa-github"></i></a></li>
+                        
+                        <!-- New links -->
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2025 uni_shiki 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by uni_shiki.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="snow-switch">
+                        <span class="fa fa-snowflake-o"></span>
+                    </div>
+                
+                
+                    <div class="box group-box">
+                        <a href="https://jq.qq.com/?_wv=1027&k=CpdI35JY" target="_blank" rel="nofollow">
+                            <span class="fa fa-users"></span>
+                        </a>
+                    </div>
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3080117718"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>

@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="../images/mfmf.webp">
+  
+  <title>数学可视化(09)——Rayarch光线步进算法 | uni_shiki</title>
+  
+  <meta name="author" content="uni_shiki" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="Shader, Unity, 数学可视化, 计算机图形学" />
+  
+  <meta name="description" content="&amp;nbsp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数学可视化(09)——Rayarch光线步进算法">
+<meta property="og:url" content="http://example.com/2023/11/14/Mathematical-Visualization-09/index.html">
+<meta property="og:site_name" content="uni_shiki">
+<meta property="og:description" content="&amp;nbsp;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/mfmf.webp">
+<meta property="article:published_time" content="2023-11-14T00:55:30.000Z">
+<meta property="article:modified_time" content="2025-08-11T09:29:31.098Z">
+<meta property="article:author" content="uni_shiki">
+<meta property="article:tag" content="Unity">
+<meta property="article:tag" content="Shader">
+<meta property="article:tag" content="计算机图形学">
+<meta property="article:tag" content="数学可视化">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/mfmf.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>链接</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://space.bilibili.com/33554119">Bilibili</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">uni_shiki</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>uni_shiki</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/14/Mathematical-Visualization-09/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">数学可视化(09)——Rayarch光线步进算法</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2023-11-14T00:55:30.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-11-14</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">uni_shiki</span>
+                </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~7.89K
+                        
+                        字
+                    </li>
+                
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1754904571098"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%BD%A2%E5%AD%A6%E4%B8%AD%E7%9A%84%E5%87%A0%E4%BD%95%E5%AF%B9%E8%B1%A1%E8%A1%A8%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">图形学中的几何对象表现方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%89%E7%BA%BF%E6%AD%A5%E8%BF%9B%E7%AE%97%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">光线步进算法</span></a></li></ol>
+                </div>
+            
+            <hr />
+            <div itemprop="articleBody"><p>&nbsp;</p>
+<span id="more"></span>
+
+<h3 id="图形学中的几何对象表现方式"><a href="#图形学中的几何对象表现方式" class="headerlink" title="图形学中的几何对象表现方式"></a>图形学中的几何对象表现方式</h3><ul>
+<li>3D几何对象的表示有显式和隐式两种方式</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>显式</th>
+<th>隐式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>多边形面片</td>
+<td>数学函数公式</td>
+</tr>
+<tr>
+<td>点云</td>
+<td>距离场函数</td>
+</tr>
+<tr>
+<td>NURBS</td>
+<td>CSG(Constructive Solid Geometry)</td>
+</tr>
+<tr>
+<td>体素</td>
+<td>分形函数</td>
+</tr>
+</tbody></table>
+<ul>
+<li>隐式方式不能提供直观的视觉呈现，但在计算几何体相交、碰撞等方面更方便</li>
+<li>通常用显式的方式去构建复杂场景的几何体，用隐式的方式去构建一些加速结构和简化几何体，用来处理优化算法</li>
+<li>将用距离场函数及几何体的运算来构建3D几何对象</li>
+<li>在二维屏幕上，即使使用隐式3D几何构造方式，提供了几何数据，输入数据也只有uv两个维度</li>
+<li>绘制三维几何体，至少需要三个变量来描述，这时需要一个场景深度来辅助处理，也就是知道uv后，再获取该像素点在场景下的深度值</li>
+<li>这就需要光线步进算法来协助完成了</li>
+</ul>
+<h3 id="光线步进算法"><a href="#光线步进算法" class="headerlink" title="光线步进算法"></a>光线步进算法</h3><p><img src="/images/MV/mv09-01.png"></p>
+<ul>
+<li>先讨论渲染体、相机、屏幕uv，3个基本的对象</li>
+<li>通过屏幕坐标uv和相机的位置，可以得到多条以相机为起点，朝向场景发射的射线</li>
+<li>针对每条射线，可以定义该射线的光线步进算法，伪代码：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">单根光线的步进:</span><br><span class="line">	循环定义最大步进步数MaxStep ;</span><br><span class="line">	&#123;</span><br><span class="line">	  定义光线总共步进的长度depth ;</span><br><span class="line">	  根据相机位置与方向定义光线步进的起点p;</span><br><span class="line">	  求的与场景中最近面的距离dist ;</span><br><span class="line">	  将光线本次步进的距离加到总步进长度上;</span><br><span class="line">	  如果光线总步进距离大于定义的最大距离</span><br><span class="line">	  或者本次光线步进距离小于定义的最小距离时;</span><br><span class="line">	  退出循环;</span><br><span class="line">	&#125;</span><br><span class="line">	返回光线总步进长度。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>我们需要预先定义一些关于光线的预定义数据,包括光线最大的步进步数、总共行进的最大距离长度、光线与物体表面距离的最小长度等</li>
+</ul>
+<p><img src="/images/MV/mv09-02.png"></p>
+<ul>
+<li>完成后可以得到当前屏幕场景所有深度值</li>
+</ul>
+<hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br></pre></td><td class="code"><pre><span class="line">Shader <span class="string">&quot;MathematicalVisualizationArt/MyLearning09&quot;</span></span><br><span class="line">&#123;</span><br><span class="line">    Properties</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    SubShader</span><br><span class="line">    &#123;</span><br><span class="line">        Tags&#123;<span class="string">&quot;RenderType&quot;</span> = <span class="string">&quot;Transparent&quot;</span> <span class="string">&quot;RenderPipeline&quot;</span> = <span class="string">&quot;UniversalRenderPipeline&quot;</span> <span class="string">&quot;IgnoreProjector&quot;</span> = <span class="string">&quot;True&quot;</span>&#125;</span><br><span class="line">        LOD 300</span><br><span class="line"></span><br><span class="line">        Pass</span><br><span class="line">        &#123;</span><br><span class="line">            Name <span class="string">&quot;DefaultPass&quot;</span></span><br><span class="line">            </span><br><span class="line">            HLSLPROGRAM</span><br><span class="line"></span><br><span class="line">            <span class="comment">#pragma prefer_hlslcc gles</span></span><br><span class="line">            <span class="comment">#pragma exclude_renderers d3d11_9x</span></span><br><span class="line">            <span class="comment">#pragma target 2.0</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment">#pragma vertex vert</span></span><br><span class="line">            <span class="comment">#pragma fragment frag</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment">#include &quot;Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl&quot;</span></span><br><span class="line">            <span class="comment">#include &quot;Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl&quot;</span></span><br><span class="line">            </span><br><span class="line">            struct Attributes</span><br><span class="line">            &#123;</span><br><span class="line">                float4 positionOS : POSITION;</span><br><span class="line">                float2 uv : TEXCOORD0;</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            struct Varyings</span><br><span class="line">            &#123;</span><br><span class="line">                float2 uv                       : TEXCOORD0;</span><br><span class="line">                float4 positionCS               : SV_POSITION;</span><br><span class="line">                float4 screenPos                : TEXCOORD1;</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            Varyings vert (Attributes input)</span><br><span class="line">            &#123;</span><br><span class="line">                Varyings output = (Varyings)0;</span><br><span class="line">                VertexPositionInputs vertexInput = GetVertexPositionInputs(input.positionOS.xyz);</span><br><span class="line">                output.uv = input.uv;</span><br><span class="line">                output.positionCS = vertexInput.positionCS;</span><br><span class="line">                output.screenPos = ComputeScreenPos(vertexInput.positionCS);</span><br><span class="line">                <span class="built_in">return</span> output;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">#define time _Time.y</span></span><br><span class="line">            <span class="comment">#define width _ScreenParams.x</span></span><br><span class="line">            <span class="comment">#define height _ScreenParams.y</span></span><br><span class="line"></span><br><span class="line">            // 一、定义数据</span><br><span class="line">            <span class="comment">#define MAX_MARCHING_STEPS 100 // 最大步进步数</span></span><br><span class="line">            <span class="comment">#define MIN_DIST  0.01 // 最小距离</span></span><br><span class="line">            <span class="comment">#define MAX_DIST  100.0 // 最大步进距离总和</span></span><br><span class="line"></span><br><span class="line">            // 二、定义三维几何体sdf</span><br><span class="line">            // 球体sdf</span><br><span class="line">            <span class="built_in">float</span> sdSphere( float3 p, <span class="built_in">float</span> r )</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">return</span> length(p)-r;</span><br><span class="line">            &#125;</span><br><span class="line">            // 平面sdf</span><br><span class="line">            <span class="built_in">float</span> sdPlane( float3 p, float3 n, <span class="built_in">float</span> h )</span><br><span class="line">            &#123;</span><br><span class="line">                // n must be normalized</span><br><span class="line">                n = normalize(n);</span><br><span class="line">                <span class="built_in">return</span> dot(p,n) + h;</span><br><span class="line">            &#125;</span><br><span class="line">            // 圆环sdf</span><br><span class="line">            <span class="built_in">float</span> sdTorus( float3 p, float2 t )</span><br><span class="line">            &#123;</span><br><span class="line">                float2 q = float2(length(p.xz)-t.x,p.y);</span><br><span class="line">                <span class="built_in">return</span> length(q)-t.y;</span><br><span class="line">            &#125;</span><br><span class="line">            // 圆锥sdf</span><br><span class="line">            <span class="built_in">float</span> sdCone( float3 p, float2 c, <span class="built_in">float</span> h )</span><br><span class="line">            &#123;</span><br><span class="line">                // c is the sin/cos of the angle, h is height</span><br><span class="line">                // Alternatively pass q instead of (c,h),</span><br><span class="line">                // <span class="built_in">which</span> is the point at the base <span class="keyword">in</span> 2D</span><br><span class="line">                float2 q = h*float2(c.x/c.y,-1.0);</span><br><span class="line"></span><br><span class="line">                float2 w = float2( length(p.xz), p.y );</span><br><span class="line">                float2 a = w - q*clamp( dot(w,q)/dot(q,q), 0.0, 1.0 );</span><br><span class="line">                float2 b = w - q*float2( clamp( w.x/q.x, 0.0, 1.0 ), 1.0 );</span><br><span class="line">                <span class="built_in">float</span> k = sign( q.y );</span><br><span class="line">                <span class="built_in">float</span> d = min(dot( a, a ),dot(b, b));</span><br><span class="line">                <span class="built_in">float</span> s = max( k*(w.x*q.y-w.y*q.x),k*(w.y-q.y)  );</span><br><span class="line">                <span class="built_in">return</span> sqrt(d)*sign(s);</span><br><span class="line">            &#125;</span><br><span class="line">            // 圆角盒sdf</span><br><span class="line">            <span class="built_in">float</span> sdRoundBox( float3 p, float3 b, <span class="built_in">float</span> r )</span><br><span class="line">            &#123;</span><br><span class="line">                float3 q = abs(p) - b;</span><br><span class="line">                <span class="built_in">return</span> length(max(q,0.0)) + min(max(q.x,max(q.y,q.z)),0.0) - r;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            // scene sdf</span><br><span class="line">            // 用于计算CSG几何运算后的场景结果</span><br><span class="line">            <span class="built_in">float</span> sdScene(float3 p)</span><br><span class="line">            &#123;</span><br><span class="line">                //定义球体</span><br><span class="line">                float3 spherePos = float3(1.5, 1.0, 0.0);</span><br><span class="line">                <span class="built_in">float</span> sphereRadius = 1.0;</span><br><span class="line">                float3 sphereNormal = normalize( p - spherePos );</span><br><span class="line">                //定义圆角盒</span><br><span class="line">                float3 boxPos = float3(-1.5, 0.5, 0.0);</span><br><span class="line">                float3 boxSize = float3(1.0, 0.5, 0.5);</span><br><span class="line">                <span class="built_in">float</span> boxRadius = 0.1;</span><br><span class="line">                //定义圆环</span><br><span class="line">                float3 torusPos = float3(5.0, 1.0, 0.0);</span><br><span class="line">                float2 torusRadius = float2(0.8, 0.3);</span><br><span class="line">                //定义圆锥</span><br><span class="line">                float3 conePos = float3(-5.0, 2.0, 0.0);</span><br><span class="line">                float2 coneRadius = float2(0.1, 0.3);</span><br><span class="line">                <span class="built_in">float</span> coneHeight = 2.0;</span><br><span class="line">                //定义平面</span><br><span class="line">                float3 planePos = float3(0.0, 0.0, 0.0);</span><br><span class="line">                float3 planeNormal = float3(0.0, 1.0, 0.0);</span><br><span class="line">                //求交集</span><br><span class="line">                <span class="built_in">float</span> sphereDist = sdSphere(p - spherePos, sphereRadius);</span><br><span class="line">                <span class="built_in">float</span> torusDist = sdTorus(p - torusPos, torusRadius);</span><br><span class="line">                <span class="built_in">float</span> coneDist = sdCone(p - conePos, coneRadius, coneHeight);</span><br><span class="line">                <span class="built_in">float</span> planeDist = sdPlane(p - planePos, planeNormal, 0.0);</span><br><span class="line">                <span class="built_in">float</span> boxDist = sdRoundBox(p - boxPos, boxSize, boxRadius);</span><br><span class="line">                <span class="built_in">return</span> min(min(min(min(sphereDist, boxDist),coneDist),torusDist),planeDist);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            // RayMarch, 用于计算光线与物体的交点</span><br><span class="line">            // 输入分别是摄像机位置与光线方向</span><br><span class="line">            <span class="built_in">float</span> RayMarch(float3 ro, float3 rd)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">float</span> depth = 0.0;</span><br><span class="line">                <span class="keyword">for</span>(int i = 0; i &lt; MAX_MARCHING_STEPS; i++)</span><br><span class="line">                &#123;</span><br><span class="line">                    float3 p = ro + rd*depth;</span><br><span class="line">                    <span class="built_in">float</span> dist = sdScene(p);</span><br><span class="line">                    depth+=dist;</span><br><span class="line">                    <span class="keyword">if</span>(depth &gt; MAX_DIST || dist &lt; MIN_DIST) </span><br><span class="line">                        <span class="built_in">break</span>;           </span><br><span class="line">                &#125;</span><br><span class="line">                <span class="built_in">return</span> depth;     </span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            half3 PixelColor(float2 uv)</span><br><span class="line">            &#123;</span><br><span class="line">                half3 c = half3(0, 0, 0);</span><br><span class="line">                //</span><br><span class="line">                <span class="built_in">float</span> uvSizeScale = 1;</span><br><span class="line">                //四象限转一象限</span><br><span class="line">                uv.y = 1.0- uv.y;</span><br><span class="line">                //全象限 (-5, 5)</span><br><span class="line">                uv = (uv*2.0 -1.0)*uvSizeScale;</span><br><span class="line">                //消除屏幕拉伸影响</span><br><span class="line">                half co = width/height;</span><br><span class="line">                uv = float2(uv.x*co, uv.y);</span><br><span class="line"></span><br><span class="line">                // 根据摄像机位置与uv坐标计算出光线方向</span><br><span class="line">                //定义摄像机</span><br><span class="line">                float3 camPos = float3(0.0, 1.0, -5.0);</span><br><span class="line">                float3 lightDir = normalize(float3(uv, 1.0));</span><br><span class="line"></span><br><span class="line">	            <span class="built_in">float</span> dist = RayMarch(camPos, lightDir); // 步进距离总和（深度）</span><br><span class="line">                c = half3(dist/(20-time), dist/(20-time), dist/(20-time));</span><br><span class="line">                </span><br><span class="line">                <span class="built_in">return</span> c;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            half4 frag(Varyings input) : SV_Target </span><br><span class="line">            &#123;</span><br><span class="line">                float2 screenUV = GetNormalizedScreenSpaceUV(input.positionCS);</span><br><span class="line">                <span class="comment">#if UNITY_UV_STARTS_AT_TOP</span></span><br><span class="line">                screenUV = screenUV * float2(1.0, -1.0) + float2(0.0, 1.0);</span><br><span class="line">                <span class="comment">#endif</span></span><br><span class="line">                half3 col = Gamma22ToLinear(PixelColor(screenUV));</span><br><span class="line">                <span class="built_in">return</span> half4(col, 1);</span><br><span class="line">            &#125;</span><br><span class="line">            ENDHLSL</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2023/11/14/Mathematical-Visualization-09/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2023/11/14/Mathematical-Visualization-09/";
+            const title         = "「数学可视化(09)——Rayarch光线步进算法」";
+            const excerpt       = `&nbsp;`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/Shader/" rel="tag">Shader</a>, <a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>, <a class="tag-none-link" href="/tags/%E6%95%B0%E5%AD%A6%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag">数学可视化</a>, <a class="tag-none-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" rel="tag">计算机图形学</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2025-08-11T09:29:31.098Z" itemprop="dateModified">最后编辑：2025-08-11</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 数学可视化(08)——分形Fractal" href="/2023/11/07/Mathematical-Visualization-08/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" 数学可视化(10)——Lambert漫反射模型" href="/2023/11/21/Mathematical-Visualization-10/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+        <div id="disqus_thread" class="post-comments lazy-load"></div>
+
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://example.com/2023/11/14/Mathematical-Visualization-09/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '2023/11/14/Mathematical-Visualization-09/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    var load_comm = () => {
+        if (typeof DISQUS === 'undefined') {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://unishiki.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        } else {
+            DISQUS.reset({
+                reload: true,
+                config: function () {  
+                    this.page.url = 'http://example.com/2023/11/14/Mathematical-Visualization-09/';  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = '2023/11/14/Mathematical-Visualization-09/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                }
+            });
+        }
+    };
+    
+</script>
+<script async id="dsq-count-scr" src="//unishiki.disqus.com/count.js"></script>
+
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/ava1.jpg" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                116
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                3
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                16
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%BD%A2%E5%AD%A6%E4%B8%AD%E7%9A%84%E5%87%A0%E4%BD%95%E5%AF%B9%E8%B1%A1%E8%A1%A8%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-text">图形学中的几何对象表现方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%89%E7%BA%BF%E6%AD%A5%E8%BF%9B%E7%AE%97%E6%B3%95"><span class="toc-text">光线步进算法</span></a></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a><span class="category-list-count">95</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">开发记录</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%99%E7%A8%8B%E6%96%87%E6%A1%A3/">教程文档</a><span class="category-list-count">4</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Compute-Shader/" style="font-size: 0.62em;">Compute Shader</a> <a href="/tags/Dots/" style="font-size: 0.67em;">Dots</a> <a href="/tags/Java/" style="font-size: 0.64em;">Java</a> <a href="/tags/Minecraft/" style="font-size: 0.6em;">Minecraft</a> <a href="/tags/Shader/" style="font-size: 0.76em;">Shader</a> <a href="/tags/TwilightMelody/" style="font-size: 0.64em;">TwilightMelody</a> <a href="/tags/UI/" style="font-size: 0.71em;">UI</a> <a href="/tags/Unity/" style="font-size: 0.8em;">Unity</a> <a href="/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/" style="font-size: 0.6em;">Unity编辑器拓展</a> <a href="/tags/%E5%8A%A8%E6%95%88/" style="font-size: 0.69em;">动效</a> <a href="/tags/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/" style="font-size: 0.65em;">底层原理</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 0.75em;">性能优化</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%8F%AF%E8%A7%86%E5%8C%96/" style="font-size: 0.73em;">数学可视化</a> <a href="/tags/%E6%96%87%E6%A1%A3/" style="font-size: 0.65em;">文档</a> <a href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 0.67em;">算法与数据结构</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="font-size: 0.78em;">计算机图形学</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2025/07/25/ComputeShader-MagicLibrary/"><i class="fa  fa-book"></i> 浅尝ComputeShader-魔法图书馆</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/06/23/MyUIProject-09/"><i class="fa  fa-book"></i> UI动效 09</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/06/12/SourceCode-M3/"><i class="fa  fa-book"></i> 源码-魔法金属伤害计算</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/05/19/TwilightMelody-2-2025-05-01/"><i class="fa  fa-book"></i> TwilightMelody-2-2025-05-01</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/03/17/ComputeShaderLearning-1/"><i class="fa  fa-book"></i> GPU粒子实现原理与ComputeShader GPU Instance的基础应用</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
+                        
+                        <li><a href="mailto:ccc895286662@gmail.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/unishiki"><i class="fa fa-github"></i></a></li>
+                        
+                        <!-- New links -->
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2025 uni_shiki 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by uni_shiki.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="snow-switch">
+                        <span class="fa fa-snowflake-o"></span>
+                    </div>
+                
+                
+                    <div class="box group-box">
+                        <a href="https://jq.qq.com/?_wv=1027&k=CpdI35JY" target="_blank" rel="nofollow">
+                            <span class="fa fa-users"></span>
+                        </a>
+                    </div>
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3080117718"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
