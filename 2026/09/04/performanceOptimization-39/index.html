@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="../images/mfmf.webp">
+  
+  <title>Unity6性能优化(4)——基础——PC游戏与移动游戏性能的不同挑战 | uni_shiki</title>
+  
+  <meta name="author" content="uni_shiki" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="Unity, 性能优化" />
+  
+  <meta name="description" content="&amp;nbsp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity6性能优化(4)——基础——PC游戏与移动游戏性能的不同挑战">
+<meta property="og:url" content="http://example.com/2026/09/04/performanceOptimization-39/index.html">
+<meta property="og:site_name" content="uni_shiki">
+<meta property="og:description" content="&amp;nbsp;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/mfmf.webp">
+<meta property="article:published_time" content="2026-09-04T03:26:44.000Z">
+<meta property="article:modified_time" content="2026-09-04T08:42:48.982Z">
+<meta property="article:author" content="uni_shiki">
+<meta property="article:tag" content="Unity">
+<meta property="article:tag" content="性能优化">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/mfmf.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>链接</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://space.bilibili.com/33554119">Bilibili</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">uni_shiki</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>uni_shiki</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/09/04/performanceOptimization-39/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">Unity6性能优化(4)——基础——PC游戏与移动游戏性能的不同挑战</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2026-09-04T03:26:44.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2026-09-04</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">uni_shiki</span>
+                </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~1.99K
+                        
+                        字
+                    </li>
+                
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1788511368982"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><p>&nbsp;</p>
+<span id="more"></span>
+
+<h3 id="PC游戏与移动游戏区别对比"><a href="#PC游戏与移动游戏区别对比" class="headerlink" title="PC游戏与移动游戏区别对比"></a>PC游戏与移动游戏区别对比</h3><ul>
+<li>维度：硬件性能、游戏类型、画面质量、操作体验、性能工具</li>
+</ul>
+<h4 id="硬件性能"><a href="#硬件性能" class="headerlink" title="硬件性能"></a>硬件性能</h4><ul>
+<li>PC平台与移动平台硬件设计追求的目标与物理约束不同<ul>
+<li>PC平台追求的是最高性能，更注重对大型任务和多任务平行的处理，通常硬件结构复杂，耗电较高，以追求更高的算力，而不太注重硬件体积和能耗。有更多的主动散热手段。</li>
+<li>移动平台追求的是能效比，更注重高性能和低功耗，同时考虑便携性与续航。通常硬件体积小、耗电少、发热小，并要求有一定算力，所以工艺制成精细。更多依赖被动散热手段。</li>
+</ul>
+</li>
+</ul>
+<h4 id="硬件性能差异"><a href="#硬件性能差异" class="headerlink" title="硬件性能差异"></a>硬件性能差异</h4><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="left">PC平台</th>
+<th align="left">移动平台</th>
+<th align="left">影响</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">供电与散热</td>
+<td align="left">电源和风扇、水冷</td>
+<td align="left">电池和散热硅脂</td>
+<td align="left">温度墙</td>
+</tr>
+<tr>
+<td align="center">处理器</td>
+<td align="left">独立的CPU&#x2F;GPU，代差大</td>
+<td align="left">CPU&#x2F;GPU集成封装到一起，代差小</td>
+<td align="left">兼容性、逻辑复杂性、并行性、画面质量</td>
+</tr>
+<tr>
+<td align="center">内存&#x2F;缓存&#x2F;存储</td>
+<td align="left">多级，协调、延迟高、扩展</td>
+<td align="left">简单、快速、延迟小、不易扩展</td>
+<td align="left">资产质量、代码指令</td>
+</tr>
+<tr>
+<td align="center">输入输出设备</td>
+<td align="left">鼠标&#x2F;键盘&#x2F;手柄&#x2F;显示器&#x2F;各种外设</td>
+<td align="left">触摸屏</td>
+<td align="left">显示格式、分辨率、帧率、输入封装</td>
+</tr>
+<tr>
+<td align="center">网络</td>
+<td align="left">家庭或办公室宽带网络，速度快、稳定</td>
+<td align="left">移动数据网络，速度慢、型号不稳定</td>
+<td align="left">同步方式、断线处理、网络开销</td>
+</tr>
+</tbody></table>
+<ul>
+<li>一旦移动设备碰到了温度墙，系统就会对硬件做降频处理。而在PC平台上，这个温度墙的门槛很高，甚至可以忽略温度对游戏设计的影响</li>
+<li>PC上的处理器，一般代差比较大，甚至有超过10年不更换PC硬件的用户；而在移动平台上，硬件代差会比较小，目前最多5年前的移动设备，基本上都已经被淘汰了。因此PC平台上对处理器的兼容，需要考虑时间维度上对设备兼容更大的广度，而移动平台上需要考虑的是对移动设备厂商和系统兼容的广度</li>
+<li>另外由于PC平台处理器高性能，这就对游戏设计，无论从玩法还是画面质量上，都提出了更高的要求，并且由于PC平台处理器的核数、并行计算的单元数以及频率，都要比移动平台大得多，一些并行计算处理较多和面向数据设计的游戏，在PC平台上能得到更好的发挥，如：使用DOS架构开发的游戏，在PC平台上会得到更好的性能优化表现</li>
+<li>内存&#x2F;缓存&#x2F;存储，对游戏设计的影响，主要是要考虑原始游戏资产要设计成什么质量、包体多大、游戏加载占用多少内存、加载到缓存中的资源catch命中如何，这些PC平台一般都追求最高质量，而移动平台更需要考虑内存、缓存和存储方面的影响。同时不同的缓存架构也会导致代码指令优化的方式不同，以及代码写法的差异</li>
+<li>网络上，虽然移动设备也可以通过连接WIFI得到较好的网络环境，但移动游戏设计时要考虑更多一般无WIFI网络的环境，网络开销对移动设备发热和功耗也会有影响</li>
+<li>网络上差异的点，在PC平台上的选择要灵活和自由的多，但这不代表PC游戏网络要做的优化事情少。这是因为PC网络游戏对在线规模的要求、架构的复杂度都要比移动平台大得多</li>
+</ul>
+<h4 id="游戏类型的差异"><a href="#游戏类型的差异" class="headerlink" title="游戏类型的差异"></a>游戏类型的差异</h4><ul>
+<li>相对而言：</li>
+<li>PC游戏类型特点：长时间，重操作，强社交，深玩法</li>
+<li>移动游戏类型特点：段时间，轻操作，弱社交，多模块</li>
+</ul>
+<hr>
+<ul>
+<li>PC平台特有游戏类型：RTS，格斗，体育，MMO</li>
+<li>几乎是无法在移动平台实现的</li>
+</ul>
+<hr>
+<ul>
+<li>根据这些差异可以归纳出，对性能影响的点：</li>
+<li>规模：<ul>
+<li>资源质量</li>
+<li>内存质量</li>
+<li>安装包大小</li>
+<li>内存&#x2F;显存占用</li>
+<li>网络通讯量</li>
+</ul>
+</li>
+<li>分辨率、资源格式与精度、画面效果、后效、HDR&#x2F;HDROutput、平台&#x2F;硬件特性支持</li>
+</ul>
+<hr>
+<ul>
+<li>操作体验差异：</li>
+<li>刷新率&#x2F;垂直同步<ul>
+<li>一些游戏为了追求极致的手感体验，设置可以放弃画面撕裂对视觉的影响，如FPS竞技射击游戏，它们更注重操作的灵敏与快捷</li>
+<li>目前PC上的显示设备支持的刷新率可以很高，而在移动平台上只有很高端的设备才可以开启高刷</li>
+<li>在一些游戏类型下，支持高刷的开发就更困难了，帧率是影响高刷效果的最大障碍，为了支持高刷，我们必须在PC平台上将帧率做到极致，尤其是一些高端的PC上，可能需要通过超分插帧等方式实现高帧率</li>
+<li>PC平台上对玩家的沉浸感体验要求也是要高于移动平台的，比如超宽显示器屏幕、环绕立体声、体感反馈，各种外设支持都需要额外的开发工作与性能优化工作</li>
+<li>延迟也是影响沉浸感的一个原因，比如会遇到帧率低带来的输入与显示延迟、由网络稳定性带来的网络延迟、由显示器刷新时间带来的显示延迟，这些方面在某些竞技类PC游戏上，都要考虑做延迟补偿的方案</li>
+</ul>
+</li>
+<li>沉浸感</li>
+<li>延迟（帧率、网络、输入输出）</li>
+</ul>
+<h3 id="PC性能工具"><a href="#PC性能工具" class="headerlink" title="PC性能工具"></a>PC性能工具</h3><p> <img src="/images/performanceOptimization/174.png"></p>
+<ul>
+<li>PC端的性能工具基本上都是一些针对某一方面，或者是特殊硬件来做性能测试的工具，很难找到一个类似于XCode的既全面又完善还易用的性能工具</li>
+<li>往往在做某一方面性能优化工作时，需要使用到好几种工具来完成，这也为我们做PC性能优化工作，提出了更多的要求</li>
+</ul>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2026/09/04/performanceOptimization-39/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2026/09/04/performanceOptimization-39/";
+            const title         = "「Unity6性能优化(4)——基础——PC游戏与移动游戏性能的不同挑战」";
+            const excerpt       = `&nbsp;`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>, <a class="tag-none-link" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2026-09-04T08:42:48.982Z" itemprop="dateModified">最后编辑：2026-09-04</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" Unity6性能优化(3)——前导——Unity6下新的性能功能" href="/2026/09/02/performanceOptimization-38/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" Unity6性能优化(5)——基础——如何了解目标优化项目" href="/2026/09/04/performanceOptimization-40/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+        <div id="disqus_thread" class="post-comments lazy-load"></div>
+
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://example.com/2026/09/04/performanceOptimization-39/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '2026/09/04/performanceOptimization-39/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    var load_comm = () => {
+        if (typeof DISQUS === 'undefined') {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://unishiki.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        } else {
+            DISQUS.reset({
+                reload: true,
+                config: function () {  
+                    this.page.url = 'http://example.com/2026/09/04/performanceOptimization-39/';  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = '2026/09/04/performanceOptimization-39/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                }
+            });
+        }
+    };
+    
+</script>
+<script async id="dsq-count-scr" src="//unishiki.disqus.com/count.js"></script>
+
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/ava1.jpg" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                127
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                3
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                16
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a><span class="category-list-count">101</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">开发记录</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%99%E7%A8%8B%E6%96%87%E6%A1%A3/">教程文档</a><span class="category-list-count">4</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Compute-Shader/" style="font-size: 0.62em;">Compute Shader</a> <a href="/tags/Dots/" style="font-size: 0.67em;">Dots</a> <a href="/tags/Java/" style="font-size: 0.63em;">Java</a> <a href="/tags/Minecraft/" style="font-size: 0.6em;">Minecraft</a> <a href="/tags/Shader/" style="font-size: 0.77em;">Shader</a> <a href="/tags/TwilightMelody/" style="font-size: 0.68em;">TwilightMelody</a> <a href="/tags/UI/" style="font-size: 0.72em;">UI</a> <a href="/tags/Unity/" style="font-size: 0.8em;">Unity</a> <a href="/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/" style="font-size: 0.6em;">Unity编辑器拓展</a> <a href="/tags/%E5%8A%A8%E6%95%88/" style="font-size: 0.7em;">动效</a> <a href="/tags/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/" style="font-size: 0.65em;">底层原理</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 0.75em;">性能优化</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%8F%AF%E8%A7%86%E5%8C%96/" style="font-size: 0.73em;">数学可视化</a> <a href="/tags/%E6%96%87%E6%A1%A3/" style="font-size: 0.65em;">文档</a> <a href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 0.67em;">算法与数据结构</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="font-size: 0.78em;">计算机图形学</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2026/09/07/performanceOptimization-41/"><i class="fa  fa-book"></i> Unity6性能优化(6)——基础——场景分析</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2026/09/04/performanceOptimization-40/"><i class="fa  fa-book"></i> Unity6性能优化(5)——基础——如何了解目标优化项目</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2026/09/04/performanceOptimization-39/"><i class="fa  fa-book"></i> Unity6性能优化(4)——基础——PC游戏与移动游戏性能的不同挑战</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2026/09/02/performanceOptimization-38/"><i class="fa  fa-book"></i> Unity6性能优化(3)——前导——Unity6下新的性能功能</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2026/09/02/performanceOptimization-37/"><i class="fa  fa-book"></i> Unity6性能优化(2)——前导——PC Benchmark解读</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
+                        
+                        <li><a href="mailto:ccc895286662@gmail.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/unishiki"><i class="fa fa-github"></i></a></li>
+                        
+                        <!-- New links -->
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2026 uni_shiki 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by uni_shiki.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="snow-switch">
+                        <span class="fa fa-snowflake-o"></span>
+                    </div>
+                
+                
+                    <div class="box group-box">
+                        <a href="https://jq.qq.com/?_wv=1027&k=CpdI35JY" target="_blank" rel="nofollow">
+                            <span class="fa fa-users"></span>
+                        </a>
+                    </div>
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3080117718"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
